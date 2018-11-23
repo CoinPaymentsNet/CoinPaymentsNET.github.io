@@ -5,11 +5,11 @@ entries:
   levels: one
   folders:
 
-  - title: Products
+  - title: Get Started
     output: web
     folderitems:
-    - title: News
-      url: /news.html
+    - title: Overiew
+      url: /overview.html
       output: web
     - title: Theme instructions
       url: /mydoc_introduction.html
@@ -20,3 +20,5 @@ entries:
     - title: Product 2
       url: /p2_landing_page.html
       output: web
+  - title: Products
+
