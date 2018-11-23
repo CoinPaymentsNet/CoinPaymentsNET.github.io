@@ -11,14 +11,21 @@ entries:
     - title: Overiew
       url: /overview.html
       output: web
-    - title: Theme instructions
-      url: /mydoc_introduction.html
+
+  - title: Shopping Cart Plugins
+    output: web
+    folderitems:
+    - title: Magento
+      url: /magento1.html
       output: web
-    - title: Product 1
-      url: /p1_landing_page.html
+    - title: Magento2 1
+      url: /magento2.html
       output: web
-    - title: Product 2
-      url: /p2_landing_page.html
+
+  - title: Gamming Frameworks Integration
+    output: web
+    folderitems:
+    - title: Unity
+      url: /unity.html
       output: web
-  - title: Products
 
