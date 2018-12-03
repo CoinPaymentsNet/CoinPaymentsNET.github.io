@@ -18,7 +18,7 @@ entries:
     - title: Magento
       url: /magento1.html
       output: web
-    - title: Magento2 1
+    - title: Magento2
       url: /magento2.html
       output: web
 
