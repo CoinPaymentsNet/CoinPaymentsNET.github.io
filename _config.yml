@@ -100,11 +100,11 @@ defaults:
 
 # these are defaults used for the frontmatter for these file types
 
-sidebars:
-- home_sidebar
-- magento
-- magento2
-- unity
+#sidebars:
+#- home_sidebar
+#- magento
+#- magento2
+#- unity
 
 description: "Integrate Payments with cryptocurrencies on your site witn CoinPayments plugins."
 # the description is used in the feed.xml file

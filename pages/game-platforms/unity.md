@@ -1,7 +1,7 @@
 ---
 title: Unity SDK
 keywords: Unity payment plugin, coinpayments unity, unity cryptocurrency payments
-sidebar: unity_sidebar
+sidebar: home_sidebar
 toc: false
 permalink: unity.html
 folder: unity

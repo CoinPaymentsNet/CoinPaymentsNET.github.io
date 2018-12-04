@@ -7,18 +7,3 @@ topnav:
       external_url: https://www.coinpayments.net/
 
 #Topnav dropdowns
-topnav_dropdowns:
-- title: Topnav dropdowns
-  folders:
-    - title: Shopping Carts
-      folderitems:
-        - title: Magento 1
-          url: magento1.html
-        - title: Magento 2
-          url: magento2.html
-
-    - title: Game Frameworks
-      folderitems:
-        - title: Unity
-          url: unity.html
-

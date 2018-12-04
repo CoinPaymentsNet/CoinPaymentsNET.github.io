@@ -15,17 +15,17 @@ entries:
   - title: Shopping Cart Plugins
     output: web
     folderitems:
-    - title: Magento
+    - title: Extension for Magento
       url: /magento1.html
       output: web
-    - title: Magento2
+    - title: Extension for Magento2
       url: /magento2.html
       output: web
 
   - title: Gamming Frameworks Integration
     output: web
     folderitems:
-    - title: Unity
+    - title: Unity Addon
       url: /unity.html
       output: web
 
