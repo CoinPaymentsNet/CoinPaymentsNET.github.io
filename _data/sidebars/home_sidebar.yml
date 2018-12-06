@@ -22,7 +22,7 @@ entries:
       url: /magento2.html
       output: web
 
-  - title: Gamming Frameworks Integration
+  - title: Gamming Frameworks
     output: web
     folderitems:
     - title: Unity Addon
