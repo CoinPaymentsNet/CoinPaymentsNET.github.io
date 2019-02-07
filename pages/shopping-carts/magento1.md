@@ -37,22 +37,30 @@ Then, click “Install” followed by “Proceed” and wait for the installatio
 
 2. Extract archive and upload to root directory of your Magento store;
 
+3. Flush Magento Cache:
+  - login as an admin
+  - go to System » Cache Management
+  - Click 'Flush Magento Cache'
+  ![cache]({{ site.url }}/images/magento1_flush_cache.png)
+
 ## Setup
 
 1. Login to Magento Admin panel 
 
 2. Locate CoinPayments extension in Payment Methods.
 Go to System » Configuration, find the SALES sub-menu and then click on Payment Methods – from there, scroll down and locate “Coinpayments.net”. 
-![config]({{ site.url }}/images/magento1_configuration_1.png)  ![config2]({{ site.url }}/images/magento1_configuration_1.png)
+![config]({{ site.url }}/images/magento1_configuration.png)  
 
 4. Enable and configure the Coinpayments extension for Magento
 To enable the CoinPayments extension for Magento, set “Enabled” to “Yes”.
-“Title” will appear on your checkout page – edit them as you feel is appropriate.
-Enter your API credentials – Merchant ID, IPN secret... 
 
-You can find this keys in your coinpayments account registered as described above.
+Then set up all required settings:
+  1. 'Direct Mode' defines how payment will be done (see 'User Experience' section below for details on every option)
+  2. Settings: Merchant ID, Public Key, Private Key, IPN secret, links your coinpayments account to the store. And IPN Debug email allows to receive IPN errors if any on email. You may find these parameters in  your coinpayments account registered as shown below.
+  ![coinpayments_merchant]({{ site.url }}/images/coinpayments_merchant1.png)  
+  ![coinpayments_merchant]({{ site.url }}/images/coinpayments_merchant2.png)  
+  3. Field 'Sort Order' is used only in case if you want to use differnt payment methods on your site for ordering them for the user.
 
-Then, set the Receive Currency parameter to the currency in which you wish to receive your payouts from Coinpayments.
 Finally, click “Save Config” at the top right corner of the window.
 
 
@@ -60,7 +68,12 @@ Finally, click “Save Config” at the top right corner of the window.
 
 ## User Experience
 
+User experience could be with 'Direct Mode' i.e. payment directly on the site. Or with redirect to CoinPayments site for payment there.
 ### Direct Payment 
 
 ### Payment with Redirect
 
+
+## Demo
+
+You can try live demo here ...
