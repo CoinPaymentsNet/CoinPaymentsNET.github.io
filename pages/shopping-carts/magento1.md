@@ -17,6 +17,10 @@ With the CoinPayments Cryptocurrency Extension for Magento, you can not only acc
 
 Create account on coinpayments.org and start accepting Bitcoins, or any other form 100s available crypto currencies on your site or game. <a alt='register on .org' href='https://www.coinpayments.net/register'>Register</a>. After registration you would automatically have Mercahnt account. 
 Create your API keys pair:
+![api]({{ site.url }}/images/API.png)  
+and add deposit addresses for all coints you would like to accept:
+![coins_deposit]({{ site.url }}/images/receiveCoins1.png) 
+![coins_deposit]({{ site.url }}/images/receiveCoins2.png) 
 
 ## Installation
 
@@ -68,12 +72,18 @@ Finally, click “Save Config” at the top right corner of the window.
 
 ## User Experience
 
-User experience could be with 'Direct Mode' i.e. payment directly on the site. Or with redirect to CoinPayments site for payment there.
+After adding and setting up plugin users of the site will see coinpayments as a payment method that allows to pay with cryptocurrencies:
+![coinpayments_merchant]({{ site.url }}/images/paymentSelection.png)
+Once user select the coin, then price in it coint will be shown.
+Further user experience could be with 'Direct Mode' i.e. payment directly on the site. Or with redirect to CoinPayments site for payment there.
 ### Direct Payment 
+If direct mode is selected in adnin, then payment will be initiated via API and user will be able to pay without redirect to Coinpyaments site using QR code shown on confirmatoin screen or using mobile app.   
+![coinpayments_merchant]({{ site.url }}/images/direct.png)
 
 ### Payment with Redirect
-
-
+If direct mode is not selected in adnin, then user will be will be redirected to Coinpayment.net for payment:
+![coinpayments_merchant]({{ site.url }}/images/redirect1.png)
+![coinpayments_merchant]({{ site.url }}/images/redirect2.png)
 ## Demo
 
 You can try live demo here ...
