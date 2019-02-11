@@ -73,7 +73,9 @@ Finally, click “Save Config” at the top right corner of the window.
 ## User Experience
 
 After adding and setting up plugin users of the site will see coinpayments as a payment method that allows to pay with cryptocurrencies:
+
 ![coinpayments_merchant]({{ site.url }}/images/paymentSelection.png)
+
 Once user select the coin, then price in it coint will be shown.
 Further user experience could be with 'Direct Mode' i.e. payment directly on the site. Or with redirect to CoinPayments site for payment there.
 ### Direct Payment 
