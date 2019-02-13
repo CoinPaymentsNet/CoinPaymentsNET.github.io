@@ -18,7 +18,7 @@ With the CoinPayments Cryptocurrency Extension for Magento, you can not only acc
 Create account on coinpayments.org and start accepting Bitcoins, or any other form 100s available crypto currencies on your site or game. <a alt='register on .org' href='https://www.coinpayments.net/register'>Register</a>. After registration you would automatically have Mercahnt account. 
 Create your API keys pair:
 ![api]({{ site.url }}/images/API.png)  
-and add deposit addresses for all coints you would like to accept:
+and add deposit addresses for all coins you would like to accept:
 ![coins_deposit]({{ site.url }}/images/receiveCoins1.png) 
 ![coins_deposit]({{ site.url }}/images/receiveCoins2.png) 
 
