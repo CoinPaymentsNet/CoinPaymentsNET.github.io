@@ -33,7 +33,7 @@ After logging in, go to System » Magento Connect » Magento Connect Manager. En
 
 2. Paste CoinPayments extension URL and install.
 In Magento Connect Manager, find the “Paste extension key to install” field, and copy paste the following URL: 
-Then, click “Install” followed by “Proceed” and wait for the installation process to complete. Afterwards, click “Return to Admin”. 
+Then, click “Install” followed by “Proceed” and wait for the installation process to be completed. Afterwards, click “Return to Admin”. 
 
 ### Install via FTP
 
@@ -55,7 +55,7 @@ Then, click “Install” followed by “Proceed” and wait for the installatio
 Go to System » Configuration, find the SALES sub-menu and then click on Payment Methods – from there, scroll down and locate “Coinpayments.net”. 
 ![config]({{ site.url }}/images/magento1_configuration.png)  
 
-4. Enable and configure the Coinpayments extension for Magento
+3. Enable and configure the Coinpayments extension for Magento
 To enable the CoinPayments extension for Magento, set “Enabled” to “Yes”.
 
 Then set up all required settings:
@@ -63,27 +63,27 @@ Then set up all required settings:
   2. Settings: Merchant ID, Public Key, Private Key, IPN secret, links your coinpayments account to the store. And IPN Debug email allows to receive IPN errors if any on email. You may find these parameters in  your coinpayments account registered as shown below.
   ![coinpayments_merchant]({{ site.url }}/images/coinpayments_merchant1.png)  
   ![coinpayments_merchant]({{ site.url }}/images/coinpayments_merchant2.png)  
-  3. Field 'Sort Order' is used only in case if you want to use differnt payment methods on your site for ordering them for the user.
+  3. Field 'Sort Order' is used only in case if you want to use different payment methods on your site for ordering them for the user.
 
 Finally, click “Save Config” at the top right corner of the window.
 
 
-5. Go to frontend and see how it works! Congratulations – you did it! Your Magento store now has Coinpayments as a payment option at checkout. 
+4. Go to frontend and see how it works! Congratulations – you did it! Your Magento store now has Coinpayments as a payment option at checkout. 
 
 ## User Experience
 
-After adding and setting up plugin users of the site will see coinpayments as a payment method that allows to pay with cryptocurrencies:
+After adding and setting up the plugin users of the site will see coinpayments as a payment method that allows to pay with cryptocurrencies:
 
 ![coinpayments_merchant]({{ site.url }}/images/paymentSelection.png)
 
-Once user select the coin, then price in it coint will be shown.
-Further user experience could be with 'Direct Mode' i.e. payment directly on the site. Or with redirect to CoinPayments site for payment there.
+Once user has selected the coin, the price in this coin will be displayed.
+Further user experience could be done with 'Direct Mode' i.e. payment directly on the site. Or with redirect to CoinPayments site for payment there.
 ### Direct Payment 
-If direct mode is selected in adnin, then payment will be initiated via API and user will be able to pay without redirect to Coinpyaments site using QR code shown on confirmatoin screen or using mobile app.   
+If direct mode is selected in admin, then payment will be initiated via API and user will be able to pay without redirect to Coinpyaments site using QR code shown on confirmation screen or using mobile app.   
 ![coinpayments_merchant]({{ site.url }}/images/direct.png)
 
 ### Payment with Redirect
-If direct mode is not selected in adnin, then user will be will be redirected to Coinpayment.net for payment:
+If direct mode is not selected in admin, then user will be will be redirected to Coinpayment.net for payment:
 ![coinpayments_merchant]({{ site.url }}/images/redirect1.png)
 ![coinpayments_merchant]({{ site.url }}/images/redirect2.png)
 ## Demo
