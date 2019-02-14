@@ -9,7 +9,7 @@ folder: general
     
 <a href="https://coinpayments.net">CoinPayments</a> is a popular online platform that allows accepting, storing, converting, and withdrawing altcoins. 
 Currently it supports 70+ cryptocurrencies and provides a unique $tag to receive payments from all of them. 
-Thus, you can easily accept payments in such popular altcoins as Bitcoin and Ethereum on your ecommerce website, blog, social network, or in game.
+Thus, you can easily accept payments in such popular altcoins as Bitcoin and Ethereum on your ecommerce website, blog, social network, or in a game.
 This site will help you to install and setup CoinPayments ready to use externsions, apps, plugins for the platform you are using.
 Contact us if you do not see your plafrom and we will develop required integration ASAP.
 

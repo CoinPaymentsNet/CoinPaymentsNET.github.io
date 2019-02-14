@@ -11,11 +11,11 @@ Meet the best way to accept cryptocurrency on Magento. With CoinPayments Magento
 
 Thus, Magento cryptocurrency trading is no longer an unattainable goal - it is a new way of business dealing.
 
-With the CoinPayments Cryptocurrency Extension for Magento, you can not only accept altcoins on your Magento website, but also store cryptocurrency in a secure online wallet as well as protect altcoins in the vault that requires a time amount before being able to spend them. Almost 400 thousand vendors all over the world already use CoinPayments, so don't waste your chance to implement the new technology on your ecommerce storefront with the CoinPayments Magento extension.
+With the CoinPayments Cryptocurrency Extension for Magento, you can not only accept altcoins on your Magento website, but also store cryptocurrencies in a secure online wallet as well as protect altcoins in the vault that requires a time amount before being able to spend them. Almost 400 thousand vendors all over the world already use CoinPayments, so don't waste your chance to implement the new technology on your ecommerce storefront with the CoinPayments Magento extension.
 
 ## Before you start
 
-Create account on coinpayments.org and start accepting Bitcoins, or any other form 100s available crypto currencies on your site or game. <a alt='register on .org' href='https://www.coinpayments.net/register'>Register</a>. After registration you would automatically have Mercahnt account. 
+Create account on coinpayments.org and start accepting Bitcoins, or any other form 100s available crypto currencies on your site or game. <a alt='register on .org' href='https://www.coinpayments.net/register'>Register</a>. After registration you would automatically have a Mercahnt account. 
 Create your API keys pair:
 ![api]({{ site.url }}/images/API.png)  
 and add deposit addresses for all coins you would like to accept:
@@ -33,6 +33,9 @@ After logging in, go to System » Magento Connect » Magento Connect Manager. En
 
 2. Paste CoinPayments extension URL and install.
 In Magento Connect Manager, find the “Paste extension key to install” field, and copy paste the following URL: 
+
+TBD
+
 Then, click “Install” followed by “Proceed” and wait for the installation process to be completed. Afterwards, click “Return to Admin”. 
 
 ### Install via FTP

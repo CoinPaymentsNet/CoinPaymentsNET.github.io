@@ -9,7 +9,7 @@ folder: shopping-carts
 
 ## Overview
 
-Meet the best way to accept cryptocurrency on Magento 2. With CoinPayments Magento 2 Extension, you will easily integrate your ecommerce store with the popular cryptocurrency gateway accepting over 70 altcoins, including Bitcoin and Ethereum. 
+Meet the best way to accept cryptocurrencies on Magento 2. With CoinPayments Magento 2 Extension, you will easily integrate your ecommerce store with the popular cryptocurrency gateway accepting over 70 altcoins, including Bitcoin and Ethereum. 
 
 ## Installation
 
