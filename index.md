@@ -6,6 +6,6 @@ permalink: index.html
 summary: This site contains instructions about CoinPayment integrations
 ---
 
-{% include note.html content="Create account on coinpayments.org and start accepting Bitcoins, or any other form 100s available crypto currencies on your site or game. <a alt='register on .org' href='https://www.coinpayments.net/register'>Register</a>. " %}
+{% include note.html content="Create account on coinpayments.net and start accepting Bitcoins, or any other form 100s available crypto currencies on your site or game. <a alt='register on .org' href='https://www.coinpayments.net/register'>Register</a>. " %}
 
 
