@@ -24,9 +24,9 @@
             </p>
         </div>
         <div class="col-md-5">
-                <pre><code class="language-html">&lt;html>
+                <pre class="code-style-custom-btn"><code>&lt;html>
 &lt;head>
-    &lt;script src="<span id="script-site-origin"></span>https://orion-api-testnet.starhermit.com/static/js/checkout.js">&lt;/script>
+    &lt;script src="<span id="script-site-origin"></span>https://alpha-api.coinpayments.net/static/js/checkout.js">&lt;/script>
 &lt;/head>
 &lt;body>
     &lt;!-- ... -->
@@ -47,7 +47,7 @@
             </p>
         </div>
         <div class="col-md-5">
-                <pre><code class="language-js">CoinPayments.Button({
+                <pre class="code-style-custom-btn"><code>CoinPayments.Button({
 
   //
   // the \`createInvoice\` method is called when the user presses the
@@ -88,7 +88,7 @@
             </p>
         </div>
         <div class="col-md-5">
-                <pre><code class="language-js">CoinPayments.Button({
+                <pre class="code-style-custom-btn"><code>CoinPayments.Button({
   style: {
     color: "blue",
     width: 180
@@ -115,7 +115,7 @@
             </p>
         </div>
         <div class="col-md-5">
-                <pre><code class="language-js">{
+                <pre class="code-style-custom-btn"><code>{
   clientId: "CoinPaymentsDemoClient",
   currencyId: "5057",   // USD
   items: [
@@ -168,7 +168,7 @@
             </p>
         </div>
         <div class="col-md-5">
-                <pre><code class="language-js">CoinPayments.Button({
+                <pre class="code-style-custom-btn"><code>CoinPayments.Button({
 
   //
   // you can specify the \`invoiceId\` and \`customData\` dictionary of strings to store
