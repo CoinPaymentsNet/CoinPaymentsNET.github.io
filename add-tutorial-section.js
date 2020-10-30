@@ -463,10 +463,476 @@
   </tr>
   </tbody>
   </table>
-      </div>
-    </div>
-  </div>
-  <div>
+    
+  
+  <h4><strong>Tutorial 4: Using the MerchantCallback api endpoints</strong></h4>
+  <p>This tutorial covers creating callback addresses CoinPayments.net using the API request <strong>/api/v1/merchant/callbacks</strong> and receiving IPNDTO on your url. It also explains how to list all callback addresses, find the callback address by its id, update information about the callback address and list information about all merchant transactions.</p>
+  For sending any of these requests you have to use a pre-request for the authentication. Here is an example in JavaScript:
+  <pre>
+    <code>
+  var clientId = "7aa5e7ba45d84d978c5ea7f62498abf4";
+  var clientKey = "I1sCXrA4jS29f4JYk3mohCoErLHvpESW3XF83sxo/lg=";
+  pm.request.headers.add({
+      key: "X-CoinPayments-Client",
+      value: clientId
+  });
+  var date = new Date().toUTCString();
+  pm.request.headers.add({
+      key: "X-CoinPayments-Timestamp",
+      value: date
+  });
+  var text = pm.request.method + pm.request.url + clientId + date + pm.request.body;
+  var hash = CryptoJS.HmacSHA256("\ufeff" + text, clientKey);
+  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+  pm.request.headers.add({
+      key: "X-CoinPayments-Signature",
+      value: hashInBase64
+  });
+    </code>
+  </pre>
+  
+  <h4><strong>Receiving IPNDTO</strong></h4>
+
+        <p>
+          When merchant, for example, makes a transaction, the request is sent to the url specified for callback address.
+          <br> To receive IPNDTO you should make 3 steps:
+        <ol type="1">
+          <li>Create callback address by using the request describing below, specify your callback url webhook.</li>
+          <li>Deposit some crypto at the callback address.</li>
+          <li>Receive a ipndto at your callback url webhook.</li>
+        </ol>
+      </p>
+
+        <h4><strong>Part A: Creating callback addresses</strong></h4>
+        <p>For creating callback addresses we'll send  <strong>HTTP</strong> request(<strong>POST</strong>) to <strong>/api/v1/merchant/callbacks</strong></p>
+        <p>The request body should look like</p>
+        <pre><code>{
+    "clientId":"7aa5e7ba45d84d978c5ea7f62498abf4",
+    "currencyId":4,
+    "label":"testcallbacketh",
+    "webhook":{
+        "nativeCurrencyId":1,
+        "url":"https://google.com"
+    }
+}
+</code></pre>
+        <p><strong>Request body explanation:</strong></p>
+        <table>
+          <thead>
+          <tr>
+            <th align="left">Parameter</th>
+            <th align="left">Description</th>
+            <th align="left">Required</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td align="left">clientId</td>
+            <td align="left">The id of the currency the address will be receiving</td>
+            <td align="left">No</td>
+          </tr>
+          <tr>
+            <td align="left">currencyId</td>
+            <td align="left">The id of the currency the address will be receiving</td>
+            <td align="left">Yes</td>
+          </tr>
+          <tr>
+            <td align="left">label</td>
+            <td align="left">The label of the address (display only)</td>
+            <td align="left">No</td>
+          </tr>
+          <tr>
+            <td align="left">webhook</td>
+            <td align="left">The webhook notification information and customizations</td>
+            <td align="left">No</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>When a request sent successfully then the server will return a response which will contain the next information</p>
+        <pre><code>{
+     "id":"6Fa43sdVgjHuZRMuzei8ae",
+     "clientId":"AaXX9g2Zp99ij2cvLVymTN",
+     "created":"2020-10-28T09:44:54.9986654+00:00",
+     "currencyId":4,
+     "address":"0x4ca1a7a8332d4cad0abe4dbcb58c10d6edf4e315",
+     "label":"testcallbacketh",
+     "webhook":{
+         "url":"https://google.com",
+         "nativeCurrencyId":1
+     }
+}
+  </code></pre>
+        <p><strong>The response explanation:</strong></p>
+        <table>
+          <thead>
+          <tr>
+            <th align="left">Parameter</th>
+            <th align="left">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td align="left">id</td>
+            <td align="left">The unique id of the callback address</td>
+          </tr>
+          <tr>
+            <td align="left">clientId</td>
+            <td align="left">The merchant client this callback address is linked to</td>
+          </tr>
+          <tr>
+            <td align="left">created</td>
+            <td align="left">The timestamp of when the callback address was created</td>
+          </tr>
+          <tr>
+            <td align="left">currencyId</td>
+            <td align="left">The id of the currency the address is receiving</td>
+          </tr>
+          <tr>
+            <td align="left">address</td>
+            <td align="left">The actual deposit address</td>
+          </tr>
+          <tr>
+            <td align="left">label</td>
+            <td align="left">The display label of the callback address</td>
+          </tr>
+          <tr>
+            <td align="left">webhook</td>
+            <td align="left">The webhook notification information and customizations</td>
+          </tr>
+          </tbody>
+        </table>
+        
+        <h4><strong>Part B: Sending a request to spend funds from the account</strong></h4>
+        <p>This part was described in the Tutorial 2.</p>
+        
+        After making these steps the request will be sent on your url.
+      <p>The body of the request contains next information:</p>
+      <pre><code>{
+  "id": "bdaae1f4c051445099325f384a74e46b",
+  "type": "CallbackDepositConfirmed",
+  "timestamp": "2020-10-15T13:16:56.27704444+00:00",
+  "transaction": {
+    "callbackAddressId": "Lhdrs8hw6z3WWpHD6oMBea",
+    "address": "0x4723e2edcdedd471e016b03765df8f9c56572c69",
+    "currency": {
+      "id": "4",
+      "symbol": "ETH",
+      "name": "Ethereum",
+    },
+    "amount": {
+      "currencyId": "0",
+      "displayValue": "0.000000000000000001",
+      "value": "1"
+    },
+    "coinPaymentsFee": {
+      "currencyId": "0",
+      "displayValue": "0.000000000000000000",
+      "value": "0"
+    },
+    "nativeCurrency": {
+      "id": "1",
+      "symbol": "BTC",
+      "name": "Bitcoin",
+    },
+    "nativeAmount": {
+      "currencyId": "0",
+      "displayValue": "0.00000000",
+      "value": "0"
+    },
+    "nativeCoinPaymentsFee": {
+      "currencyId": "0",
+      "displayValue": "0.00000000",
+      "value": "0"
+    },
+    "status": "Confirmed"
+  }
+}
+  </code></pre>
+      <p><strong>The response explanation:</strong></p>
+      <table>
+        <thead>
+        <tr>
+          <th align="left">Parameter</th>
+          <th align="left">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td align="left">id</td>
+          <td align="left">The unique id of the ipn notification</td>
+        </tr>
+        <tr>
+          <td align="left">type</td>
+          <td align="left">The type of notification</td>
+        </tr>
+        <tr>
+          <td align="left">timestamp</td>
+          <td align="left">The timestamp of when the notification was generated</td>
+        </tr>
+        <tr>
+          <td align="left">invoice</td>
+          <td align="left">The invoice the notification was sent for</td>
+        </tr>
+        <tr>
+          <td align="left">payouts</td>
+          <td align="left">The payout information of the invoice, once available</td>
+        </tr>
+        <tr>
+          <td align="left">transaction</td>
+          <td align="left">Callback deposit transaction</td>
+        </tr>
+        <tr>
+          <td align="left">customdata</td>
+          <td align="left">Any custom data associated with the callback address, specified at the time when the callback address was created</td>
+        </tr>
+        </tbody>
+      </table>
+      
+      
+      <h4><strong>Other requests which can be helpful for working with callbacks:</strong></h4>
+      </br>
+        <h4><strong> List of all callback addresses</strong></h4>
+        <p>For list all callback addresses sorted descending by the creation date we'll send  <strong>HTTP</strong> request(<strong>GET</strong>) to <strong>/api/v1/merchant/callbacks</strong></p>
+        <ul>
+          <li>clientId - The merchant client id whose callback address should be listed</li>
+          <li>currencyId - The id of the currency the address was receiving</li>
+          <li>after - </li>
+          <li>limit - </li>
+        </ul>
+        <p>When a request sent successfully then the server will return a response which will contain the next information</p>
+        <pre><code>{
+     "items":[{
+         "id":"6Fa43sdVgjHuZRMuzei8ae",
+          "clientId":"AaXX9g2Zp99ij2cvLVymTN",
+          "created":"2020-10-28T09:44:54.998665+00:00",
+          "currencyId":4,
+          "address":"0x4ca1a7a8332d4cad0abe4dbcb58c10d6edf4e315",
+          "label":"testcallbacketh",
+          "webhook":{
+              "url":"https://google.com",
+              "nativeCurrencyId":1
+          }
+     }],
+     "paging":{
+          "cursors":{
+              "before":"WpESICZ72Ag=",
+              "after":"At0ZPLdf2Ag="
+          },
+          "limit":100
+     }
+}
+  </code></pre>
+        <p><strong>The response explanation:</strong></p>
+        <table>
+          <thead>
+          <tr>
+            <th align="left">Parameter</th>
+            <th align="left">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td align="left">items</td>
+            <td align="left">Information about the callback address</td>
+          </tr>
+          <tr>
+            <td align="left">paging</td>
+            <td align="left"></td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Searching the callback address by id</strong></h4>
+        <p>For listing all callback addresses with the same id we'll send  <strong>HTTP</strong> request(<strong>GET</strong>) to <strong>/api/v1/merchant/callbacks/{id}</strong></p>
+        <ul>
+          <li>id - The id of the callback address</li>
+        </ul>
+        <p>When a request sent successfully then the server will return a response which will contain the next information</p>
+        <pre><code>{
+     "id":"56NVoGgbkPxStkhTjokV8E",
+     "clientId":"AaXX9g2Zp99ij2cvLVymTN",
+     "created":"2020-09-28T13:43:10.01129+00:00",
+     "currencyId":4,
+     "address":"0xbb050a0ab1e6a801ed6d2c7eac775737dea7d11e",
+     "label":"testcallbacketh",
+     "webhook":{
+         "url":"https://google.com",
+         "nativeCurrencyId":1
+     }
+}
+  </code></pre>
+        <p><strong>The response explanation:</strong></p>
+        <table>
+          <thead>
+          <tr>
+            <th align="left">Parameter</th>
+            <th align="left">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td align="left">id</td>
+            <td align="left">The unique id of the callback address</td>
+          </tr>
+          <tr>
+            <td align="left">clientId</td>
+            <td align="left">The merchant client this callback address is linked to</td>
+          </tr>
+          <tr>
+            <td align="left">created</td>
+            <td align="left">The timestamp of when the callback address was created</td>
+          </tr>
+          <tr>
+            <td align="left">currencyId</td>
+            <td align="left">The id of the currency the address is receiving</td>
+          </tr>
+          <tr>
+            <td align="left">address</td>
+            <td align="left">The actual deposit address</td>
+          </tr>
+          <tr>
+            <td align="left">label</td>
+            <td align="left">The display label of the callback address</td>
+          </tr>
+          <tr>
+            <td align="left">webhook</td>
+            <td align="left">The webhook notification information and customizations</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <h4><strong>Updating a callback address</strong></h4>
+        <p>For updating a callback address we'll send  <strong>HTTP</strong> request(<strong>PUT</strong>) to <strong>/api/v1/merchant/callbacks/{id}</strong></p>
+        <ul>
+          <li>id - The id of the callback address</li>
+        </ul>
+        <p>The request body should look like</p>
+        <pre><code>{
+    "clientId":"7aa5e7ba45d84d978c5ea7f62498abf4",
+    "currencyId":4,
+    "label":"testcallbacketh",
+    "webhook":{
+        "nativeCurrencyId":1,
+        "url":"https://google.com"
+    }
+}
+  </code></pre>
+        <p><strong>Request body explanation:</strong></p>
+        <table>
+          <thead>
+          <tr>
+            <th align="left">Parameter</th>
+            <th align="left">Description</th>
+            <th align="left">Required</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td align="left">label</td>
+            <td align="left">The label of the address (display only)</td>
+            <td align="left">No</td>
+          </tr>
+          <tr>
+            <td align="left">webhook</td>
+            <td align="left">The webhook notification information and customizations</td>
+            <td align="left">No</td>
+          </tr>
+          </tbody>
+        </table>
+        <p>When a request sent successfully then the server will return a response which will contain the status 204(No content)</p>
+
+
+
+
+        <h4><strong>Listing all deposit transactions to callback addresses</strong></h4>
+        <p>For listing all deposit transactions to callback addresses, ordered newest first and optionally filtering by address, currency and date range we'll send  <strong>HTTP</strong> request(<strong>GET</strong>) to <strong>/api/v1/merchant/callbacks/{id}</strong></p>
+        <ul>
+          <li>callbackId - The id of the callback address</li>
+          <li>currencyId - </li>
+          <li>from - </li>
+          <li>to - </li>
+          <li>after - </li>
+          <li>limit - </li>
+
+        </ul>
+        <p>When a request sent successfully then the server will return a response which will contain the next information</p>
+        <pre><code>{
+    "items":[{
+        "id":"Dv1vDiDmfVrgSkEB2bLcUA",
+        "created":"2020-09-25T08:36:23.470791+00:00",
+        "completed":"2020-09-25T08:36:23.470793+00:00",
+        "callbackAddressId":"JhmojzDdEJA8qJ4fF3zkT9",
+        "address":"V7dHXKN6jKFXQrV3AKsYiePNezcgf7Cn2h",
+        "currency":{
+            "id":"33","symbol":"VLX",
+            "name":"Velas","decimalPlaces":18},
+            "nativeCurrency":{
+                "id":"1",
+                "symbol":"BTC",
+                "name":"Bitcoin",
+                "decimalPlaces":8
+            },
+            "amount":{
+                "displayValue":"81.282438450358048310",
+                "value":"81282438450358048310",
+                "amount":"81282438450358048310",
+                "currencyId":"0"
+            },
+            "coinPaymentsFee":{
+                "displayValue":"0.406412192251790242",
+                "value":"406412192251790242",
+                "amount":"406412192251790242",
+                "currencyId":"0"
+            },
+            "nativeAmount":{
+                "displayValue":"0.00030505",
+                "value":"30505",
+                "amount":"30505",
+                "currencyId":"1"
+            },
+            "nativeCoinPaymentsFee":{
+                "displayValue":"0.00000153",
+                "value":"153",
+                "amount":"153",
+                "currencyId":"1"
+            },
+            "status":"PaidOut"
+        }],
+        "paging":{
+            "cursors":{
+                "before":"xnPHFS5h2Ag=",
+                "after":"TPRdkbdf2Ag="
+            },
+            "limit":100
+        }
+}
+  </code></pre>
+        <p><strong>The response explanation:</strong></p>
+        <table>
+          <thead>
+          <tr>
+            <th align="left">Parameter</th>
+            <th align="left">Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td align="left">items</td>
+            <td align="left">Information about callback address</td>
+          </tr>
+          <tr>
+            <td align="left">paging</td>
+            <td align="left"></td>
+          </tr>
+          <tr>
+          </tbody>
+        </table>
+
+</div>
+</div>
+</div>
+<div>
+  
 
 </div>
 `;
