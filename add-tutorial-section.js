@@ -936,7 +936,7 @@
 
 </div>
 `;
-        var contentHtml = `        <div id="section/UseCasesExamples" data-section-id="section/UseCasesExamples" class="sc-ifAKCX dluJDj">          <div class="sc-gzVnrw eesUPo">            <div class="sc-bxivhb cjtbAK">              <h1 class="sc-htoDjs WxWXp"><a class="sc-VigVT kGvRyb" href="#section/UseCasesExamples"></a>Use Cases Examples              </h1>            </div>          </div>          <div id="section/Authentication/oauth2" data-section-id="section/Authentication/oauth2"            class="sc-ifAKCX dluJDj">            <div class="sc-gzVnrw eesUPo">              <div class="sc-bxivhb cjtbAK">                ${tutorialsHtml}                </div>              </div>            </div>          </div>        </div>`;
+        var contentHtml = `        <div id="section/UseCasesExamples" data-section-id="section/UseCasesExamples" class="sc-ifAKCX dluJDj">          <div class="sc-gzVnrw eesUPo">            <div class="sc-bxivhb cjtbAK">              <h1 class="sc-htoDjs WxWXp"><a class="sc-VigVT kGvRyb" href="#section/UseCasesExamples"></a>Use Cases Examples              </h1>            </div>          </div>          <div id="section/Authent/oauth2" data-section-id="section/Authentication/oauth2"            class="sc-ifAKCX dluJDj">            <div class="sc-gzVnrw eesUPo">              <div class="sc-bxivhb cjtbAK">                ${tutorialsHtml}                </div>              </div>            </div>          </div>        </div>`;
 
         var tablist = $("#tabs-list");
         tablist.insertBefore(createElementFromHTML(tabHtml), tablist.firstChild);
