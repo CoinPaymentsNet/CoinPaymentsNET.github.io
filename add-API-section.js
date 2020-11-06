@@ -10,10 +10,10 @@ function createElementFromHTML(htmlString) {
 setTimeout(function () {
     var tabHtml = '<li data-item-id="section/Migrating" class="sc-hrWEMg bbViyS"><label type="section" role="menuitem"              class="sc-eTuwsz iNzLCk -depth1"><span title="Authentication" class="sc-gwVKww fyUykq">Migrating from the old API to the new one</span></label></li>';
 
-    var tutorialsHtml = `  <div class="c-article b13" data-block-id="13">
-  <div class="c-article__content max-width-sm">
-      <br id="article-body" class="article-body">
-      <h3><strong>Authentication</strong></h3>
+    var tutorialsHtml = `  <div class="container-fluid">
+    <div class="row ml-1" style="margin-top: 30px;">
+        <div class="col-md-4">
+      <h1>Authentication</h1>
      <p>The old API uses a SHA-512 HMAC signature generated with your private key. But the new one uses a HmacSHA-256 instead. Our server generates it's own HMAC signature and compares it with the API caller's. If they don't match the API call is discarded. The HMAC signature then encodes with Base64 schemes and is sent as a HTTP header called 'X-CoinPayments-Signature'.
 Also you should add two new headers. One of them is '"X-CoinPayments-Timestamp' with current date converting to a string, according to universal time. Another header is called 'X-CoinPayments-Client' preserving information about your clientId.
 The HMAC signature is created from the request method, request url, clientId, date and request body. For example if your API secret key was "test" and public key was "your_api_public_key" (both without quotes) and you would like to send request to /api/v1/merchant/callbacks the text for generating HMAC might look like:</p>
@@ -26,6 +26,24 @@ The HMAC signature is created from the request method, request url, clientId, da
         <code>
         Gpv0yNiv4zWHukg5peVCPcYTCSVzH6t9QFLzF2Rq49E=
         </code>
+        <h1>Requests example</h1>
+        <p>For getting callback using old API you have to send <strong>HTTP</strong> request(<strong>POST</strong>) <strong>https://www.coinpayments.net/api.php/</strong>
+        with such a x-www-form-urlencoded body:
+        <ul>
+        <li>version: 1</li>
+        <li>cmd: get_callback_address</li>
+        <li>key: 3765ac71c95e08887f4077e0989bd142ad7c6d818af4353f6452f0eb945bf82b</li>
+        <li>currency: BTC</li>
+        
+        </ul>
+        <p>For list all callback addresses sorted descending by the creation date using new API we'll send  <strong>HTTP</strong> request(<strong>GET</strong>) to <strong>/api/v1/merchant/callbacks</strong> with parameters:</p>
+        <ul>
+          <li>clientId - The merchant client id whose callback address should be listed</li>
+          <li>currencyId - The id of the currency the address was receiving</li>
+          <li>after - </li>
+          <li>limit - </li>
+        </ul>
+        </p>
         </div>
         </div>
 </div>
