@@ -1,16 +1,16 @@
-    var $ = document.querySelector.bind(document);
-    $("img").parentElement.style.setProperty('padding', '7%');
+var $ = document.querySelector.bind(document);
+$("img").parentElement.style.setProperty('padding', '7%');
 
-    function createElementFromHTML(htmlString) {
-        var div = document.createElement('div');
-        div.innerHTML = htmlString.trim();
-        return div.firstChild;
-    }
+function createElementFromHTML(htmlString) {
+    var div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
+    return div.firstChild;
+}
 
-    setTimeout(function () {
-        var tabHtml = '<li data-item-id="section/CustomButtons" class="sc-hrWEMg bbViyS"><label type="section" role="menuite" class="sc-eTuwsz iNzLCk -depth1"><span title="Authentication" class="sc-gwVKww fyUykq">Custom Buttons</span></label></li>';
+setTimeout(function () {
+    var tabHtml = '<li data-item-id="section/CustomButtons" class="sc-hrWEMg bbViyS"><label type="section" role="menuite" class="sc-eTuwsz iNzLCk -depth1"><span title="Authentication" class="sc-gwVKww fyUykq">Custom Buttons</span></label></li>';
 
-        var tutorialsHtml = `
+    var tutorialsHtml = `
 
 <div class="container-fluid">
     <div class="row ml-1" style="margin-top: 30px;">
@@ -23,10 +23,10 @@
                 Add the CoinPayments JavaScript SDK <code>&lt;script&gt;</code> tag to your page <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> section as shown in the example.
             </p>
         </div>
-        <div class="col-md-5">
-                <pre><code class="language-html">&lt;html>
+        <div id="code_new_look" class="col-md-5">
+                <pre><code>&lt;html>
 &lt;head>
-    &lt;script src="<span id="script-site-origin"></span>https://orion-api-testnet.starhermit.com/static/js/checkout.js">&lt;/script>
+    &lt;script src="https://orion-api-testnet.starhermit.com/static/js/checkout.js">&lt;/script>
 &lt;/head>
 &lt;body>
     &lt;!-- ... -->
@@ -46,8 +46,8 @@
                 Note: These samples use client side integration calling the CoinPayments API directly, the <code>createInvoice</code> method can just as well make a call to your server, it just needs to return a <code>Promise&lt;string&gt;</code> that resolves to the CoinPayments invoice <code>id</code>.
             </p>
         </div>
-        <div class="col-md-5">
-                <pre><code class="language-js">CoinPayments.Button({
+        <div id="code_new_look" class="col-md-5">
+                <pre><code>CoinPayments.Button({
 
   //
   // the \`createInvoice\` method is called when the user presses the
@@ -72,7 +72,7 @@
   //
 
 }).render("cps-button-container-1");</code>
-</pre>
+</pre></div>
         </div>
         <div class="col-md-3 text-center">
             <h3 class="mb-5">Try it out</h3>
@@ -87,8 +87,8 @@
                 The <code>color</code> and <code>style</code> of the button can be customized by specifying an additional style object.  The available colours are <code>white</code> (default), <code>black</code> and <code>blue</code>.  Optionally a <code>width</code> can also be specified, if not provided then the button defaults to <code>225</code> pixels wide.
             </p>
         </div>
-        <div class="col-md-5">
-                <pre><code class="language-js">CoinPayments.Button({
+        <div id="code_new_look" class="col-md-5">
+                <pre><code>CoinPayments.Button({
   style: {
     color: "blue",
     width: 180
@@ -114,8 +114,8 @@
                 Note: The <code>currencyId</code> can be specified at the level of the invoice, then all monetary amounts are assumed to be in that currency.
             </p>
         </div>
-        <div class="col-md-5">
-                <pre><code class="language-js">{
+        <div id="code_new_look" class="col-md-5">
+                <pre><code>{
   clientId: "CoinPaymentsDemoClient",
   currencyId: "5057",   // USD
   items: [
@@ -167,8 +167,8 @@
                 Validate that the <code>invoiceId</code> and <code>amount</code> match the expected values before completing the order on your side.
             </p>
         </div>
-        <div class="col-md-5">
-                <pre><code class="language-js">CoinPayments.Button({
+        <div id="code_new_look" class="col-md-5">
+                <pre><code>CoinPayments.Button({
 
   //
   // you can specify the \`invoiceId\` and \`customData\` dictionary of strings to store
@@ -237,229 +237,229 @@
     </div>
 </div>
 `;
-        var contentHtml = `        <div id="section/CustomButtons" data-section-id="section/CustomButtons" class="sc-ifAKCX dluJDj">          <div class="sc-gzVnrw eesUPo">            <div class="sc-bxivhb cjtbAK">              <h1 class="sc-htoDjs WxWXp"><a class="sc-VigVT kGvRyb" href="#section/CustomButtons"></a>Custom Buttons             </h1>            </div>          </div>          <div id="section/Authent/oauth2" data-section-id="section/Authentication/oauth2"            class="sc-ifAKCX dluJDj">            <div class="sc-gzVnrw eesUPo">              <div class="sc-bxivhb cjtbAK">                ${tutorialsHtml}                </div>              </div>            </div>          </div>        </div>`;
+    var contentHtml = `        <div id="section/CustomButtons" data-section-id="section/CustomButtons" class="sc-ifAKCX dluJDj">          <div class="sc-gzVnrw eesUPo">            <div class="sc-bxivhb cjtbAK">              <h1 class="sc-htoDjs WxWXp"><a class="sc-VigVT kGvRyb" href="#section/CustomButtons"></a>Custom Buttons             </h1>            </div>          </div>          <div id="section/Authent/oauth2" data-section-id="section/Authentication/oauth2"            class="sc-ifAKCX dluJDj">            <div class="sc-gzVnrw eesUPo">              <div class="sc-bxivhb cjtbAK">                ${tutorialsHtml}                </div>              </div>            </div>          </div>        </div>`;
 
 
-        var tablist = $("#tabs-list");
-        tablist.insertBefore(createElementFromHTML(tabHtml), tablist.firstChild);
-        tablist.firstChild.firstChild.addEventListener('click', function () { window.location.hash = "#section/CustomButtons"; });
-        window.location.hash = "#section/CustomButtons";
+    var tablist = $("#tabs-list");
+    tablist.insertBefore(createElementFromHTML(tabHtml), tablist.firstChild);
+    tablist.firstChild.firstChild.addEventListener('click', function () { window.location.hash = "#section/CustomButtons"; });
+    window.location.hash = "#section/CustomButtons";
 
-        var apiContent = $("#apiContent")
-        apiContent.insertBefore(createElementFromHTML(contentHtml), apiContent.firstChild.nextSibling);
-    },1)
+    var apiContent = $("#apiContent")
+    apiContent.insertBefore(createElementFromHTML(contentHtml), apiContent.firstChild.nextSibling);
+},1)
 
-    setTimeout(function () {
-        CoinPayments.Button({
-            createInvoice: function (data, actions) {
-                return actions.invoice.create({
-                    clientId: "CoinPaymentsDemoClient",
-                    amount:
-                        {
-                            currencyId: "5057",    // USD
-                            value: "123"         // $ 1.23 USD
-                        },
-                    requireBuyerNameAndEmail: true,
-                    buyerDataCollectionMessage: "Your email and name is collected for customer service purposes such as order fulfillment."
-                });
-            }
-        }).render("cps-button-container-1");
+setTimeout(function () {
+    CoinPayments.Button({
+        createInvoice: function (data, actions) {
+            return actions.invoice.create({
+                clientId: "CoinPaymentsDemoClient",
+                amount:
+                    {
+                        currencyId: "5057",    // USD
+                        value: "123"         // $ 1.23 USD
+                    },
+                requireBuyerNameAndEmail: true,
+                buyerDataCollectionMessage: "Your email and name is collected for customer service purposes such as order fulfillment."
+            });
+        }
+    }).render("cps-button-container-1");
 
-        CoinPayments.Button({
-            style: {
-                color: "blue",
-                width: 180
-            },
-            createInvoice: function (data, actions) {
-                return actions.invoice.create({
-                    clientId: "CoinPaymentsDemoClient",
-                    amount:
-                        {
-                            currencyId: "4341",    // CAD
-                            value: "1000"          // $ 10.00 CAD
-                        }
-                });
-            }
-        }).render("cps-button-container-2");
-
-        CoinPayments.Button({
-            style: {
-                color: "black"
-            },
-            createInvoice: function (data, actions) {
-                return actions.invoice.create({
-                    clientId: "CoinPaymentsDemoClient",
-                    currencyId: "5057",   // USD
-                    items: [
-                        {
-                            name: "First test item in the cart",
-                            description: "this is a description of the first test item",
-                            quantity: 1,
-                            amount: "1000"    // $ 10.00 USD
-                        },
-                        {
-                            name: "There are two of these items",
-                            description: "this is the second item in the shopping cart",
-                            quantity: 2,
-                            amount: "1234"    // $ 12.34 USD
-                        }
-                    ],
-                    amount: {
-                        breakdown: {
-                            subtotal: "2234", // $ 22.34 USD (items 10.00 + 12.34)
-                            shipping: "999",  // $ 9.99 USD
-                            handling: "100",  // $ 1.00 USD
-                            taxTotal: "500"   // $ 5.00 USD
-                        },
-                        value: "3833"       // $ 31.33 USD total
+    CoinPayments.Button({
+        style: {
+            color: "blue",
+            width: 180
+        },
+        createInvoice: function (data, actions) {
+            return actions.invoice.create({
+                clientId: "CoinPaymentsDemoClient",
+                amount:
+                    {
+                        currencyId: "4341",    // CAD
+                        value: "1000"          // $ 10.00 CAD
                     }
-                });
-            }
-        }).render("cps-button-container-3");
+            });
+        }
+    }).render("cps-button-container-2");
 
-        CoinPayments.Button({
-            createInvoice: function (data, actions) {
+    CoinPayments.Button({
+        style: {
+            color: "black"
+        },
+        createInvoice: function (data, actions) {
+            return actions.invoice.create({
+                clientId: "CoinPaymentsDemoClient",
+                currencyId: "5057",   // USD
+                items: [
+                    {
+                        name: "First test item in the cart",
+                        description: "this is a description of the first test item",
+                        quantity: 1,
+                        amount: "1000"    // $ 10.00 USD
+                    },
+                    {
+                        name: "There are two of these items",
+                        description: "this is the second item in the shopping cart",
+                        quantity: 2,
+                        amount: "1234"    // $ 12.34 USD
+                    }
+                ],
+                amount: {
+                    breakdown: {
+                        subtotal: "2234", // $ 22.34 USD (items 10.00 + 12.34)
+                        shipping: "999",  // $ 9.99 USD
+                        handling: "100",  // $ 1.00 USD
+                        taxTotal: "500"   // $ 5.00 USD
+                    },
+                    value: "3833"       // $ 31.33 USD total
+                }
+            });
+        }
+    }).render("cps-button-container-3");
+
+    CoinPayments.Button({
+        createInvoice: function (data, actions) {
+            return actions.invoice.create({
+                clientId: "CoinPaymentsDemoClient",
+                amount:
+                    {
+                        currencyId: "5057",    // USD
+                        value: "123"         // $ 1.23 USD
+                    }
+            });
+        },
+        onConfirmed(data) {
+            // called when the invoice is paid and confirmed on the blockchain
+            // the payments may not yet have been transferred to your wallets
+            alert("Invoice confirmed: " + data.invoiceId);
+        },
+        onCancelled(data) {
+            // called when the invoice is cancelled and can no longer be paid
+            alert("Invoice cancelled: " + data.invoiceId);
+        }
+    }).render("cps-button-container-4");
+
+    var webhookSignalRConnectionId = null;
+
+    function getWebhookSignalRConnectionIdAsync() {
+        if (webhookSignalRConnectionId) {
+            return Promise.resolve(webhookSignalRConnectionId);
+        }
+
+        var connection = new signalR
+            .HubConnectionBuilder()
+            .withUrl("/api/v1/hubs/checkout-demo")
+            .build();
+
+        return connection.start().then(function() {
+            connection.on("ipn", function(body) {
+                console.log(body);
+
+                var parsed = JSON.parse(body);
+
+                writeWebhookLog({
+                    logLevel: "info",
+                    category: "IPN",
+                    eventId: {
+                        id: parsed.id,
+                        name: parsed.type
+                    },
+                    message: body
+                });
+            });
+
+            return connection.invoke("GetConnectionId").then(function (id) {
+                return webhookSignalRConnectionId = id;
+            });
+        });
+    }
+
+    CoinPayments.Button({
+        style: {
+            color: "blue"
+        },
+        createInvoice: function (data, actions) {
+            return getWebhookSignalRConnectionIdAsync().then(function(id) {
                 return actions.invoice.create({
                     clientId: "CoinPaymentsDemoClient",
+                    customData: {
+                        demoId: id
+                    },
                     amount:
                         {
-                            currencyId: "5057",    // USD
-                            value: "123"         // $ 1.23 USD
+                            currencyId: "5057", // USD
+                            value: "242" // $ 2.42 USD
                         }
-                });
-            },
-            onConfirmed(data) {
-                // called when the invoice is paid and confirmed on the blockchain
-                // the payments may not yet have been transferred to your wallets
-                alert("Invoice confirmed: " + data.invoiceId);
-            },
-            onCancelled(data) {
-                // called when the invoice is cancelled and can no longer be paid
-                alert("Invoice cancelled: " + data.invoiceId);
-            }
-        }).render("cps-button-container-4");
-
-        var webhookSignalRConnectionId = null;
-
-        function getWebhookSignalRConnectionIdAsync() {
-            if (webhookSignalRConnectionId) {
-                return Promise.resolve(webhookSignalRConnectionId);
-            }
-
-            var connection = new signalR
-                .HubConnectionBuilder()
-                .withUrl("/api/v1/hubs/checkout-demo")
-                .build();
-
-            return connection.start().then(function() {
-                connection.on("ipn", function(body) {
-                    console.log(body);
-
-                    var parsed = JSON.parse(body);
-
-                    writeWebhookLog({
-                        logLevel: "info",
-                        category: "IPN",
-                        eventId: {
-                            id: parsed.id,
-                            name: parsed.type
-                        },
-                        message: body
-                    });
-                });
-
-                return connection.invoke("GetConnectionId").then(function (id) {
-                    return webhookSignalRConnectionId = id;
                 });
             });
         }
+    }).render("cps-button-container-5");
 
-        CoinPayments.Button({
-            style: {
-                color: "blue"
-            },
-            createInvoice: function (data, actions) {
-                return getWebhookSignalRConnectionIdAsync().then(function(id) {
-                    return actions.invoice.create({
-                        clientId: "CoinPaymentsDemoClient",
-                        customData: {
-                            demoId: id
-                        },
-                        amount:
-                            {
-                                currencyId: "5057", // USD
-                                value: "242" // $ 2.42 USD
-                            }
-                    });
-                });
-            }
-        }).render("cps-button-container-5");
+    document.getElementById("script-site-origin").innerText = window.location.origin.toString();
 
-        document.getElementById("script-site-origin").innerText = window.location.origin.toString();
+    function getLogLevelColor(logLevel) {
+        switch (logLevel) {
+            case "dbug":
+                return { f: "gray", b: "black" };
+            case "info":
+                return { f: "#73e68c", b: "black" };
+            case "warn":
+                return { f: "#fefb84", b: "black" };
+            case "fail":
+                return { f: "black", b: "#ff6673" };
+            case "crit":
+                return { f: "white", b: "red" };
+            default:
+                return { f: "lightgray", b: "black" };
+        }
+    }
 
-        function getLogLevelColor(logLevel) {
-            switch (logLevel) {
-                case "dbug":
-                    return { f: "gray", b: "black" };
-                case "info":
-                    return { f: "#73e68c", b: "black" };
-                case "warn":
-                    return { f: "#fefb84", b: "black" };
-                case "fail":
-                    return { f: "black", b: "#ff6673" };
-                case "crit":
-                    return { f: "white", b: "red" };
-                default:
-                    return { f: "lightgray", b: "black" };
-            }
+    function writeWebhookLog(log) {
+        var heading = document.createElement("p");
+        var message = document.createElement("p");
+
+        var levelSpan = document.createElement("span");
+        var categorySpan = document.createElement("span");
+        var levelColor = getLogLevelColor(log.logLevel);
+
+        levelSpan.innerText = log.logLevel;
+        levelSpan.style.color = levelColor.f;
+        levelSpan.style.background = levelColor.b;
+        levelSpan.className = "log-level";
+
+        var eventId = (log.eventId && log.eventId.id) || "";
+        var eventName = log.eventId && log.eventId.name;
+
+        categorySpan.innerText = (log.category || "") + (eventId || eventName) ? ("[" + eventId + (eventName ? (", " + eventName) : "") + "]") : "";
+        categorySpan.className = "log-category";
+
+        message.innerHTML = log.message.replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/ /g, '&nbsp;');
+        message.className = "log-message";
+
+        heading.className = "log-heading";
+        heading.appendChild(levelSpan);
+
+        if (log.category || eventId || eventName) {
+            heading.appendChild(categorySpan);
         }
 
-        function writeWebhookLog(log) {
-            var heading = document.createElement("p");
-            var message = document.createElement("p");
+        var messageList = document.getElementById("webhooks-log");
 
-            var levelSpan = document.createElement("span");
-            var categorySpan = document.createElement("span");
-            var levelColor = getLogLevelColor(log.logLevel);
+        messageList.appendChild(heading);
+        messageList.appendChild(message);
 
-            levelSpan.innerText = log.logLevel;
-            levelSpan.style.color = levelColor.f;
-            levelSpan.style.background = levelColor.b;
-            levelSpan.className = "log-level";
+        if (log.exception) {
+            var ex = document.createElement("p");
+            ex.innerText = log.exception;
+            ex.className = "log-exception";
+            messageList.appendChild(ex);
+        }
 
-            var eventId = (log.eventId && log.eventId.id) || "";
-            var eventName = log.eventId && log.eventId.name;
+        while (messageList.childNodes.length > 3000) {
+            var child = messageList.childNodes.item(0);
+            messageList.removeChild(child);
+        }
 
-            categorySpan.innerText = (log.category || "") + (eventId || eventName) ? ("[" + eventId + (eventName ? (", " + eventName) : "") + "]") : "";
-            categorySpan.className = "log-category";
-
-            message.innerHTML = log.message.replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/ /g, '&nbsp;');
-            message.className = "log-message";
-
-            heading.className = "log-heading";
-            heading.appendChild(levelSpan);
-
-            if (log.category || eventId || eventName) {
-                heading.appendChild(categorySpan);
-            }
-
-            var messageList = document.getElementById("webhooks-log");
-
-            messageList.appendChild(heading);
-            messageList.appendChild(message);
-
-            if (log.exception) {
-                var ex = document.createElement("p");
-                ex.innerText = log.exception;
-                ex.className = "log-exception";
-                messageList.appendChild(ex);
-            }
-
-            while (messageList.childNodes.length > 3000) {
-                var child = messageList.childNodes.item(0);
-                messageList.removeChild(child);
-            }
-
-            var container = document.getElementById("webhooks-log-container");
-            container.scrollTop = container.scrollHeight;
-        }},3000);
+        var container = document.getElementById("webhooks-log-container");
+        container.scrollTop = container.scrollHeight;
+    }},3000);
