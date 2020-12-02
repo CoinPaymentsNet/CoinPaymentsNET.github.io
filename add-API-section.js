@@ -19,7 +19,7 @@ setTimeout(function () {
 Also you should add two new headers. One of them is '"X-CoinPayments-Timestamp' with current date converting to a string, according to universal time. Another header is called 'X-CoinPayments-Client' preserving information about your clientId.
 The HMAC signature is created from the request method, request url, clientId, date and request body. For example if your API secret key was <b>"test"</b> and public key was <b>"your_api_public_key"</b> (both without quotes) and you would like to send request to <b>/api/v1/merchant/callbacks</b> the text for generating HMAC might look like:</p>
         <code>
-        GEThttps://api.coinpayments.net/api/v1/merchant/callbacks7aa5e7ba45d84d978c5ea7f62498abf4Mon, 02 Nov 2020 12:16:38 GMT
+        GET https://api.coinpayments.net/api/v1/merchant/callbacks7aa5e7ba45d84d978c5ea7f62498abf4Mon, 02 Nov 2020 12:16:38 GMT
         </code>
         </br>
         </br>
