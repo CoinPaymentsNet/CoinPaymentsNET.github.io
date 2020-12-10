@@ -41,8 +41,8 @@
      "symbol":"BTC",
      "name":"Bitcoin",
      "logo":{
-        "imageUrl":"https://alpha-api.coinpayments.net/static/img/coins/64x64/1.png",
-        "vectorUrl":"https://alpha-api.coinpayments.net/static/img/coins/vector/1.svg"
+        "imageUrl":"https://api.coinpayments.net/static/img/coins/64x64/1.png",
+        "vectorUrl":"https://api.coinpayments.net/static/img/coins/vector/1.svg"
      },
      "decimalPlaces":8,
      "rank":1,
