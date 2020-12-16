@@ -28,7 +28,7 @@ setTimeout(function () {
                     <pre><code style="color: rgb(240,240,240);">
   &lt;html>
     &lt;head>
-      &lt;script src="https://api.coinpayments.net/static/js/checkout.js">&lt;/script>
+      &lt;script src="https://checkout.coinpayments.net/static/js/checkout.js">&lt;/script>
     &lt;/head>
     &lt;body>
       &lt;!-- ... -->
