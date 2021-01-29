@@ -28,7 +28,7 @@ setTimeout(function () {
                     <pre><code style="color: rgb(240,240,240);">
   &lt;html>
     &lt;head>
-      &lt;script src="https://checkout.coinpayments.net/static/js/checkout.js">&lt;/script>
+      &lt;script src="https://api.coinpayments.net/static/js/checkout.js">&lt;/script>
     &lt;/head>
     &lt;body>
       &lt;!-- ... -->
@@ -354,12 +354,11 @@ setTimeout(function () {
     var webhookSignalRConnectionId = null;
 
     function getWebhookSignalRConnectionIdAsync() {
-        if (webhookSignalRConnectionId) {
+        if (!webhookSignalRConnectionId) {
             return Promise.resolve(webhookSignalRConnectionId);
         }
 
-        var connection = new signalR
-            .HubConnectionBuilder()
+        var connection = new signalR.HubConnectionBuilder()
             .withUrl("/api/v1/hubs/checkout-demo")
             .build();
 
