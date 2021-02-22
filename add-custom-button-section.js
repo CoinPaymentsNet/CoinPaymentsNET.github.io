@@ -354,12 +354,11 @@ setTimeout(function () {
     var webhookSignalRConnectionId = null;
 
     function getWebhookSignalRConnectionIdAsync() {
-        if (webhookSignalRConnectionId) {
+        if (!webhookSignalRConnectionId) {
             return Promise.resolve(webhookSignalRConnectionId);
         }
 
-        var connection = new signalR
-            .HubConnectionBuilder()
+        var connection = new signalR.HubConnectionBuilder()
             .withUrl("/api/v1/hubs/checkout-demo")
             .build();
 
