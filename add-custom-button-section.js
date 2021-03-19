@@ -132,13 +132,19 @@ setTimeout(function () {
     {
       name: "First test item in the cart",
       description: "this is a description of the first test item",
-      quantity: 1,
+      quantity: {
+        value: "1",
+        type: "1"
+      },
       amount: "1000"    // $ 10.00 USD
     },
     {
       name: "There are two of these items",
       description: "this is the second item in the shopping cart",
-      quantity: 2,
+      quantity: {
+        value: "2",
+        type: "1"
+      },
       amount: "1234"    // $ 12.34 USD
     }
     ],
@@ -301,18 +307,24 @@ setTimeout(function () {
         createInvoice: function (data, actions) {
             return actions.invoice.create({
                 clientId: "CoinPaymentsDemoClient",
-                currencyId: "5057",   // USD
+                currencyId: 5057,
                 items: [
                     {
                         name: "First test item in the cart",
                         description: "this is a description of the first test item",
-                        quantity: 1,
+                        quantity: {
+                            value: "1",
+                            type: "1"
+                        },
                         amount: "1000"    // $ 10.00 USD
                     },
                     {
                         name: "There are two of these items",
                         description: "this is the second item in the shopping cart",
-                        quantity: 2,
+                        quantity: {
+                            value: "2",
+                            type: "1"
+                        },
                         amount: "1234"    // $ 12.34 USD
                     }
                 ],
