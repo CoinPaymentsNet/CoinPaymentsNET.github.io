@@ -151,13 +151,19 @@ setTimeout(function () {
         {
           name: <span class="token string">"First test item in the cart"</span>,
           description: <span class="token string">"this is a description of the first test item"</span>,
-          quantity: 1,
+          quantity: {
+            value: <span class="token string">"1"</span>,
+            type: <span class="token string">"1"</span>
+          },
           amount: <span class="token string">"1000"</span>    <span class="token comment">// $ 10.00 USD</span>
         },
         {
           name: <span class="token string">"There are two of these items"</span>,
           description: <span class="token string">"this is the second item in the shopping cart"</span>,
-          quantity: <span class="token number">2</span>,
+          quantity: {
+            value: <span class="token string">"2"</span>,
+            type: <span class="token string">"1"</span>
+          },
           amount: <span class="token string">"1234"</span>    <span class="token comment">// $ 12.34 USD</span>
         }
         ],
@@ -344,18 +350,24 @@ setTimeout(function () {
         createInvoice: function (data, actions) {
             return actions.invoice.create({
                 clientId: "CoinPaymentsDemoClient",
-                currencyId: "5057",   // USD
+                currencyId: 5057,
                 items: [
                     {
                         name: "First test item in the cart",
                         description: "this is a description of the first test item",
-                        quantity: 1,
+                        quantity: {
+                            value: "1",
+                            type: "1"
+                        },
                         amount: "1000"    // $ 10.00 USD
                     },
                     {
                         name: "There are two of these items",
                         description: "this is the second item in the shopping cart",
-                        quantity: 2,
+                        quantity: {
+                            value: "2",
+                            type: "1"
+                        },
                         amount: "1234"    // $ 12.34 USD
                     }
                 ],
