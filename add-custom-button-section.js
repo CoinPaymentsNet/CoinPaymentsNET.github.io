@@ -107,7 +107,10 @@ setTimeout(function () {
   }).render("cps-button-container-2");</code></pre>
 </div>
         </div>
-        <div class="col-md-3 text-center" style = "margin-top: 2vh;"><div id="cps-button-container-2"></div></div>
+        <div class="col-md-3 text-center" style = "margin-top: 2vh;">
+        <h3 class="mb-5">Try it out</h3>
+        <div id="cps-button-container-2"></div>
+        </div>
     </div>
     <div class="row ml-1" style="margin-top: 30px;">
         <div class="col-md-4">
@@ -154,7 +157,7 @@ setTimeout(function () {
   }</code></pre>
 </div>
         </div>
-        <div class="col-md-3 text-center" style = "margin-top: 2vh;"><div id="cps-button-container-3"></div></div>
+        <div class="col-md-3 text-center" style = "margin-top: 2vh;"><h3 class="mb-5">Try it out</h3><div id="cps-button-container-3"></div></div>
     </div>
     <div class="row ml-1" style="margin-top: 30px;">
         <div class="col-md-4">
@@ -216,7 +219,7 @@ setTimeout(function () {
 </pre>
 </div>
         </div>
-        <div class="col-md-3 text-center" style = "margin-top: 2vh;"><div id="cps-button-container-4"></div></div>
+        <div class="col-md-3 text-center" style = "margin-top: 2vh;"><h3 class="mb-5">Try it out</h3><div id="cps-button-container-4"></div></div>
     </div>
     <div class="row ml-1" style="margin-top: 30px;">
         <div class="col-md-4">
@@ -245,7 +248,7 @@ setTimeout(function () {
                 </div>
             </div>
         </div>
-        <div class="col-md-3 text-center"><div id="cps-button-container-5"></div></div>
+        <div class="col-md-3 text-center"><h3 class="mb-5">Try it out</h3><div id="cps-button-container-5"></div></div>
     </div>
 </div>
 `;
