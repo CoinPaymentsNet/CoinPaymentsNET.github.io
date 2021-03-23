@@ -35,7 +35,7 @@
   <p>For getting all available currencies we'll send an <strong>HTTP</strong>  request (<strong>GET</strong>) to <strong>/api/v1/currencies</strong>.<br>
   The response will contain information about all available currencies.<br>
   Currency information looks like</p>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
      "id":1,
      "type":"crypto",
      "symbol":"BTC",
@@ -83,7 +83,7 @@
   </tbody>
   </table>
   <p>The response will be looks like</p>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "items": [
       {
         "baseCurrencyId": 1,
@@ -100,7 +100,7 @@
   <li>Buyer personal data (name, email, phone, etc)</li>
   </ul>
   <p>For creating new payment we will send <strong>HTTP</strong> request (<strong>POST</strong>) to <strong>/api/v1/invoices</strong>. The request body should look like</p>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "clientId": "string",
     "currencyId": 0,
     "invoiceId": "string",
@@ -315,7 +315,7 @@
   <ul>
   <li>id - The id of the account from which to spend funds from</li>
   </ul>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "recipients": [
       {
         "address": "string",
@@ -359,7 +359,7 @@
   </tbody>
   </table>
   <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "spendRequestId": "string",
     "spendRequestToken": "string"
   }
@@ -390,7 +390,7 @@
   <li>id - The id of the account for converting</li>
   </ul>
   <p>The request body should look like</p>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "convertToCurrency": 0,
     "recipients": [
       {
@@ -439,7 +439,7 @@
   </tbody>
   </table>
   <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-  <pre><code>{
+  <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "spendRequestId": "string",
     "spendRequestToken": "string"
   }
@@ -468,8 +468,7 @@
   <h4><strong>Tutorial 4: Using the MerchantCallback api endpoints</strong></h4>
   <p>This tutorial covers creating callback addresses CoinPayments.net using the API request <strong>/api/v1/merchant/callbacks</strong> and receiving IPNDTO on your url. It also explains how to list all callback addresses, find the callback address by its id, update information about the callback address and list information about all merchant transactions.</p>
   For sending any of these requests you have to use a pre-request for the authentication. Here is an example in JavaScript:
-  <pre>
-    <code>
+ <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">
   var clientId = "7aa5e7ba45d84d978c5ea7f62498abf4";
   var clientKey = "I1sCXrA4jS29f4JYk3mohCoErLHvpESW3XF83sxo/lg=";
   pm.request.headers.add({
@@ -506,7 +505,7 @@
         <h4><strong>Part A: Creating callback addresses</strong></h4>
         <p>For creating callback addresses we'll send  <strong>HTTP</strong> request(<strong>POST</strong>) to <strong>/api/v1/merchant/callbacks</strong></p>
         <p>The request body should look like</p>
-        <pre><code>{
+        <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "clientId":"7aa5e7ba45d84d978c5ea7f62498abf4",
     "currencyId":4,
     "label":"testcallbacketh",
@@ -549,7 +548,7 @@
           </tbody>
         </table>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
+        <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
      "id":"6Fa43sdVgjHuZRMuzei8ae",
      "clientId":"AaXX9g2Zp99ij2cvLVymTN",
      "created":"2020-10-28T09:44:54.9986654+00:00",
@@ -607,7 +606,7 @@
         
         After making these steps the request will be sent on your url.
       <p>The body of the request contains next information:</p>
-      <pre><code>{
+      <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
   "id": "bdaae1f4c051445099325f384a74e46b",
   "type": "CallbackDepositConfirmed",
   "timestamp": "2020-10-15T13:16:56.27704444+00:00",
@@ -700,7 +699,7 @@
           <li>limit - </li>
         </ul>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
+       <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
      "items":[{
          "id":"6Fa43sdVgjHuZRMuzei8ae",
           "clientId":"AaXX9g2Zp99ij2cvLVymTN",
@@ -748,7 +747,7 @@
           <li>id - The id of the callback address</li>
         </ul>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
+        <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
      "id":"56NVoGgbkPxStkhTjokV8E",
      "clientId":"AaXX9g2Zp99ij2cvLVymTN",
      "created":"2020-09-28T13:43:10.01129+00:00",
@@ -807,7 +806,7 @@
           <li>id - The id of the callback address</li>
         </ul>
         <p>The request body should look like</p>
-        <pre><code>{
+        <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "clientId":"7aa5e7ba45d84d978c5ea7f62498abf4",
     "currencyId":4,
     "label":"testcallbacketh",
@@ -856,7 +855,7 @@
 
         </ul>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
+        <pre style="background-color: #1e1e1e"><code style="color: rgb(240,240,240);">{
     "items":[{
         "id":"Dv1vDiDmfVrgSkEB2bLcUA",
         "created":"2020-09-25T08:36:23.470791+00:00",
