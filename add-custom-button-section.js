@@ -12,7 +12,7 @@ setTimeout(function () {
 
     var tutorialsHtml = `
 
-<div class="sc-gzVnrw sc-ibxdXY bSFXlp">
+<div class="sc-gzVnrw sc-ibxdXY bSFXlp" xmlns="http://www.w3.org/1999/html">
 <div class="container-fluid">
 <div class="sc-bxivhb cjtbAK">
     <div class="row ml-1" style="margin-top: 30px;">
@@ -27,15 +27,15 @@ setTimeout(function () {
         </div>
         <div id="webhooks-log-container" class="col-md-5" style="float: left; width: 50%;">
                 <div id="webhooks-log">
-                    <pre><code style="color: rgb(240,240,240);">
-  &lt;html>
-    &lt;head>
-      &lt;script src="https://checkout.coinpayments.net/static/js/checkout.js">&lt;/script>
-    &lt;/head>
-    &lt;body>
-      &lt;!-- ... -->
-    &lt;/body>
-  &lt;/html>
+                    <pre class="language-html"><code style="color: rgb(240,240,240);" class="language-html">
+  &lt;<span class="token tag">html</span>>
+    &lt;<span class="token tag">head</span>>
+      &lt;<span class="token tag">script</span> <span class="token attr-name">src</span>=<span class="token attr-value">"https://checkout.coinpayments.net/static/js/checkout.js"</span>>&lt;/<span class="token tag">script</span>>
+    &lt;/<span class="token tag">head</span>>
+    &lt;<span class="token tag">body</span>>
+      <span class="token comment">&lt;!-- ... --></span>
+    &lt;/<span class="token tag">body</span>>
+  &lt;/<span class="token tag">html</span>>
 </pre></code>
             </div>
         </div>
@@ -57,32 +57,32 @@ setTimeout(function () {
         </div>
         <div id="webhooks-log-container" class="col-md-5" style="float: left; width: 50%;">
             <div id="webhooks-log" style="margin-bottom: 2vh;">
-                    <pre><code style="color: rgb(240,240,240);">
-  CoinPayments.Button({
+                    <pre class="language-js"><code style="color: rgb(240,240,240);" class="language-js">
+  CoinPayments.<span class="token function">Button</span>({
 
-    //
+    <span class="token comment">//
     // the \`createInvoice\` method is called when the user presses the
     // Pay with CoinPayments button.
-    //
+    //</span>
 
-    createInvoice: async function (data, actions) {
-      const invoiceId = await actions.invoice.create({
-        clientId: "CoinPaymentsDemoClient",
+    <span class="token function">createInvoice</span>: <span class="token keyword">async function</span> (data, actions) {
+      <span class="token keyword">const</span> invoiceId = <span class="token keyword">await</span> actions.invoice.<span class="token function">create</span>({
+        clientId: <span class="token string">"CoinPaymentsDemoClient"</span>,
         amount: {
-          currencyId: "5057",    // USD
-          value: "123"           // $ 1.23 USD  (123 cents)
+          currencyId: <span class="token string">"5057"</span>,    <span class="token comment">// USD</span>
+          value: <span class="token string">"123"</span>           <span class="token comment">// $ 1.23 USD  (123 cents)</span>
         },
-        requireBuyerNameAndEmail: true,
-        buyerDataCollectionMessage: "Your email and name is collected for customer service purposes such as order fulfillment."
+        requireBuyerNameAndEmail: <span class="token boolean">true</span>,
+        buyerDataCollectionMessage: <span class="token string">"Your email and name is collected for customer service purposes such as order fulfillment."</span>
       });
-      return invoiceId;
+      <span class="token keyword">return</span> invoiceId;
     }
 
-    //
+    <span class="token comment">//
     // the button is rendered into a div with id \`cps-button-container-1\`
-    //
+    //</span>
 
-  }).render("cps-button-container-1");</code>
+  }).<span class="token function">render</span>(<span class="token string">"cps-button-container-1"</span>);</code>
 </pre></div>
         </div>
     </div>
@@ -105,16 +105,16 @@ setTimeout(function () {
         </div>
         <div id="webhooks-log-container" class="col-md-5" style="float: left; width: 50%;">
             <div id="webhooks-log">
-                    <pre><code style="color: rgb(240,240,240);">
-  CoinPayments.Button({
+                    <pre class="language-js"><code style="color: rgb(240,240,240);" class="language-js">
+  CoinPayments.<span class="token function">Button</span>({
     style: {
-      color: "blue",
-      width: 180
+      color: <span class="token string">"blue"</span>,
+      width: <span class="token number">180</span>
     },
-    createInvoice: function (data, actions) {
-      // ... see above
+    <span class="token function">createInvoice</span>: function (data, actions) {
+      <span class="token comment">// ... see above</span>
     }
-  }).render("cps-button-container-2");</code></pre>
+  }).<span class="token function">render</span>(<span class="token string">"cps-button-container-2"</span>);</code></pre>
 </div>
         </div>
     </div>
@@ -143,32 +143,32 @@ setTimeout(function () {
             </div>
             <div id="webhooks-log-container" class="col-md-5" style="float: left; width: 50%;">
                 <div id="webhooks-log">
-                        <pre><code style="color: rgb(240,240,240);">
+                        <pre class="language-js"><code style="color: rgb(240,240,240);" class="language-js">
       {
-        clientId: "CoinPaymentsDemoClient",
-        currencyId: "5057",   // USD
+        clientId: <span class="token string">"CoinPaymentsDemoClient"</span>,
+        currencyId: <span class="token string">"5057"</span>,  <span class="token comment">// USD</span>
         items: [
         {
-          name: "First test item in the cart",
-          description: "this is a description of the first test item",
+          name: <span class="token string">"First test item in the cart"</span>,
+          description: <span class="token string">"this is a description of the first test item"</span>,
           quantity: 1,
-          amount: "1000"    // $ 10.00 USD
+          amount: <span class="token string">"1000"</span>    <span class="token comment">// $ 10.00 USD</span>
         },
         {
-          name: "There are two of these items",
-          description: "this is the second item in the shopping cart",
-          quantity: 2,
-          amount: "1234"    // $ 12.34 USD
+          name: <span class="token string">"There are two of these items"</span>,
+          description: <span class="token string">"this is the second item in the shopping cart"</span>,
+          quantity: <span class="token number">2</span>,
+          amount: <span class="token string">"1234"</span>    <span class="token comment">// $ 12.34 USD</span>
         }
         ],
         amount: {
           breakdown: {
-            subtotal: "2234", // $ 22.34 USD (items 10.00 + 12.34)
-            shipping: "999",  // $ 9.99 USD
-            handling: "100",  // $ 1.00 USD
-            taxTotal: "500"   // $ 5.00 USD
+            subtotal: <span class="token string">"2234"</span>, <span class="token comment">// $ 22.34 USD (items 10.00 + 12.34)</span>
+            shipping: <span class="token string">"999"</span>,  <span class="token comment">// $ 9.99 USD</span>
+            handling: <span class="token string">"100"</span>,  <span class="token comment">// $ 1.00 USD</span>
+            taxTotal: <span class="token string">"500"</span>   <span class="token comment">// $ 5.00 USD</span>
           },
-          value: "3833"       // $ 31.33 USD total
+          value: <span class="token string">"3833"</span>       <span class="token comment">// $ 31.33 USD total</span>
         }
       }</code></pre>
     </div>
@@ -207,40 +207,40 @@ setTimeout(function () {
             </div>
             <div id="webhooks-log-container" class="col-md-5" style="float: left; width: 50%;">
                 <div id="webhooks-log">
-                        <pre><code style="color: rgb(240,240,240);">
-      CoinPayments.Button({
+                        <pre class="language-js"><code style="color: rgb(240,240,240);" class="language-js">
+      CoinPayments.<span class="token function">Button</span>({
     
-        //
+        <span class="token comment">//
         // you can specify the \`invoiceId\` and \`customData\` dictionary of strings to store
         // along with the invoice so that you can correlate the invoice in your system
-        //
+        //</span>
     
-        createInvoice: async function (data, actions) {
-          const invoiceId = await actions.invoice.create({
-            clientId: "CoinPaymentsDemoClient",
-            invoiceId: "YOUR_CUSTOM_INVOICE_ID",  // your internal invoice ID
+        <span class="token comment">createInvoice</span>: <span class="token keyword">async function</span> (data, actions) {
+          <span class="token keyword">const</span> invoiceId = <span class="token keyword">await</span> actions.invoice.<span class="token function">create</span>({
+            clientId: <span class="token string">"CoinPaymentsDemoClient"</span>,
+            invoiceId: <span class="token string">"YOUR_CUSTOM_INVOICE_ID"</span>,   <span class="token comment">// your internal invoice ID</span>
             customData: {
-              foo: "bar",
-              hello: "world"
+              foo: <span class="token string">"bar"</span>,
+              hello: <span class="token string">"world"</span>
             },
             amount: {
-              currencyId: "5057",    // USD
-              value: "123"           // $ 1.23 USD  (123 cents)
+              currencyId: <span class="token string">"5057"</span>,     <span class="token comment">// USD</span>
+              value: <span class="token string">"123"</span>            <span class="token comment">// $ 1.23 USD  (123 cents)</span>
             }
           });
-          return invoiceId;
+          <span class="token keyword">return</span> invoiceId;
         },
-        onConfirmed(data) {
-          // called when the invoice is paid and confirmed on the blockchain
-          // the payments may not yet have been transferred to your wallets
-          alert("Invoice confirmed: " + data.invoiceId);
+        <span class="token function">onConfirmed</span>(data) {
+          <span class="token comment">// called when the invoice is paid and confirmed on the blockchain</span>
+          <span class="token comment">// the payments may not yet have been transferred to your wallets</span>
+          <span class="token function">alert</span>(<span class="token string">"Invoice confirmed: "</span> + data.invoiceId);
         },
-        onCancelled(data) {
-          // called when the invoice is cancelled and can no longer be paid
-          // e.g. user closes the payment window or timeout expires
-          alert("Invoice cancelled: " + data.invoiceId);
+        <span class="token function">onCancelled</span>(data) {
+          <span class="token comment">// called when the invoice is cancelled and can no longer be paid</span>
+          <span class="token comment">// e.g. user closes the payment window or timeout expires</span>
+          <span class="token function">alert</span>(<span class="token string">"Invoice cancelled: "</span> + data.invoiceId);
         }
-      }).render("cps-button-container-4");</code>
+      }).<span class="token function">render</span>("cps-button-container-4");</code>
     </pre>
     </div>
             </div>
@@ -275,7 +275,7 @@ setTimeout(function () {
             </div>
     
             <div class="col-md-5" style="margin-bottom: 40px; float: left; width: 50%;">
-                <div id="webhooks-log-container">
+                <div id="webhooks-log-container" style="background: #000000;">
                     <div id="webhooks-log">
                         <p class="log-heading"><span class="log-level" style="color: rgb(115, 230, 140); background: black;">info</span><span class="log-category">Click "Pay with CoinPayments"</span></p>
                         <p class="log-heading"><span class="log-level" style="color: rgb(115, 230, 140); background: black;">info</span><span class="log-category">Webhook IPN notifications will show here</span></p>
