@@ -35,31 +35,34 @@
   <p>For getting all available currencies we'll send an <strong>HTTP</strong>  request (<strong>GET</strong>) to <strong>/api/v1/currencies</strong>.<br>
   The response will contain information about all available currencies.<br>
   Currency information looks like</p>
-  <pre><code>{
-     "id":1,
-     "type":"crypto",
-     "symbol":"BTC",
-     "name":"Bitcoin",
-     "logo":{
-        "imageUrl":"https://api.coinpayments.net/static/img/coins/64x64/1.png",
-        "vectorUrl":"https://api.coinpayments.net/static/img/coins/vector/1.svg"
-     },
-     "decimalPlaces":8,
-     "rank":1,
-     "status":"active",
-     "capabilities":[
-        "multiSigAccounts",
-        "singleSigAccounts"
-     ],
-     "urls":{
-        "websites":[
-           "https://bitcoin.org"
-        ],
-        "explorers":[
-           "https://blockchain.info"
-        ]
-     }
-  }
+  <pre class="language-js"><code class= "language-js"><span class="token punctuation">{</span>
+     "id"<span class="token punctuation">:</span><span class="token number"> 1</span><span class="token punctuation">,</span>
+     "type"<span class="token punctuation">:</span><span class="token string"> "crypto"</span><span class="token punctuation">,</span>
+     "symbol"<span class="token punctuation">:</span><span class="token string"> "BTC"</span><span class="token punctuation">,</span>
+     "name"<span class="token punctuation">:</span><span class="token string"> "Bitcoin"</span><span class="token punctuation">,</span>
+     "logo"<span class="token punctuation">:</span><span class="token punctuation"> {</span>
+        "imageUrl"<span class="token punctuation">:</span><span class="token string"> "https://api.coinpayments.net/static/img/coins/64x64/1.png"</span><span class="token punctuation">,</span>
+        "vectorUrl"<span class="token punctuation">:</span><span class="token string"> "https://api.coinpayments.net/static/img/coins/vector/1.svg"</span>
+     <span class="token punctuation">}</span><span class="token punctuation">,</span>
+     "decimalPlaces"<span class="token punctuation">:</span><span class="token number"> 8</span><span class="token punctuation">,</span>
+     "rank"<span class="token punctuation">:</span><span class="token number"> 1</span><span class="token punctuation">,</span>
+     "status"<span class="token punctuation">:</span><span class="token string"> "active"</span><span class="token punctuation">,</span>
+     "capabilities"<span class="token punctuation">:</span>
+     <span class="token punctuation">[</span>
+        <span class="token string">"multiSigAccounts"</span><span class="token punctuation">,</span>
+        <span class="token string">"singleSigAccounts"</span>
+     <span class="token punctuation">]</span><span class="token punctuation">,</span>
+     "urls"<span class="token punctuation">:</span><span class="token punctuation"> {</span>
+        "websites"<span class="token punctuation">:</span>
+        <span class="token punctuation">[</span>
+           <span class="token string">"https://bitcoin.org"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        "explorers"<span class="token punctuation">:</span>
+        <span class="token punctuation">[</span>
+           <span class="token string">"https://blockchain.info"</span>
+        <span class="token punctuation">]</span>
+     <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
   </code></pre>
   <h4><strong>Part B: The currency conversion rates</strong></h4>
   <p>For check rate between currencies, we'll send the <strong>HTTP</strong> request (<strong>GET</strong>) to <strong>/api/v1/rates?from=1&amp;to=5057</strong><br>
@@ -83,15 +86,15 @@
   </tbody>
   </table>
   <p>The response will be looks like</p>
-  <pre><code>{
-    "items": [
-      {
-        "baseCurrencyId": 1,
-        "quoteCurrencyId": 5057,
-        "rate": "8896.619359154478102279714028"
-      }
-    ]
-  }
+  <pre class="language-js"><code class="language-js"><span class="token punctuation">{</span>
+    "items"<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        "baseCurrencyId"<span class="token punctuation">:</span> <span class="token number">1</span>,
+        "quoteCurrencyId"<span class="token punctuation">:</span> <span class="token number">5057</span>,
+        "rate"<span class="token punctuation">:</span> <span class="token string">"8896.619359154478102279714028"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
   </code></pre>
   <h4><strong>Part C: Checkout</strong></h4>
   <p>The next example explains how to create a payment using the CoinPayments.net API in order to accept payment in your e-commerce system during the checkout process. You will need to know the following information in order to create the payment:</p>
@@ -100,118 +103,118 @@
   <li>Buyer personal data (name, email, phone, etc)</li>
   </ul>
   <p>For creating new payment we will send <strong>HTTP</strong> request (<strong>POST</strong>) to <strong>/api/v1/invoices</strong>. The request body should look like</p>
-  <pre><code>{
-    "clientId": "string",
-    "currencyId": 0,
-    "invoiceId": "string",
+  <pre class="language-js"><code class="language-js">{
+    "clientId": <span class="token string">"string"</span>,
+    "currencyId": <span class="token number">0</span>,
+    "invoiceId": <span class="token string">"string"</span>,
     "buyer": {
-      "companyName": "string",
+      "companyName": <span class="token string">"string"</span>,
       "name": {
-        "firstName": "string",
-        "lastName": "string"
+        "firstName": <span class="token string">"string"</span>,
+        "lastName": <span class="token string">"string"</span>
       },
-      "emailAddress": "user@example.com",
-      "phoneNumber": "string",
+      "emailAddress": <span class="token string">"user@example.com"</span>,
+      "phoneNumber": <span class="token string">"string"</span>,
       "address": {
-        "address1": "string",
-        "address2": "string",
-        "address3": "string",
-        "provinceOrState": "string",
-        "city": "string",
-        "suburbOrDistrict": "string",
-        "countryCode": "string",
-        "postalCode": "string"
+        "address1": <span class="token string">"string"</span>,
+        "address2": <span class="token string">"string"</span>,
+        "address3": <span class="token string">"string"</span>,
+        "provinceOrState": <span class="token string">"string"</span>,
+        "city": <span class="token string">"string"</span>,
+        "suburbOrDistrict": <span class="token string">"string"</span>,
+        "countryCode": <span class="token string">"string"</span>,
+        "postalCode": <span class="token string">"string"</span>
       }
     },
-    "description": "string",
+    "description": <span class="token string">"string"</span>,
     "items": [
       {
-        "customId": "string",
-        "sku": "string",
-        "name": "string",
-        "description": "string",
-        "quantity": 0,
+        "customId": <span class="token string">"string"</span>,
+        "sku": <span class="token string">"string"</span>,
+        "name": <span class="token string">"string"</span>,
+        "description": <span class="token string">"string"</span>,
+        "quantity": <span class="token number">0</span>,
         "originalAmount": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         },
         "amount": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         },
         "tax": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         }
       }
     ],
     "amount": {
       "breakdown": {
         "subtotal": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         },
         "shipping": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         },
         "handling": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         },
         "taxTotal": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         },
         "discount": {
-          "currencyId": 0,
-          "displayValue": "string",
-          "value": "string"
+          "currencyId": <span class="token number">0</span>,
+          "displayValue": <span class="token string">"string"</span>,
+          "value": <span class="token string">"string"</span>
         }
       },
-      "currencyId": 0,
-      "displayValue": "string",
-      "value": "string"
+      "currencyId": <span class="token number">0</span>,
+      "displayValue": <span class="token string">"string"</span>,
+      "value": <span class="token string">"string"</span>
     },
     "shipping": {
-      "method": "string",
-      "companyName": "string",
+      "method": <span class="token string">"string"</span>,
+      "companyName": <span class="token string">"string"</span>,
       "name": {
-        "firstName": "string",
-        "lastName": "string"
+        "firstName": <span class="token string">"string"</span>,
+        "lastName": <span class="token string">"string"</span>
       },
-      "emailAddress": "user@example.com",
-      "phoneNumber": "string",
+      "emailAddress": <span class="token string">"user@example.com"</span>,
+      "phoneNumber": <span class="token string">"string"</span>,
       "address": {
-        "address1": "string",
-        "address2": "string",
-        "address3": "string",
-        "provinceOrState": "string",
-        "city": "string",
-        "suburbOrDistrict": "string",
-        "countryCode": "string",
-        "postalCode": "string"
+        "address1": <span class="token string">"string"</span>,
+        "address2": <span class="token string">"string"</span>,
+        "address3": <span class="token string">"string"</span>,
+        "provinceOrState": <span class="token string">"string"</span>,
+        "city": <span class="token string">"string"</span>,
+        "suburbOrDistrict": <span class="token string">"string"</span>,
+        "countryCode": <span class="token string">"string"</span>,
+        "postalCode": <span class="token string">"string"</span>
       }
     },
-    "requireBuyerNameAndEmail": true,
-    "buyerDataCollectionMessage": "string",
-    "notesToRecipient": "string",
-    "termsAndConditions": "string",
+    "requireBuyerNameAndEmail": <span class="token boolean">true</span>,
+    "buyerDataCollectionMessage": <span class="token string">"string"</span>,
+    "notesToRecipient": <span class="token string">"string"</span>,
+    "termsAndConditions": <span class="token string">"string"</span>,
     "customData": {
-      "additionalProp1": "string",
-      "additionalProp2": "string",
-      "additionalProp3": "string"
+      "additionalProp1": <span class="token string">"string"</span>,
+      "additionalProp2": <span class="token string">"string"</span>,
+      "additionalProp3": <span class="token string">"string"</span>
     },
     "metadata": {
-      "integration": "string",
-      "hostname": "string"
+      "integration": <span class="token string">"string"</span>,
+      "hostname": <span class="token string">"string"</span>
     }
   }
   </code></pre>
@@ -315,14 +318,14 @@
   <ul>
   <li>id - The id of the account from which to spend funds from</li>
   </ul>
-  <pre><code>{
+  <pre class="language-js"><code class="language-js">{
     "recipients": [
       {
-        "address": "string",
-        "amount": "string"
+        "address": <span class="token string">"string"</span>,
+        "amount": <span class="token string">"string"</span>
       }
     ],
-    "memo": "string",
+    "memo": <span class="token string">"string"</span>,
     "customData": {
       "additionalProp1": {},
       "additionalProp2": {},
@@ -359,9 +362,9 @@
   </tbody>
   </table>
   <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-  <pre><code>{
-    "spendRequestId": "string",
-    "spendRequestToken": "string"
+  <pre class="language-js"><code class="language-js">{
+    "spendRequestId": <span class="token string">"string"</span>,
+    "spendRequestToken": <span class="token string">"string"</span>
   }
   </code></pre>
   <p><strong>The response explanation:</strong></p>
@@ -390,15 +393,15 @@
   <li>id - The id of the account for converting</li>
   </ul>
   <p>The request body should look like</p>
-  <pre><code>{
-    "convertToCurrency": 0,
+  <pre class="language-js"><code class="language-js">{
+    "convertToCurrency": <span class="token number">0</span>,
     "recipients": [
       {
-        "address": "string",
-        "amount": "string"
+        "address": <span class="token string">"string"</span>,
+        "amount": <span class="token string">"string"</span>
       }
     ],
-    "memo": "string",
+    "memo": <span class="token string">"string"</span>,
     "customData": {
       "additionalProp1": {},
       "additionalProp2": {},
@@ -439,9 +442,9 @@
   </tbody>
   </table>
   <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-  <pre><code>{
-    "spendRequestId": "string",
-    "spendRequestToken": "string"
+  <pre class="language-js"><code class="language-js">{
+    "spendRequestId": <span class="token string">"string"</span>,
+    "spendRequestToken": <span class="token string">"string"</span>
   }
   </code></pre>
   <p><strong>The response explanation:</strong></p>
@@ -468,24 +471,24 @@
   <h4><strong>Tutorial 4: Using the MerchantCallback api endpoints</strong></h4>
   <p>This tutorial covers creating callback addresses CoinPayments.net using the API request <strong>/api/v1/merchant/callbacks</strong> and receiving IPNDTO on your url. It also explains how to list all callback addresses, find the callback address by its id, update information about the callback address and list information about all merchant transactions.</p>
   For sending any of these requests you have to use a pre-request for the authentication. Here is an example in JavaScript:
-  <pre>
-    <code>
-  var clientId = "7aa5e7ba45d84d978c5ea7f62498abf4";
-  var clientKey = "I1sCXrA4jS29f4JYk3mohCoErLHvpESW3XF83sxo/lg=";
-  pm.request.headers.add({
-      key: "X-CoinPayments-Client",
+  <pre class="language-js">
+    <code class="language-js">
+  <span class="token keyword">var</span> clientId = <span class="token string">"7aa5e7ba45d84d978c5ea7f62498abf4"</span>;
+  <span class="token keyword">var</span> clientKey = <span class="token string">"I1sCXrA4jS29f4JYk3mohCoErLHvpESW3XF83sxo/lg="</span>;
+  pm.request.headers.<span class="token function">add</span>({
+      key: <span class="token string">"X-CoinPayments-Client"</span>,
       value: clientId
   });
-  var date = new Date().toUTCString();
-  pm.request.headers.add({
-      key: "X-CoinPayments-Timestamp",
+  <span class="token keyword">var</span> date = <span class="token keyword">new</span> <span class="token function">Date()</span>.<span class="token function">toUTCString()</span>;
+  pm.request.headers.<span class="token function">add</span>({
+      key: <span class="token string">"X-CoinPayments-Timestamp"</span>,
       value: date
   });
-  var text = pm.request.method + pm.request.url + clientId + date + pm.request.body;
-  var hash = CryptoJS.HmacSHA256("\ufeff" + text, clientKey);
-  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
-  pm.request.headers.add({
-      key: "X-CoinPayments-Signature",
+  <span class="token keyword">var</span> text = pm.request.method + pm.request.url + clientId + date + pm.request.body;
+  <span class="token keyword">var</span> hash = CryptoJS.<span class="token function">HmacSHA256</span>("\ufeff" + text, clientKey);
+  <span class="token keyword">var</span> hashInBase64 = CryptoJS.enc.Base64.<span class="token function">stringify</span>(hash);
+  pm.request.headers.<span class="token function">add</span>({
+      key: <span class="token string">"X-CoinPayments-Signature"</span>,
       value: hashInBase64
   });
     </code>
@@ -506,13 +509,13 @@
         <h4><strong>Part A: Creating callback addresses</strong></h4>
         <p>For creating callback addresses we'll send  <strong>HTTP</strong> request(<strong>POST</strong>) to <strong>/api/v1/merchant/callbacks</strong></p>
         <p>The request body should look like</p>
-        <pre><code>{
-    "clientId":"7aa5e7ba45d84d978c5ea7f62498abf4",
-    "currencyId":4,
-    "label":"testcallbacketh",
+        <pre class="language-js"><code class="language-js">{
+    "clientId":<span class="token string">"7aa5e7ba45d84d978c5ea7f62498abf4"</span>,
+    "currencyId":<span class="token number">4</span>,
+    "label":<span class="token string">"testcallbacketh"</span>,
     "webhook":{
-        "nativeCurrencyId":1,
-        "url":"https://google.com"
+        "nativeCurrencyId":<span class="token number">1</span>,
+        "url":<span class="token string">"https://google.com"</span>
     }
 }
 </code></pre>
@@ -549,16 +552,16 @@
           </tbody>
         </table>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
-     "id":"6Fa43sdVgjHuZRMuzei8ae",
-     "clientId":"AaXX9g2Zp99ij2cvLVymTN",
-     "created":"2020-10-28T09:44:54.9986654+00:00",
-     "currencyId":4,
-     "address":"0x4ca1a7a8332d4cad0abe4dbcb58c10d6edf4e315",
-     "label":"testcallbacketh",
+        <pre class="language-js"><code class="language-js">{
+     "id":<span class="token string">"6Fa43sdVgjHuZRMuzei8ae"</span>,
+     "clientId":<span class="token string">"AaXX9g2Zp99ij2cvLVymTN"</span>,
+     "created":<span class="token string">"2020-10-28T09:44:54.9986654+00:00"</span>,
+     "currencyId":<span class="token number">4</span>,
+     "address":<span class="token string">"0x4ca1a7a8332d4cad0abe4dbcb58c10d6edf4e315"</span>,
+     "label":<span class="token string">"testcallbacketh"</span>,
      "webhook":{
-         "url":"https://google.com",
-         "nativeCurrencyId":1
+         "url":<span class="token string">"https://google.com"</span>,
+         "nativeCurrencyId":<span class="token number">1</span>
      }
 }
   </code></pre>
@@ -607,44 +610,44 @@
         
         After making these steps the request will be sent on your url.
       <p>The body of the request contains next information:</p>
-      <pre><code>{
-  "id": "bdaae1f4c051445099325f384a74e46b",
-  "type": "CallbackDepositConfirmed",
-  "timestamp": "2020-10-15T13:16:56.27704444+00:00",
+      <pre class="language-js"><code class="language-js">{
+  "id": <span class="token string">"bdaae1f4c051445099325f384a74e46b"</span>,
+  "type": <span class="token string">"CallbackDepositConfirmed"</span>,
+  "timestamp": <span class="token string">"2020-10-15T13:16:56.27704444+00:00"</span>,
   "transaction": {
-    "callbackAddressId": "Lhdrs8hw6z3WWpHD6oMBea",
-    "address": "0x4723e2edcdedd471e016b03765df8f9c56572c69",
+    "callbackAddressId": <span class="token string">"Lhdrs8hw6z3WWpHD6oMBea"</span>,
+    "address": <span class="token string">"0x4723e2edcdedd471e016b03765df8f9c56572c69"</span>,
     "currency": {
-      "id": "4",
-      "symbol": "ETH",
-      "name": "Ethereum",
+      "id": <span class="token string">"4"</span>,
+      "symbol": <span class="token string">"ETH"</span>,
+      "name": <span class="token string">"Ethereum"</span>,
     },
     "amount": {
-      "currencyId": "0",
-      "displayValue": "0.000000000000000001",
-      "value": "1"
+      "currencyId": <span class="token string">"0"</span>,
+      "displayValue": <span class="token string">"0.000000000000000001"</span>,
+      "value": <span class="token string">"1"</span>
     },
     "coinPaymentsFee": {
-      "currencyId": "0",
-      "displayValue": "0.000000000000000000",
-      "value": "0"
+      "currencyId": <span class="token string">"0"</span>,
+      "displayValue": <span class="token string">"0.000000000000000000"</span>,
+      "value": <span class="token string">"0"</span>
     },
     "nativeCurrency": {
-      "id": "1",
-      "symbol": "BTC",
-      "name": "Bitcoin",
+      "id": <span class="token string">"1"</span>,
+      "symbol": <span class="token string">"BTC"</span>,
+      "name": <span class="token string">"Bitcoin"</span>,
     },
     "nativeAmount": {
-      "currencyId": "0",
-      "displayValue": "0.00000000",
-      "value": "0"
+      "currencyId": <span class="token string">"0"</span>,
+      "displayValue": <span class="token string">"0.00000000"</span>,
+      "value": <span class="token string">"0"</span>
     },
     "nativeCoinPaymentsFee": {
-      "currencyId": "0",
-      "displayValue": "0.00000000",
-      "value": "0"
+      "currencyId": <span class="token string">"0"</span>,
+      "displayValue": <span class="token string">"0.00000000"</span>,
+      "value": <span class="token string">"0"</span>
     },
-    "status": "Confirmed"
+    "status": <span class="token string">"Confirmed"</span>
   }
 }
   </code></pre>
@@ -700,25 +703,25 @@
           <li>limit - </li>
         </ul>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
+        <pre class="language-js"><code class="language-js">{
      "items":[{
-         "id":"6Fa43sdVgjHuZRMuzei8ae",
-          "clientId":"AaXX9g2Zp99ij2cvLVymTN",
-          "created":"2020-10-28T09:44:54.998665+00:00",
-          "currencyId":4,
-          "address":"0x4ca1a7a8332d4cad0abe4dbcb58c10d6edf4e315",
-          "label":"testcallbacketh",
+         "id":<span class="token string">"6Fa43sdVgjHuZRMuzei8ae"</span>,
+          "clientId":<span class="token string">"AaXX9g2Zp99ij2cvLVymTN"</span>,
+          "created":<span class="token string">"2020-10-28T09:44:54.998665+00:00"</span>,
+          "currencyId":<span class="token number">4</span>,
+          "address":<span class="token string">"0x4ca1a7a8332d4cad0abe4dbcb58c10d6edf4e315"</span>,
+          "label":<span class="token string">"testcallbacketh"</span>,
           "webhook":{
-              "url":"https://google.com",
-              "nativeCurrencyId":1
+              "url":<span class="token string">"https://google.com"</span>,
+              "nativeCurrencyId":<span class="token number">1</span>
           }
      }],
      "paging":{
           "cursors":{
-              "before":"WpESICZ72Ag=",
-              "after":"At0ZPLdf2Ag="
+              "before":<span class="token string">"WpESICZ72Ag="</span>,
+              "after":<span class="token string">"At0ZPLdf2Ag="</span>
           },
-          "limit":100
+          "limit":<span class="token number">100</span>
      }
 }
   </code></pre>
@@ -748,16 +751,16 @@
           <li>id - The id of the callback address</li>
         </ul>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
-     "id":"56NVoGgbkPxStkhTjokV8E",
-     "clientId":"AaXX9g2Zp99ij2cvLVymTN",
-     "created":"2020-09-28T13:43:10.01129+00:00",
-     "currencyId":4,
-     "address":"0xbb050a0ab1e6a801ed6d2c7eac775737dea7d11e",
-     "label":"testcallbacketh",
+        <pre class="language-js"><code class="language-js">{
+     "id":<span class="token string">"56NVoGgbkPxStkhTjokV8E"</span>,
+     "clientId":<span class="token string">"AaXX9g2Zp99ij2cvLVymTN"</span>,
+     "created":<span class="token string">"2020-09-28T13:43:10.01129+00:00"</span>,
+     "currencyId":<span class="token number">4</span>,
+     "address":<span class="token string">"0xbb050a0ab1e6a801ed6d2c7eac775737dea7d11e"</span>,
+     "label":<span class="token string">"testcallbacketh"</span>,
      "webhook":{
-         "url":"https://google.com",
-         "nativeCurrencyId":1
+         "url":<span class="token string">"https://google.com"</span>,
+         "nativeCurrencyId":<span class="token number">1</span>
      }
 }
   </code></pre>
@@ -807,13 +810,13 @@
           <li>id - The id of the callback address</li>
         </ul>
         <p>The request body should look like</p>
-        <pre><code>{
-    "clientId":"7aa5e7ba45d84d978c5ea7f62498abf4",
-    "currencyId":4,
-    "label":"testcallbacketh",
+        <pre class="language-js"><code class="language-js">{
+    "clientId":<span class="token string">"7aa5e7ba45d84d978c5ea7f62498abf4"</span>,
+    "currencyId":<span class="token number">4</span>,
+    "label":<span class="token string">"testcallbacketh"</span>,
     "webhook":{
-        "nativeCurrencyId":1,
-        "url":"https://google.com"
+        "nativeCurrencyId":<span class="token number">1</span>,
+        "url":<span class="token string">"https://google.com"</span>
     }
 }
   </code></pre>
@@ -856,54 +859,54 @@
 
         </ul>
         <p>When a request sent successfully then the server will return a response which will contain the next information</p>
-        <pre><code>{
+        <pre class="language-js"><code class="language-js">{
     "items":[{
-        "id":"Dv1vDiDmfVrgSkEB2bLcUA",
-        "created":"2020-09-25T08:36:23.470791+00:00",
-        "completed":"2020-09-25T08:36:23.470793+00:00",
-        "callbackAddressId":"JhmojzDdEJA8qJ4fF3zkT9",
-        "address":"V7dHXKN6jKFXQrV3AKsYiePNezcgf7Cn2h",
+        "id":<span class="token string">"Dv1vDiDmfVrgSkEB2bLcUA"</span>,
+        "created":<span class="token string">"2020-09-25T08:36:23.470791+00:00"</span>,
+        "completed":<span class="token string">"2020-09-25T08:36:23.470793+00:00"</span>,
+        "callbackAddressId":<span class="token string">"JhmojzDdEJA8qJ4fF3zkT9"</span>,
+        "address":<span class="token string">"V7dHXKN6jKFXQrV3AKsYiePNezcgf7Cn2h"</span>,
         "currency":{
-            "id":"33","symbol":"VLX",
-            "name":"Velas","decimalPlaces":18},
+            "id":<span class="token string">"33"</span>,"symbol":<span class="token string">"VLX"</span>,
+            "name":<span class="token string">"Velas"</span>,"decimalPlaces":<span class="token number">18</span>},
             "nativeCurrency":{
-                "id":"1",
-                "symbol":"BTC",
-                "name":"Bitcoin",
-                "decimalPlaces":8
+                "id":<span class="token string">"1"</span>,
+                "symbol":<span class="token string">"BTC"</span>,
+                "name":<span class="token string">"Bitcoin"</span>,
+                "decimalPlaces":<span class="token number">8</span>
             },
             "amount":{
-                "displayValue":"81.282438450358048310",
-                "value":"81282438450358048310",
-                "amount":"81282438450358048310",
-                "currencyId":"0"
+                "displayValue":<span class="token string">"81.282438450358048310"</span>,
+                "value":<span class="token string">"81282438450358048310"</span>,
+                "amount":<span class="token string">"81282438450358048310"</span>,
+                "currencyId":<span class="token string">"0"</span>
             },
             "coinPaymentsFee":{
-                "displayValue":"0.406412192251790242",
-                "value":"406412192251790242",
-                "amount":"406412192251790242",
-                "currencyId":"0"
+                "displayValue":<span class="token string">"0.406412192251790242"</span>,
+                "value":<span class="token string">"406412192251790242"</span>,
+                "amount":<span class="token string">"406412192251790242"</span>,
+                "currencyId":<span class="token string">"0"</span>
             },
             "nativeAmount":{
-                "displayValue":"0.00030505",
-                "value":"30505",
-                "amount":"30505",
-                "currencyId":"1"
+                "displayValue":<span class="token string">"0.00030505"</span>,
+                "value":<span class="token string">"30505"</span>,
+                "amount":<span class="token string">"30505"</span>,
+                "currencyId":<span class="token string">"1"</span>
             },
             "nativeCoinPaymentsFee":{
-                "displayValue":"0.00000153",
-                "value":"153",
-                "amount":"153",
-                "currencyId":"1"
+                "displayValue":<span class="token string">"0.00000153"</span>,
+                "value":<span class="token string">"153"</span>,
+                "amount":<span class="token string">"153"</span>,
+                "currencyId":<span class="token string">"1"</span>
             },
-            "status":"PaidOut"
+            "status":<span class="token string">"PaidOut"</span>
         }],
         "paging":{
             "cursors":{
-                "before":"xnPHFS5h2Ag=",
-                "after":"TPRdkbdf2Ag="
+                "before":<span class="token string">"xnPHFS5h2Ag="</span>,
+                "after":<span class="token string">"TPRdkbdf2Ag="</span>
             },
-            "limit":100
+            "limit":<span class="token number">100</span>
         }
 }
   </code></pre>
