@@ -22,7 +22,7 @@ if ($_GET['code'] == 'true') {
     <body>
     <div class="container">
         <br/>
-        <a href="/index.php?code=true">Code sample</a>
+        <a href="./index.php?code=true">Code sample</a>
         <br/>
         <br/>
         <form>
