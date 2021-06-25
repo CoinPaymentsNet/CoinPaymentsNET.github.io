@@ -1,0 +1,39 @@
+#background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(194, 194, 194, 0.226);
+    z-index: -100;
+}
+.for_forms{
+    margin-top: 10vh;
+    padding: 1.5%;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 10px 10px #cacaca;
+    border-radius: 10px 10px 10px 10px;
+}
+.for_forms label:nth-child(1){
+    margin-top: 0.5vh;
+}
+.for_output {
+    width: 100vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding: 1.5%;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 10px 10px #cacaca;
+    border-radius: 10px 10px 10px 10px;
+    visibility: hidden;
+}
+
+#currencyId_for_create_callbacks, #native-currencyId_for_create_callbacks{
+    height: 3vh;
+    font-size: 11pt;
+}
+
+.alert{
+    display: none;
+    margin-top: 1vh;
+}
