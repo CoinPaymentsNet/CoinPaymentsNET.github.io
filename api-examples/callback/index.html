@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CoinPayments - Callbacks Test (INTERNAL)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism.min.css" integrity="sha256-77qGXu2p8NpfcBpTjw4jsMeQnz0vyh74f5do0cWjQ/Q=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-okaidia.min.css" integrity="sha256-Ykz0nNWK7w4QWJUYR7OraN4773aMB/11aMt1nZyrhuQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <img src="https://orion-adminapi.starhermit.com/cps_logo.svg" style="height: 27px; margin: 0 10px 3px 0" />
+        <h5 class="my-0 ml-3 mr-md-auto font-weight-normal">CoinPayments - Callbacks Test (INTERNAL)</h5>
+    </div>
+    <div id="background">
+    </div>
+        <div class = "container for_forms">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#createCallback">Create callback</a></li>
+                <li><a data-toggle="tab" href="#viewCallbacks">View callbacks</a></li>
+                <li><a data-toggle="tab" href="#viewTransactions">View transactions</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="createCallback" class="tab-pane fade in active">
+                    <div class="alert alert-danger" id = "createCallback_alert" role="alert">
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="customerId_for_create_callbacks">Client ID</label>
+                            <input onchange="currency_id_togler()" type="text" class="form-control" id="customerId_for_create_callbacks" placeholder="Enter Customer ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="secretId_for_create_callbacks">Client Secret</label>
+                            <input onchange="currency_id_togler()" type="text" class="form-control" id="secretId_for_create_callbacks" placeholder="Enter Secret ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="label_for_create_callbacks">Label</label>
+                            <input onchange="currency_id_togler()" type="text" class="form-control" id="label_for_create_callbacks" placeholder="Enter label">
+                        </div>
+                        <p id="currency-selector">
+                        </p>
+                        <p id="native-currency-selector">
+                        </p>
+                        <button onclick="createCallbackAddress(); return false;" type="submit" class="btn btn-primary">Create Callback</button>
+                    </form>
+                </div>
+                <div id="viewCallbacks" class="tab-pane fade">
+                    <div class="alert alert-danger" id = "viewCallbacks_alert" role="alert">
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="customerId_for_view_callbacks">Client ID</label>
+                            <input type="text" class="form-control" id="customerId_for_view_callbacks" placeholder="Enter Customer ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="secretId_for_view_callbacks">Client Secret</label>
+                            <input type="text" class="form-control" id="secretId_for_view_callbacks" placeholder="Enter Secret ID">
+                        </div>
+                        <button onclick="viewCallbacks(); return false;" class="btn btn-primary">View Callbacks</button>
+                    </form>
+                </div>
+                <div id="viewTransactions" class="tab-pane fade">
+                    <div class="alert alert-danger" id = "viewTransactions_alert" role="alert">
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="customerId_for_view_transactions">Client ID</label>
+                            <input type="text" class="form-control" id="customerId_for_view_transactions" placeholder="Enter Customer ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="secretId_for_view_transactions">Client Secret</label>
+                            <input type="text" class="form-control" id="secretId_for_view_transactions" placeholder="Enter Secret ID">
+                        </div>
+                        <button onclick="viewTransactions(); return false;" type="submit" class="btn btn-primary">View Transactions</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container for_output" id="for_output">
+
+        </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-core.min.js" integrity="sha256-Y+Budm2wBEjYjbH0qcJRmLuRBFpXd0VKxl6XhdS4hgA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js" integrity="sha256-ht8ay6ZTPZfuixYB99I5oRpCLsCq7Do2LjEYLwbe+X8=" crossorigin="anonymous"></script>
+    <script src = "./js/errors.js"></script>
+    <script src = "./js/editing_callback.js"></script>
+    <script src = "./js/searching_callback.js"></script>
+    <script src = "./js/data_output.js"></script>
+    <script src = "./js/working_with_currency.js"></script>
+    <script type="text/javascript" src="js/hmac-sha256.js"></script>
+    <script type="text/javascript" src="js/enc-base64.js"></script>
+    <script src = "js/working_with_forms.js"></script>
+</body>
+</html>
