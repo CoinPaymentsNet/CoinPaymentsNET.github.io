@@ -49,7 +49,7 @@ if ($_GET['code'] == 'true') {
             </div>
 
             <div class="form-group">
-                <label for="label">Value:</label>
+                <label for="value">Value:</label>
                 <input type="text" class="form-control" id="value" name="value">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
