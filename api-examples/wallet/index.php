@@ -38,48 +38,50 @@ if ($_GET['code'] == 'true') {
             <div class="form-group">
                 <label for="action">Action</label>
                 <select class="form-control" id="action" name="action">
-                    <option value="Choose option">Choose option</option>
-                    <option value="Create a new merchant wallet">Create a new merchant wallet</option>
-                    <option value="List all">List all</option>
-                    <option value="Find by id">Find by id</option>
-                    <option value="List transactions">List transactions</option>
-                    <option value="Get a specific transaction of the wallet">Get a specific transaction of the wallet</option>
+                    <option>Choose option</option>
+                    <option>Create a new merchant wallet</option>
+                    <option>List all</option>
+                    <option>Find by id</option>
+                    <option>List transactions</option>
                 </select>
                 </br>
-                <div id="insert">
 
+                <div class="form-group" id="currencyId_block" style="display: none;">
+                    <label for="currencyId">Currency ID:</label>
+                    <input type="text" class="form-control" id="currencyId" name="currencyId">
                 </div>
+
+                <div class="form-group" id="label_block" style="display: none;">
+                    <label for="label">Label:</label>
+                    <input type="text" class="form-control" id="label" name="label">
+                </div>
+
+                <div class="form-group" id="webhookUrl_block" style="display: none;">
+                    <label for="webhookUrl">Webhook url:</label>
+                    <input type="text" class="form-control" id="webhookUrl" name="webhookUrl">
+                </div>
+
+                <div class="form-group" id = "idForFinding_block" style="display: none;">
+                    <label for="idForFinding">Id for finding:</label>
+                    <input type="text" class="form-control" id="idForFinding" name="idForFinding">
+                </div>
+
             </div>
             <script>
                 var insertEl =  document.getElementById("insert");
                 const selectElement = document.getElementById("action");
                 selectElement.addEventListener("change", (event) => {
+                    document.getElementById('currencyId_block').style.display = "none";
+                    document.getElementById('label_block').style.display = "none";
+                    document.getElementById('webhookUrl_block').style.display = "none";
+                    document.getElementById('idForFinding_block').style.display = "none";
                     if (selectElement.value == 'Create a new merchant wallet'){
-                        insertEl.innerHTML = `
-                    <div class="form-group">
-                        <label for="currencyId">Currency ID:</label>
-                        <input type="text" class="form-control" id="currencyId" name="currencyId">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="label">Label:</label>
-                        <input type="text" class="form-control" id="label" name="label">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="webhookUrl">Webhook url:</label>
-                        <input type="text" class="form-control" id="webhookUrl" name="webhookUrl">
-                    </div>`;
+                        document.getElementById('currencyId_block').style.display = "block";
+                        document.getElementById('label_block').style.display = "block";
+                        document.getElementById('webhookUrl_block').style.display = "block";
                     }
                     else if (selectElement.value == 'Find by id' || selectElement.value == 'List transactions'){
-                        insertEl.innerHTML = `
-                    <div class="form-group">
-                        <label for="idForFinding">Id for finding:</label>
-                        <input type="text" class="form-control" id="idForFinding" name="idForFinding">
-                    </div>`;
-                    }
-                    else if (selectElement.value == 'List all'){
-                        insertEl.innerHTML = ``;
+                        document.getElementById('idForFinding_block').style.display = "block";
                     }
                 });
             </script>
@@ -93,11 +95,12 @@ if ($_GET['code'] == 'true') {
 
     if (!empty($_GET['action'])) {
 
+        $apiUrl = 'https://api.coinpayments.net/api/v1/merchant/wallets';
+
         switch ($_GET['action']) {
 
             case 'Create a new merchant wallet':
                 $method = 'POST';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/merchant/wallets';
                 $params = [
                     "currencyId" => $_GET['currencyId'],
                     "label" => $_GET['label'],
@@ -106,15 +109,14 @@ if ($_GET['code'] == 'true') {
                 break;
             case 'Find by id':
                 $method = 'GET';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/merchant/wallets' . '/' . $_GET['idForFinding'];
+                $apiUrl .= '/' . $_GET['idForFinding'];
                 break;
             case 'List all':
                 $method = 'GET';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/merchant/wallets';
                 break;
             case 'List transactions':
                 $method = 'GET';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/merchant/wallets'  . '/' . $_GET['idForFinding'] . '/transactions';
+                $apiUrl .= '/' . $_GET['idForFinding'] . '/transactions';
                 break;
 
 
