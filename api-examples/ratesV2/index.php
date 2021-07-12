@@ -55,7 +55,11 @@ if ($_GET['code'] == 'true') {
         switch ($_GET['action']) {
             case 'lists the current conversion rates between currencies':
                 $method = 'GET';
-                $apiUrl = 'https://api.coinpayments.net/api/v2/rates?from=' . $_GET['from'] . '&to=' . $_GET['to'];
+                $params = array(
+                    "from" => $_GET['from'],
+                    "to" => $_GET['to']
+                );
+                $apiUrl = 'https://api.coinpayments.net/api/v2/rates?' . http_build_query($params);
                 break;
         }
 
