@@ -97,7 +97,7 @@ if ($_GET['code'] == 'true') {
 
             case 'estimate':
                 $method = 'POST';
-                $apiUrl = 'https://orion-api.starhermit.com/api/v1/externalconversions/estimate';
+                $apiUrl = 'https://api.coinpayments.net/api/v1/externalconversions/estimate';
                 $params = [
                     "fromCurrencyId" => $_GET['fromId'],
                     "toCurrencyId" => $_GET['toId'],
@@ -110,7 +110,7 @@ if ($_GET['code'] == 'true') {
 
             case 'create':
                 $method = 'POST';
-                $apiUrl = 'https://orion-api.starhermit.com/api/v1/externalconversions/create';
+                $apiUrl = 'https://api.coinpayments.net/api/v1/externalconversions/create';
                 $params = [
                     "fromCurrencyId" => $_GET['fromId'],
                     "toCurrencyId" => $_GET['toId'],
