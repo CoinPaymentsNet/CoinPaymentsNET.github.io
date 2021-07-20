@@ -39,7 +39,7 @@ if ($_GET['code'] == 'true') {
 
             <div class="form-group">
                 <label for="action">Action</label>
-                <select class="form-control selector" id="action" name="action">
+                <select class="form-control" id="action" name="action">
                     <option>--</option>
                     <option>Currencies list</option>
                     <option>Find a currency by its ID</option>
