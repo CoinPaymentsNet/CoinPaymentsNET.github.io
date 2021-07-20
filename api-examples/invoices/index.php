@@ -22,7 +22,7 @@ if ($_GET['code'] == 'true') {
     <body>
     <div class="container">
         <br/>
-        <a href="/conversion_check.php?code=true">Code sample</a>
+        <a href="./index.php?code=true">Code sample</a>
         <br/>
         <br/>
         <form>
@@ -39,125 +39,146 @@ if ($_GET['code'] == 'true') {
 
             <div class="form-group">
                 <label for="action">Action</label>
-                <select class="form-control selector" id="action" name="action">
-                    <option value="create" <?= $_GET['action'] == 'create' ? 'selected' : '' ?>>Create a new invoice
-                    </option>
-                    <option value="update" <?= $_GET['action'] == 'update' ? 'selected' : '' ?>>Update buyer information on an invoice</option>
-                    <option value="find" <?= $_GET['action'] == 'find' ? 'selected' : '' ?>>Find an invoice by its ID</option>
+                <select class="form-control" id="action" name="action">
+                    <option>--</option>
+                    <option>Create a new invoice</option>
+                    <option>Update buyer information on an invoice</option>
+                    <option>Find an invoice by its ID</option>
                 </select>
-            </div>
+                </br>
 
-            <div class="form-group form-temp">
-            </div>
+                <div class="form-group" id="company_block" style="display: none;">
+                    <label for="company">Company name:</label>
+                    <input type="text" class="form-control" id="company" name="company">
+                </div>
 
+                <div class="form-group" id="first_name_block" style="display: none;">
+                    <label for="first_name">First name:</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name">
+                </div>
+
+                <div class="form-group" id="last_name_block" style="display: none;">
+                    <label for="last_name">Last name:</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name">
+                </div>
+
+                <div class="form-group" id="email_block" style="display: none;">
+                    <label for="email">Email address: <span style="color:red">*</span></label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+
+                <div class="form-group" id="phone_block" style="display: none;">
+                    <label for="phone">Phone number:</label>
+                    <input type="text" class="form-control" id="phone" name="phone">
+                </div>
+
+                <div class="form-group" id="address_1_block" style="display: none;">
+                    <label for="address_1">Address 1:</label>
+                    <input type="text" class="form-control" id="address_1" name="address_1">
+                </div>
+
+                <div class="form-group" id="address_2_block" style="display: none;">
+                    <label for="address_2">Address 2:</label>
+                    <input type="text" class="form-control" id="address_2" name="address_2">
+                </div>
+
+                <div class="form-group" id="address_3_block" style="display: none;">
+                    <label for="address_3">Address 3:</label>
+                    <input type="text" class="form-control" id="address_3" name="address_3">
+                </div>
+
+                <div class="form-group" id="province_state_block" style="display: none;">
+                    <label for="province_state">Province or state:</label>
+                    <input type="text" class="form-control" id="province_state" name="province_state">
+                </div>
+
+                <div class="form-group" id="city_block" style="display: none;">
+                    <label for="city">City:</label>
+                    <input type="text" class="form-control" id="city" name="city">
+                </div>
+
+                <div class="form-group" id="suburb_district_block" style="display: none;">
+                    <label for="suburb_district">Suburb or district:</label>
+                    <input type="text" class="form-control" id="suburb_district" name="suburb_district">
+                </div>
+
+                <div class="form-group" id="country_code_block" style="display: none;">
+                    <label for="country_code">Country code: <span style="color:red">*</span></label>
+                    <input type="text" class="form-control" id="country_code" name="country_code">
+                </div>
+
+                <div class="form-group" id="postal_code_block" style="display: none;">
+                    <label for="postal_code">Postal code:</label>
+                    <input type="text" class="form-control" id="postal_code" name="postal_code">
+                </div>
+
+                <div class="form-group" id="description_block" style="display: none;">
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" id="description" name="description">
+                </div>
+
+                <div class="form-group" id="currency_id_block" style="display: none;">
+                    <label for="currency_id">Currency ID: <span style="color:red">*</span></label>
+                    <input type="text" class="form-control" id="currency_id" name="currency_id">
+                </div>
+
+                <div class="form-group" id="amount_block" style="display: none;">
+                    <label for="amount">Price:</label>
+                    <input type="text" class="form-control" id="amount" name="amount">
+                </div>
+
+                <div class="form-group" id="notes_to_recipient_block" style="display: none;">
+                    <label for="notes_to_recipient">Notes to recipient:</label>
+                    <input type="text" class="form-control" id="notes_to_recipient" name="notes_to_recipient">
+                </div>
+
+                <div class="form-group" id="invoice_id_block" style="display: none;">
+                    <label for="invoice_id">Invoice ID: <span style="color:#ff0000">*</span></label>
+                    <input type="text" class="form-control" id="invoice_id" name="invoice_id">
+                </div>
+            </div>
+            <script>
+                var insertEl =  document.getElementById("insert");
+                const selectElement = document.getElementById("action");
+                selectElement.addEventListener("change", (event) => {
+                    let elements = document.getElementsByClassName('form-group');
+                    for (let i = 0; i < elements.length; i++) {
+                        if (elements[i].id.includes('block')) {
+                            elements[i].style.display = "none";
+                        }
+                    }
+                    if (selectElement.value == 'Create a new invoice'){
+                        for (let i = 0; i < elements.length; i++) {
+                            if (elements[i].id.includes('block')) {
+                                if (elements[i].id === "invoice_id_block")
+                                    continue;
+                                elements[i].style.display = "block";
+                            }
+                        }
+                    }
+                    else if (selectElement.value == 'Update buyer information on an invoice'){
+                        document.getElementById('company_block').style.display = "block";
+                        document.getElementById('first_name_block').style.display = "block";
+                        document.getElementById('last_name_block').style.display = "block";
+                        document.getElementById('email_block').style.display = "block";
+                        document.getElementById('phone_block').style.display = "block";
+                        document.getElementById('address_1_block').style.display = "block";
+                        document.getElementById('address_2_block').style.display = "block";
+                        document.getElementById('address_3_block').style.display = "block";
+                        document.getElementById('province_state_block').style.display = "block";
+                        document.getElementById('city_block').style.display = "block";
+                        document.getElementById('suburb_district_block').style.display = "block";
+                        document.getElementById('country_code_block').style.display = "block";
+                        document.getElementById('postal_code_block').style.display = "block";
+                        document.getElementById('invoice_id_block').style.display = "block";
+                    }
+                    else if (selectElement.value == 'Find an invoice by its ID'){
+                        document.getElementById('invoice_id_block').style.display = "block";
+                    }
+                });
+            </script>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
-        <script type="text/javascript">
-            const selectElement = document.getElementsByClassName("selector")[0];
-            var get = document.getElementById("action");
-            var create_elem = document.createElement('div');
-            create_elem.id = "create";
-            create_elem.innerHTML =
-                '<div class="form-group">' +
-                '<label for="currency_id">Currency ID: <span style="color:red">*</span></label> ' +
-                '<input type="text" class="form-control" id="currency_id" name="currency_id" ' +
-                'value="<?= $_GET["currency_id"] ?>"> </div>' +
-                '<div class="form-group">' +
-                '<label for="amount">Price:</label>' +
-                '<input type="text" class="form-control" id="amount" name="amount"' +
-                'value="<?= $_GET["amount"] ?>"> </div>' +
-                '<div class="form-group">' +
-                '<label for="notes_to_recipient">Notes to recipient:</label>' +
-                '<input type="text" class="form-control" id="notes_to_recipient" name="notes_to_recipient"' +
-                'value="<?= $_GET["notes_to_recipient"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="description">Description:</label> ' +
-                '<input type="text" class="form-control" id="description" name="description"' +
-                'value="<?= $_GET["description"] ?>"> </div>';
-
-            var update_elem = document.createElement('div');
-            update_elem.id = "update";
-            update_elem.innerHTML =
-                '<div class="form-group"> ' +
-                '<label for="company">Company name:</label> ' +
-                '<input type="text" class="form-control" id="company" name="company"' +
-                'value="<?= $_GET["company"] ?>"> </div> ' +
-                '<div class="form-group"> ' +
-                '<label for="first_name">First name:</label> ' +
-                '<input type="text" class="form-control" id="first_name" name="first_name" ' +
-                'value="<?= $_GET["first_name"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="last_name">Last name:</label>' +
-                '<input type="text" class="form-control" id="last_name" name="last_name" ' +
-                'value="<?= $_GET["last_name"] ?>"></div>' +
-                '<div class="form-group"> ' +
-                '<label for="email">Email address: <span style="color:red">*</span></label> ' +
-                '<input type="text" class="form-control" id="email" name="email" ' +
-                'value="<?= $_GET["email"] ?>"> </div> ' +
-                '<div class="form-group"> ' +
-                '<label for="phone">Phone number:</label> ' +
-                '<input type="text" class="form-control" id="phone" name="phone"' +
-                'value="<?= $_GET["phone"] ?>"> </div> ' +
-                '<div class="form-group"> ' +
-                '<label for="address_1">Address 1:</label> ' +
-                '<input type="text" class="form-control" id="address_1" name="address_1"' +
-                'value="<?= $_GET["address_1"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="address_2">Address 2:</label> ' +
-                '<input type="text" class="form-control" id="address_2" name="address_2" ' +
-                'value="<?= $_GET["address_2"] ?>"> </div> ' +
-                '<div class="form-group"> ' +
-                '<label for="address_3">Address 3:</label> ' +
-                '<input type="text" class="form-control" id="address_3" name="address_3" ' +
-                'value="<?= $_GET["address_3"] ?>"> </div> ' +
-                '<div class="form-group"> ' +
-                '<label for="province_state">Province or state:</label> ' +
-                '<input type="text" class="form-control" id="province_state" name="province_state"' +
-                'value="<?= $_GET["province_state"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="city">City:</label> ' +
-                '<input type="text" class="form-control" id="city" name="city"' +
-                'value="<?= $_GET["city"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="suburb_district">Suburb or district:</label> ' +
-                '<input type="text" class="form-control" id="suburb_district" name="suburb_district"' +
-                'value="<?= $_GET["suburb_district"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="country_code">Country code: <span style="color:red">*</span></label> ' +
-                '<input type="text" class="form-control" id="country_code" name="country_code"' +
-                'value="<?= $_GET["country_code"] ?>"> </div>' +
-                '<div class="form-group"> ' +
-                '<label for="postal_code">Postal code:</label> ' +
-                '<input type="text" class="form-control" id="postal_code" name="postal_code"' +
-                'value="<?= $_GET["postal_code"] ?>"> </div>';
-
-                var find_elem = document.createElement('div');
-                find_elem.id = "find";
-                find_elem.innerHTML = '<div class="form-group"> ' +
-                    '<label for="invoice_id">Invoice ID: <span style="color:#ff0000">*</span></label> ' +
-                    '<input type="text" class="form-control" id="invoice_id" name="invoice_id"value="<?= $_GET["invoice_id"] ?>"> </div>';
-
-                window.onload = updateValue;
-
-                var form = document.getElementsByClassName("form-temp")[0];
-
-                selectElement.addEventListener('change', updateValue);
-            function updateValue(e) {
-                if (get.value === "create")
-                {
-                    form.innerHTML = "";
-                    form.appendChild(create_elem);
-                    form.appendChild(update_elem);
-                } else if (get.value === "update")
-                {
-                    form.innerHTML = "";
-                    form.appendChild(update_elem);
-                } else {
-                    form.innerHTML = "";
-                    form.appendChild(find_elem);
-                }
-            }
-        </script>
     </div>
     <?php
     $params = null;
@@ -165,19 +186,19 @@ if ($_GET['code'] == 'true') {
 
     if (!empty($_GET['action'])) {
 
+        $apiUrl = 'https://api.coinpayments.net/api/v1/invoices';
         switch ($_GET['action']) {
 
-            case 'create':
+            case 'Create a new invoice':
                 $method = 'POST';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/invoices';
                 $params = [
                     "clientId" => $_GET['clientId'],
                     "currencyId" => $_GET['currency_id'],
                     "buyer" => [
                         "companyName" => $_GET['company'],
                         "name" => [
-                                "firstName" => $_GET['first_name'],
-                                "lastName" => $_GET['last_name']
+                            "firstName" => $_GET['first_name'],
+                            "lastName" => $_GET['last_name']
                         ],
                         "emailAddress" => $_GET['email'],
                         "phoneNumber" => $_GET['phone'],
@@ -194,17 +215,24 @@ if ($_GET['code'] == 'true') {
                     ],
                     "description" => $_GET['description'],
                     "amount" => [
-                            "currencyId" => $_GET['currency_id'],
-                            "displayValue" => $_GET['amount'],
-                            "value" => $_GET['amount']
+                        "breakdown" => [
+                            "subtotal" => [
+                                "currencyId" => $_GET['currency_id'],
+                                "displayValue" => $_GET['amount'],
+                                "value" => $_GET['amount']
+                            ],
+                        ],
+                        "currencyId" => $_GET['currency_id'],
+                        "displayValue" => $_GET['amount'],
+                        "value" => $_GET['amount']
                     ],
                     "notesToRecipient" => $_GET['notes_to_recipient']
                 ];
                 break;
 
-            case 'update':
+            case 'Update buyer information on an invoice':
                 $method = 'PUT';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/invoices/' . $_GET['invoice_id'];
+                $apiUrl .= '/' . $_GET['invoice_id'];
                 $params = [
                     "buyer" => [
                         "companyName" => $_GET['company'],
@@ -228,9 +256,9 @@ if ($_GET['code'] == 'true') {
                 ];
                 break;
 
-            case 'find':
+            case 'Find an invoice by its ID':
                 $method = 'PUT';
-                $apiUrl = 'https://api.coinpayments.net/api/v1/invoices/' . $_GET['invoice_id'];
+                $apiUrl .= '/' . $_GET['invoice_id'];
                 break;
         }
 
