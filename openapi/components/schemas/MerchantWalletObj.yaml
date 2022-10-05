@@ -1,0 +1,35 @@
+type: object
+properties:
+  currencyId:
+    description: currency Id
+    type: number
+    example: 1
+  label:
+    description: wallet label
+    type: string
+    example: John's wallet
+  walletId:
+    description: wallet Id
+    type: string
+    example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+  balance:
+    description: balance available on this wallet
+    type: string
+    example: '0.874833322'
+  updatedAt:
+    description: date of last time the wallet data was modified by the user
+    type: string
+    example: '2022-10-05T06:05:07.520Z'
+  depositAddress:
+    description: address to deposit funds into the wallet
+    type: string
+    example: 'Asaiuqhdaknxyuiw21w2w2223'
+  walletStatus:
+    description: status of the wallet in the system
+    type: string
+    example: unknown
+  canCreateAddress:
+    description: indicates whether the wallet can create an address
+    type: boolean
+    example: true
+

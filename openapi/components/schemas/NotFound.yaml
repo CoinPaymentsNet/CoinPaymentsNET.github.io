@@ -1,0 +1,8 @@
+
+type: object
+description: Not Found
+#properties:
+#  walletId:
+#    description: Id of newely created wallet
+#    type: number
+#    example: 1
