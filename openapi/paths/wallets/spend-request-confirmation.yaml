@@ -1,0 +1,28 @@
+post:
+  tags:
+    - Wallets
+  summary: Confirm spending funcds
+  description: Send a request to confirm spending funds from the merchant client wallet
+  operationId: spendRequestConfirmation
+  parameters:
+    - name: walletIdStr
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+      description: the wallet Id
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
+          example:
+            spendRequestId: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+    '400':
+      description: Bad Request
+      $ref: ../components/responses/Problem.yaml
+
+

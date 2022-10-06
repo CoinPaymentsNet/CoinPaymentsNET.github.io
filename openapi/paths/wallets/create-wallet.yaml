@@ -1,6 +1,6 @@
 post:
   tags:
-    - Merchant Wallets
+    - Wallets
   summary: Create merchant wallet
   description: |
     Creates new merchant wallet by currency Id
@@ -9,8 +9,8 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/MerchantWallet.yaml
-    description: Echo payload
+          $ref: ../../components/schemas/wallets/MerchantWallet.yaml
+    description: Create wallet payload
     required: true
   security:
     - main_auth:
@@ -22,14 +22,14 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/NewWallet.yaml
+            $ref: ../../components/schemas/wallets/NewWallet.yaml
           example:
             walletId: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
     '404':
       description: Currency Not Found!
 get:
   tags:
-    - Merchant Wallets
+    - Wallets
   summary: Get Merchant Wallets
   description: Retrieves a list of merchant wallets
   operationId: getMerchantWallets
@@ -49,12 +49,12 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/arrayOfWallets.yaml
+            $ref: ../../components/schemas/wallets/arrayOfWallets.yaml
     '400':
       description: Bad Request
-      $ref: ../components/responses/Problem.yaml
+      $ref: ../../components/responses/Problem.yaml
     '404':
       description: No wallets found
-      $ref: ../components/responses/Problem.yaml
+      $ref: ../../components/responses/Problem.yaml
 
 

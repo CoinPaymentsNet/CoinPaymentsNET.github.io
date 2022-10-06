@@ -2,4 +2,4 @@ description: New Wallet
 content:
   application/json:
     schema:
-      $ref: ../schemas/NewWallet.yaml
+      $ref: ../schemas/wallets/NewWallet.yaml

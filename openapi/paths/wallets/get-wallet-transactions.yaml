@@ -1,9 +1,9 @@
 get:
   tags:
-    - Merchant Wallets
+    - Wallets
   summary: Get wallet transactions
   description: Retrieves a list of all wallet transactions
-  operationId: getWalletTransactionsById
+  operationId: getTransactionsByWalletId
   parameters:
     - name: walletIdStr
       in: path
@@ -18,7 +18,8 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/arrayOfWalletTransactions.yaml
-#      '400':
-#        description: Bad Request
-#        $ref: ../components/responses/Problem.yaml
+            $ref: ../../components/schemas/wallets/arrayOfWalletTransactions.yaml
+      '400':
+        description: Bad Request
+        $ref: ../../components/responses/Problem.yaml
+

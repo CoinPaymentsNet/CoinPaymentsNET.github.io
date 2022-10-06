@@ -36,11 +36,17 @@ servers:
   - url: 'https://example.com/api/v1'
 paths:
   '/merchant/wallets':
-    $ref: 'paths/merchant-wallets.yaml'
+    $ref: 'paths/wallets/create-wallet.yaml'
   '/merchant/wallets/{walletIdStr}':
-    $ref: 'paths/merchant-wallet-id.yaml'
+    $ref: 'paths/wallets/get-wallet-by-id.yaml'
   '/merchant/wallets/{walletIdStr}/transactions':
-    $ref: 'paths/merchant-wallet-transactions.yaml'
+    $ref: 'paths/wallets/get-wallet-transactions.yaml'
+  '/merchant/wallets/{walletIdStr}/transaction':
+    $ref: 'paths/wallets/get-wallet-transaction.yaml'
+  '/merchant/wallets/{walletIdStr}/spend/request':
+    $ref: 'paths/wallets/spend-request.yaml'
+  '/merchant/wallets/{walletIdStr}/spend/confirmation':
+    $ref: 'paths/wallets/spend-request-confirmation.yaml'
   /externalconversions:
     $ref: paths/external-conversions.yaml
   /pathItem:

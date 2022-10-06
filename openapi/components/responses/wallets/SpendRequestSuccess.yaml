@@ -1,0 +1,39 @@
+type: object
+properties:
+  spendRequestId:
+    description: Id of spend request
+    type: string
+    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+  toAddress:
+    description: benificiary address
+    type: string
+    example: 'Asaiuqhdaknxyuiw21w2w2223'
+  toCurrencyId:
+    description: currency Id of benificiary wallet
+    type: number
+    example: 6
+  fromContractAddress:
+    description: from contract address
+    type: string
+    example: 'Asaiuqhdaknxyuiw21w2w2223'
+  toContractAddress:
+    description: balance available on this wallet
+    type: string
+    example: 'Asaiuqhdaknxyuiw21w2w2223'
+  amountInSmallestUnits:
+    description: amount in smallest currency unit
+    type: string
+    example: '0.73632442'
+  blockchainFeeOverrideInSmallestUnits:
+    description: blockchain fees in smallest currency unit
+    type: number
+    example: '0.0003234'
+  memo:
+    description: memo to be associated with the spend request
+    type: string
+    example: 'test memo'
+  receiverPaysFee:
+    description: receiver fees
+    type: string
+    example: '0.0003234'
+
