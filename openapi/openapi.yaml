@@ -16,17 +16,18 @@ info:
 tags:
   - name: Authentication
     description: >-
-      To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT SECRET. 
+      To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT SECRET.
       Once you created an account and logged in, Go to Dashboard, Business tools, API Integrations, Add integrations,
       a window will pop up where you’re asked to type a name for your integration and the URL of your API.
       once done, you will your new Client ID and client secret.
     x-codeSamples:
-        - lang: 'JavaScript'
-          source:
-            $ref: ./code_samples/nodejs/authenticate/authenticate.js
-        - lang: PHP
-          source:
-            $ref: ../code_samples/PHP/echo/post.php
+      - lang: 'TypeScript'
+        label: 'Node'
+        source:
+          $ref: ./code_samples/nodejs/authenticate/authenticate.js
+      - lang: PHP
+        source:
+          $ref: ../code_samples/PHP/echo/post.php
 servers:
   - url: 'https://api.coinpayments/api/v1'
     variables:
@@ -47,6 +48,10 @@ paths:
     $ref: 'paths/wallets/spend-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
+  '/merchant/callbacks/payout/{id}/{address}':
+    $ref: 'paths/callbacks/execute-payout-by-callback-address-id.yaml'
+  '/merchant/callbacks':
+    $ref: 'paths/callbacks/create-new-callback.yaml'
   /externalconversions:
     $ref: paths/external-conversions.yaml
   /pathItem:

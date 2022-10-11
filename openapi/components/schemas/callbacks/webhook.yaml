@@ -1,0 +1,14 @@
+type: object
+properties:
+  url:
+    description: webhook url
+    type: string
+    example: 'https://mysite.com'
+  nativeCurrencyId:
+    description: native currency id
+    type: number
+    example: 2
+  customData:
+    description: custom data users can send with the request
+    type: string
+    example: custom message

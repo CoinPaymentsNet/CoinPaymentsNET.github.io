@@ -1,7 +1,7 @@
 post:
   tags:
     - Wallets
-  summary: Confirm spending funcds
+  summary: Confirm spending funds
   description: Send a request to confirm spending funds from the merchant client wallet
   operationId: spendRequestConfirmation
   parameters:

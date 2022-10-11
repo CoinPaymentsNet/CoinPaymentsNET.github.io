@@ -1,0 +1,30 @@
+post:
+  tags:
+    - Callbacks
+  summary: Create a new callback address
+  description: |
+    Creates a new callback address
+  operationId: createCallbackAddress
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/callbacks/CreateCallbackAddress.yaml
+    description: Create wallet payload
+    required: true
+  responses:
+    '200':
+      description: Success status code ( 200 ) Mo is catastrophic
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/callbacks/CreateCallbackAddress.yaml
+    '400':
+      description: Bad request example!
+  x-codeSamples:
+    - lang: 'TypeScript'
+      label: 'Node'
+      source:
+        $ref: ../../code_samples/nodejs/authenticate/authenticate.js
+
+
