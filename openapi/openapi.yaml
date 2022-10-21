@@ -51,7 +51,7 @@ paths:
   '/merchant/callbacks/payout/{id}/{address}':
     $ref: 'paths/callbacks/execute-payout-by-callback-address-id.yaml'
   '/merchant/callbacks':
-    $ref: 'paths/callbacks/create-new-callback.yaml'
+    $ref: 'paths/callbacks/callback.yaml'
   /externalconversions:
     $ref: paths/external-conversions.yaml
   /pathItem:
