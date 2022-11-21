@@ -58,7 +58,6 @@ get:
       in: query
       schema:
         type: number
-        schema: pagination
       description: limit the number of items in the response
   responses:
     '200':

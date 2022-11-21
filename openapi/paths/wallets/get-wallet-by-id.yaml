@@ -21,6 +21,6 @@ get:
             $ref: ../../components/schemas/wallets/MerchantWalletObj.yaml
     '400':
       description: Bad Request
-      $ref: ../components/responses/Problem.yaml
+      $ref: ../../components/responses/Problem.yaml
 
 

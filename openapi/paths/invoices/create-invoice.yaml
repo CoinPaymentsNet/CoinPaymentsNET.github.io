@@ -1,10 +1,10 @@
 post:
   tags:
     - Invoices
-  summary: Create Invoice
+  summary: Create buy button
   description: |
-    Creates new Invoice
-  operationId: createInvoice
+    Creates new merchant wallet by currency Id
+  operationId: createMerchantWallet
   requestBody:
     content:
       application/json:

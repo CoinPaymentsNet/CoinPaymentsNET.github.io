@@ -21,7 +21,7 @@ get:
         application/json:
           schema:
             $ref: ../../components/schemas/wallets/arrayOfWalletTransactions.yaml
-      '400':
-        description: Bad Request
-        $ref: ../components/responses/Problem.yaml
+    '400':
+      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml
 
