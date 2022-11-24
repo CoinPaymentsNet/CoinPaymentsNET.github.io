@@ -1,62 +1,62 @@
 type: object
 properties:
-  invoiceDate: '2022-10-26'
-  invoiceId: '00123'
+  invoiceDate:
+    type: string
+    format: '2022-10-26'
+  invoiceId:
+    type: string
+    format: '00123'
   buyer:
-    companyName: 'Rushing Turtles #2'
-    name:
-      firstName: John
-      lastName: Doe
-    address:
-      address1: 12 some street
-      city: Split
-      provinceOrState: Split
-      countryCode: HR
-      postalCode: '10101'
-    emailAddress: johndoe@gmail.com
-    phoneNumber: '01010101010'
+    $ref: ./buyer.yaml
   shipping:
+    type: "null"
+    example: null
   items:
-    - name: awesome item
-      quantity:
-        type: 2
-        value: 1
-      originalAmount:
-        currencyId: '5057'
-        value: 2000
-      amount:
-        currencyId: '5057'
-        value: 2000
+    type: array
+    items:
+      $ref: ./items.yaml
   amount:
-    breakdown:
-      subtotal:
-        currencyId: '5057'
-        value: 2000
-      shipping:
-        currencyId: '5057'
-        value: 0
-      handling:
-        currencyId: '5057'
-        value: 0
-      taxTotal:
-        currencyId: '5057'
-        value: 0
-      discount:
-        currencyId: '5057'
-        value: 0
-    currencyId: '5057'
-    value: 2000
-  notes: ''
-  notesToRecipient: ''
-  termsAndConditions: ''
+    type: object
+    properties:
+      breakdown:
+        type: object
+        properties:
+          subtotal:
+            $ref: ./breakdown.yaml
+          shipping:
+            $ref: ./breakdown.yaml
+          handling:
+            $ref: ./breakdown.yaml
+          taxTotal:
+            $ref: ./breakdown.yaml
+          discount:
+            $ref: ./breakdown.yaml
+  currencyId:
+    type: number
+    format: '2000'
+  notes:
+    type: string
+    format: ''
+  notesToRecipient:
+    type: string
+    format: ''
+  termsAndConditions:
+    type: string
+    format: ''
   merchantOptions:
-    showAddress: true
-    showPhone: true
-    showRegistrationNumber: false
-    showEmail: true
-    additionalInfo: ''
+    $ref: ./merchantOptions.yaml
   metadata:
-    integration: InvoiceBuilder
-  poNumber: ''
-  isEmailDelivery: false
-  draft: false
+    type: object
+    properties:
+      integration:
+        type: string
+        format: 'InvoiceBuilder'
+  poNumber:
+    type: string
+    format: InvoiceBuilder
+  isEmailDelivery:
+    type: boolean
+    default: false
+  draft:
+    type: boolean
+    default: false

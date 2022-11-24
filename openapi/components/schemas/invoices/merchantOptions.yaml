@@ -1,0 +1,17 @@
+type: object
+properties:
+  showAddress:
+    type: boolean
+    default: false
+  showPhone:
+    type: boolean
+    default: false
+  showRegistrationNumber:
+    type: boolean
+    default: false
+  showEmail:
+    type: boolean
+    default: false
+  additionalInfo:
+    type: string
+    format: additional Info

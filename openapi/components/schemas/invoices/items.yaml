@@ -1,0 +1,12 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Iphone 22
+  quantity:
+    type: number
+    example: 1
+  originalAmount:
+    $ref: ./breakdown.yaml
+  amount:
+    $ref: ./breakdown.yaml

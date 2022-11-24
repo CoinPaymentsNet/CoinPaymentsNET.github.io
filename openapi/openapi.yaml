@@ -28,18 +28,20 @@ tags:
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
-  '/merchant/wallets':
-    $ref: 'paths/wallets/create-wallet.yaml'
-  '/merchant/wallets/{walletIdStr}':
-    $ref: 'paths/wallets/get-wallet-by-id.yaml'
-  '/merchant/wallets/{walletIdStr}/transactions':
-    $ref: 'paths/wallets/get-wallet-transactions.yaml'
-  '/merchant/wallets/{walletIdStr}/transaction':
-    $ref: 'paths/wallets/get-wallet-transaction.yaml'
-  '/merchant/wallets/{walletIdStr}/spend/request':
-    $ref: 'paths/wallets/spend-request.yaml'
-  '/merchant/wallets/{walletIdStr}/spend/confirmation':
-    $ref: 'paths/wallets/spend-request-confirmation.yaml'
+#  '/merchant/wallets':
+#    $ref: 'paths/wallets/create-wallet.yaml'
+#  '/merchant/wallets/{walletIdStr}':
+#    $ref: 'paths/wallets/get-wallet-by-id.yaml'
+#  '/merchant/wallets/{walletIdStr}/transactions':
+#    $ref: 'paths/wallets/get-wallet-transactions.yaml'
+#  '/merchant/wallets/{walletIdStr}/transaction':
+#    $ref: 'paths/wallets/get-wallet-transaction.yaml'
+#  '/merchant/wallets/{walletIdStr}/spend/request':
+#    $ref: 'paths/wallets/spend-request.yaml'
+#  '/merchant/wallets/{walletIdStr}/spend/confirmation':
+#    $ref: 'paths/wallets/spend-request-confirmation.yaml'
+  '/merchant/invoices':
+    $ref: 'paths/invoices/invoices.yaml'
   '/merchant/callbacks/payout/{id}/{address}':
     $ref: 'paths/callbacks/execute-payout-by-callback-address-id.yaml'
   '/merchant/callbacks':
@@ -48,8 +50,6 @@ paths:
 #    $ref: paths/external-conversions.yaml
   /pathItem:
     $ref: paths/merchant-callbacks.yaml
-  '/merchant/invoices':
-    $ref: 'paths/callbacks/execute-payout-by-callback-address-id.yaml'
 #  /pathItemWithExamples:
 #    $ref: paths/path-item-with-examples.yaml
 components:

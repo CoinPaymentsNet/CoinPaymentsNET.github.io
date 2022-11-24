@@ -1,0 +1,35 @@
+type: object
+properties:
+  companyName:
+    type: string
+    format: 'Rushing Turtles #2'
+  name:
+    type: object
+    properties:
+      firstName:
+        type: string
+        format: 'John'
+      lastName:
+        type: string
+        format: 'Doe'
+      address:
+        type: string
+        format: 12 some street
+      city:
+        type: string
+        format: New York
+      provinceOrState:
+        type: string
+        format: New York
+      countryCode:
+        type: string
+        format: US
+      postalCode:
+        type: string
+        format: '10101'
+      emailAddress:
+        type: string
+        format: 'johndoe@gmail.com'
+      phoneNumber:
+        type: string
+        format: '01010101010'

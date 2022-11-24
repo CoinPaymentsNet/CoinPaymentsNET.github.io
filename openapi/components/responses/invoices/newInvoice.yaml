@@ -1,0 +1,5 @@
+type: object
+properties:
+  invoiceId:
+    type: string
+    format: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'

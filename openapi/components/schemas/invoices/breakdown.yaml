@@ -1,0 +1,6 @@
+type: object
+properties:
+  currencyId:
+    type: string
+    example: '5057'
+
