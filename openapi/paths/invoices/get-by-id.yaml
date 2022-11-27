@@ -1,0 +1,21 @@
+get:
+  tags:
+    - Invoices
+  summary: Get invoice by Id
+  description: |
+    Get Invoice by Id
+  operationId: excutePayoutByCallbackAddressId
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '5xyKTbjTMcbXMUsaprSRaP'
+  responses:
+    '200':
+      description: Success status code ( 200 )
+    '400':
+      description: Bad request example!
+
+

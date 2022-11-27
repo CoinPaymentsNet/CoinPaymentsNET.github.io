@@ -9,20 +9,32 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/invoices/createInvoice.yaml
+          $ref: ../../components/schemas/invoices/invoice.yaml
     description: Create Invoice
     required: true
-  security:
-    - main_auth:
-        - 'read:users'
-    - api_key: []
   responses:
     '200':
       description: Success
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/invoices/newInvoice.yaml
+            $ref: ../../components/responses/invoices/invoice.yaml
+    '404':
+      description: Merchant Not Found!
+get:
+  tags:
+    - Invoices
+  summary: Get invoices
+  description: |
+    Get list of merchant invoices
+  operationId: getListOfInvoices
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/invoices/invoice.yaml
     '404':
       description: Merchant Not Found!
 

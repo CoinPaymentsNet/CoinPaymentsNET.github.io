@@ -1,6 +1,0 @@
-type: object
-properties:
-  spendRequestId:
-    description: Id of newely created wallet
-    type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
