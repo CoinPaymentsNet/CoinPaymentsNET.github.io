@@ -1,0 +1,44 @@
+type: object
+properties:
+  paidTransactions:
+    type: array
+    items:
+      $ref: ./paidTransaction.yaml
+  paid:
+    type: string
+    description: pait at datetime
+    format: '2022-11-29T12:42:44.513Z'
+  completedTxId:
+    type: string
+    format: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+  externalAddress:
+    type: string
+    format: '378a37b57b6b4a4a93fd352b06ce1829'
+  destinationCurrencyId:
+    type: string
+    format: '1'
+  expectedDisplayValue:
+    type: string
+    format: '0.01'
+  sourceCurrencyId:
+    type: string
+    format: '101'
+  destinationAccountId:
+    type: string
+    format: '378a37b57b6b4a4a93fd352b06ce1829'
+  isConversion:
+    type: boolean
+    example: false
+  conversionProgress:
+    type: string
+    example: 0
+  settlementModeErrorCode:
+    type: number
+    example: 0
+  destinationAmount:
+    $ref: ./destinationAmount.yaml
+  items:
+    type: array
+    items:
+      $ref: ./item.yaml
+

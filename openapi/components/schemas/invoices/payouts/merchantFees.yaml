@@ -1,0 +1,8 @@
+type: object
+properties:
+  transactionFees:
+    $ref: ./fees.yaml
+  networkFee:
+    $ref: ./fees.yaml
+  conversionFee:
+    $ref: ./fees.yaml

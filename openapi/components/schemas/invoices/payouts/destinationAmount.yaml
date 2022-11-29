@@ -1,0 +1,26 @@
+type: object
+properties:
+  amount:
+    type: object
+    properties:
+      displayValue:
+        type: string
+        format: '0.01'
+      value:
+        type: string
+        format: '0.01'
+      currencyId:
+        type: string
+        format: '1'
+  nativeAmount:
+    type: object
+    properties:
+      displayValue:
+        type: string
+        format: '0.01'
+      value:
+        type: string
+        format: '0.01'
+      currencyId:
+        type: string
+        format: '1'

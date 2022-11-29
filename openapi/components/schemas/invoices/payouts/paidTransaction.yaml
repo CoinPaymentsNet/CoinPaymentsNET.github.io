@@ -1,0 +1,20 @@
+type: object
+properties:
+  hash:
+    type: string
+    format: '0x2446f1fd773fbb9f080e674b60c6a033c7ed7427b8b9413cf28a2a4a6da9b56c'
+  amount:
+    type: object
+    properties:
+      displayValue:
+        type: string
+        format: '0.0123'
+      value:
+        type: string
+        format: '0.0123'
+      currencyId:
+        type: string
+        format: '1'
+  conversionId:
+    type: number
+    example: 0

@@ -23,3 +23,11 @@ of the service without access to source code, documentation, or through network 
 When properly defined, a consumer can understand and interact with the remote service 
 with a minimal amount of implementation logic. Similar to what interfaces have done for lower-level programming, OpenAPI removes the
 guesswork in calling the service.
+
+
+```mermaid
+graph LR
+    Start --> Stop
+```
+
+

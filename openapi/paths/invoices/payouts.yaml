@@ -1,10 +1,10 @@
 get:
   tags:
     - Invoices
-  summary: Get invoice by Id
+  summary: Get invoices payouts
   description: |
-    Get Invoice by Id
-  operationId: getInvoiceById
+    Get list of merchant invoices by invoice Id
+  operationId: getInvoicePayouts
   parameters:
     - name: id
       in: path
@@ -14,12 +14,11 @@ get:
         example: '5xyKTbjTMcbXMUsaprSRaP'
   responses:
     '200':
-      description: Success status code ( 200 )
+      description: Success
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/invoices/invoice.yaml
-    '400':
-      description: Bad request example!
-
+            $ref: ../../components/schemas/invoices/payouts/payouts.yaml
+    '404':
+      description: Merchant Not Found!
 

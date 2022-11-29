@@ -2,10 +2,10 @@ type: object
 properties:
   invoiceDate:
     type: string
-    format: '2022-10-26'
+    format: '2022-11-28T13:59:46+00:00'
   invoiceId:
     type: string
-    format: '00123'
+    format: 'Kwdx3VYtyVDGvMznqRdjMB'
   buyer:
     $ref: ./buyer.yaml
   shipping:

@@ -14,16 +14,16 @@ properties:
         format: 'Doe'
       address:
         type: string
-        format: 12 some street
+        format: '12 some street'
       city:
         type: string
-        format: New York
+        format: 'New York'
       provinceOrState:
         type: string
-        format: New York
+        format: 'New York'
       countryCode:
         type: string
-        format: US
+        format: 'US'
       postalCode:
         type: string
         format: '10101'

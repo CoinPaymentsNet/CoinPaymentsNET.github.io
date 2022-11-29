@@ -1,0 +1,25 @@
+type: object
+properties:
+  merchantFees:
+    $ref: ./merchantFees.yaml
+  payoutAmount:
+    $ref: ./fees.yaml
+  payoutAmountInInvoiceCurrency:
+    $ref: ./fees.yaml
+  merchantFeestInInvoiceCurrency:
+    $ref: ./fees.yaml
+  merchantPayoutAddress:
+    type: string
+    format: '378a37b57b6b4a4a93fd352b06ce1829'
+  sent:
+    $ref: ./datetime.yaml
+  created:
+    $ref: ./datetime.yaml
+  expected:
+    $ref: ./datetime.yaml
+  confirmed:
+    $ref: ./datetime.yaml
+  state:
+    type: string
+    format: scheduled
+
