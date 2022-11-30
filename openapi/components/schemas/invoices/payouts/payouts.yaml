@@ -6,7 +6,7 @@ properties:
       $ref: ./paidTransaction.yaml
   paid:
     type: string
-    description: pait at datetime
+    description: paid at
     format: '2022-11-29T12:42:44.513Z'
   completedTxId:
     type: string

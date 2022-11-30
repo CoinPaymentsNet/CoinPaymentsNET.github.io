@@ -10,8 +10,7 @@ properties:
         type: string
         format: '0.01'
       currencyId:
-        type: string
-        format: '1'
+        $ref: ../../../globalTypes/currencyId.yaml
   nativeAmount:
     type: object
     properties:
@@ -22,5 +21,4 @@ properties:
         type: string
         format: '0.01'
       currencyId:
-        type: string
-        format: '1'
+        $ref: ../../../globalTypes/currencyId.yaml

@@ -5,9 +5,7 @@ properties:
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   currencyId:
-    description: currency Id
-    type: number
-    example: 1
+    $ref: ../../globalTypes/currencyId.yaml
   contractAddress:
     description: contract address
     type: string
@@ -20,18 +18,18 @@ properties:
     description: date of last time the wallet data was modified by the user
     type: string
     example: '2022-10-05T06:05:07.520Z'
-  depositAddress:
-    description: address to deposit funds into the wallet
-    type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
-  walletStatus:
-    description: status of the wallet in the system
-    type: string
-    example: unknown
-  canCreateAddress:
-    description: indicates whether the wallet can create an address
-    type: boolean
-    example: true
+#  depositAddress:
+#    description: address to deposit funds into the wallet
+#    type: string
+#    example: 'Asaiuqhdaknxyuiw21w2w2223'
+#  walletStatus:
+#    description: status of the wallet in the system
+#    type: string
+#    example: unknown
+#  canCreateAddress:
+#    description: indicates whether the wallet can create an address
+#    type: boolean
+#    example: true
   webhook:
     $ref: ./webhook.yaml
 

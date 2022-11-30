@@ -11,7 +11,7 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
     #url: 'https://redocly.github.io/openapi-template/logo.png'
-    $ref: ./componenets/assets/logo.png
+    image: ./components/assets/logo.png
   description:
     # TODO FIX CODE EXAMPLE
     $ref: ./info-description.md

@@ -9,7 +9,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/callbacks/CreateCallbackAddress.yaml
+          $ref: ../../components/schemas/callbacks/callbackAddress.yaml
     description: Create wallet payload
     required: true
   responses:
@@ -18,14 +18,14 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/callbacks/CreateCallbackAddress.yaml
+            $ref: ../../components/schemas/callbacks/callbackAddress.yaml
     '400':
       description: Bad request example!
-  x-codeSamples:
-    - lang: 'TypeScript'
-      label: 'Node'
-      source:
-        $ref: ../../code_samples/nodejs/authenticate/authenticate.js
+#  x-codeSamples:
+#    - lang: 'TypeScript'
+#      label: 'Node'
+#      source:
+#        $ref: ../../code_samples/nodejs/authenticate/authenticate.js
 get:
   tags:
     - Callbacks
@@ -65,7 +65,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/callbacks/CreateCallbackAddress.yaml
+            $ref: ../../components/schemas/callbacks/list.yaml
     '400':
       description: Bad request example!
 

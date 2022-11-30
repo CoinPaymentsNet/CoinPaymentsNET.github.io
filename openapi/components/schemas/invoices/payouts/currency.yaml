@@ -1,0 +1,45 @@
+type: object
+properties:
+  id:
+    $ref: ../../../globalTypes/id.yaml
+  type:
+    type: string
+    format: 'crypto'
+  symbol:
+    type: string
+    description: currency symbol
+    format: 'BTC'
+  name:
+    type: string
+    format: string
+  logo:
+    type: object
+    properties:
+      imageUrl:
+        type: string
+        format: 'string'
+      vectorUrl:
+        type: string
+        format: 'string'
+  decimalPlaces:
+    type: number
+    example: 0
+  rank:
+    type: number
+    example: 0
+  capabilities:
+    type: array
+    items:
+      type: string
+      example: 'multiSigAccounts'
+  urls:
+    type: object
+    properties:
+      websites:
+        type: array
+        items:
+          type: string
+      explorers:
+        type: array
+        items:
+          type: string

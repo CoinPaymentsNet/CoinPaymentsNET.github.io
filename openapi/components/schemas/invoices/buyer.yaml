@@ -2,7 +2,7 @@ type: object
 properties:
   companyName:
     type: string
-    format: 'Rushing Turtles #2'
+    format: 'Rushing Turtles'
   name:
     type: object
     properties:

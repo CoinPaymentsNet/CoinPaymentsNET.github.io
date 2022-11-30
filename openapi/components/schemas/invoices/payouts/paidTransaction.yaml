@@ -13,8 +13,7 @@ properties:
         type: string
         format: '0.0123'
       currencyId:
-        type: string
-        format: '1'
+        $ref: ../../../globalTypes/currencyId.yaml
   conversionId:
     type: number
     example: 0

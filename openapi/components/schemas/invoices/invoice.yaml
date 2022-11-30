@@ -32,8 +32,7 @@ properties:
           discount:
             $ref: ./breakdown.yaml
   currencyId:
-    type: number
-    format: '2000'
+    $ref: ../../globalTypes/currencyId.yaml
   notes:
     type: string
     format: ''
