@@ -1,0 +1,2 @@
+type: string
+example: 'https://site.com/api/{YOUR_WEBHOOK_PATH}'

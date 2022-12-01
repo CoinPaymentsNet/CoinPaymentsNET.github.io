@@ -19,6 +19,9 @@ tags:
   - name: Authentication
     description:
       $ref: './paths/auth/auth.md'
+  - name: Clients
+    description:
+      $ref: 'paths/clients/description.md'
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
@@ -39,18 +42,20 @@ paths:
     $ref: 'paths/callbacks/callback.yaml'
   '/merchant/callbacks/payout/{id}/{address}':
     $ref: 'paths/callbacks/execute-payout-by-callback-address-id.yaml'
-#  # TODO Execute payout
   '/merchant/callbacks/{id}':
     $ref: 'paths/callbacks/get-by-id.yaml'
-#  # TODO (2) TODO GET callback address by id - update callback address
-#  '/merchant/callbacks/{id}':
-#    $ref: 'paths/invoices/invoices.yaml'
+  '/merchant/callbacks/{id}/deposits':
+    $ref: 'paths/callbacks/deposits.yaml'
+  # -----------------------------------------------
+  '/merchant/clients/{clientId}/webhooks':
+    $ref: 'paths/clients/webhook.yaml'
+  '/merchant/clients/{clientId}/webhooks/{webhookId}':
+    $ref: 'paths/clients/update-delete.yaml'
 #  # TODO GET callback DTOS
 #  '/merchant/callbacks/callbackdtos':
 #    $ref: 'paths/invoices/invoices.yaml'
-  # TODO GET callback deposits
-  '/merchant/callbacks/{id}/deposits':
-    $ref: 'paths/callbacks/deposits.yaml'
+
+
   # TODO GET callback deposits
 #  '/merchant/callbacks/deposits':
 #    $ref: 'paths/invoices/invoices.yaml'

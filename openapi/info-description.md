@@ -15,7 +15,7 @@ the standard OpenAPI syntax, we use a few
 [vendor
 extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
 
-# Objective
+# Overview
 
 The goal of this documentation is to define a standard, language-agnostic interface to CoinPayments API which
 allows developers to discover and understand the capabilities
@@ -24,10 +24,5 @@ When properly defined, a consumer can understand and interact with the remote se
 with a minimal amount of implementation logic. Similar to what interfaces have done for lower-level programming, OpenAPI removes the
 guesswork in calling the service.
 
-
-```mermaid
-graph LR
-    Start --> Stop
-```
 
 

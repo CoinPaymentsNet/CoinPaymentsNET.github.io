@@ -1,0 +1,6 @@
+type: object
+properties:
+  id:
+    type: string
+    description: webhook id
+    example: 'L76Z2npAAqXXTg2vC1m9YW'

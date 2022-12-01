@@ -1,0 +1,55 @@
+post:
+  tags:
+    - Clients
+  summary: Create client webhook
+  description: |
+    Creates new client webhook
+  operationId: createWebhook
+  parameters:
+    - name: clientId
+      in: path
+      required: true
+      description: client Id
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/clients/webhook.yaml
+    description: Create Webhook
+    required: true
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/clients/createWebhook.yaml
+    '404':
+      description: Merchant Not Found!
+get:
+  tags:
+    - Clients
+  summary: Get webhooks of merchant
+  description: |
+    Get list of merchant invoices
+  operationId: getMerchantWebhooks
+  parameters:
+    - name: clientId
+      in: path
+      required: true
+      description: client Id
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/clients/list-webhooks.yaml
+    '404':
+      description: Merchant Not Found!
+
+

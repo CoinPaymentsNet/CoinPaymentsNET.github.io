@@ -1,0 +1,8 @@
+type: object
+properties:
+  notificationUrl:
+    $ref: ../../globalTypes/notificationUrl.yaml
+  notifications:
+    $ref: ../../globalTypes/notifications.yaml
+
+

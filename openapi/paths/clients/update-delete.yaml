@@ -1,0 +1,54 @@
+put:
+  tags:
+    - Clients
+  summary: Update Webhook
+  description: |
+    Update Webhook by client Id and webhook Id
+  operationId: updateWebhook
+  parameters:
+    - name: clientId
+      in: path
+      required: true
+      description: client Id
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+    - name: webhookId
+      in: path
+      required: true
+      description: webhook Id
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/callbacks/callbackAddress.yaml
+    '400':
+      description: Bad request example!
+delete:
+  tags:
+    - Clients
+  summary: Delete Webhook
+  description: |
+    delete a webhook by client Id and webhook Id
+  operationId: deleteWebhook
+  parameters:
+    - name: clientId
+      in: path
+      required: true
+      description: client Id
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+    - name: webhookId
+      in: path
+      required: true
+      description: webhook Id
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+  responses:
+    '204':
+      description: Success status code - no content
+    '400':
+      description: Bad request example!

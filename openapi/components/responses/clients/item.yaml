@@ -1,0 +1,10 @@
+type: object
+properties:
+  id:
+    $ref: ../../globalTypes/id.yaml
+  notificationUrl:
+    $ref: ../../globalTypes/notificationUrl.yaml
+  notifications:
+    $ref: ../../globalTypes/notifications.yaml
+  paging:
+    $ref: ../../globalTypes/paging.yaml
