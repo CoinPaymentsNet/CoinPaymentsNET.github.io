@@ -1,5 +1,0 @@
-description: New Wallet
-content:
-  application/json:
-    schema:
-      $ref: ../schemas/wallets/NewWallet.yaml

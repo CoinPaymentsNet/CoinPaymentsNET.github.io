@@ -7,17 +7,13 @@ properties:
   currencyId:
     $ref: ../../globalTypes/currencyId.yaml
   contractAddress:
-    description: contract address
-    type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
+    $ref: ../../globalTypes/address.yaml
   label:
     description: label for callback address
     type: string
-    example: 'John Doe`s address'
   updatedAt:
     description: date of last time the wallet data was modified by the user
-    type: string
-    example: '2022-10-05T06:05:07.520Z'
+    $ref: ../../globalTypes/datetime.yaml
 #  depositAddress:
 #    description: address to deposit funds into the wallet
 #    type: string

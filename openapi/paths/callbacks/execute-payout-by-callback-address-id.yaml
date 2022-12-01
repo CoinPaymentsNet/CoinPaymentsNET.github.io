@@ -10,23 +10,16 @@ post:
       in: path
       required: true
       schema:
-        type: string
-        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        $ref: ../../components/globalTypes/id.yaml
     - name: address
       in: path
       required: true
       schema:
-        type: string
-        example: '0a54b29f51cb44a89bed111c5cb1b335'
+        $ref: ../../components/globalTypes/address.yaml
   responses:
     '200':
       description: Success status code ( 200 )
     '400':
       description: Bad request example!
-  x-codeSamples:
-    - lang: 'TypeScript'
-      label: 'Node'
-      source:
-        $ref: ../../code_samples/nodejs/authenticate/authenticate.js
 
 

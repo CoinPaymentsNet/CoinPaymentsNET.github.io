@@ -5,9 +5,7 @@ properties:
     type: string
     example: 'https://mysite.com'
   nativeCurrencyId:
-    description: native currency id
-    type: number
-    example: 2
+    $ref: ../../globalTypes/currencyId.yaml
   customData:
     description: custom data users can send with the request
     type: string

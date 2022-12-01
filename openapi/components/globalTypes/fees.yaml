@@ -3,10 +3,8 @@ properties:
   displayValue:
     type: string
     format: '0.01'
-  contractAddress:
-    $ref: ../../../globalTypes/address.yaml
   value:
     type: string
     format: '0.0123'
   currencyId:
-    $ref: ../../../globalTypes/currencyId.yaml
+    $ref: ./currencyId.yaml

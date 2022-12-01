@@ -1,10 +1,10 @@
 get:
   tags:
-    - Invoices
-  summary: Get invoice by Id
+    - Callbacks
+  summary: get deposits by callback address id
   description: |
-    Get Invoice by Id
-  operationId: getInvoiceById
+    get deposits by callback address id
+  operationId: getDepositsByCallbackAddressId
   parameters:
     - name: id
       in: path
@@ -17,7 +17,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/invoices/invoice.yaml
+            $ref: ../../components/schemas/callbacks/deposits.yaml
     '400':
       description: Bad request example!
 

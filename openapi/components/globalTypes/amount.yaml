@@ -1,0 +1,11 @@
+type: object
+properties:
+  displayValue:
+    type: string
+    format: '0.01'
+  value:
+    type: string
+    format: '0.01'
+  currencyId:
+    $ref: ./currencyId.yaml
+

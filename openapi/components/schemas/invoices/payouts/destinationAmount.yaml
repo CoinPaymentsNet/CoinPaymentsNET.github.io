@@ -1,24 +1,6 @@
 type: object
 properties:
   amount:
-    type: object
-    properties:
-      displayValue:
-        type: string
-        format: '0.01'
-      value:
-        type: string
-        format: '0.01'
-      currencyId:
-        $ref: ../../../globalTypes/currencyId.yaml
+    $ref: ../../../globalTypes/amount.yaml
   nativeAmount:
-    type: object
-    properties:
-      displayValue:
-        type: string
-        format: '0.01'
-      value:
-        type: string
-        format: '0.01'
-      currencyId:
-        $ref: ../../../globalTypes/currencyId.yaml
+    $ref: ../../../globalTypes/amount.yaml

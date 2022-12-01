@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    $ref: ../../globalTypes/id.yaml
+  symbol:
+    type: string
+    description: currency symbol
+    format: 'BTC'
+  name:
+    type: string
+  token:
+    $ref: ./token.yaml
+  logo:
+    $ref: ../../globalTypes/logo.yaml
+  decimalPlaces:
+    type: number
+    example: 0

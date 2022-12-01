@@ -2,8 +2,7 @@ type: object
 properties:
   id:
     description: callback address id
-    type: string
-    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
+    $ref: ../../globalTypes/address.yaml
   clientId:
     description: client Id
     type: string
@@ -15,9 +14,7 @@ properties:
   currencyId:
     $ref: ../../globalTypes/currencyId.yaml
   contractAddress:
-    description: contract address
-    type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
+    $ref: ../../globalTypes/address.yaml
   label:
     description: label for callback address
     type: string
