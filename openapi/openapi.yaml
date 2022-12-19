@@ -2,26 +2,21 @@ openapi: 3.1.0
 info:
   version: 2.0.0
   title: CoinPayments
-  termsOfService: 'https://coinpayments.com/terms/'
-  contact:
-    email: coinpayments@example.com
-    url: 'http://coinpayments.com/contact'
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   x-logo:
-    #url: 'https://redocly.github.io/openapi-template/logo.png'
     url: ./logo.png
   description:
     # TODO FIX CODE EXAMPLE
     $ref: ./info-description.md
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: Authentication
     description:
       $ref: './paths/auth/auth.md'
-  - name: Clients
+  - name: Callbacks
     description:
-      $ref: 'paths/clients/description.md'
+      $ref: 'paths/callbacks/callbacks.md'
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
@@ -46,7 +41,6 @@ paths:
     $ref: 'paths/callbacks/get-by-id.yaml'
   '/merchant/callbacks/{id}/deposits':
     $ref: 'paths/callbacks/deposits.yaml'
-  # -----------------------------------------------
   '/merchant/clients/{clientId}/webhooks':
     $ref: 'paths/clients/webhook.yaml'
   '/merchant/clients/{clientId}/webhooks/{webhookId}':
@@ -54,7 +48,18 @@ paths:
 #  # TODO GET callback DTOS
 #  '/merchant/callbacks/callbackdtos':
 #    $ref: 'paths/invoices/invoices.yaml'
-
+  '/merchant/wallets':
+    $ref: 'paths/wallets/create-wallet.yaml'
+  '/merchant/wallets/{walletIdStr}':
+    $ref: 'paths/wallets/get-wallet-by-id.yaml'
+  '/merchant/wallets/{walletIdStr}/transactions':
+    $ref: 'paths/wallets/get-wallet-transactions.yaml'
+  '/merchant/wallets/{walletIdStr}/transaction':
+    $ref: 'paths/wallets/get-wallet-transaction.yaml'
+  '/merchant/wallets/{walletIdStr}/spend/request':
+    $ref: 'paths/wallets/spend-request.yaml'
+  '/merchant/wallets/{walletIdStr}/spend/confirmation':
+    $ref: 'paths/wallets/spend-request-confirmation.yaml'
 
   # TODO GET callback deposits
 #  '/merchant/callbacks/deposits':

@@ -1,28 +1,28 @@
 Welcome to CoinPayments API documentation!
 
-CoinPayments API is mostly RESTful JSON API for interacting with blockchains, 
+![markdown file changed](./charlie.png)
+
+CoinPayments API is a RESTful JSON API for interacting with blockchains, 
 accessed over HTTP or HTTPS from the domain **https://coinpayments/api/v1**
 
-# Introduction
-This API definition is intended to guid you to integrate CoinPayments with your system.
-
-[create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool
-and
-
-the [Redoc](https://github.com/Redocly/Redoc) documentation engine. Beyond
-the standard OpenAPI syntax, we use a few 
-
-[vendor
-extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).
-
 # Overview
+Coinpayments API docs defines a standard, language-agnostic interface to CoinPayments API
+The platform allows merchants to integrate the payment system into their own websites or applications, 
+allowing their customers to pay for goods or services with cryptocurrency.
+The API documentation provides the necessary information for developers to integrate the payment system into their own platforms, 
+including details on how to authenticate requests, what parameters to include in requests and responses, and how to handle errors.
+Overall, the API is designed to provide a simple and secure way for merchants to accept cryptocurrency payments from their customers.
+In these docs you'll find everything you need to leverage CoinPayments for your applications.
 
-The goal of this documentation is to define a standard, language-agnostic interface to CoinPayments API which
-allows developers to discover and understand the capabilities
-of the service without access to source code, documentation, or through network traffic inspection.
-When properly defined, a consumer can understand and interact with the remote service 
-with a minimal amount of implementation logic. Similar to what interfaces have done for lower-level programming, OpenAPI removes the
-guesswork in calling the service.
 
+# Features
+CoinPayments provides a multi-currency wallet that enables businesses and individuals to store, send,
+and receive a wide range of digital currencies and tokens.
+The free-to-set-up wallet is available on web and mobile, enabling account management online and on the go. 
 
-
+#### Some of the key features of the website include:
+1. Support for multiple popular cryptocurrencies, allowing customers to pay with the digital currency of their choice.
+2. Generate invoices and manually share them with buyers through a link.
+3. Generate invoice and Send invoice to payer via email.
+4. Advanced security measures to ensure that all transactions are safe and secure.
+5. Real-time updates using Webhooks, The API provides real-time updates on the status of transactions, allowing merchants and customers to track the progress of their payments.
