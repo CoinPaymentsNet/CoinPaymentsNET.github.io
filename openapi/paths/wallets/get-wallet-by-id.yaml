@@ -1,0 +1,26 @@
+get:
+  tags:
+    - Wallets
+  summary: Get Merchant Wallet by Id
+  description: Retrieves a merchant wallet by its Id
+  operationId: getMerchantWalletById
+  parameters:
+      - name: walletIdStr
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        description: the wallet Id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/wallets/MerchantWalletObj.yaml
+    '400':
+      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml
+
+

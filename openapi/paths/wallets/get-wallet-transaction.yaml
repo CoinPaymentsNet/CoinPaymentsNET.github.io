@@ -1,0 +1,27 @@
+get:
+  tags:
+    - Wallets
+  summary: Get wallet transaction
+  description: Get a specific transaction of the wallet,
+    If trasncationId is specified then the specified then the spend request Id is ignored, otherwise, 
+    the first spending transaction with matching spendRequestId is returned
+  operationId: getTransactionByWalletId
+  parameters:
+    - name: walletIdStr
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+      description: the wallet Id
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/wallets/arrayOfWalletTransactions.yaml
+    '400':
+      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml
+
