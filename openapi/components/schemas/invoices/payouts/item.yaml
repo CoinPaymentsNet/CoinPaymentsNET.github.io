@@ -1,15 +1,15 @@
 type: object
 properties:
   currency:
-    $ref: ./currency.yaml
+    $ref: ./invoiceCurrency.yaml
   merchantFees:
     $ref: ./merchantFees.yaml
   payoutAmount:
-    $ref: ./fees.yaml
+    $ref: ./payoutFees.yaml
   payoutAmountInInvoiceCurrency:
-    $ref: ./fees.yaml
+    $ref: ./payoutFees.yaml
   merchantFeestInInvoiceCurrency:
-    $ref: ./fees.yaml
+    $ref: ./payoutFees.yaml
   merchantPayoutAddress:
     type: string
     format: '378a37b57b6b4a4a93fd352b06ce1829'
