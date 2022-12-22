@@ -16,7 +16,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/clients/webhookObj.yaml
+          $ref: ../../components/schemas/clients/webhook.yaml
     description: Create Webhook
     required: true
   responses:

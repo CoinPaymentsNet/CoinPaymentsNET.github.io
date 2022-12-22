@@ -24,7 +24,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/callbacks/callbackAddressRes.yaml
+            $ref: ../../components/responses/callbacks/callbackAddress.yaml
     '400':
       description: Bad request example!
 delete:
