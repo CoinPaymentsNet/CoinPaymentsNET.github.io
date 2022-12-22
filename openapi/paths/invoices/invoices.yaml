@@ -2,8 +2,8 @@ post:
   tags:
     - Invoices
   summary: Create Invoice
-  description: |
-    Creates new invoice
+  description:
+    $ref: ./createInvoiceDesc.md
   operationId: createInvoice
   requestBody:
     content:

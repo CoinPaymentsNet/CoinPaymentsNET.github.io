@@ -25,7 +25,7 @@ put:
     - Callbacks
   summary: Update callback address by Id
   description: |
-    Get callback address by Id
+    Update callback address by Id
   operationId: updateCallbackAddressById
   parameters:
     - name: id
