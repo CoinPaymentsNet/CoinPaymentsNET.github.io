@@ -1,0 +1,1757 @@
+openapi: 3.1.0
+info:
+  version: 2.0.0
+  title: CoinPayments
+  x-logo:
+    url: ./logo.png
+  description: >
+    Welcome to CoinPayments API documentation!
+
+
+    ![markdown file changed](./charlie.png)
+
+
+    CoinPayments API is a RESTful JSON API for interacting with blockchains, 
+
+    accessed over HTTP or HTTPS from the domain **https://coinpayments/api/v1**
+
+
+    # Overview
+
+    Coinpayments API docs defines a standard, language-agnostic interface to
+    CoinPayments API
+
+    The platform allows merchants to integrate the payment system into their own
+    websites or applications, 
+
+    allowing their customers to pay for goods or services with cryptocurrency.
+
+    The API documentation provides the necessary information for developers to
+    integrate the payment system into their own platforms, 
+
+    including details on how to authenticate requests, what parameters to
+    include in requests and responses, and how to handle errors.
+
+    Overall, the API is designed to provide a simple and secure way for
+    merchants to accept cryptocurrency payments from their customers.
+
+    In these docs you'll find everything you need to leverage CoinPayments for
+    your applications.
+
+
+
+    # Features
+
+    CoinPayments provides a multi-currency wallet that enables businesses and
+    individuals to store, send,
+
+    and receive a wide range of digital currencies and tokens.
+
+    The free-to-set-up wallet is available on web and mobile, enabling account
+    management online and on the go. 
+
+
+    #### Some of the key features of the website include:
+
+    1. Support for multiple popular cryptocurrencies, allowing customers to pay
+    with the digital currency of their choice.
+
+    2. Generate invoices and manually share them with buyers through a link.
+
+    3. Generate invoice and Send invoice to payer via email.
+
+    4. Advanced security measures to ensure that all transactions are safe and
+    secure.
+
+    5. Real-time updates using Webhooks, The API provides real-time updates on
+    the status of transactions, allowing merchants and customers to track the
+    progress of their payments.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: Authentication
+    description: >+
+      CoinPayments API uses SHA-256 which is a way of authenticating an API
+      request to ensure that it comes from a trusted source. 
+
+      In this scheme, the API server generates a unique signature for each
+      request using the SHA-256 hashing algorithm. 
+
+
+
+      #### Prerequisites
+
+      To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT
+      SECRET.
+
+      If you haven't yet created your credentials, you may skip to next section.
+
+
+
+      # Create API credentials
+
+      First, you need to [create an
+      account](https://identity.coinpaymints.com/Identity/Account/SignUp?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fdashboard.coinpaymints.com%252Fcallback%26nonce%3D1d30da16-4ff7-4c2c-2006-33bebbb54bd8%26signup%3D1)
+
+      ##### Once you're logged into your account, Go to Dashboard Business tools
+      👇
+
+
+      ![markdown file changed](./integrations-1.png)
+
+
+
+      ##### Integrations 🏗
+
+      ![markdown file changed](./integration-2.png)
+
+
+
+      ##### Add integration ➕
+
+      ![markdown file changed](./integration-3.png)
+
+
+
+      ##### give a name and a URL to your integration - more on the URL later.
+      📛
+
+      ![markdown file changed](./integration-4.png)
+
+
+
+
+      **Warning**
+
+      It is strongly recommended that you save your credentials after they are
+      shown to you.
+
+      Your credentials will only be displayed once, and if you lose them, you
+      will not be able to access the API.
+
+      Please take the time to save your credentials in a secure location so that
+      you can use them in the future.
+
+
+      ---
+
+
+      # Create API Signature
+
+      In order to properly sign an authenticated request for the CoinPayments v2
+      API, the following headers must be included:
+
+
+      * `X-CoinPayments-Client`
+
+      * `X-CoinPayments-Timestamp`
+
+      * `X-CoinPayments-Signature`
+
+
+      The following sections are instructions for properly populating these
+      headers.
+
+
+      ---
+
+
+      ### X-CoinPayments-Client
+
+      Populate this header with your **CLIENT ID**
+
+
+      Example Value
+
+      `cc7caaa431d54ad6accfd28b20170ee4`
+
+
+
+      ---
+
+      ### X-CoinPayments-Timestamp
+
+      Before we Populate this header with the current time as a UNIX timestamp,
+      exclude the milliseconds epoch, example:
+
+
+      ```javascript
+
+      const date = new Date().toISOString().split(".")[0];
+
+      ```
+
+
+      Example value:
+
+      `2022-12-19T19:27:04`  
+
+      ---
+
+      ## Construct the request queryString
+
+      To create an API signature takes a query string you first need to
+      construct the query string which is made of the 
+
+      following attributes concatenated together
+
+      * method
+
+      * url
+
+      * clientId
+
+      * date
+
+
+      Example ( Javascript )
+
+      ```javascript
+
+      const queryString =
+      `\ufeff${method}${url}${clientId}${JSON.stringify(requestPayload)}`;
+
+      ```
+
+
+      For requests with no request body, replace last attribute by an empty
+      string:
+
+      Example ( Javascript )
+
+      ```javascript
+
+      const queryString = `\ufeff${method}${url}${clientId}${''}`;
+
+      ```
+
+
+      ---
+
+      ### X-CoinPayments-Signature
+
+      Next step is to use the your `clientSecret` to generate the signature
+      using SHA-256 encryption Algorithm as follows:
+
+
+      ```javascript
+
+      const hash = CryptoJS.HmacSHA256(queryString,
+      CryptoJS.enc.Utf8.parse(clientSecret));
+
+      const signature = CryptoJS.enc.Base64.stringify(hash);
+
+      ```
+
+      example value:
+
+      `oW7d1ktvK7R6741oACgVR3bysGTPY8tqren0WTmmEk0=`
+
+
+      ---  
+
+      Here is a complete example of how to generate an API signature for making
+      a call to the create wallet API:
+
+      ```javascript
+
+      const clientId = 'd0ccc52b8204460783d375e278082de2';
+
+      const clientSecret = 'WYEB+hN+89waO76QeO9T7IIqhdo/60GHrdYu2vEa7Tg=';
+
+      const url = `https://api.coinpaymints.com/api/v1/merchant/wallets`;
+
+      const method = 'POST';
+
+      const date = new Date().toISOString().split('.')[0];
+
+
+      const createWalletDto = {
+        currencyId: 2,
+        label: 'Online Shop Wallet',
+        webhookUrl: 'ttps://mysite.com/api/v1/payment/notification',
+      };
+
+
+      const queryString =
+      `\ufeff${method}${url}${clientId}${date}${JSON.stringify(createWalletDto)}`;
+
+
+
+      const hash = CryptoJS.HmacSHA256(queryString,
+      CryptoJS.enc.Utf8.parse(clientSecret));
+
+      const signature = CryptoJS.enc.Base64.stringify(hash);
+
+
+      const headers = {
+        'X-CoinPayments-Client': clientId,
+        'X-CoinPayments-Timestamp': date,
+        'X-CoinPayments-Signature': signature,
+      };
+
+
+
+      /** Make API call using axios ( you may choose any http client ) */
+
+      const axiosoptions = {
+        url,
+        headers,
+        method,
+        data: createWalletDto,
+      };
+
+
+      const response = await this.httpsService.request(options).toPromise();
+
+      console.log(response);
+
+      ```
+
+
+      ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  - name: Callbacks
+    description: >
+      A callback address is a dynamically generated payment address that can be
+      used by the payee to receive payments at any time.
+
+      The payer can initiate a payment by sending the specified amount to the
+      callback address, which will trigger a notification to the payee ( if
+      payee has webhook integration with CoinPayments API ). 
+
+      This allows for more flexibility and convenience compared to the
+      traditional invoice-based payment process.
+servers:
+  - url: https://api.coinpayments/api/v1
+paths:
+  /merchant/invoices:
+    post:
+      tags:
+        - Invoices
+      summary: Create Invoice
+      description: |
+        Creates new invoice
+      operationId: createInvoice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invoice-2'
+        description: Create Invoice
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoice'
+        '404':
+          description: Merchant Not Found!
+    get:
+      tags:
+        - Invoices
+      summary: Get invoices
+      description: |
+        Get list of merchant invoices
+      operationId: getListOfInvoices
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoice'
+        '404':
+          description: Merchant Not Found!
+  /merchant/invoices/{id}:
+    get:
+      tags:
+        - Invoices
+      summary: Get invoice by Id
+      description: |
+        Get Invoice by Id
+      operationId: getInvoiceById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoice-2'
+        '400':
+          description: Bad request example!
+  /merchant/invoices/{id}/payouts:
+    get:
+      tags:
+        - Invoices
+      summary: Get invoices payouts
+      description: |
+        Get list of merchant invoices by invoice Id
+      operationId: getInvoicePayouts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 5xyKTbjTMcbXMUsaprSRaP
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/payouts'
+        '404':
+          description: Merchant Not Found!
+  /merchant/callbacks:
+    post:
+      tags:
+        - Callbacks
+      summary: Create a new callback address
+      description: |
+        Creates a new callback address
+      operationId: createCallbackAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/callbackAddress'
+        description: Create wallet payload
+        required: true
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callbackAddress'
+        '400':
+          description: Bad request example!
+    get:
+      tags:
+        - Callbacks
+      summary: list callback addresses
+      description: List all callback addresses sorted descending
+      operationId: listCallbackAddress
+      parameters:
+        - name: clientId
+          in: query
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+        - name: currencyId
+          in: query
+          required: true
+          schema:
+            type: number
+            example: 1
+          description: the currency Id
+        - name: after
+          in: query
+          required: true
+          schema:
+            type: string
+            example: unknown
+          description: unknown
+        - name: limit
+          in: query
+          schema:
+            type: number
+          description: limit the number of items in the response
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list'
+        '400':
+          description: Bad request example!
+  /merchant/callbacks/payout/{id}/{address}:
+    post:
+      tags:
+        - Callbacks
+      summary: Excute payout by callback address id
+      description: |
+        Excute payout by callback address id and address
+      operationId: excutePayoutByCallbackAddressId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+        - name: address
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/address'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+        '400':
+          description: Bad request example!
+  /merchant/callbacks/{id}:
+    get:
+      tags:
+        - Callbacks
+      summary: Get callback address by Id
+      description: |
+        Get callback address by Id
+      operationId: getCallbackAddressById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callbackAddress-2'
+        '400':
+          description: Bad request example!
+    put:
+      tags:
+        - Callbacks
+      summary: Update callback address by Id
+      description: |
+        Get callback address by Id
+      operationId: updateCallbackAddressById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callbackAddress-2'
+        '400':
+          description: Bad request example!
+  /merchant/callbacks/{id}/deposits:
+    get:
+      tags:
+        - Callbacks
+      summary: get deposits by callback address id
+      description: |
+        get deposits by callback address id
+      operationId: getDepositsByCallbackAddressId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deposits'
+        '400':
+          description: Bad request example!
+  /merchant/clients/{clientId}/webhooks:
+    post:
+      tags:
+        - Clients
+      summary: Create client webhook
+      description: |
+        Creates new client webhook
+      operationId: createWebhook
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: client Id
+          schema:
+            $ref: '#/components/schemas/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook-2'
+        description: Create Webhook
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createWebhook'
+        '404':
+          description: Merchant Not Found!
+    get:
+      tags:
+        - Clients
+      summary: Get webhooks of merchant
+      description: |
+        Get list of merchant invoices
+      operationId: getMerchantWebhooks
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: client Id
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/list-webhooks'
+        '404':
+          description: Merchant Not Found!
+  /merchant/clients/{clientId}/webhooks/{webhookId}:
+    put:
+      tags:
+        - Clients
+      summary: Update Webhook
+      description: |
+        Update Webhook by client Id and webhook Id
+      operationId: updateWebhook
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: client Id
+          schema:
+            $ref: '#/components/schemas/id'
+        - name: webhookId
+          in: path
+          required: true
+          description: webhook Id
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callbackAddress-2'
+        '400':
+          description: Bad request example!
+    delete:
+      tags:
+        - Clients
+      summary: Delete Webhook
+      description: |
+        delete a webhook by client Id and webhook Id
+      operationId: deleteWebhook
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          description: client Id
+          schema:
+            $ref: '#/components/schemas/id'
+        - name: webhookId
+          in: path
+          required: true
+          description: webhook Id
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '204':
+          description: Success status code - no content
+        '400':
+          description: Bad request example!
+  /merchant/wallets:
+    post:
+      tags:
+        - Wallets
+      summary: Create merchant wallet
+      description: |
+        Creates new merchant wallet by currency Id
+      operationId: createMerchantWallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantWallet'
+        description: Create wallet payload
+        required: true
+      security:
+        - main_auth:
+            - read:users
+        - api_key: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewWallet'
+              example:
+                walletId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        '404':
+          description: Currency Not Found!
+    get:
+      tags:
+        - Wallets
+      summary: Get Merchant Wallets
+      description: Retrieves a list of merchant wallets
+      operationId: getMerchantWallets
+      security:
+        - main_auth:
+            - write:users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/arrayOfWallets'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+        '404':
+          description: No wallets found
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}:
+    get:
+      tags:
+        - Wallets
+      summary: Get Merchant Wallet by Id
+      description: Retrieves a merchant wallet by its Id
+      operationId: getMerchantWalletById
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantWalletObj'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}/transactions:
+    get:
+      tags:
+        - Wallets
+      summary: Get wallet transactions
+      description: Retrieves a list of all wallet transactions
+      operationId: getTransactionsByWalletId
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/arrayOfWalletTransactions'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}/transaction:
+    get:
+      tags:
+        - Wallets
+      summary: Get wallet transaction
+      description: >-
+        Get a specific transaction of the wallet, If trasncationId is specified
+        then the specified then the spend request Id is ignored, otherwise, the
+        first spending transaction with matching spendRequestId is returned
+      operationId: getTransactionByWalletId
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/arrayOfWalletTransactions'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}/spend/request:
+    post:
+      tags:
+        - Wallets
+      summary: Spend Request
+      description: Sends a request to spend funds from the merchant client wallet
+      operationId: sendSpendRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/spendRequestPayload'
+        description: Spend Request payload
+        required: true
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/spendRequestSuccess'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}/spend/confirmation:
+    post:
+      tags:
+        - Wallets
+      summary: Confirm spending funds
+      description: Send a request to confirm spending funds from the merchant client wallet
+      operationId: spendRequestConfirmation
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
+              example:
+                spendRequestId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+components:
+  securitySchemes:
+    main_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://example.com/api/oauth/dialog
+          scopes:
+            read:users: read users info
+            write:users: modify or remove users
+    api_key:
+      type: apiKey
+      in: header
+      name: api_key
+    basic_auth:
+      type: http
+      scheme: basic
+  schemas:
+    invoice:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+          format: 5xyKTbjTMcbXMUsaprSRaP
+        link:
+          type: string
+          format: >-
+            https://api.coinpaymints.com/api/v1/merchant/invoices/5xyKTbjTMcbXMUsaprSRaP
+    buyer:
+      type: object
+      properties:
+        companyName:
+          type: string
+          format: Rushing Turtles
+        name:
+          type: object
+          properties:
+            firstName:
+              type: string
+              format: John
+            lastName:
+              type: string
+              format: Doe
+            address:
+              type: string
+              format: 12 some street
+            city:
+              type: string
+              format: New York
+            provinceOrState:
+              type: string
+              format: New York
+            countryCode:
+              type: string
+              format: US
+            postalCode:
+              type: string
+              format: '10101'
+            emailAddress:
+              type: string
+              format: johndoe@gmail.com
+            phoneNumber:
+              type: string
+              format: '01010101010'
+    currencyId:
+      type: string
+      description: currency Id
+      example: '1'
+    breakdown:
+      type: object
+      properties:
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Iphone 22
+        quantity:
+          type: number
+          example: 1
+        originalAmount:
+          $ref: '#/components/schemas/breakdown'
+        amount:
+          $ref: '#/components/schemas/breakdown'
+    merchantOptions:
+      type: object
+      properties:
+        showAddress:
+          type: boolean
+          default: false
+        showPhone:
+          type: boolean
+          default: false
+        showRegistrationNumber:
+          type: boolean
+          default: false
+        showEmail:
+          type: boolean
+          default: false
+        additionalInfo:
+          type: string
+          format: additional Info
+    invoice-2:
+      type: object
+      properties:
+        invoiceDate:
+          type: string
+          format: '2022-11-28T13:59:46+00:00'
+        invoiceId:
+          type: string
+          format: Kwdx3VYtyVDGvMznqRdjMB
+        buyer:
+          $ref: '#/components/schemas/buyer'
+        shipping:
+          type: 'null'
+          example: null
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/items'
+        amount:
+          type: object
+          properties:
+            breakdown:
+              type: object
+              properties:
+                subtotal:
+                  $ref: '#/components/schemas/breakdown'
+                shipping:
+                  $ref: '#/components/schemas/breakdown'
+                handling:
+                  $ref: '#/components/schemas/breakdown'
+                taxTotal:
+                  $ref: '#/components/schemas/breakdown'
+                discount:
+                  $ref: '#/components/schemas/breakdown'
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+        notes:
+          type: string
+          format: ''
+        notesToRecipient:
+          type: string
+          format: ''
+        termsAndConditions:
+          type: string
+          format: ''
+        merchantOptions:
+          $ref: '#/components/schemas/merchantOptions'
+        metadata:
+          type: object
+          properties:
+            integration:
+              type: string
+              format: InvoiceBuilder
+        poNumber:
+          type: string
+          format: InvoiceBuilder
+        isEmailDelivery:
+          type: boolean
+          default: false
+        draft:
+          type: boolean
+          default: false
+    id:
+      type: string
+      example: nKCMuD6h3Vsgs4mGDqGeV
+    txId-or-hash:
+      type: string
+      format: '0x2446f1fd773fbb9f080e674b60c6a033c7ed7427b8b9413cf28a2a4a6da9b56c'
+    paidTransaction:
+      type: object
+      properties:
+        hash:
+          $ref: '#/components/schemas/txId-or-hash'
+        amount:
+          type: object
+          properties:
+            displayValue:
+              type: string
+              format: '0.0123'
+            value:
+              type: string
+              format: '0.0123'
+            currencyId:
+              $ref: '#/components/schemas/currencyId'
+        conversionId:
+          type: number
+          example: 0
+    amount:
+      type: object
+      properties:
+        displayValue:
+          type: string
+          format: '0.01'
+        value:
+          type: string
+          format: '0.01'
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+    destinationAmount:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/amount'
+        nativeAmount:
+          $ref: '#/components/schemas/amount'
+    currency:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        type:
+          type: string
+          format: crypto
+        symbol:
+          type: string
+          description: currency symbol
+          format: BTC
+        name:
+          type: string
+          format: string
+        logo:
+          type: object
+          properties:
+            imageUrl:
+              type: string
+              format: string
+            vectorUrl:
+              type: string
+              format: string
+        decimalPlaces:
+          type: number
+          example: 0
+        rank:
+          type: number
+          example: 0
+        capabilities:
+          type: array
+          items:
+            type: string
+            example: multiSigAccounts
+        urls:
+          type: object
+          properties:
+            websites:
+              type: array
+              items:
+                type: string
+            explorers:
+              type: array
+              items:
+                type: string
+    address:
+      type: string
+      example: mtxASJZHNmGeUPQ3DxLvJeKja6Lh7TcJM9
+    fees:
+      type: object
+      properties:
+        displayValue:
+          type: string
+          format: '0.01'
+        contractAddress:
+          $ref: '#/components/schemas/address'
+        value:
+          type: string
+          format: '0.0123'
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+    merchantFees:
+      type: object
+      properties:
+        transactionFees:
+          $ref: '#/components/schemas/fees'
+        networkFee:
+          $ref: '#/components/schemas/fees'
+        conversionFee:
+          $ref: '#/components/schemas/fees'
+    datetime:
+      type: string
+      example: '2022-11-29T19:10:04.228Z'
+    item:
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/currency'
+        merchantFees:
+          $ref: '#/components/schemas/merchantFees'
+        payoutAmount:
+          $ref: '#/components/schemas/fees'
+        payoutAmountInInvoiceCurrency:
+          $ref: '#/components/schemas/fees'
+        merchantFeestInInvoiceCurrency:
+          $ref: '#/components/schemas/fees'
+        merchantPayoutAddress:
+          type: string
+          format: 378a37b57b6b4a4a93fd352b06ce1829
+        sent:
+          $ref: '#/components/schemas/datetime'
+        created:
+          $ref: '#/components/schemas/datetime'
+        expected:
+          $ref: '#/components/schemas/datetime'
+        confirmed:
+          $ref: '#/components/schemas/datetime'
+        state:
+          type: string
+          format: scheduled
+    payouts:
+      type: object
+      properties:
+        paidTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/paidTransaction'
+        paid:
+          type: string
+          description: paid at
+          format: '2022-11-29T12:42:44.513Z'
+        completedTxId:
+          type: string
+          format: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        externalAddress:
+          type: string
+          format: 378a37b57b6b4a4a93fd352b06ce1829
+        destinationCurrencyId:
+          type: string
+          format: '1'
+        expectedDisplayValue:
+          type: string
+          format: '0.01'
+        sourceCurrencyId:
+          type: string
+          format: '101'
+        destinationAccountId:
+          type: string
+          format: 378a37b57b6b4a4a93fd352b06ce1829
+        isConversion:
+          type: boolean
+          example: false
+        conversionProgress:
+          type: string
+          example: 0
+        settlementModeErrorCode:
+          type: number
+          example: 0
+        destinationAmount:
+          $ref: '#/components/schemas/destinationAmount'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/item'
+    webhook:
+      type: object
+      properties:
+        url:
+          description: webhook url
+          type: string
+          example: https://mysite.com
+        nativeCurrencyId:
+          $ref: '#/components/schemas/currencyId'
+        customData:
+          description: custom data users can send with the request
+          type: string
+          example: custom message
+    callbackAddress:
+      type: object
+      properties:
+        clientId:
+          description: client Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+        contractAddress:
+          $ref: '#/components/schemas/address'
+        label:
+          description: label for callback address
+          type: string
+        updatedAt:
+          description: date of last time the wallet data was modified by the user
+          $ref: '#/components/schemas/datetime'
+        webhook:
+          $ref: '#/components/schemas/webhook'
+    list:
+      type: array
+      items:
+        $ref: '#/components/schemas/callbackAddress'
+    callbackAddress-2:
+      type: object
+      properties:
+        id:
+          description: callback address id
+          $ref: '#/components/schemas/address'
+        clientId:
+          description: client Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        created:
+          description: date and time of creating the callback address
+          type: string
+          example: '2022-10-11T14:34:32.945Z'
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+        contractAddress:
+          $ref: '#/components/schemas/address'
+        label:
+          description: label for callback address
+          type: string
+          example: John Doe`s address
+        updatedAt:
+          description: date of last time the wallet data was modified by the user
+          type: string
+          example: '2022-10-05T06:05:07.520Z'
+        webhook:
+          $ref: '#/components/schemas/webhook'
+    token:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        symbol:
+          type: string
+          description: currency symbol
+          format: BTC
+        name:
+          type: string
+        contractAddress:
+          $ref: '#/components/schemas/address'
+        decimalPlaces:
+          type: number
+          example: 0
+    logo:
+      type: object
+      properties:
+        imageUrl:
+          type: string
+          format: string
+        vectorUrl:
+          type: string
+          format: string
+    currency-2:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        symbol:
+          type: string
+          description: currency symbol
+          format: BTC
+        name:
+          type: string
+        token:
+          $ref: '#/components/schemas/token'
+        logo:
+          $ref: '#/components/schemas/logo'
+        decimalPlaces:
+          type: number
+          example: 0
+    fees-2:
+      type: object
+      properties:
+        displayValue:
+          type: string
+          format: '0.01'
+        value:
+          type: string
+          format: '0.0123'
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+    depsitItem:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        created:
+          $ref: '#/components/schemas/datetime'
+        completed:
+          $ref: '#/components/schemas/datetime'
+        blockchainTxId:
+          $ref: '#/components/schemas/txId-or-hash'
+        callbackAddressId:
+          description: hello Id description
+          $ref: '#/components/schemas/id'
+        address:
+          $ref: '#/components/schemas/address'
+        currency:
+          $ref: '#/components/schemas/currency-2'
+        nativeCurrency:
+          $ref: '#/components/schemas/currency-2'
+        amount:
+          $ref: '#/components/schemas/fees-2'
+        coinPaymentsFee:
+          $ref: '#/components/schemas/fees-2'
+        nativeAmount:
+          $ref: '#/components/schemas/fees-2'
+        nativeCoinPaymentsFee:
+          $ref: '#/components/schemas/fees-2'
+        status:
+          type: string
+    paging:
+      type: object
+      properties:
+        cursor:
+          type: object
+          properties:
+            before:
+              type: string
+            after:
+              type: string
+        limit:
+          type: integer
+          example: 0
+        first:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+        last:
+          type: string
+    deposits:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/depsitItem'
+        paging:
+          $ref: '#/components/schemas/paging'
+    notificationUrl:
+      type: string
+      example: https://site.com/api/{YOUR_WEBHOOK_PATH}
+    notifications:
+      type: array
+      description: >
+        specify the event name you want your server to be notified when it
+        occures
+
+        i.e. send notification when an invoice is created
+      items:
+        type: string
+      example:
+        - invoiceCreated
+        - InvoicePending
+        - InvoicePaid
+        - InvoiceCancelled
+        - CallbackDepositDetected
+        - CallbackDepositConfirmed
+    item-2:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        notificationUrl:
+          $ref: '#/components/schemas/notificationUrl'
+        notifications:
+          $ref: '#/components/schemas/notifications'
+        paging:
+          $ref: '#/components/schemas/paging'
+    list-webhooks:
+      type: object
+      properties:
+        items:
+          $ref: '#/components/schemas/item-2'
+    webhook-2:
+      type: object
+      properties:
+        notificationUrl:
+          $ref: '#/components/schemas/notificationUrl'
+        notifications:
+          $ref: '#/components/schemas/notifications'
+    createWebhook:
+      type: object
+      properties:
+        id:
+          type: string
+          description: webhook id
+          example: L76Z2npAAqXXTg2vC1m9YW
+    MerchantWalletObj:
+      type: object
+      properties:
+        currencyId:
+          description: currency Id
+          type: number
+          example: 1
+        label:
+          description: wallet label
+          type: string
+          example: John's wallet
+        walletId:
+          description: wallet Id
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        balance:
+          description: balance available on this wallet
+          type: string
+          example: '0.874833322'
+        updatedAt:
+          description: date of last time the wallet data was modified by the user
+          type: string
+          example: '2022-10-05T06:05:07.520Z'
+        depositAddress:
+          description: address to deposit funds into the wallet
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        walletStatus:
+          description: status of the wallet in the system
+          type: string
+          example: unknown
+        canCreateAddress:
+          description: indicates whether the wallet can create an address
+          type: boolean
+          example: true
+    arrayOfWallets:
+      type: array
+      items:
+        $ref: '#/components/schemas/MerchantWalletObj'
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
+    MerchantWallet:
+      type: object
+      properties:
+        currencyId:
+          description: User supplied currencyId
+          type: number
+          example: 1
+        label:
+          description: Label denoting the wallet
+          type: string
+          example: John's wallet
+        webhookUrl:
+          description: >-
+            when provided, CoinPayments API will be sending appropriate requests
+            to it
+          type: string
+          example: https://myapi.com
+    NewWallet:
+      type: object
+      properties:
+        walletId:
+          description: Id of newely created wallet
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+    WalletTransactionObj:
+      type: object
+      properties:
+        id:
+          description: transaction Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        dateCreated:
+          description: transaction date
+          type: string
+          example: '2022-10-05T08:39:41.494Z'
+        dateCompleted:
+          description: date of transaction completion
+          type: string
+          example: '2022-10-05T08:40:41.494Z'
+        fromOwnerId:
+          description: sender id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        fromWalletId:
+          description: sender wallet Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        toWalletId:
+          description: benificiary wallet Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        spendRequestId:
+          description: spend request id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        fromCurrencyId:
+          description: sender currency Id
+          type: number
+          example: 1
+        toCurrencyId:
+          description: benificiary currency Id
+          type: number
+          example: 2
+        fromAmount:
+          description: amount in source currency
+          type: string
+          example: '0.22390234'
+        toAmount:
+          description: amount in receiving currency
+          type: string
+          example: '0.13448434'
+        coinPaymentsFee:
+          description: platform fees
+          type: string
+          example: '0.000012'
+        transactionStatus:
+          description: transaction status
+          type: string
+          example: unknown
+        transactionType:
+          description: transaction type
+          type: string
+          example: unknown
+        memo:
+          description: otional memo
+          type: string
+          example: optional memo
+        fromAddress:
+          description: sender wallet address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        toAddress:
+          description: benificiary wallet address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        txHash:
+          description: transaction hash
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q3289y7debugDSDSd38d3xSSA33ASDRxw98
+        outputIndex:
+          description: output index
+          type: number
+          example: 1
+        blockchainFee:
+          description: platform fees
+          type: string
+          example: '0.00000032'
+        fromContractAddress:
+          description: sender contract address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        toContractAddress:
+          description: benificiary contract address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        feeCurrency:
+          description: currency fees
+          type: string
+          example: '0.00000032'
+        blockNumberTxAppearedAt:
+          description: date of appearing the transaction in the blockchain
+          type: string
+          example: '2022-10-05T08:40:41.494Z'
+    arrayOfWalletTransactions:
+      type: array
+      items:
+        $ref: '#/components/schemas/WalletTransactionObj'
+    spendRequestPayload:
+      type: object
+      properties:
+        toAddress:
+          description: benificiary address
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        toCurrencyId:
+          description: currency Id of benificiary wallet
+          type: number
+          example: 6
+        fromContractAddress:
+          description: from contract address
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        toContractAddress:
+          description: balance available on this wallet
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        amountInSmallestUnits:
+          description: amount in smallest currency unit
+          type: string
+          example: '0.73632442'
+        blockchainFeeOverrideInSmallestUnits:
+          description: blockchain fees in smallest currency unit
+          type: number
+          example: '0.0003234'
+        memo:
+          description: memo to be associated with the spend request
+          type: string
+          example: test memo
+        receiverPaysFee:
+          description: receiver fees
+          type: string
+          example: '0.0003234'
+    spendRequestSuccess:
+      type: object
+      properties:
+        spendRequestId:
+          description: Id of spend request
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        toAddress:
+          description: benificiary address
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        toCurrencyId:
+          description: currency Id of benificiary wallet
+          type: number
+          example: 6
+        fromContractAddress:
+          description: from contract address
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        toContractAddress:
+          description: balance available on this wallet
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        amountInSmallestUnits:
+          description: amount in smallest currency unit
+          type: string
+          example: '0.73632442'
+        blockchainFeeOverrideInSmallestUnits:
+          description: blockchain fees in smallest currency unit
+          type: number
+          example: '0.0003234'
+        memo:
+          description: memo to be associated with the spend request
+          type: string
+          example: test memo
+        receiverPaysFee:
+          description: receiver fees
+          type: string
+          example: '0.0003234'
+    SpendRequestConfirmationSuccess:
+      type: object
+      properties:
+        spendRequestId:
+          description: Id of newely created wallet
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+  responses:
+    Problem:
+      description: Problem
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
