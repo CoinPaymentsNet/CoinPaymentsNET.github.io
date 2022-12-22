@@ -7,9 +7,9 @@ info:
   description:
     # TODO FIX CODE EXAMPLE
     $ref: ./info-description.md
-  # license:
-  #   name: Apache 2.0
-  #   url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
   - name: Authentication
     description:
