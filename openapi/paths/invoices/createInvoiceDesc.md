@@ -6,8 +6,8 @@ Here are the steps for creating and paying an invoice using our payment system:
 2. Specify how you want to send the invoice to the payer: 
 either via email or by providing a link for them to access in their browser.
 
-**Note** To send the invoice via email, you must set the value of the "isEmailDelivery" field to "true" and populate the "emailAddress" field. If you prefer to create the invoice and send the link manually through your preferred method, 
-set the value of "isEmailDelivery" to "false" and leave the "emailAddress" field blank.
+**Note** To send the invoice via email, you must set the value of the `isEmailDelivery` field to "true" and populate the `emailAddress` field. If you prefer to create the invoice and send the link manually through your preferred method, 
+set the value of `isEmailDelivery` to "false" and leave the `emailAddress` field blank.
 
 3. Upon accessing the invoice link, the payer can review the bill details and click on the payment button to proceed to the checkout page.
 4. On the checkout page, you can choose or specify your preferred payment coin from the list of available currencies. 
