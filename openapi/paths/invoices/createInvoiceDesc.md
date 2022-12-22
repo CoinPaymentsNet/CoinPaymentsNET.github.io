@@ -15,3 +15,6 @@ Please note that only coins supported by CoinPayments and enabled by the merchan
 5. Review the wallet address and QR code provided, then use them to complete the payment using your selected coin.
 6. Once the payment has been successfully processed, the invoice will be marked as paid.
 
+
+![markdown file changed](./mermaid-invoice.png)
+

@@ -22,7 +22,7 @@ The free-to-set-up wallet is available on web and mobile, enabling account manag
 
 #### Some of the key features of the website include:
 1. Support for multiple popular cryptocurrencies, allowing customers to pay with the digital currency of their choice.
-2. Generate invoices and manually share them with buyers through a link.
-3. Generate invoice and Send invoice to payer via email.
-4. Advanced security measures to ensure that all transactions are safe and secure.
-5. Real-time updates using Webhooks, The API provides real-time updates on the status of transactions, allowing merchants and customers to track the progress of their payments.
+2. Generate invoices and manually share them with buyers through a link or via email.
+3. Callback Addresses feature allows merchant to receive payment without specifying the amount or time in advance.
+4. Real-time updates using Webhooks, The API provides updates on the status of transactions, allowing merchants and customers to track the progress of their payments.
+5. Advanced security measures to ensure that all transactions are safe and secure.
