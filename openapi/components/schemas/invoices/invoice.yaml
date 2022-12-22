@@ -2,6 +2,7 @@ type: object
 properties:
   invoiceDate:
     type: string
+    description: invoice due date
     format: '2022-11-28T13:59:46+00:00'
   invoiceId:
     type: string
