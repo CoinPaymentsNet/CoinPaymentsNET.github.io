@@ -1,0 +1,12 @@
+type: object
+properties:
+  websites:
+    type: array
+    items:
+      type: string
+    example: ['https://bitcoin.org']
+  explorers:
+    type: array
+    items:
+      type: string
+      example: ['https://blockchain.info']

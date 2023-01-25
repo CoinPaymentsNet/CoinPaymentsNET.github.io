@@ -1,0 +1,7 @@
+type: object
+description: currency logo / icon
+properties:
+  iamgeUrl:
+    type: string
+  vectorUrl:
+    type: string

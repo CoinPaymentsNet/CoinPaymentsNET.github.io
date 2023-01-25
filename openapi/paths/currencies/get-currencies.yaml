@@ -1,0 +1,46 @@
+get:
+  tags:
+    - Currencies
+  summary: List currencies and their capabilities
+  description: Retrieves a list of all currencies and their capabilities
+  operationId: listPlatformSupportedCurrencies
+  parameters:
+    - name: q
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'BTC'
+      description: optional search query to find currencies with names and/or codes
+    - name: types
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'crypto,token,fiat'
+      description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
+    - name: capabilities
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'multiSigAccounts,sharedAccounts,payments,singleSigAccounts'
+      description: optional search query to find currencies with names and/or codes
+    - name: after
+      in: query
+      required: false
+      schema:
+        type: string
+        example: ''
+      description: optional search query to find currencies with names and/or codes
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/currencies/currency.yaml
+    '400':
+      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml
+

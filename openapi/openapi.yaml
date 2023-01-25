@@ -17,6 +17,9 @@ tags:
   - name: Callbacks
     description:
       $ref: 'paths/callbacks/callbacks.md'
+  - name: Clients
+    description:
+      $ref: 'paths/clients/description.md'
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
@@ -60,6 +63,10 @@ paths:
     $ref: 'paths/wallets/spend-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
+
+  # Currencies
+  '/currencies':
+    $ref: 'paths/currencies/get-currencies.yaml'
 
   # TODO GET callback deposits
 #  '/merchant/callbacks/deposits':

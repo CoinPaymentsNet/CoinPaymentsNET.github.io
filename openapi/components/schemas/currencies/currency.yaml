@@ -1,0 +1,37 @@
+type: object
+properties:
+  id:
+    description: currency Id
+    type: string
+    example: '1'
+  type:
+    description: currency type
+    type: string
+    example: 'crypto'
+  symbol:
+    description: currency symbol
+    type: string
+    example: 'BTC'
+  name:
+    description: currency name
+    type: string
+    example: 'Bitcoin'
+  logo:
+    $ref: './logo.yaml'
+  decimalPlaces:
+    type: integer
+    example: 0
+  rank:
+    type: integer
+    example: 0
+  status:
+    type: string
+    example: active
+  capabilities:
+    $ref: './urls.yaml'
+  requiredConfirmations:
+    type: integer
+    example: 0
+
+
+

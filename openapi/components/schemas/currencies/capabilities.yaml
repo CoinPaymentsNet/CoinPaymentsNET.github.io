@@ -1,0 +1,11 @@
+type: array
+description: |
+  list of coin-supported capabilities
+items:
+  type: string
+example: [
+  'multiSigAccounts',
+  'sharedAccounts',
+  'payments',
+  'singleSigAccounts',
+]
