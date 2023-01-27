@@ -1,0 +1,11 @@
+type: object
+properties:
+  currencyId:
+    description: currency Id
+    type: string
+    example: '1'
+  latestBlockNumber:
+    description: latest block number
+    type: integer
+    example: 773862
+

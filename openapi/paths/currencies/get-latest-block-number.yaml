@@ -1,0 +1,25 @@
+get:
+  tags:
+    - Currencies
+  summary: Get latest block number by currency
+  description: |
+    Get the latest blockchain block number by currency Id
+  operationId: getLatestBlockNumberByCurrencyId
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '1'
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/currencies/latest-block-number.yaml
+    '400':
+      description: Bad request example!
+
+

@@ -39,7 +39,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/currencies/currency.yaml
+            $ref: ../../components/schemas/currencies/arrayOfCurrencies.yaml
     '400':
       description: Bad Request
       $ref: ../../components/responses/Problem.yaml
