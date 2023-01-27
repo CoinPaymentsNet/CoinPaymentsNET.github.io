@@ -67,6 +67,8 @@ paths:
   # Currencies
   '/currencies':
     $ref: 'paths/currencies/get-currencies.yaml'
+  '/cuurrencies/{id}':
+    $ref: 'paths/currencies/get-currency-by-id.yaml'
 
   # TODO GET callback deposits
 #  '/merchant/callbacks/deposits':
