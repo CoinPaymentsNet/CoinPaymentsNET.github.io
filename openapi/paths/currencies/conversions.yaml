@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Currencies
+  summary: Gets a list of all possible currency conversions
+  description: |
+    Get a list of all possible currency conversions
+  operationId: getCurrencyConversions
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/currencies/currencyConversions.yaml
+    '400':
+      description: Bad request example!
+
+

@@ -71,6 +71,10 @@ paths:
     $ref: 'paths/currencies/get-currency-by-id.yaml'
   '/currencies/blockchain-nodes/{id}/latest-block-number':
     $ref: 'paths/currencies/get-latest-block-number.yaml'
+#  '/currencies/required-confirmations':
+#    $ref: 'paths/currencies/required-confirmations.yaml'
+  '/currencies/conversions':
+    $ref: 'paths/currencies/conversions.yaml'
 
   # TODO GET callback deposits
 #  '/merchant/callbacks/deposits':
