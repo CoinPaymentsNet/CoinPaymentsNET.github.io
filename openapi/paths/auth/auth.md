@@ -1,5 +1,5 @@
-CoinPayments API uses SHA-256 which is a way of authenticating an API request to ensure that it comes from a trusted source. 
-In this scheme, the API server generates a unique signature for each request using the SHA-256 hashing algorithm. 
+CoinPayments API uses SHA-256 which is a way of authenticating an API request to ensure that it comes from a trusted source.
+In this scheme, the API server generates a unique signature for each request using the SHA-256 hashing algorithm.
 
 
 #### Prerequisites
@@ -7,7 +7,7 @@ To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT SECRET.
 If you haven't yet created your credentials, you may skip to next section.
 
 
-# Create API credentials
+## Create credentials
 First, you need to [create an account](https://identity.coinpaymints.com/Identity/Account/SignUp?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fdashboard.coinpaymints.com%252Fcallback%26nonce%3D1d30da16-4ff7-4c2c-2006-33bebbb54bd8%26signup%3D1)
 ##### Once you're logged into your account, Go to Dashboard Business tools 👇
 
@@ -34,7 +34,7 @@ Please take the time to save your credentials in a secure location so that you c
 
 ---
 
-# Create API Signature
+## Generate API Signature
 In order to properly sign an authenticated request for the CoinPayments v2 API, the following headers must be included:
 
 * `X-CoinPayments-Client`
@@ -61,10 +61,10 @@ const date = new Date().toISOString().split(".")[0];
 ```
 
 Example value:
-`2022-12-19T19:27:04`  
+`2022-12-19T19:27:04`
 ---
-## Construct the request queryString
-To create an API signature takes a query string you first need to construct the query string which is made of the 
+### Construct the request queryString
+To create an API signature takes a query string you first need to construct the query string which is made of the
 following attributes concatenated together
 * method
 * url
@@ -93,7 +93,7 @@ const signature = CryptoJS.enc.Base64.stringify(hash);
 example value:
 `oW7d1ktvK7R6741oACgVR3bysGTPY8tqren0WTmmEk0=`
 
----  
+---
 Here is a complete example of how to generate an API signature for making a call to the create wallet API:
 ```javascript
 const clientId = 'd0ccc52b8204460783d375e278082de2';

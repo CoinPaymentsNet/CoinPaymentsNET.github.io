@@ -1,6 +1,6 @@
 get:
   tags:
-    - Wallets
+    - Wallets API
   summary: Get wallet transactions
   description: Retrieves a list of all wallet transactions
   operationId: getTransactionsByWalletId

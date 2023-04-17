@@ -1,6 +1,6 @@
 get:
   tags:
-    - Currencies
+    - Currencies API
   summary: Gets a list of all possible currency conversions
   description: |
     Get a list of all possible currency conversions

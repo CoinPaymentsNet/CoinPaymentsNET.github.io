@@ -1,6 +1,6 @@
 get:
   tags:
-    - Currencies
+    - Currencies API
   summary: Get latest block number by currency
   description: |
     Get the latest blockchain block number by currency Id

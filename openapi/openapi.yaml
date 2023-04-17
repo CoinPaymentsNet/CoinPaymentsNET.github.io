@@ -14,12 +14,16 @@ tags:
   - name: Authentication
     description:
       $ref: './paths/auth/auth.md'
-  - name: Callbacks
+  - name: Invoices API
+    description: './paths/invoices/invoice-description'
+  - name: Wallets API
+    description: './paths/wallets/wallets-description.md'
+  - name: Webhooks API
     description:
-      $ref: 'paths/callbacks/callbacks.md'
-  - name: Clients
-    description:
-      $ref: 'paths/clients/description.md'
+      $ref: 'paths/webhooks/webhooks.md'
+  # - name: Webhooks
+  #   description:
+  #     $ref: 'paths/clients/description.md'
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
@@ -36,18 +40,7 @@ paths:
 #    $ref: 'paths/invoices/history.yaml'
 #  # -----------------------------------------------
 #  # TODO (2) TODO POST create callback - list callbacks by client Id and currency Id (in query)
-  '/merchant/callbacks':
-    $ref: 'paths/callbacks/callback.yaml'
-  '/merchant/callbacks/payout/{id}/{address}':
-    $ref: 'paths/callbacks/execute-payout-by-callback-address-id.yaml'
-  '/merchant/callbacks/{id}':
-    $ref: 'paths/callbacks/get-by-id.yaml'
-  '/merchant/callbacks/{id}/deposits':
-    $ref: 'paths/callbacks/deposits.yaml'
-  '/merchant/clients/{clientId}/webhooks':
-    $ref: 'paths/clients/webhook.yaml'
-  '/merchant/clients/{clientId}/webhooks/{webhookId}':
-    $ref: 'paths/clients/update-delete.yaml'
+
 #  # TODO GET callback DTOS
 #  '/merchant/callbacks/callbackdtos':
 #    $ref: 'paths/invoices/invoices.yaml'
@@ -63,6 +56,13 @@ paths:
     $ref: 'paths/wallets/spend-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
+
+  '/merchant/your-server-url':
+    $ref: 'paths/webhooks/webhook-payload.yaml'
+  '/merchant/clients/{clientId}/webhooks':
+    $ref: 'paths/webhooks/webhook.yaml'
+  '/merchant/clients/{clientId}/webhooks/{webhookId}':
+    $ref: 'paths/webhooks/update-delete.yaml'
 
   # Currencies
   '/currencies':

@@ -1,8 +1,8 @@
 get:
   tags:
-    - Wallets
-  summary: Get Merchant Wallet by Id
-  description: Retrieves a merchant wallet by its Id
+    - Wallets API
+  summary: Get Wallet by Id
+  description: Retrieves wallet by its Id
   operationId: getMerchantWalletById
   parameters:
       - name: walletIdStr

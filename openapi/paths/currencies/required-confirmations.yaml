@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Currencies API
+  summary: Get the required confirmations for each currency
+  description: |
+    Get required confirmations for each currency
+  operationId: getRequiredConfirmationsForEachCurrency
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/currencies/requiredConfirmations.yaml
+    '400':
+      description: Bad request example!
+
+

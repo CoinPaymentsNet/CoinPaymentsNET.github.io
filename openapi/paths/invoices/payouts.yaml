@@ -1,6 +1,6 @@
 get:
   tags:
-    - Invoices
+    - Invoices API
   summary: Get invoices payouts
   description: |
     Get list of merchant invoices by invoice Id

@@ -1,6 +1,6 @@
 get:
   tags:
-    - Currencies
+    - Currencies API
   summary: List currencies and their capabilities
   description: Retrieves a list of all currencies and their capabilities
   operationId: listPlatformSupportedCurrencies

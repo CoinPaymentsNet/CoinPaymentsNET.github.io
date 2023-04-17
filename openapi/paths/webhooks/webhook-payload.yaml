@@ -1,0 +1,20 @@
+post:
+  tags:
+    - Webhooks API
+  summary: Notification Payload
+  description: |
+    Below is the payload sent from CPs API to your server API
+  operationId: notificationPayload
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/webhooks/notification-payload.yaml
+    '400':
+      description: Faluir status code ( 400 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/Problem.yaml

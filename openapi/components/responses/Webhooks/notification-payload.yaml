@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    description: callback address id
+    type: string
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
+  type:
+    description: event type ( e.g "invoiceCreated", "invoiceComplete",.. )
+    type: string
+    example: 'invoiceCreated'
+  timestamp:
+    description: date and time of creating the callback address
+    type: string
+    example: '2023-04-07T06:58:19.9798764+00:0'
+  invoice:
+    $ref: ../../schemas/invoices/invoice.yaml
+

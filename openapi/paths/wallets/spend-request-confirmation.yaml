@@ -1,8 +1,8 @@
 post:
   tags:
-    - Wallets
+    - Wallets API
   summary: Confirm spending funds
-  description: Send a request to confirm spending funds from the merchant client wallet
+  description: Send a request to confirm spending funds from the wallet
   operationId: spendRequestConfirmation
   parameters:
     - name: walletIdStr

@@ -1,6 +1,6 @@
 put:
   tags:
-    - Clients
+    - Webhooks API
   summary: Update Webhook
   description: |
     Update Webhook by client Id and webhook Id
@@ -24,12 +24,12 @@ put:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/callbacks/callbackAddress.yaml
+            $ref: ../../components/responses/webhooks/callbackAddress.yaml
     '400':
       description: Bad request example!
 delete:
   tags:
-    - Clients
+    - Webhooks API
   summary: Delete Webhook
   description: |
     delete a webhook by client Id and webhook Id

@@ -1,6 +1,6 @@
 get:
   tags:
-    - Currencies
+    - Currencies API
   summary: Get currency by Id
   description: |
     Get Currency by Id

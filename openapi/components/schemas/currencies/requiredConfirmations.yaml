@@ -1,0 +1,12 @@
+type: array
+items:
+  type: object
+  properties:
+    currencyId:
+      description: currency Id
+      type: integer
+      example: 1
+    confirmationsCount:
+      description: confirmations required
+      type: integer
+      example: 0

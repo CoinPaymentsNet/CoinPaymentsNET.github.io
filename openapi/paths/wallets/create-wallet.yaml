@@ -1,9 +1,9 @@
 post:
   tags:
-    - Wallets
-  summary: Create merchant wallet
+    - Wallets API
+  summary: Create wallet
   description: |
-    Creates new merchant wallet by currency Id
+    Creates new wallet by currency Id
   operationId: createMerchantWallet
   requestBody:
     content:
@@ -29,9 +29,9 @@ post:
       description: Currency Not Found!
 get:
   tags:
-    - Wallets
-  summary: Get Merchant Wallets
-  description: Retrieves a list of merchant wallets
+    - Wallets API
+  summary: Get Wallets
+  description: Retrieves a list of wallets
   operationId: getMerchantWallets
 #  parameters:
 #    - name: username

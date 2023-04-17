@@ -1,6 +1,6 @@
 get:
   tags:
-    - Invoices
+    - Invoices API
   summary: Get invoice by Id
   description: |
     Get Invoice by Id

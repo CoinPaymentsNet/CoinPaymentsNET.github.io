@@ -1,9 +1,9 @@
 post:
   tags:
-    - Invoices
+    - Invoices API
   summary: Create Invoice
   description:
-    $ref: ./createInvoiceDesc.md
+    $ref: ./invoice-description.md
   operationId: createInvoice
   requestBody:
     content:
@@ -23,7 +23,7 @@ post:
       description: Merchant Not Found!
 get:
   tags:
-    - Invoices
+    - Invoices API
   summary: Get invoices
   description: |
     Get list of merchant invoices

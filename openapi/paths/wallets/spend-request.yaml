@@ -1,8 +1,8 @@
 post:
   tags:
-    - Wallets
+    - Wallets API
   summary: Spend Request
-  description: Sends a request to spend funds from the merchant client wallet
+  description: Sends a request to spend funds from the wallet
   operationId: sendSpendRequest
   requestBody:
     content:

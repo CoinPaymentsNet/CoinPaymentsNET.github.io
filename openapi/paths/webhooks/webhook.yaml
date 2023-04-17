@@ -1,6 +1,6 @@
 post:
   tags:
-    - Clients
+    - Webhooks API
   summary: Create client webhook
   description: |
     Creates new client webhook
@@ -30,7 +30,7 @@ post:
       description: Merchant Not Found!
 get:
   tags:
-    - Clients
+    - Webhooks API
   summary: Get webhooks of merchant
   description: |
     Get list of merchant invoices

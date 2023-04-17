@@ -1,9 +1,9 @@
 get:
   tags:
-    - Wallets
+    - Wallets API
   summary: Get wallet transaction
   description: Get a specific transaction of the wallet,
-    If trasncationId is specified then the specified then the spend request Id is ignored, otherwise, 
+    If trasncationId is specified then the specified then the spend request Id is ignored, otherwise,
     the first spending transaction with matching spendRequestId is returned
   operationId: getTransactionByWalletId
   parameters:
