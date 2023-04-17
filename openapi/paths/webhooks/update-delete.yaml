@@ -24,7 +24,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/webhooks/callbackAddress.yaml
+            $ref: ../../components/responses/Webhooks/callbackAddress.yaml
     '400':
       description: Bad request example!
 delete:
