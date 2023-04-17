@@ -1,0 +1,60 @@
+post:
+  tags:
+    - Wallets API
+  summary: Create address under wallet
+  description: |
+    Creates new address under wallet by wallet Id
+  operationId: createWalletAddress
+  parameters:
+      - name: walletIdStr
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        description: the wallet Id
+      - name: label
+        in: query
+        required: false
+        schema:
+          type: string
+          example: shop tests address
+        description: optional label for the address
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/address.yaml
+    '404':
+      description: Currency Not Found!
+get:
+  tags:
+    - Wallets API
+  summary: Get wallet addresses
+  description: Retrieves a list of wallet addresses
+  operationId: getWalletAddresss
+  parameters:
+      - name: walletIdStr
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        description: the wallet Id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/list-of-addresses.yaml
+    '400':
+      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml
+    '404':
+      description: No wallets found
+      $ref: ../../components/responses/Problem.yaml
+
+

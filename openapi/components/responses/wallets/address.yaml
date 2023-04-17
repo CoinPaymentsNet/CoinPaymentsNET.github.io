@@ -1,0 +1,14 @@
+type: object
+properties:
+  addressId:
+    description: Id of newely created wallet
+    type: string
+    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+  label:
+    description: address label
+    type: string
+    example: 'shop address'
+  networkAddress:
+    description: wallet address
+    type: string
+    example: LNUPQLeQFfF67RtH1dqFBiwJhYBNZCW7pm
