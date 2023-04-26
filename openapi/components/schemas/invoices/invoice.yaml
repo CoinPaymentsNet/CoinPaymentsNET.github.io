@@ -2,11 +2,24 @@ type: object
 properties:
   invoiceDate:
     type: string
-    description: invoice due date
-    format: '2022-11-28T13:59:46+00:00'
+    description:
+      optional custom invoice date if not the created date of the invoice,
+      invoices with a future date will be scheduled
+    example: '2022-11-28T13:59:46+00:00'
+    ###required: false
+  dueDate:
+    type: string
+    example: '2023-04-26T18:40:41.322Z'
+    description: optional due date to be shown on the invoice
+    ###required: false
+  clientId:
+    type: string
+    description: the id of the client creating this invoice (optional)
+    ##required: false
   invoiceId:
     type: string
-    format: 'Kwdx3VYtyVDGvMznqRdjMB'
+    description: optional invoice number. Appears in screens shown to the Buyer and emails sent.
+    ###required: false
   buyer:
     $ref: ./buyer.yaml
   shipping:
@@ -23,15 +36,16 @@ properties:
         type: object
         properties:
           subtotal:
-            $ref: ./breakdown.yaml
+            $ref: ../../globalTypes/globalAmount.yaml
           shipping:
-            $ref: ./breakdown.yaml
+            $ref: ../../globalTypes/globalAmount.yaml
           handling:
-            $ref: ./breakdown.yaml
+            $ref: ../../globalTypes/globalAmount.yaml
           taxTotal:
-            $ref: ./breakdown.yaml
+            $ref: ../../globalTypes/globalAmount.yaml
           discount:
-            $ref: ./breakdown.yaml
+            $ref: ../../globalTypes/globalAmount.yaml
+
   currencyId:
     $ref: ../../globalTypes/currencyId.yaml
   notes:
@@ -54,9 +68,29 @@ properties:
   poNumber:
     type: string
     format: InvoiceBuilder
+  description:
+    type: string
+    description: the purchase description, can be provided instead of a list of items
   isEmailDelivery:
     type: boolean
+    description: indicates if invoice will be email delivered
     default: false
+  emailDelivery:
+    type: object
+    properties:
+      to:
+        type: string
+        description: the email to field, multiple addresses separated by semicolons
+        ###required: false
+      cc:
+        type: string
+        description: the email to field, multiple addresses separated by semicolons
+        ###required: false
+      bcc:
+        type: string
+        description: the email to field, multiple addresses separated by semicolons
+        ###required: false
   draft:
     type: boolean
+    description: flag indicating whether this is a draft invoice
     default: false

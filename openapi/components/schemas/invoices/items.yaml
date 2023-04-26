@@ -1,12 +1,20 @@
 type: object
+description: optional array of items that a buyer intends to purchase from the merchant
 properties:
   name:
     type: string
+    description: name or title of the item
     example: 'Iphone 22'
   quantity:
-    type: number
-    example: 1
+    type: object
+    properties:
+      value:
+        type: number
+        description: the quantity of the item. Must be greater than 0 and less than 999,999,999‬. defaults to 1 if not provided.
+      type:
+        type: string
+        example: 1
   originalAmount:
-    $ref: ./breakdown.yaml
+    $ref: ../../globalTypes/globalAmount.yaml
   amount:
-    $ref: ./breakdown.yaml
+    $ref: ../../globalTypes/globalAmount.yaml

@@ -1,0 +1,34 @@
+type: object
+properties:
+  address1:
+    type: string
+    description: 'main address'
+    #required: false
+  address2:
+    type: string
+    description: 'optional second address'
+    #required: false
+  address3:
+    type: string
+    description: 'optional third address'
+    #required: false
+  city:
+    type: string
+    description: optional city of the buyer
+    #required: false
+  provinceOrState:
+    type: string
+    description: optional Province or state of the buyer
+    #required: false
+  suburbOrDistrict:
+    type: string
+    description: optional Suburb or district of the buyer
+    #required: false
+  countryCode:
+    type: string
+    format: 'US'
+    #required: false
+  postalCode:
+    type: string
+    format: '10101'
+    #required: false

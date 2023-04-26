@@ -1,0 +1,10 @@
+type: object
+properties:
+  firstName:
+    type: string
+    description: first name of the buyer
+    #required: false
+  lastName:
+    type: string
+    description: last name of the buyer
+    #required: false

@@ -9,6 +9,4 @@ example: [
   'InvoicePending',
   'InvoicePaid',
   'InvoiceCancelled',
-  'CallbackDepositDetected',
-  'CallbackDepositConfirmed'
 ]

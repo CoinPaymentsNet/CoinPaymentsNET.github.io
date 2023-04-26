@@ -1,0 +1,22 @@
+type: object
+properties:
+  currencyId:
+    type: string
+    description: original currency od of the item
+    #required: false
+  contractAddress:
+    type: string
+    description: '?'
+    #required: false
+  displayValue:
+    type: string
+    description: '?'
+    #required: false
+  value:
+    type: string
+    description: '?'
+    #required: false
+  valueAsDecimal:
+    type: string
+    description: '?'
+    #required: false
