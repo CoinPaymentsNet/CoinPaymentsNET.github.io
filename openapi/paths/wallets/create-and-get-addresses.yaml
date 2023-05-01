@@ -15,7 +15,7 @@ post:
         description: the wallet Id
       - name: label
         in: query
-        ##required: false
+        nullable: true
         schema:
           type: string
           example: shop tests address

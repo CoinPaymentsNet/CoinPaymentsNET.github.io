@@ -3,20 +3,20 @@ properties:
   method:
     type: string
     description: '?'
-    #required: false
+    nullable: true
   companyName:
     type: string
     description: '?'
-    #required: false
+    nullable: true
   name:
     $ref: ./fullName.yaml
   emailAddress:
     type: string
     description: '?'
-    #required: false
+    nullable: true
   phoneNumber:
     type: string
     description: '?'
-    #required: false
+    nullable: true
   address:
     $ref: ./physicalAddress.yaml

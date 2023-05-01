@@ -3,8 +3,8 @@ properties:
   firstName:
     type: string
     description: first name of the buyer
-    #required: false
+    nullable: true
   lastName:
     type: string
     description: last name of the buyer
-    #required: false
+    nullable: true

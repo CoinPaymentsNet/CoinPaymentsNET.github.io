@@ -2,21 +2,21 @@ type: object
 properties:
   currencyId:
     type: string
-    description: original currency od of the item
-    #required: false
+    description: the currency id of the wallet or address into which to payout to
+    nullable: true
   contractAddress:
     type: string
-    description: '?'
-    #required: false
+    description: Optional address of the smart contract if the currency supports it and it should be used
+    nullable: true
   displayValue:
     type: string
     description: '?'
-    #required: false
+    nullable: true
   value:
     type: string
     description: '?'
-    #required: false
+    nullable: true
   valueAsDecimal:
     type: string
     description: '?'
-    #required: false
+    nullable: true

@@ -6,7 +6,8 @@ items:
   type: string
 example: [
   'invoiceCreated',
-  'InvoicePending',
-  'InvoicePaid',
-  'InvoiceCancelled',
+  'invoicePending',
+  'invoicePaid',
+  'invoiceCompleted',
+  'invoiceCancelled'
 ]
