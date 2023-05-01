@@ -17,7 +17,8 @@ tags:
   - name: Invoices API
     description: './paths/invoices/invoice-description'
   - name: Wallets API
-    description: './paths/wallets/wallets-description.md'
+    description:
+      $ref: './paths/wallets/wallets-description.md'
   - name: Webhooks API
     description:
       $ref: 'paths/webhooks/webhooks.md'

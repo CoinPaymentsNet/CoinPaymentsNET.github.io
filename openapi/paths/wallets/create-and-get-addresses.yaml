@@ -26,7 +26,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/wallets/address.yaml
+            $ref: ../../components/responses/wallets/addressRes.yaml
     '404':
       description: Currency Not Found!
 get:
