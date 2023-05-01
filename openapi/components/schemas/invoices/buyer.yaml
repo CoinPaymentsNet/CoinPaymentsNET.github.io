@@ -3,7 +3,7 @@ properties:
   companyName:
     type: string
     format: 'Rushing Turtles'
-    #nullable: true
+    ##nullable: true
   name:
     $ref: ../../globalTypes/fullName.yaml
   address:
@@ -12,9 +12,9 @@ properties:
     type: string
     description: optional email address of the buyer
     format: 'johndoe@gmail.com'
-    #nullable: true
+    ##nullable: true
   phoneNumber:
     type: string
     description: optional phone number of the buyer
     format: '01010101010'
-    #nullable: true
+    ##nullable: true

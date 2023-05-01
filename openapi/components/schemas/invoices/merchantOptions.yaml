@@ -15,4 +15,4 @@ properties:
   additionalInfo:
     type: string
     format: additional Info
-    nullable: true
+    #nullable: true

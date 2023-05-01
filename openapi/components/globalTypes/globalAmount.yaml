@@ -3,20 +3,20 @@ properties:
   currencyId:
     type: string
     description: the currency id of the wallet or address into which to payout to
-    nullable: true
+    #nullable: true
   contractAddress:
     type: string
     description: Optional address of the smart contract if the currency supports it and it should be used
-    nullable: true
+    #nullable: true
   displayValue:
     type: string
     description: '?'
-    nullable: true
+    #nullable: true
   value:
     type: string
     description: '?'
-    nullable: true
+    #nullable: true
   valueAsDecimal:
     type: string
     description: '?'
-    nullable: true
+    #nullable: true

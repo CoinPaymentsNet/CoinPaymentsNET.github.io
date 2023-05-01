@@ -3,32 +3,32 @@ properties:
   address1:
     type: string
     description: 'main address'
-    nullable: true
+    #nullable: true
   address2:
     type: string
     description: 'optional second address'
-    nullable: true
+    #nullable: true
   address3:
     type: string
     description: 'optional third address'
-    nullable: true
+    #nullable: true
   city:
     type: string
     description: optional city of the buyer
-    nullable: true
+    #nullable: true
   provinceOrState:
     type: string
     description: optional Province or state of the buyer
-    nullable: true
+    #nullable: true
   suburbOrDistrict:
     type: string
     description: optional Suburb or district of the buyer
-    nullable: true
+    #nullable: true
   countryCode:
     type: string
     format: 'US'
-    nullable: true
+    #nullable: true
   postalCode:
     type: string
     format: '10101'
-    nullable: true
+    #nullable: true
