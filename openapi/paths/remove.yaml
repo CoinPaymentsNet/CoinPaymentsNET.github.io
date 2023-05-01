@@ -4,9 +4,6 @@ post:
   summary: Merchant wallets Test
   description: Operation description **Markdown**.
   operationId: createNewWallet
-  security:
-    - api_key: [ ]
-    - basic_auth: [ ]
   requestBody:
     content:
       application/json:
