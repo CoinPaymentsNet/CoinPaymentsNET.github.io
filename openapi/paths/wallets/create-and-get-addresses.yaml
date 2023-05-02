@@ -1,7 +1,7 @@
 post:
   tags:
     - Wallets API
-  summary: Create address under wallet
+  summary: Create address for an existing wallet
   description: |
     Creates new address under wallet by wallet Id
   operationId: createWalletAddress
@@ -19,7 +19,7 @@ post:
         schema:
           type: string
           example: shop tests address
-        description: optional label for the address
+          description: optional label for the address
   responses:
     '200':
       description: Success

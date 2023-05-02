@@ -1,35 +1,41 @@
 type: object
 properties:
   toAddress:
-    description: benificiary address
+    description: Address which client wants to send funds to
     type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
+    example: 'mtxASJZHNmGeUPQ3DxLvJeKja6Lh7TcJM9'
   toCurrencyId:
     description: currency Id of benificiary wallet
     type: number
     example: 6
   fromContractAddress:
-    description: from contract address
+    description: (Optional) Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
     type: string
     example: 'Asaiuqhdaknxyuiw21w2w2223'
   toContractAddress:
-    description: balance available on this wallet
+    description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
     type: string
     example: 'Asaiuqhdaknxyuiw21w2w2223'
   amountInSmallestUnits:
-    description: amount in smallest currency unit
+    description: the amount of money (in the currencies smallest unit, e.g. Satoshis for BTC) to send to the recipient address
     type: string
     example: '0.73632442'
   blockchainFeeOverrideInSmallestUnits:
-    description: blockchain fees in smallest currency unit
+    description: (Optional) Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
     type: number
     example: '0.0003234'
   memo:
-    description: memo to be associated with the spend request
+    description: Optional user-defined note for the spend
     type: string
     example: 'test memo'
   receiverPaysFee:
-    description: receiver fees
-    type: string
-    example: '0.0003234'
+    description: |
+      Specifies that the receiver of the transfer will pay the fees, meaning that the
+      AmountInSmallestUnits will be deducted from the sender balance
+      and receiver will get the CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits minus fees.
+      Otherwise fees will be added to the AmountInSmallestUnits and
+      the total sum will be deducted from the sender balance while the receiver will get exactly
+      CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits
+    type: boolean
+    example: false
 

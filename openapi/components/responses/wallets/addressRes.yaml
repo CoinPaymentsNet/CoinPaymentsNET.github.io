@@ -1,14 +1,10 @@
 type: object
 properties:
   addressId:
-    description: Id of newely created wallet
+    description: Id of newely created address
     type: string
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-  label:
-    description: address label
-    type: string
-    example: 'shop address'
   networkAddress:
-    description: wallet address
+    description: the network address that was created.
     type: string
     example: LNUPQLeQFfF67RtH1dqFBiwJhYBNZCW7pm

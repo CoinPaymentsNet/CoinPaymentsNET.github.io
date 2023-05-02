@@ -3,7 +3,7 @@ The Wallets API enables merchants to create and manage their wallets and wallet 
 
 **Important Note:**
 
-If WebhookUrl field of the body is specified than the following requests will be sent to the provided URL (Maximum 5 attempts with 5 seconds timeout for a single request and 1 second delay between retries) All keys and values of the webhook payloads are strings. Samples of data being sent:
+If WebhookUrl field of the body is specified then the following requests will be sent to the provided URL (Maximum 5 attempts with 5 seconds timeout for a single request and 1 second delay between retries) All keys and values of the webhook payloads are strings. Samples of data being sent:
 
 1- When wallet is activated:
 ```javascript

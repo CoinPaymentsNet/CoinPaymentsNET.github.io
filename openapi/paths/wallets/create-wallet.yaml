@@ -19,8 +19,6 @@ post:
         application/json:
           schema:
             $ref: ../../components/schemas/wallets/NewWallet.yaml
-          example:
-            walletId: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
     '404':
       description: Currency Not Found!
 get:
