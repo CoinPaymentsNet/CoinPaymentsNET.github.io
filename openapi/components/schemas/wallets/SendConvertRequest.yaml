@@ -1,0 +1,40 @@
+type: object
+properties:
+  spendRequestId:
+    type: string
+    format: uuid
+    description: A unique identifier for the conversion request
+  fromWalletId:
+    type: string
+    format: uuid
+    description: The ID of the wallet containing the coins to be converted
+  toAddress:
+    type: string
+    description: The address where the converted coins will be sent
+  fromContractAddress:
+    type: string
+    description: The contract address of the token being converted, if applicable
+  fromCurrencyId:
+    type: integer
+    description: The ID of the currency being converted
+  toCurrencyId:
+    type: integer
+    description: The ID of the target currency
+  blockchainFee:
+    type: number
+    description: The fee charged by the blockchain network for processing the conversion
+  coinpaymentsFee:
+    type: number
+    description: The fee charged by the payment gateway for processing the conversion
+  fromAmount:
+    type: number
+    description: The amount of the source currency to be converted
+  toAmount:
+    type: number
+    description: The amount of the target currency to be received after the conversion is completed
+  memo:
+    type: string
+    description: An optional memo attached to the conversion request
+  toContractAddress:
+    type: string
+    description: The contract address of the token being received, if applicable

@@ -57,6 +57,8 @@ paths:
     $ref: 'paths/wallets/get-wallet-transaction.yaml'
   '/merchant/wallets/{walletIdStr}/spend/request':
     $ref: 'paths/wallets/spend-request.yaml'
+  '/merchant/wallets/{walletIdStr}/convert/request':
+    $ref: 'paths/wallets/send-convert-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
 

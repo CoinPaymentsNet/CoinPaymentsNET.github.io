@@ -1,0 +1,32 @@
+post:
+  tags:
+    - Wallets API
+  summary: Convert coins to an internal or external address
+  description: |
+    This endpoint you are describing is a conversion endpoint
+    that allows users to convert their coins to an internal or external address
+  operationId: convertCoins
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/wallets/SendConvertRequest.yaml
+    description: Spend Request payload
+  parameters:
+    - name: walletIdStr
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+      description: the wallet Id
+  responses:
+    '200':
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
+    '400':
+      description: Bad Request
+      $ref: ../../components/responses/Problem.yaml

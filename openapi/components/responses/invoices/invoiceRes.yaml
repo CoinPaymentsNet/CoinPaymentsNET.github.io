@@ -1,8 +1,8 @@
 type: object
 properties:
-  invoiceId:
+  id:
     type: string
-    format: '5xyKTbjTMcbXMUsaprSRaP'
-  link:
-    type: string
-    format: 'https://api.coinpaymints.com/api/v1/merchant/invoices/5xyKTbjTMcbXMUsaprSRaP'
+    description: the CoinPayments id for the invoice
+    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+
+

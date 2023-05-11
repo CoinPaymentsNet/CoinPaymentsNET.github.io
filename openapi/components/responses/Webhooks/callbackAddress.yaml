@@ -36,5 +36,5 @@ properties:
 #    type: boolean
 #    example: true
   webhook:
-    $ref: ../../schemas/callbacks/webhookSchema.yaml
+    $ref: ../../schemas/callbacks/webhook.yaml
 

@@ -34,7 +34,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/invoices/invoiceRes.yaml
+            $ref: ../../components/schemas/invoices/invoices.yaml
     '404':
       description: Merchant Not Found!
 

@@ -3,4 +3,4 @@ properties:
   id:
     type: string
     description: webhook id
-    example: 'L76Z2npAAqXXTg2vC1m9YW'
+    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
