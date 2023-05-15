@@ -344,7 +344,7 @@ tags:
       **Important Note:**
 
 
-      If WebhookUrl field of the body is specified than the following requests
+      If WebhookUrl field of the body is specified then the following requests
       will be sent to the provided URL (Maximum 5 attempts with 5 seconds
       timeout for a single request and 1 second delay between retries) All keys
       and values of the webhook payloads are strings. Samples of data being
@@ -544,7 +544,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/invoiceRes'
+                $ref: '#/components/schemas/invoices'
         '404':
           description: Merchant Not Found!
   /merchant/invoices/{id}:
@@ -616,8 +616,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NewWallet'
-              example:
-                walletId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         '404':
           description: Currency Not Found!
     get:
@@ -668,9 +666,19 @@ paths:
     post:
       tags:
         - Wallets API
-      summary: Create address under wallet
-      description: |
-        Creates new address under wallet by wallet Id
+      summary: Create address for an existing wallet
+      description: >
+        This endpoint creates a new address under the wallet with the specified
+        ID.
+
+        The walletIdStr parameter is a required path parameter that identifies
+        the target wallet.
+
+        The request body is optional, but if included, it can contain an
+        optional label field to provide a label for the new address. The
+        response to a successful request returns a 201 Created status code and
+        an object containing the ID of the new address, the ID of the wallet
+        where it was created, and its label (if any).
       operationId: createWalletAddress
       parameters:
         - name: walletIdStr
@@ -685,7 +693,7 @@ paths:
           schema:
             type: string
             example: shop tests address
-          description: optional label for the address
+            description: optional label for the address
       responses:
         '200':
           description: Success
@@ -811,7 +819,7 @@ paths:
     post:
       tags:
         - Wallets API
-      summary: Confirm spending funds
+      summary: Confirm Spending funds
       description: Send a request to confirm spending funds from the wallet
       operationId: spendRequestConfirmation
       parameters:
@@ -829,6 +837,68 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
+              example:
+                spendRequestId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}/convert/request:
+    post:
+      tags:
+        - Conversion API
+      summary: Convert coins to an internal or external address
+      description: >
+        This endpoint you are describing is a conversion endpoint
+
+        that allows users to convert their coins to an internal or external
+        address
+      operationId: convertCoins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendConvertRequest'
+        description: Convert Request payload
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /merchant/wallets/{walletIdStr}/convert/confirmation:
+    post:
+      tags:
+        - Conversion API
+      summary: Confirm Converting funds
+      description: Send a request to confirm converting funds from the wallet
+      operationId: ConvertRequestConfirmation
+      parameters:
+        - name: walletIdStr
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the wallet Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertRequestConfirmation'
               example:
                 spendRequestId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         '400':
@@ -874,7 +944,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/webhook'
+              $ref: '#/components/schemas/webhookSchema'
         description: Create Webhook
         required: true
       responses:
@@ -936,7 +1006,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/callbackAddress'
+                $ref: '#/components/schemas/updateWebhookRes'
         '400':
           description: Bad request example!
     delete:
@@ -1092,16 +1162,6 @@ components:
       type: http
       scheme: basic
   schemas:
-    invoiceRes:
-      type: object
-      properties:
-        invoiceId:
-          type: string
-          format: 5xyKTbjTMcbXMUsaprSRaP
-        link:
-          type: string
-          format: >-
-            https://api.coinpaymints.com/api/v1/merchant/invoices/5xyKTbjTMcbXMUsaprSRaP
     fullName:
       type: object
       properties:
@@ -1256,7 +1316,7 @@ components:
         - invoicePaid
         - invoiceCompleted
         - invoiceCancelled
-    webhook:
+    webhookSchema:
       type: object
       properties:
         notificationUrl:
@@ -1389,7 +1449,7 @@ components:
           type: string
           format: InvoiceBuilder
         webhook:
-          $ref: '#/components/schemas/webhook'
+          $ref: '#/components/schemas/webhookSchema'
         draft:
           type: boolean
           description: flag indicating whether this is a draft invoice
@@ -1417,6 +1477,17 @@ components:
                 - hourly
                 - nightly
                 - weekly
+    invoices:
+      type: array
+      items:
+        $ref: '#/components/schemas/invoice'
+    invoiceRes:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the CoinPayments id for the invoice
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
     id:
       type: string
       example: nKCMuD6h3Vsgs4mGDqGeV
@@ -1718,15 +1789,11 @@ components:
       type: object
       properties:
         addressId:
-          description: Id of newely created wallet
+          description: Id of newely created address
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-        label:
-          description: address label
-          type: string
-          example: shop address
         networkAddress:
-          description: wallet address
+          description: the network address that was created.
           type: string
           example: LNUPQLeQFfF67RtH1dqFBiwJhYBNZCW7pm
     list-of-addresses:
@@ -1840,37 +1907,61 @@ components:
       type: object
       properties:
         toAddress:
-          description: benificiary address
+          description: Address which client wants to send funds to
           type: string
-          example: Asaiuqhdaknxyuiw21w2w2223
+          example: mtxASJZHNmGeUPQ3DxLvJeKja6Lh7TcJM9
         toCurrencyId:
           description: currency Id of benificiary wallet
           type: number
           example: 6
         fromContractAddress:
-          description: from contract address
+          description: >-
+            (Optional) Address of the contract e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
           type: string
           example: Asaiuqhdaknxyuiw21w2w2223
         toContractAddress:
-          description: balance available on this wallet
+          description: >-
+            (Optional) Address of the contract of the
+            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
           type: string
           example: Asaiuqhdaknxyuiw21w2w2223
         amountInSmallestUnits:
-          description: amount in smallest currency unit
+          description: >-
+            the amount of money (in the currencies smallest unit, e.g. Satoshis
+            for BTC) to send to the recipient address
           type: string
           example: '0.73632442'
         blockchainFeeOverrideInSmallestUnits:
-          description: blockchain fees in smallest currency unit
+          description: >-
+            (Optional) Used for overriding the system suggested blockchain fee
+            (within 10% range) to manage the transaction processing speed
           type: number
           example: '0.0003234'
         memo:
-          description: memo to be associated with the spend request
+          description: Optional user-defined note for the spend
           type: string
           example: test memo
         receiverPaysFee:
-          description: receiver fees
-          type: string
-          example: '0.0003234'
+          description: >
+            Specifies that the receiver of the transfer will pay the fees,
+            meaning that the
+
+            AmountInSmallestUnits will be deducted from the sender balance
+
+            and receiver will get the
+            CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits
+            minus fees.
+
+            Otherwise fees will be added to the AmountInSmallestUnits and
+
+            the total sum will be deducted from the sender balance while the
+            receiver will get exactly
+
+            CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits
+          type: boolean
+          example: false
     SpendRequestConfirmationSuccess:
       type: object
       properties:
@@ -1878,6 +1969,64 @@ components:
           description: Id of newely created wallet
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+    SendConvertRequest:
+      type: object
+      required:
+        - toCurrencyId
+        - amountInSmallestUnits
+      properties:
+        toAddress:
+          type: string
+          description: Address which client wants to send funds to
+        fromContractAddress:
+          type: string
+          description: >-
+            (Optional) Address of the contract e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+        toCurrencyId:
+          type: integer
+          description: ID of the currency of the spend destination
+        blockchainFeeOverrideInSmallestUnits:
+          type: number
+          description: >-
+            (Optional) Used for overriding the system suggested blockchain fee
+            (within 10% range) to manage the transaction processing speed
+        amountInSmallestUnits:
+          type: number
+          description: >-
+            the amount of money (in the currencies smallest unit, e.g. Satoshis
+            for BTC) to send to the recipient address
+        memo:
+          type: string
+          description: Optional user-defined note for the spend
+        toContractAddress:
+          type: string
+          description: >-
+            (Optional) Address of the contract of the
+            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+        receiverPaysFee:
+          type: boolean
+          description: >
+            Specifies that the receiver of the transfer will pay the fees
+            meaning that
+
+            the AmountInSmallestUnits will be deducted from the sender balance
+
+            and receiver will get the AmountInSmallestUnits minus fees.
+
+            Otherwise fees will be added to the AmountInSmallestUnits and
+
+            the total sum will be deducted from the sender balance
+
+            while the receiver will get exactly AmountInSmallestUnits
+    ConvertRequestConfirmation:
+      type: object
+      properties:
+        spendRequestId:
+          description: Id of convert request
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     notification-payload:
       type: object
       properties:
@@ -1938,21 +2087,8 @@ components:
         id:
           type: string
           description: webhook id
-          example: L76Z2npAAqXXTg2vC1m9YW
-    webhookSchema:
-      type: object
-      properties:
-        url:
-          description: webhook url
-          type: string
-          example: https://mysite.com
-        nativeCurrencyId:
-          $ref: '#/components/schemas/currencyId'
-        customData:
-          description: custom data users can send with the request
-          type: string
-          example: custom message
-    callbackAddress:
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+    UpdateWebhookRes:
       type: object
       properties:
         id:
@@ -1979,7 +2115,35 @@ components:
           type: string
           example: '2022-10-05T06:05:07.520Z'
         webhook:
-          $ref: '#/components/schemas/webhookSchema'
+          $ref: '#/components/schemas/UpdateWebhookRes'
+    updateWebhookRes:
+      type: object
+      properties:
+        id:
+          description: callback address id
+          $ref: '#/components/schemas/address'
+        clientId:
+          description: client Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        created:
+          description: date and time of creating the callback address
+          type: string
+          example: '2022-10-11T14:34:32.945Z'
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+        contractAddress:
+          $ref: '#/components/schemas/address'
+        label:
+          description: label for callback address
+          type: string
+          example: John Doe`s address
+        updatedAt:
+          description: date of last time the wallet data was modified by the user
+          type: string
+          example: '2022-10-05T06:05:07.520Z'
+        webhook:
+          $ref: '#/components/schemas/UpdateWebhookRes'
     logo:
       type: object
       description: currency logo / icon

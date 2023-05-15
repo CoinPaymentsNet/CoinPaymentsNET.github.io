@@ -1,40 +1,35 @@
 type: object
+required:
+  - toCurrencyId
+  - amountInSmallestUnits
 properties:
-  spendRequestId:
-    type: string
-    format: uuid
-    description: A unique identifier for the conversion request
-  fromWalletId:
-    type: string
-    format: uuid
-    description: The ID of the wallet containing the coins to be converted
   toAddress:
     type: string
-    description: The address where the converted coins will be sent
+    description: Address which client wants to send funds to
   fromContractAddress:
     type: string
-    description: The contract address of the token being converted, if applicable
-  fromCurrencyId:
-    type: integer
-    description: The ID of the currency being converted
+    description: (Optional) Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
   toCurrencyId:
     type: integer
-    description: The ID of the target currency
-  blockchainFee:
+    description: ID of the currency of the spend destination
+  blockchainFeeOverrideInSmallestUnits:
     type: number
-    description: The fee charged by the blockchain network for processing the conversion
-  coinpaymentsFee:
+    description: (Optional) Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
+  amountInSmallestUnits:
     type: number
-    description: The fee charged by the payment gateway for processing the conversion
-  fromAmount:
-    type: number
-    description: The amount of the source currency to be converted
-  toAmount:
-    type: number
-    description: The amount of the target currency to be received after the conversion is completed
+    description: the amount of money (in the currencies smallest unit, e.g. Satoshis for BTC) to send to the recipient address
   memo:
     type: string
-    description: An optional memo attached to the conversion request
+    description: Optional user-defined note for the spend
   toContractAddress:
     type: string
-    description: The contract address of the token being received, if applicable
+    description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+  receiverPaysFee:
+    type: boolean
+    description: |
+      Specifies that the receiver of the transfer will pay the fees meaning that
+      the AmountInSmallestUnits will be deducted from the sender balance
+      and receiver will get the AmountInSmallestUnits minus fees.
+      Otherwise fees will be added to the AmountInSmallestUnits and
+      the total sum will be deducted from the sender balance
+      while the receiver will get exactly AmountInSmallestUnits

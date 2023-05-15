@@ -1,9 +1,9 @@
 post:
   tags:
-    - Wallets API
-  summary: Confirm Spending funds
-  description: Send a request to confirm spending funds from the wallet
-  operationId: spendRequestConfirmation
+    - Conversion API
+  summary: Confirm Converting funds
+  description: Send a request to confirm converting funds from the wallet
+  operationId: ConvertRequestConfirmation
   parameters:
     - name: walletIdStr
       in: path
@@ -18,7 +18,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
+            $ref: ../../components/schemas/wallets/ConvertRequestConfirmation.yaml
           example:
             spendRequestId: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
     '400':

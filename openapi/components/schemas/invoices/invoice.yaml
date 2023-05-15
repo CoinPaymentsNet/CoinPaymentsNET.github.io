@@ -137,7 +137,7 @@ properties:
     type: string
     format: InvoiceBuilder
   webhook:
-    $ref: ../clients/webhook.yaml
+    $ref: ../webhooks/webhookSchema.yaml
   draft:
     type: boolean
     description: flag indicating whether this is a draft invoice
