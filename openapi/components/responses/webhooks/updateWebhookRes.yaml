@@ -36,5 +36,5 @@ properties:
 #    type: boolean
 #    example: true
   webhook:
-    $ref: ../../responses/webhooks/UpdateWebhookRes.yaml
+    $ref: ../../schemas/webhooks/webhookSchema.yaml
 
