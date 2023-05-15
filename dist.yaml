@@ -2088,34 +2088,6 @@ components:
           type: string
           description: webhook id
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-    UpdateWebhookRes:
-      type: object
-      properties:
-        id:
-          description: callback address id
-          $ref: '#/components/schemas/address'
-        clientId:
-          description: client Id
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        created:
-          description: date and time of creating the callback address
-          type: string
-          example: '2022-10-11T14:34:32.945Z'
-        currencyId:
-          $ref: '#/components/schemas/currencyId'
-        contractAddress:
-          $ref: '#/components/schemas/address'
-        label:
-          description: label for callback address
-          type: string
-          example: John Doe`s address
-        updatedAt:
-          description: date of last time the wallet data was modified by the user
-          type: string
-          example: '2022-10-05T06:05:07.520Z'
-        webhook:
-          $ref: '#/components/schemas/UpdateWebhookRes'
     updateWebhookRes:
       type: object
       properties:
@@ -2143,7 +2115,7 @@ components:
           type: string
           example: '2022-10-05T06:05:07.520Z'
         webhook:
-          $ref: '#/components/schemas/UpdateWebhookRes'
+          $ref: '#/components/schemas/webhookSchema'
     logo:
       type: object
       description: currency logo / icon
