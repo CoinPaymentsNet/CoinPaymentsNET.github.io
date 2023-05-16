@@ -1,4 +1,7 @@
 type: object
+required:
+  - toCurrencyId
+  - amountInSmallestUnits
 properties:
   toAddress:
     description: Address which client wants to send funds to

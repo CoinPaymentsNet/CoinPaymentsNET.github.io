@@ -1,4 +1,6 @@
 type: object
+required:
+    - currencyId
 properties:
   currencyId:
     description: User supplied currencyId

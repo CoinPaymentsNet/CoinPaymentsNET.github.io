@@ -19,8 +19,6 @@ post:
         application/json:
           schema:
             $ref: ../../components/conversion/convertRequestConfirmation.yaml
-          example:
-            spendRequestId: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
     '400':
       description: Bad Request
       $ref: ../../components/responses/Problem.yaml
