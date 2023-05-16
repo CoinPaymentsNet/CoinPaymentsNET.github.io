@@ -28,6 +28,17 @@ tags:
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
+
+  '/currencies':
+    $ref: 'paths/currencies/get-currencies.yaml'
+  '/cuurrencies/{id}':
+    $ref: 'paths/currencies/get-currency-by-id.yaml'
+  '/currencies/blockchain-nodes/{id}/latest-block-number':
+    $ref: 'paths/currencies/get-latest-block-number.yaml'
+#  '/currencies/required-confirmations':
+#    $ref: 'paths/currencies/required-confirmations.yaml'
+  '/currencies/conversions':
+    $ref: 'paths/currencies/conversions.yaml'
   # TODO (2)
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
@@ -75,16 +86,6 @@ paths:
     $ref: 'paths/webhooks/update-delete.yaml'
 
   # Currencies
-  '/currencies':
-    $ref: 'paths/currencies/get-currencies.yaml'
-  '/cuurrencies/{id}':
-    $ref: 'paths/currencies/get-currency-by-id.yaml'
-  '/currencies/blockchain-nodes/{id}/latest-block-number':
-    $ref: 'paths/currencies/get-latest-block-number.yaml'
-#  '/currencies/required-confirmations':
-#    $ref: 'paths/currencies/required-confirmations.yaml'
-  '/currencies/conversions':
-    $ref: 'paths/currencies/conversions.yaml'
 
   # TODO GET callback deposits
 #  '/merchant/callbacks/deposits':
