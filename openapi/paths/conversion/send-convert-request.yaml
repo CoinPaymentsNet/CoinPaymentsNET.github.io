@@ -10,7 +10,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/conversion/SendConvertRequest.yaml
+          $ref: ../../components/conversion/sendConvertRequest.yaml
     description: Convert Request payload
   parameters:
     - name: walletIdStr

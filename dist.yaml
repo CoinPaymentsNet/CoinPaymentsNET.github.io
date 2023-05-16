@@ -873,7 +873,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
+                $ref: '#/components/schemas/convertRequestSuccess'
         '400':
           description: Bad Request
           $ref: '#/components/responses/Problem'
@@ -1006,7 +1006,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/updateWebhookRes'
+                $ref: '#/components/schemas/webhookSchema'
         '400':
           description: Bad request example!
     delete:
@@ -1998,7 +1998,7 @@ components:
             for BTC) to send to the recipient address
         memo:
           type: string
-          description: Optional user-defined note for the spend
+          description: Optional user-defined note to associate with the spend request
         toContractAddress:
           type: string
           description: >-
@@ -2020,10 +2020,17 @@ components:
             the total sum will be deducted from the sender balance
 
             while the receiver will get exactly AmountInSmallestUnits
+    convertRequestSuccess:
+      type: object
+      properties:
+        convertRequestId:
+          description: Id of the convert request
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
     ConvertRequestConfirmation:
       type: object
       properties:
-        spendRequestId:
+        convertRequestId:
           description: Id of convert request
           type: string
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
@@ -2088,34 +2095,6 @@ components:
           type: string
           description: webhook id
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-    updateWebhookRes:
-      type: object
-      properties:
-        id:
-          description: callback address id
-          $ref: '#/components/schemas/address'
-        clientId:
-          description: client Id
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        created:
-          description: date and time of creating the callback address
-          type: string
-          example: '2022-10-11T14:34:32.945Z'
-        currencyId:
-          $ref: '#/components/schemas/currencyId'
-        contractAddress:
-          $ref: '#/components/schemas/address'
-        label:
-          description: label for callback address
-          type: string
-          example: John Doe`s address
-        updatedAt:
-          description: date of last time the wallet data was modified by the user
-          type: string
-          example: '2022-10-05T06:05:07.520Z'
-        webhook:
-          $ref: '#/components/schemas/webhookSchema'
     logo:
       type: object
       description: currency logo / icon
