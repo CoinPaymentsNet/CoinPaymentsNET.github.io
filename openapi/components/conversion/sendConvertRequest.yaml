@@ -20,7 +20,7 @@ properties:
     description: the amount of money (in the currencies smallest unit, e.g. Satoshis for BTC) to send to the recipient address
   memo:
     type: string
-    description: Optional user-defined note for the spend
+    description: Optional user-defined note to associate with the spend request
   toContractAddress:
     type: string
     description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD

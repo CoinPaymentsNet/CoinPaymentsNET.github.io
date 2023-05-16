@@ -10,7 +10,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/wallets/SendConvertRequest.yaml
+          $ref: ../../components/conversion/SendConvertRequest.yaml
     description: Convert Request payload
   parameters:
     - name: walletIdStr
@@ -26,7 +26,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
+            $ref: ../../components/conversion/convertRequestSuccess.yaml
     '400':
       description: Bad Request
       $ref: ../../components/responses/Problem.yaml
