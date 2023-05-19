@@ -8,42 +8,54 @@ properties:
     description: transaction date
     type: string
     example: '2022-10-05T08:39:41.494Z'
-  dateCompleted:
-    description: date of transaction completion
-    type: string
-    example: '2022-10-05T08:40:41.494Z'
   fromOwnerId:
-    description: sender id
+    description: Id of the owner of the wallet who sent the transaction
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   fromWalletId:
     description: sender wallet Id
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
-  toWalletId:
-    description: benificiary wallet Id
-    type: string
-    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
-  spendRequestId:
-    description: spend request id
-    type: string
-    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   fromCurrencyId:
     description: sender currency Id
     type: number
     example: 1
-  toCurrencyId:
-    description: benificiary currency Id
-    type: number
-    example: 2
   fromAmount:
     description: amount in source currency
     type: string
     example: '0.22390234'
+  fromAddress:
+    description: sender wallet address
+    type: string
+    example: '1AYASDI34W2W2SIFFRE32452S1Q'
+  fromContractAddress:
+    description: sender contract address
+    type: string
+    example: '1AYASDI34W2W2SIFFRE32452S1Q'
+  toWalletId:
+    description: benificiary wallet Id
+    type: string
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
+  toCurrencyId:
+    description: benificiary currency Id
+    type: number
+    example: 2
+  spendRequestId:
+    description: spend request id
+    type: string
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   toAmount:
     description: amount in receiving currency
     type: string
     example: '0.13448434'
+  toAddress:
+    description: benificiary wallet address
+    type: string
+    example: '1AYASDI34W2W2SIFFRE32452S1Q'
+  toContractAddress:
+    description: benificiary contract address
+    type: string
+    example: '1AYASDI34W2W2SIFFRE32452S1Q'
   coinPaymentsFee:
       description: platform fees
       type: string
@@ -59,15 +71,7 @@ properties:
   memo:
     description: otional memo
     type: string
-    example: 'optional memo'
-  fromAddress:
-    description: sender wallet address
-    type: string
-    example: '1AYASDI34W2W2SIFFRE32452S1Q'
-  toAddress:
-    description: benificiary wallet address
-    type: string
-    example: '1AYASDI34W2W2SIFFRE32452S1Q'
+    example: 'memo'
   txHash:
     description: transaction hash
     type: string
@@ -80,19 +84,15 @@ properties:
     description: platform fees
     type: string
     example: '0.00000032'
-  fromContractAddress:
-    description: sender contract address
-    type: string
-    example: '1AYASDI34W2W2SIFFRE32452S1Q'
-  toContractAddress:
-    description: benificiary contract address
-    type: string
-    example: '1AYASDI34W2W2SIFFRE32452S1Q'
   feeCurrency:
     description: currency fees
     type: string
     example: '0.00000032'
   blockNumberTxAppearedAt:
     description: date of appearing the transaction in the blockchain
+    type: string
+    example: '2022-10-05T08:40:41.494Z'
+  dateCompleted:
+    description: date of transaction completion
     type: string
     example: '2022-10-05T08:40:41.494Z'

@@ -1,8 +1,8 @@
 post:
   tags:
     - Wallets API
-  summary: Confirm Spending funds
-  description: Send a request to confirm spending funds from the wallet
+  summary: Confirm wihtdrawal
+  description: Send a request to confirm the withdrawal
   operationId: spendRequestConfirmation
   parameters:
     - name: walletIdStr

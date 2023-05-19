@@ -1,5 +1,5 @@
 type: object
-description: optional array of items that a buyer intends to purchase from the merchant
+description: array of items that a buyer intends to purchase from the merchant
 properties:
   name:
     type: string

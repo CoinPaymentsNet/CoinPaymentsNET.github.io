@@ -3,12 +3,15 @@ required:
   - toCurrencyId
   - amountInSmallestUnits
 properties:
-  toAddress:
-    type: string
-    description: Address which client wants to send funds to
   fromContractAddress:
     type: string
     description: (Optional) Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+  toContractAddress:
+    type: string
+    description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+  toAddress:
+    type: string
+    description: Address which client wants to send funds to
   toCurrencyId:
     type: integer
     description: ID of the currency of the spend destination
@@ -21,15 +24,12 @@ properties:
   memo:
     type: string
     description: Optional user-defined note to associate with the spend request
-  toContractAddress:
-    type: string
-    description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
   receiverPaysFee:
     type: boolean
     description: |
-      Specifies that the receiver of the transfer will pay the fees meaning that
-      the AmountInSmallestUnits will be deducted from the sender balance
+      Specifies that the receiver of the conversion will pay the fees meaning that
+      the AmountInSmallestUnits will be deducted from the source balance
       and receiver will get the AmountInSmallestUnits minus fees.
       Otherwise fees will be added to the AmountInSmallestUnits and
-      the total sum will be deducted from the sender balance
+      the total sum will be deducted from the source balance
       while the receiver will get exactly AmountInSmallestUnits

@@ -5,7 +5,7 @@ post:
   description: |
     This endpoint creates a new address under the wallet with the specified ID.
     The walletIdStr parameter is a required path parameter that identifies the target wallet.
-    The request body is optional, but if included, it can contain an optional label field to provide a label for the new address. The response to a successful request returns a 201 Created status code and an object containing the ID of the new address, the ID of the wallet where it was created, and its label (if any).
+    The request body is optional, but if included, it can contain an label field to provide a label for the new address. The response to a successful request returns a 201 Created status code and an object containing the ID of the new address, the ID of the wallet where it was created, and its label (if any).
   operationId: createWalletAddress
   parameters:
       - name: walletIdStr
@@ -21,7 +21,7 @@ post:
         schema:
           type: string
           example: shop tests address
-          description: optional label for the address
+          description: label for the address
   responses:
     '200':
       description: Success

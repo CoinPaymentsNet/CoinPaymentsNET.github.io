@@ -1,8 +1,8 @@
 post:
   tags:
     - Wallets API
-  summary: Spend Request
-  description: Sends a request to spend funds from the wallet
+  summary: Create Withdrawal
+  description: Sends a request to withdraw funds from the user wallet
   operationId: sendSpendRequest
   requestBody:
     content:

@@ -461,6 +461,116 @@ tags:
 servers:
   - url: https://api.coinpayments/api/v1
 paths:
+  /currencies:
+    get:
+      tags:
+        - Currencies API
+      summary: List currencies and their capabilities
+      description: Retrieves a list of all currencies and their capabilities
+      operationId: listPlatformSupportedCurrencies
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+            example: BTC
+          description: search query to find currencies with names and/or codes
+        - name: types
+          in: query
+          schema:
+            type: string
+            example: crypto,token,fiat
+          description: >-
+            comma separated list of the types of currencies to return (e.g.
+            'coin', 'token', 'fiat', etc.). By default currencies of all types
+            are returned
+        - name: capabilities
+          in: query
+          schema:
+            type: string
+            example: multiSigAccounts,sharedAccounts,payments,singleSigAccounts
+          description: search query to find currencies with names and/or codes
+        - name: after
+          in: query
+          schema:
+            type: string
+            example: ''
+          description: search query to find currencies with names and/or codes
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/arrayOfCurrencies'
+        '400':
+          description: Bad Request
+          $ref: '#/components/responses/Problem'
+  /cuurrencies/{id}:
+    get:
+      tags:
+        - Currencies API
+      summary: Get currency by Id
+      description: |
+        Get Currency by Id
+      operationId: getCurrencyById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '1'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/currencySchema'
+        '400':
+          description: Bad request example!
+  /currencies/blockchain-nodes/{id}/latest-block-number:
+    get:
+      tags:
+        - Currencies API
+      summary: Get latest block number by currency
+      description: |
+        Get the latest blockchain block number by currency Id
+      operationId: getLatestBlockNumberByCurrencyId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '1'
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/latest-block-number'
+        '400':
+          description: Bad request example!
+  /currencies/conversions:
+    get:
+      tags:
+        - Currencies API
+      summary: Gets a list of all possible currency conversions
+      description: |
+        Get a list of all possible currency conversions
+      operationId: getCurrencyConversions
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/currencyConversions'
+        '400':
+          description: Bad request example!
   /merchant/invoices:
     post:
       tags:
@@ -674,11 +784,11 @@ paths:
         The walletIdStr parameter is a required path parameter that identifies
         the target wallet.
 
-        The request body is optional, but if included, it can contain an
-        optional label field to provide a label for the new address. The
-        response to a successful request returns a 201 Created status code and
-        an object containing the ID of the new address, the ID of the wallet
-        where it was created, and its label (if any).
+        The request body is optional, but if included, it can contain an label
+        field to provide a label for the new address. The response to a
+        successful request returns a 201 Created status code and an object
+        containing the ID of the new address, the ID of the wallet where it was
+        created, and its label (if any).
       operationId: createWalletAddress
       parameters:
         - name: walletIdStr
@@ -693,7 +803,7 @@ paths:
           schema:
             type: string
             example: shop tests address
-            description: optional label for the address
+            description: label for the address
       responses:
         '200':
           description: Success
@@ -787,8 +897,8 @@ paths:
     post:
       tags:
         - Wallets API
-      summary: Spend Request
-      description: Sends a request to spend funds from the wallet
+      summary: Create Withdrawal
+      description: Sends a request to withdraw funds from the user wallet
       operationId: sendSpendRequest
       requestBody:
         content:
@@ -819,8 +929,8 @@ paths:
     post:
       tags:
         - Wallets API
-      summary: Confirm Spending funds
-      description: Send a request to confirm spending funds from the wallet
+      summary: Confirm wihtdrawal
+      description: Send a request to confirm the withdrawal
       operationId: spendRequestConfirmation
       parameters:
         - name: walletIdStr
@@ -837,8 +947,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
-              example:
-                spendRequestId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         '400':
           description: Bad Request
           $ref: '#/components/responses/Problem'
@@ -846,18 +954,16 @@ paths:
     post:
       tags:
         - Conversion API
-      summary: Convert coins to an internal or external address
-      description: >
-        This endpoint you are describing is a conversion endpoint
-
-        that allows users to convert their coins to an internal or external
-        address
+      summary: Convert cryptocurrencies
+      description: |
+        Converting from a coin to another is done by two steps:
+        This endpoint is the first step and it sends a request to convert funds
       operationId: convertCoins
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SendConvertRequest'
+              $ref: '#/components/schemas/sendConvertRequest'
         description: Convert Request payload
       parameters:
         - name: walletIdStr
@@ -881,7 +987,7 @@ paths:
     post:
       tags:
         - Conversion API
-      summary: Confirm Converting funds
+      summary: Confirm conversion
       description: Send a request to confirm converting funds from the wallet
       operationId: ConvertRequestConfirmation
       parameters:
@@ -898,9 +1004,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConvertRequestConfirmation'
-              example:
-                spendRequestId: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+                $ref: '#/components/schemas/convertRequestConfirmation'
         '400':
           description: Bad Request
           $ref: '#/components/responses/Problem'
@@ -1034,116 +1138,6 @@ paths:
           description: Success status code - no content
         '400':
           description: Bad request example!
-  /currencies:
-    get:
-      tags:
-        - Currencies API
-      summary: List currencies and their capabilities
-      description: Retrieves a list of all currencies and their capabilities
-      operationId: listPlatformSupportedCurrencies
-      parameters:
-        - name: q
-          in: query
-          schema:
-            type: string
-            example: BTC
-          description: optional search query to find currencies with names and/or codes
-        - name: types
-          in: query
-          schema:
-            type: string
-            example: crypto,token,fiat
-          description: >-
-            comma separated list of the types of currencies to return (e.g.
-            'coin', 'token', 'fiat', etc.). By default currencies of all types
-            are returned
-        - name: capabilities
-          in: query
-          schema:
-            type: string
-            example: multiSigAccounts,sharedAccounts,payments,singleSigAccounts
-          description: optional search query to find currencies with names and/or codes
-        - name: after
-          in: query
-          schema:
-            type: string
-            example: ''
-          description: optional search query to find currencies with names and/or codes
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/arrayOfCurrencies'
-        '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
-  /cuurrencies/{id}:
-    get:
-      tags:
-        - Currencies API
-      summary: Get currency by Id
-      description: |
-        Get Currency by Id
-      operationId: getCurrencyById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            example: '1'
-      responses:
-        '200':
-          description: Success status code ( 200 )
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/currencySchema'
-        '400':
-          description: Bad request example!
-  /currencies/blockchain-nodes/{id}/latest-block-number:
-    get:
-      tags:
-        - Currencies API
-      summary: Get latest block number by currency
-      description: |
-        Get the latest blockchain block number by currency Id
-      operationId: getLatestBlockNumberByCurrencyId
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            example: '1'
-      responses:
-        '200':
-          description: Success status code ( 200 )
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/latest-block-number'
-        '400':
-          description: Bad request example!
-  /currencies/conversions:
-    get:
-      tags:
-        - Currencies API
-      summary: Gets a list of all possible currency conversions
-      description: |
-        Get a list of all possible currency conversions
-      operationId: getCurrencyConversions
-      responses:
-        '200':
-          description: Success status code ( 200 )
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/currencyConversions'
-        '400':
-          description: Bad request example!
 components:
   securitySchemes:
     main_auth:
@@ -1162,6 +1156,128 @@ components:
       type: http
       scheme: basic
   schemas:
+    logo:
+      type: object
+      description: currency logo / icon
+      properties:
+        iamgeUrl:
+          type: string
+        vectorUrl:
+          type: string
+    urls:
+      type: object
+      properties:
+        websites:
+          type: array
+          items:
+            type: string
+          example:
+            - https://bitcoin.org
+        explorers:
+          type: array
+          items:
+            type: string
+            example:
+              - https://blockchain.info
+    currencySchema:
+      type: object
+      properties:
+        id:
+          description: currency Id
+          type: string
+          example: '1'
+        type:
+          description: currency type
+          type: string
+          example: crypto
+        symbol:
+          description: currency symbol
+          type: string
+          example: BTC
+        name:
+          description: currency name
+          type: string
+          example: Bitcoin
+        logo:
+          $ref: '#/components/schemas/logo'
+        decimalPlaces:
+          type: integer
+          example: 0
+        rank:
+          type: integer
+          example: 0
+        status:
+          type: string
+          example: active
+        capabilities:
+          $ref: '#/components/schemas/urls'
+        requiredConfirmations:
+          type: integer
+          example: 0
+    arrayOfCurrencies:
+      type: array
+      items:
+        $ref: '#/components/schemas/currencySchema'
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
+    latest-block-number:
+      type: object
+      properties:
+        currencyId:
+          description: currency Id
+          type: string
+          example: '1'
+        latestBlockNumber:
+          description: latest block number
+          type: integer
+          example: 773862
+    currencyConversions:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            example: '4'
+          to:
+            type: string
+            example: '6'
     fullName:
       type: object
       properties:
@@ -1179,19 +1295,19 @@ components:
           description: main address
         address2:
           type: string
-          description: optional second address
+          description: second address
         address3:
           type: string
-          description: optional third address
+          description: third address
         city:
           type: string
-          description: optional city of the buyer
+          description: city of the buyer
         provinceOrState:
           type: string
-          description: optional Province or state of the buyer
+          description: Province or state of the buyer
         suburbOrDistrict:
           type: string
-          description: optional Suburb or district of the buyer
+          description: Suburb or district of the buyer
         countryCode:
           type: string
           format: US
@@ -1201,20 +1317,20 @@ components:
     buyer:
       type: object
       properties:
+        name:
+          $ref: '#/components/schemas/fullName'
         companyName:
           type: string
           format: Rushing Turtles
-        name:
-          $ref: '#/components/schemas/fullName'
         address:
           $ref: '#/components/schemas/physicalAddress'
         emailAddress:
           type: string
-          description: optional email address of the buyer
+          description: email address of the buyer
           format: johndoe@gmail.com
         phoneNumber:
           type: string
-          description: optional phone number of the buyer
+          description: phone number of the buyer
           format: '01010101010'
     shipping:
       type: object
@@ -1257,9 +1373,7 @@ components:
           description: '?'
     items:
       type: object
-      description: >-
-        optional array of items that a buyer intends to purchase from the
-        merchant
+      description: array of items that a buyer intends to purchase from the merchant
       properties:
         name:
           type: string
@@ -1325,25 +1439,27 @@ components:
           $ref: '#/components/schemas/notifications'
     invoice:
       type: object
+      required:
+        - isEmailDelivery
       properties:
         invoiceDate:
           type: string
           description: >-
-            optional custom invoice date if not the created date of the invoice,
-            invoices with a future date will be scheduled
+            custom invoice date if not the created date of the invoice, invoices
+            with a future date will be scheduled
           example: '2022-11-28T13:59:46+00:00'
         dueDate:
           type: string
           example: '2023-04-26T18:40:41.322Z'
-          description: optional due date to be shown on the invoice
+          description: due date to be shown on the invoice
         clientId:
           type: string
-          description: the id of the client creating this invoice (optional)
+          description: the id of the client creating this invoice
         invoiceId:
           type: string
           description: >-
-            optional invoice number. Appears in screens shown to the Buyer and
-            emails sent.
+            invoice number. Appears in screens shown to the Buyer and emails
+            sent.
         buyer:
           $ref: '#/components/schemas/buyer'
         shipping:
@@ -1456,7 +1572,7 @@ components:
           default: false
         payoutConfig:
           type: object
-          description: Represents optional info specifying payout configuration for invoice
+          description: Represents info specifying payout configuration for invoice
           properties:
             currencyId:
               type: string
@@ -1464,8 +1580,8 @@ components:
             contractAddress:
               type: string
               description: >-
-                Optional address of the smart contract if the currency supports
-                it and it should be used
+                address of the smart contract if the currency supports it and it
+                should be used
             address:
               type: string
               description: the external address into which to pay out
@@ -1699,10 +1815,6 @@ components:
           description: balance available on this wallet
           type: string
           example: '0.874833322'
-        updatedAt:
-          description: date of last time the wallet data was modified by the user
-          type: string
-          example: '2022-10-05T06:05:07.520Z'
         depositAddress:
           description: address to deposit funds into the wallet
           type: string
@@ -1715,50 +1827,18 @@ components:
           description: indicates whether the wallet can create an address
           type: boolean
           example: true
+        updatedAt:
+          description: date of last time the wallet data was modified by the user
+          type: string
+          example: '2022-10-05T06:05:07.520Z'
     arrayOfWallets:
       type: array
       items:
         $ref: '#/components/schemas/MerchantWalletObj'
-    Problem:
-      type: object
-      additionalProperties: true
-      minProperties: 1
-      description: >-
-        The Problem Details JSON Object
-        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
-      properties:
-        type:
-          type: string
-          description: >-
-            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
-            that identifies the problem type. It should provide human-readable
-            documentation for the problem type. When this member is not present,
-            its value is assumed to be "about:blank".
-          format: uri
-        title:
-          type: string
-          description: >-
-            A short, human-readable summary of the problem type. It SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization.
-        status:
-          type: integer
-          description: The HTTP status code.
-          minimum: 400
-          maximum: 599
-        detail:
-          type: string
-          description: >-
-            A human-readable explanation specific to this occurrence of the
-            problem.
-        instance:
-          type: string
-          description: >-
-            A URI reference that identifies the specific occurrence of the
-            problem.  It may or may not yield further information if
-            dereferenced.
     MerchantWallet:
       type: object
+      required:
+        - currencyId
       properties:
         currencyId:
           description: User supplied currencyId
@@ -1811,42 +1891,54 @@ components:
           description: transaction date
           type: string
           example: '2022-10-05T08:39:41.494Z'
-        dateCompleted:
-          description: date of transaction completion
-          type: string
-          example: '2022-10-05T08:40:41.494Z'
         fromOwnerId:
-          description: sender id
+          description: Id of the owner of the wallet who sent the transaction
           type: string
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         fromWalletId:
           description: sender wallet Id
           type: string
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        toWalletId:
-          description: benificiary wallet Id
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        spendRequestId:
-          description: spend request id
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         fromCurrencyId:
           description: sender currency Id
           type: number
           example: 1
-        toCurrencyId:
-          description: benificiary currency Id
-          type: number
-          example: 2
         fromAmount:
           description: amount in source currency
           type: string
           example: '0.22390234'
+        fromAddress:
+          description: sender wallet address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        fromContractAddress:
+          description: sender contract address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        toWalletId:
+          description: benificiary wallet Id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        toCurrencyId:
+          description: benificiary currency Id
+          type: number
+          example: 2
+        spendRequestId:
+          description: spend request id
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         toAmount:
           description: amount in receiving currency
           type: string
           example: '0.13448434'
+        toAddress:
+          description: benificiary wallet address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        toContractAddress:
+          description: benificiary contract address
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
         coinPaymentsFee:
           description: platform fees
           type: string
@@ -1862,15 +1954,7 @@ components:
         memo:
           description: otional memo
           type: string
-          example: optional memo
-        fromAddress:
-          description: sender wallet address
-          type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
-        toAddress:
-          description: benificiary wallet address
-          type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
+          example: memo
         txHash:
           description: transaction hash
           type: string
@@ -1883,14 +1967,6 @@ components:
           description: platform fees
           type: string
           example: '0.00000032'
-        fromContractAddress:
-          description: sender contract address
-          type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
-        toContractAddress:
-          description: benificiary contract address
-          type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
         feeCurrency:
           description: currency fees
           type: string
@@ -1899,13 +1975,33 @@ components:
           description: date of appearing the transaction in the blockchain
           type: string
           example: '2022-10-05T08:40:41.494Z'
+        dateCompleted:
+          description: date of transaction completion
+          type: string
+          example: '2022-10-05T08:40:41.494Z'
     arrayOfWalletTransactions:
       type: array
       items:
         $ref: '#/components/schemas/WalletTransactionObj'
     SpendRequestPayload:
       type: object
+      required:
+        - toCurrencyId
+        - amountInSmallestUnits
       properties:
+        fromContractAddress:
+          description: >-
+            Address of the contract e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
+        toContractAddress:
+          description: >-
+            Address of the contract of the
+            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+          type: string
+          example: Asaiuqhdaknxyuiw21w2w2223
         toAddress:
           description: Address which client wants to send funds to
           type: string
@@ -1914,19 +2010,6 @@ components:
           description: currency Id of benificiary wallet
           type: number
           example: 6
-        fromContractAddress:
-          description: >-
-            (Optional) Address of the contract e.g.
-            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-          type: string
-          example: Asaiuqhdaknxyuiw21w2w2223
-        toContractAddress:
-          description: >-
-            (Optional) Address of the contract of the
-            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
-            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-          type: string
-          example: Asaiuqhdaknxyuiw21w2w2223
         amountInSmallestUnits:
           description: >-
             the amount of money (in the currencies smallest unit, e.g. Satoshis
@@ -1935,12 +2018,12 @@ components:
           example: '0.73632442'
         blockchainFeeOverrideInSmallestUnits:
           description: >-
-            (Optional) Used for overriding the system suggested blockchain fee
-            (within 10% range) to manage the transaction processing speed
+            Used for overriding the system suggested blockchain fee (within 10%
+            range) to manage the transaction processing speed
           type: number
           example: '0.0003234'
         memo:
-          description: Optional user-defined note for the spend
+          description: user-defined note for the spend
           type: string
           example: test memo
         receiverPaysFee:
@@ -1969,20 +2052,26 @@ components:
           description: Id of newely created wallet
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-    SendConvertRequest:
+    sendConvertRequest:
       type: object
       required:
         - toCurrencyId
         - amountInSmallestUnits
       properties:
-        toAddress:
-          type: string
-          description: Address which client wants to send funds to
         fromContractAddress:
           type: string
           description: >-
             (Optional) Address of the contract e.g.
             "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+        toContractAddress:
+          type: string
+          description: >-
+            (Optional) Address of the contract of the
+            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+        toAddress:
+          type: string
+          description: Address which client wants to send funds to
         toCurrencyId:
           type: integer
           description: ID of the currency of the spend destination
@@ -1999,25 +2088,19 @@ components:
         memo:
           type: string
           description: Optional user-defined note to associate with the spend request
-        toContractAddress:
-          type: string
-          description: >-
-            (Optional) Address of the contract of the
-            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
-            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
         receiverPaysFee:
           type: boolean
           description: >
-            Specifies that the receiver of the transfer will pay the fees
+            Specifies that the receiver of the conversion will pay the fees
             meaning that
 
-            the AmountInSmallestUnits will be deducted from the sender balance
+            the AmountInSmallestUnits will be deducted from the source balance
 
             and receiver will get the AmountInSmallestUnits minus fees.
 
             Otherwise fees will be added to the AmountInSmallestUnits and
 
-            the total sum will be deducted from the sender balance
+            the total sum will be deducted from the source balance
 
             while the receiver will get exactly AmountInSmallestUnits
     convertRequestSuccess:
@@ -2027,7 +2110,7 @@ components:
           description: Id of the convert request
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-    ConvertRequestConfirmation:
+    convertRequestConfirmation:
       type: object
       properties:
         convertRequestId:
@@ -2095,90 +2178,6 @@ components:
           type: string
           description: webhook id
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-    logo:
-      type: object
-      description: currency logo / icon
-      properties:
-        iamgeUrl:
-          type: string
-        vectorUrl:
-          type: string
-    urls:
-      type: object
-      properties:
-        websites:
-          type: array
-          items:
-            type: string
-          example:
-            - https://bitcoin.org
-        explorers:
-          type: array
-          items:
-            type: string
-            example:
-              - https://blockchain.info
-    currencySchema:
-      type: object
-      properties:
-        id:
-          description: currency Id
-          type: string
-          example: '1'
-        type:
-          description: currency type
-          type: string
-          example: crypto
-        symbol:
-          description: currency symbol
-          type: string
-          example: BTC
-        name:
-          description: currency name
-          type: string
-          example: Bitcoin
-        logo:
-          $ref: '#/components/schemas/logo'
-        decimalPlaces:
-          type: integer
-          example: 0
-        rank:
-          type: integer
-          example: 0
-        status:
-          type: string
-          example: active
-        capabilities:
-          $ref: '#/components/schemas/urls'
-        requiredConfirmations:
-          type: integer
-          example: 0
-    arrayOfCurrencies:
-      type: array
-      items:
-        $ref: '#/components/schemas/currencySchema'
-    latest-block-number:
-      type: object
-      properties:
-        currencyId:
-          description: currency Id
-          type: string
-          example: '1'
-        latestBlockNumber:
-          description: latest block number
-          type: integer
-          example: 773862
-    currencyConversions:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            example: '4'
-          to:
-            type: string
-            example: '6'
   responses:
     Problem:
       description: Problem

@@ -1,7 +1,7 @@
 post:
   tags:
     - Conversion API
-  summary: Confirm Converting funds
+  summary: Confirm conversion
   description: Send a request to confirm converting funds from the wallet
   operationId: ConvertRequestConfirmation
   parameters:

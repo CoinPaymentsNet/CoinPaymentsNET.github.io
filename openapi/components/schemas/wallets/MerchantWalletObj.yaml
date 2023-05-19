@@ -16,10 +16,6 @@ properties:
     description: balance available on this wallet
     type: string
     example: '0.874833322'
-  updatedAt:
-    description: date of last time the wallet data was modified by the user
-    type: string
-    example: '2022-10-05T06:05:07.520Z'
   depositAddress:
     description: address to deposit funds into the wallet
     type: string
@@ -32,4 +28,8 @@ properties:
     description: indicates whether the wallet can create an address
     type: boolean
     example: true
+  updatedAt:
+    description: date of last time the wallet data was modified by the user
+    type: string
+    example: '2022-10-05T06:05:07.520Z'
 

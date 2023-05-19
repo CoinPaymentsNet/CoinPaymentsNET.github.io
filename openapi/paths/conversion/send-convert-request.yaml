@@ -1,10 +1,10 @@
 post:
   tags:
     - Conversion API
-  summary: Convert coins to an internal or external address
+  summary: Convert cryptocurrencies
   description: |
-    This endpoint you are describing is a conversion endpoint
-    that allows users to convert their coins to an internal or external address
+    Converting from a coin to another is done by two steps:
+    This endpoint is the first step and it sends a request to convert funds
   operationId: convertCoins
   requestBody:
     content:

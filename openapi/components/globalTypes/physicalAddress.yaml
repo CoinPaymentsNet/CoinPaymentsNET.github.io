@@ -6,23 +6,23 @@ properties:
     #nullable: true
   address2:
     type: string
-    description: 'optional second address'
+    description: 'second address'
     #nullable: true
   address3:
     type: string
-    description: 'optional third address'
+    description: 'third address'
     #nullable: true
   city:
     type: string
-    description: optional city of the buyer
+    description: city of the buyer
     #nullable: true
   provinceOrState:
     type: string
-    description: optional Province or state of the buyer
+    description: Province or state of the buyer
     #nullable: true
   suburbOrDistrict:
     type: string
-    description: optional Suburb or district of the buyer
+    description: Suburb or district of the buyer
     #nullable: true
   countryCode:
     type: string

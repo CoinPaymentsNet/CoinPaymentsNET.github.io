@@ -3,6 +3,14 @@ required:
   - toCurrencyId
   - amountInSmallestUnits
 properties:
+  fromContractAddress:
+    description: Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+    type: string
+    example: 'Asaiuqhdaknxyuiw21w2w2223'
+  toContractAddress:
+    description: Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+    type: string
+    example: 'Asaiuqhdaknxyuiw21w2w2223'
   toAddress:
     description: Address which client wants to send funds to
     type: string
@@ -11,24 +19,16 @@ properties:
     description: currency Id of benificiary wallet
     type: number
     example: 6
-  fromContractAddress:
-    description: (Optional) Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-    type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
-  toContractAddress:
-    description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-    type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
   amountInSmallestUnits:
     description: the amount of money (in the currencies smallest unit, e.g. Satoshis for BTC) to send to the recipient address
     type: string
     example: '0.73632442'
   blockchainFeeOverrideInSmallestUnits:
-    description: (Optional) Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
+    description: Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
     type: number
     example: '0.0003234'
   memo:
-    description: Optional user-defined note for the spend
+    description: user-defined note for the spend
     type: string
     example: 'test memo'
   receiverPaysFee:

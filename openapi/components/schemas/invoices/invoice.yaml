@@ -6,22 +6,22 @@ properties:
   invoiceDate:
     type: string
     description:
-      optional custom invoice date if not the created date of the invoice,
+      custom invoice date if not the created date of the invoice,
       invoices with a future date will be scheduled
     example: '2022-11-28T13:59:46+00:00'
     #nullable: true
   dueDate:
     type: string
     example: '2023-04-26T18:40:41.322Z'
-    description: optional due date to be shown on the invoice
+    description: due date to be shown on the invoice
     #nullable: true
   clientId:
     type: string
-    description: the id of the client creating this invoice (optional)
+    description: the id of the client creating this invoice
     #nullable: true
   invoiceId:
     type: string
-    description: optional invoice number. Appears in screens shown to the Buyer and emails sent.
+    description: invoice number. Appears in screens shown to the Buyer and emails sent.
     #nullable: true
   buyer:
     $ref: ./buyer.yaml
@@ -147,14 +147,14 @@ properties:
     default: false
   payoutConfig:
     type: object
-    description: Represents optional info specifying payout configuration for invoice
+    description: Represents info specifying payout configuration for invoice
     properties:
       currencyId:
         type: string
         description: the currency id of the wallet or address into which to payout to
       contractAddress:
         type: string
-        description: Optional address of the smart contract if the currency supports it and it should be used
+        description: address of the smart contract if the currency supports it and it should be used
       address:
         type: string
         description: the external address into which to pay out
