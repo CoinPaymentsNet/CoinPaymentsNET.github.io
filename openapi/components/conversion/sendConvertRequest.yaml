@@ -20,7 +20,7 @@ properties:
     description: (Optional) Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
   amountInSmallestUnits:
     description: |
-      refers to the amount of a specific cryptocurrency, such as Bitcoin, measured in its smallest divisible unit
+      refers to the amount of a specific cryptocurrency, such as Bitcoin, measured in its smallest divisible unit, AKA atomic units.
       (e.g., Satoshis for Bitcoin).
       It allows for precise and detailed transactions by specifying the amount in the smallest possible denomination.
       This approach enables you to send fractional amounts of the currency accurately.
