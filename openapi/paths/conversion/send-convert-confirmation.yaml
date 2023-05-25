@@ -11,7 +11,8 @@ post:
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description: the wallet Id
+      description: the Id of the wallet you want to convert funds from. Reminder; this field is included in the response returned
+        from the first ( Send convert request )
   responses:
     '200':
       description: Success

@@ -1,10 +1,16 @@
 post:
   tags:
     - Conversion API
-  summary: Convert cryptocurrencies
+  summary: Convert between cryptocurrencies
   description: |
-    Converting from a coin to another is done by two steps:
-    This endpoint is the first step and it sends a request to convert funds
+    Similar to the create Conversion flow, Converting from a coin to another two-step process:
+    1- Send convert request: This request will trigger a response containing a preview of the transaction, including any applicable fees.
+    The purpose of this step is to allow users to review and verify the information provided,
+    including the amount and any associated fees before proceeding.
+
+    2- Confirm conversion: This step is straightforward, the confirm Conversion endpoint expects the "spendRequestId"
+    as a URL param to identify, confirm and publish the transaction.
+    Note: The "spendRequestId" included in the response from the first step.
   operationId: convertCoins
   requestBody:
     content:
@@ -19,7 +25,7 @@ post:
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description: the wallet Id
+      description: the Id of the wallet you want to convert funds from
   responses:
     '200':
       description: Ok
@@ -30,3 +36,4 @@ post:
     '400':
       description: Bad Request
       $ref: ../../components/responses/Problem.yaml
+

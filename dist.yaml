@@ -898,14 +898,31 @@ paths:
       tags:
         - Wallets API
       summary: Create Withdrawal
-      description: Sends a request to withdraw funds from the user wallet
+      description: >
+        Creating withdrawal is a two-step process:
+
+        1- Send a withdrawal request: This request will trigger a response
+        containing a preview of the transaction,
+
+        including any applicable fees. The purpose of this step is to allow
+        users to review and verify the information provided,
+
+        including the amount and any associated fees before proceeding.
+
+
+        2- Confirm the withdrawal: This step is pretty straightforward, the
+        confirm withdrawal endpoint takes the "spendRequestId"
+
+        as a URL param to identify, confirm and publish the transaction.
+
+        Note: The "spendRequestId" included in the response from the first step.
       operationId: sendSpendRequest
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/SpendRequestPayload'
-        description: Spend Request payload
+        description: Withdrawal Request payload
         required: true
       parameters:
         - name: walletIdStr
@@ -914,7 +931,7 @@ paths:
           schema:
             type: string
             example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-          description: the wallet Id
+          description: the wallet Id from which you intend to withdraw funds
       responses:
         '200':
           description: Ok
@@ -954,10 +971,26 @@ paths:
     post:
       tags:
         - Conversion API
-      summary: Convert cryptocurrencies
-      description: |
-        Converting from a coin to another is done by two steps:
-        This endpoint is the first step and it sends a request to convert funds
+      summary: Convert between cryptocurrencies
+      description: >
+        Similar to the create Conversion flow, Converting from a coin to another
+        two-step process:
+
+        1- Send convert request: This request will trigger a response containing
+        a preview of the transaction, including any applicable fees.
+
+        The purpose of this step is to allow users to review and verify the
+        information provided,
+
+        including the amount and any associated fees before proceeding.
+
+
+        2- Confirm conversion: This step is straightforward, the confirm
+        Conversion endpoint expects the "spendRequestId"
+
+        as a URL param to identify, confirm and publish the transaction.
+
+        Note: The "spendRequestId" included in the response from the first step.
       operationId: convertCoins
       requestBody:
         content:
@@ -972,7 +1005,7 @@ paths:
           schema:
             type: string
             example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-          description: the wallet Id
+          description: the Id of the wallet you want to convert funds from
       responses:
         '200':
           description: Ok
@@ -997,7 +1030,10 @@ paths:
           schema:
             type: string
             example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-          description: the wallet Id
+          description: >-
+            the Id of the wallet you want to convert funds from. Reminder; this
+            field is included in the response returned from the first ( Send
+            convert request )
       responses:
         '200':
           description: Success
