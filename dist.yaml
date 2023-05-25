@@ -506,7 +506,7 @@ paths:
         '400':
           description: Bad Request
           $ref: '#/components/responses/Problem'
-  /cuurrencies/{id}:
+  /currencies/{id}:
     get:
       tags:
         - Currencies API
@@ -1994,14 +1994,13 @@ components:
             Address of the contract e.g.
             "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
           type: string
-          example: Asaiuqhdaknxyuiw21w2w2223
+          example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
         toContractAddress:
           description: >-
-            Address of the contract of the
-            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
+            Address of the contract of the CurrencyId e.g.
             "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
           type: string
-          example: Asaiuqhdaknxyuiw21w2w2223
+          example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
         toAddress:
           description: Address which client wants to send funds to
           type: string
@@ -2011,11 +2010,19 @@ components:
           type: number
           example: 6
         amountInSmallestUnits:
-          description: >-
-            the amount of money (in the currencies smallest unit, e.g. Satoshis
-            for BTC) to send to the recipient address
+          description: >
+            refers to the amount of a specific cryptocurrency, such as Bitcoin,
+            measured in its smallest divisible unit
+
+            (e.g., Satoshis for Bitcoin).
+
+            It allows for precise and detailed transactions by specifying the
+            amount in the smallest possible denomination.
+
+            This approach enables you to send fractional amounts of the currency
+            accurately.
           type: string
-          example: '0.73632442'
+          example: '9900000'
         blockchainFeeOverrideInSmallestUnits:
           description: >-
             Used for overriding the system suggested blockchain fee (within 10%
@@ -2081,10 +2088,19 @@ components:
             (Optional) Used for overriding the system suggested blockchain fee
             (within 10% range) to manage the transaction processing speed
         amountInSmallestUnits:
-          type: number
-          description: >-
-            the amount of money (in the currencies smallest unit, e.g. Satoshis
-            for BTC) to send to the recipient address
+          description: >
+            refers to the amount of a specific cryptocurrency, such as Bitcoin,
+            measured in its smallest divisible unit
+
+            (e.g., Satoshis for Bitcoin).
+
+            It allows for precise and detailed transactions by specifying the
+            amount in the smallest possible denomination.
+
+            This approach enables you to send fractional amounts of the currency
+            accurately.
+          type: string
+          example: '9900000'
         memo:
           type: string
           description: Optional user-defined note to associate with the spend request

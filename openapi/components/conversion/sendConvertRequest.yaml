@@ -19,8 +19,13 @@ properties:
     type: number
     description: (Optional) Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
   amountInSmallestUnits:
-    type: number
-    description: the amount of money (in the currencies smallest unit, e.g. Satoshis for BTC) to send to the recipient address
+    description: |
+      refers to the amount of a specific cryptocurrency, such as Bitcoin, measured in its smallest divisible unit
+      (e.g., Satoshis for Bitcoin).
+      It allows for precise and detailed transactions by specifying the amount in the smallest possible denomination.
+      This approach enables you to send fractional amounts of the currency accurately.
+    type: string
+    example: '9900000'
   memo:
     type: string
     description: Optional user-defined note to associate with the spend request
