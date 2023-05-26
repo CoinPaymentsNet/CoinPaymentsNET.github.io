@@ -17,8 +17,6 @@ post:
       application/json:
         schema:
           $ref: ../../components/schemas/webhooks/webhookSchema.yaml
-    description: Create Webhook
-    required: true
   responses:
     '200':
       description: Success

@@ -1,7 +1,6 @@
 type: object
 required:
-  - isEmailDelivery
-
+  - amount
 properties:
   invoiceDate:
     type: string
@@ -29,7 +28,7 @@ properties:
     $ref: ../../globalTypes/shipping.yaml
   isEmailDelivery:
     type: boolean
-    description: indicates if invoice will be email delivered
+    description: indicates if invoice will be email delivered, deaults to false
     default: false
   emailDelivery:
     type: object
