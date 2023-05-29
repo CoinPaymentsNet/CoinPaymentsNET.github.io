@@ -1,0 +1,22 @@
+get:
+  tags:
+    - Invoices API
+  summary: Get invoice history
+  description: |
+    List history events of an invoice by the invoice Id
+  operationId: getInvoiceHistory
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/invoices/invoiceHistory.yaml
+    '404':
+      description: Merchant Not Found!

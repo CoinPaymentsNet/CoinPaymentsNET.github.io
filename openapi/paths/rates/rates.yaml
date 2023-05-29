@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Rates API
+  summary: Conversion rates between currencies
+  description: |
+    Returns the currency conversion rates for the specified from currencies converted to the specified to currencies
+  operationId: getConversionsBetweenTwoCurrencies
+  parameters:
+    - name: from
+      schema:
+        type: integer
+      in: query
+      description: comma separated list of currency ids to use as the source for rate calculations
+      required: true
+      example: 1
+    - name: to
+      schema:
+        type: integer
+      in: query
+      description: comma separated list of currency ids for which to retrieve conversion rates for (from the from currencies)
+    - name: fromToken
+      in: query
+      schema:
+        type: integer
+      description: optional, contract address of the token on the from currency
+    - name: toToken
+      in: query
+      schema:
+        type: integer
+      description: optional, contract address of the token on the quote currency
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/rates/ratesRes.yaml
+    '400':
+      description: Bad request example!
+
+

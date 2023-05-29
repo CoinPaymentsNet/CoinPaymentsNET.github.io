@@ -704,6 +704,29 @@ paths:
                 $ref: '#/components/schemas/payouts'
         '404':
           description: Merchant Not Found!
+  /merchant/invoices/{id}/hitory:
+    get:
+      tags:
+        - Invoices API
+      summary: Get invoice history
+      description: |
+        List history events of an invoice by the invoice Id
+      operationId: getInvoiceHistory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoiceHistory'
+        '404':
+          description: Merchant Not Found!
   /merchant/wallets:
     post:
       tags:
@@ -956,7 +979,7 @@ paths:
           schema:
             type: string
             example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-          description: the wallet Id
+          description: the wallet Id from which you intend to withdraw funds
       responses:
         '200':
           description: Success
@@ -973,7 +996,7 @@ paths:
         - Conversion API
       summary: Convert between cryptocurrencies
       description: >
-        Similar to the create Conversion flow, Converting from a coin to another
+        Similar to the create withdrawal flow, Converting from a coin to another
         two-step process:
 
         1- Send convert request: This request will trigger a response containing
@@ -1085,8 +1108,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/webhookSchema'
-        description: Create Webhook
-        required: true
       responses:
         '200':
           description: Success
@@ -1172,6 +1193,51 @@ paths:
       responses:
         '204':
           description: Success status code - no content
+        '400':
+          description: Bad request example!
+  /rates:
+    get:
+      tags:
+        - Rates API
+      summary: Conversion rates between currencies
+      description: >
+        Returns the currency conversion rates for the specified from currencies
+        converted to the specified to currencies
+      operationId: getConversionsBetweenTwoCurrencies
+      parameters:
+        - name: from
+          schema:
+            type: integer
+          in: query
+          description: >-
+            comma separated list of currency ids to use as the source for rate
+            calculations
+          required: true
+          example: 1
+        - name: to
+          schema:
+            type: integer
+          in: query
+          description: >-
+            comma separated list of currency ids for which to retrieve
+            conversion rates for (from the from currencies)
+        - name: fromToken
+          in: query
+          schema:
+            type: integer
+          description: optional, contract address of the token on the from currency
+        - name: toToken
+          in: query
+          schema:
+            type: integer
+          description: optional, contract address of the token on the quote currency
+      responses:
+        '200':
+          description: Success status code ( 200 )
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ratesRes'
         '400':
           description: Bad request example!
 components:
@@ -1468,15 +1534,18 @@ components:
         - invoiceCancelled
     webhookSchema:
       type: object
+      required:
+        - notifications
+        - notificationsUrl
       properties:
-        notificationUrl:
+        notificationsUrl:
           $ref: '#/components/schemas/notificationUrl'
         notifications:
           $ref: '#/components/schemas/notifications'
     invoice:
       type: object
       required:
-        - isEmailDelivery
+        - amount
       properties:
         invoiceDate:
           type: string
@@ -1502,7 +1571,7 @@ components:
           $ref: '#/components/schemas/shipping'
         isEmailDelivery:
           type: boolean
-          description: indicates if invoice will be email delivered
+          description: indicates if invoice will be email delivered, deaults to false
           default: false
         emailDelivery:
           type: object
@@ -1832,6 +1901,46 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/item'
+    invoiceHistoryItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          description: the timestamp of when the this event was observed
+          example: '2023-05-29T19:58:50.043Z'
+        eventType:
+          type: string
+          description: the type of event that was observed
+    paging:
+      type: object
+      properties:
+        cursor:
+          type: object
+          properties:
+            before:
+              type: string
+            after:
+              type: string
+        limit:
+          type: integer
+          example: 0
+        first:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+        last:
+          type: string
+    invoiceHistory:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/invoiceHistoryItems'
+        paging:
+          $ref: '#/components/schemas/paging'
     MerchantWalletObj:
       type: object
       properties:
@@ -1875,6 +1984,7 @@ components:
       type: object
       required:
         - currencyId
+        - label
       properties:
         currencyId:
           description: User supplied currencyId
@@ -2048,7 +2158,7 @@ components:
         amountInSmallestUnits:
           description: >
             refers to the amount of a specific cryptocurrency, such as Bitcoin,
-            measured in its smallest divisible unit
+            measured in its smallest divisible unit, AKA atomic units
 
             (e.g., Satoshis for Bitcoin).
 
@@ -2100,6 +2210,7 @@ components:
       required:
         - toCurrencyId
         - amountInSmallestUnits
+        - toAddress
       properties:
         fromContractAddress:
           type: string
@@ -2126,7 +2237,7 @@ components:
         amountInSmallestUnits:
           description: >
             refers to the amount of a specific cryptocurrency, such as Bitcoin,
-            measured in its smallest divisible unit
+            measured in its smallest divisible unit, AKA atomic units.
 
             (e.g., Satoshis for Bitcoin).
 
@@ -2186,27 +2297,6 @@ components:
           example: 2023-04-07T06:58:19.9798764+00:0
         invoice:
           $ref: '#/components/schemas/invoice'
-    paging:
-      type: object
-      properties:
-        cursor:
-          type: object
-          properties:
-            before:
-              type: string
-            after:
-              type: string
-        limit:
-          type: integer
-          example: 0
-        first:
-          type: string
-        next:
-          type: string
-        previous:
-          type: string
-        last:
-          type: string
     itemRes:
       type: object
       properties:
@@ -2230,6 +2320,36 @@ components:
           type: string
           description: webhook id
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+    rateItemRes:
+      type: object
+      properties:
+        baseCurrencyId:
+          type: number
+          description: the currency code of the source/base currency
+          example: 1
+        quoteCurrencyId:
+          type: number
+          description: the currency code of the target/quoted currency
+        rate:
+          type: string
+          description: >-
+            the conversion rate to convert from BaseCurrencyId into
+            QuoteCurrencyId
+        baseToken:
+          type: string
+          description: >-
+            the contract address of the source/base token on the base currency
+            platform
+        quoteToken:
+          type: string
+          description: >-
+            the contract address of the target/quoted token on the quoted
+            currency platform
+    ratesRes:
+      type: object
+      properties:
+        items:
+          $ref: '#/components/schemas/rateItemRes'
   responses:
     Problem:
       description: Problem

@@ -1,0 +1,9 @@
+type: object
+properties:
+  timestamp:
+    type: string
+    description: the timestamp of when the this event was observed
+    example: '2023-05-29T19:58:50.043Z'
+  eventType:
+    type: string
+    description: the type of event that was observed

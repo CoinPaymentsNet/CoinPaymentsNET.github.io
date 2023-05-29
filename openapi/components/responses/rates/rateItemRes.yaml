@@ -1,0 +1,20 @@
+type: object
+properties:
+  baseCurrencyId:
+    type: number
+    description: the currency code of the source/base currency
+    example: 1
+  quoteCurrencyId:
+    type: number
+    description: the currency code of the target/quoted currency
+  rate:
+    type: string
+    description: the conversion rate to convert from BaseCurrencyId into QuoteCurrencyId
+  baseToken:
+    type: string
+    description: the contract address of the source/base token on the base currency platform
+  quoteToken:
+    type: string
+    description: the contract address of the target/quoted token on the quoted currency platform
+
+

@@ -28,7 +28,6 @@ tags:
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
-
   '/currencies':
     $ref: 'paths/currencies/get-currencies.yaml'
   '/currencies/{id}':
@@ -39,23 +38,16 @@ paths:
 #    $ref: 'paths/currencies/required-confirmations.yaml'
   '/currencies/conversions':
     $ref: 'paths/currencies/conversions.yaml'
-  # TODO (2)
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
   '/merchant/invoices/{id}':
     $ref: 'paths/invoices/get-by-id.yaml'
-  # TODO GET invoice payout
   '/merchant/invoices/{id}/payouts':
     $ref: 'paths/invoices/payouts.yaml'
-  # TODO GET invoice history
-#  '/merchant/invoices/{id}/hitory':
-#    $ref: 'paths/invoices/history.yaml'
-#  # -----------------------------------------------
-#  # TODO (2) TODO POST create callback - list callbacks by client Id and currency Id (in query)
+  '/merchant/invoices/{id}/hitory':
+    $ref: 'paths/invoices/history.yaml'
 
-#  # TODO GET callback DTOS
-#  '/merchant/callbacks/callbackdtos':
-#    $ref: 'paths/invoices/invoices.yaml'
+  # Wallets
   '/merchant/wallets':
     $ref: 'paths/wallets/create-wallet.yaml'
   '/merchant/wallets/{walletIdStr}':
@@ -85,11 +77,10 @@ paths:
   '/merchant/clients/{clientId}/webhooks/{webhookId}':
     $ref: 'paths/webhooks/update-delete.yaml'
 
-  # Currencies
+  # Rates
+  '/rates':
+    $ref: 'paths/rates/rates.yaml'
 
-  # TODO GET callback deposits
-#  '/merchant/callbacks/deposits':
-#    $ref: 'paths/invoices/invoices.yaml'
 
 components:
   securitySchemes:
