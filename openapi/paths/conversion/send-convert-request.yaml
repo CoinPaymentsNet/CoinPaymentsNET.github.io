@@ -3,7 +3,7 @@ post:
     - Conversion API
   summary: Convert between cryptocurrencies
   description: |
-    Similar to the create Conversion flow, Converting from a coin to another two-step process:
+    Similar to the create withdrawal flow, Converting from a coin to another two-step process:
     1- Send convert request: This request will trigger a response containing a preview of the transaction, including any applicable fees.
     The purpose of this step is to allow users to review and verify the information provided,
     including the amount and any associated fees before proceeding.
