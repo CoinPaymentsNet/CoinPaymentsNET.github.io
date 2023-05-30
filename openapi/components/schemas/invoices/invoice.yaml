@@ -45,10 +45,10 @@ properties:
         description: original currency od of the item
       contractAddress:
         type: string
-        description: 'address of the smart contract of the invoice currency, ( if applicable )'
+        description: 'address of the smart contract of the invoice currency, (if applicable)'
       displayValue:
         type: string
-        description: 'value in the invoice currency in the original format ( e.g '0.1234 BTC' )'
+        description: 'value in the invoice currency in the original format (e.g 0.1234 BTC)'
       value:
         type: string
         description: '?'
