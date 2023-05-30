@@ -1,31 +1,10 @@
 type: object
+description: |
+  Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
+  by the merchant, that a buyer intends to purchase
 required:
   - amount
 properties:
-  invoiceDate:
-    type: string
-    description:
-      custom invoice date if not the created date of the invoice,
-      invoices with a future date will be scheduled
-    example: '2022-11-28T13:59:46+00:00'
-    #nullable: true
-  dueDate:
-    type: string
-    example: '2023-04-26T18:40:41.322Z'
-    description: due date to be shown on the invoice
-    #nullable: true
-  clientId:
-    type: string
-    description: the id of the client creating this invoice
-    #nullable: true
-  invoiceId:
-    type: string
-    description: invoice number. Appears in screens shown to the Buyer and emails sent.
-    #nullable: true
-  buyer:
-    $ref: ./buyer.yaml
-  shipping:
-    $ref: ../../globalTypes/shipping.yaml
   isEmailDelivery:
     type: boolean
     description: indicates if invoice will be email delivered, deaults to false
@@ -36,22 +15,15 @@ properties:
       to:
         type: string
         description: the email to field, multiple addresses separated by semicolons
-        #nullable: true
       cc:
         type: string
         description: the email to field, multiple addresses separated by semicolons
-        #nullable: true
       bcc:
         type: string
         description: the email to field, multiple addresses separated by semicolons
-        ##nullable: true
   description:
     type: string
     description: the purchase description, can be provided instead of a list of items
-  items:
-    type: array
-    items:
-      $ref: ./items.yaml
   amount:
     type: object
     properties:
@@ -71,59 +43,70 @@ properties:
       currencyId:
         type: string
         description: original currency od of the item
-        #nullable: true
       contractAddress:
         type: string
-        description: '?'
-        #nullable: true
+        description: 'address of the smart contract of the invoice currency, ( if applicable )'
       displayValue:
         type: string
-        description: '?'
-        #nullable: true
+        description: 'value in the invoice currency in the original format ( e.g '0.1234 BTC' )'
       value:
         type: string
         description: '?'
-        #nullable: true
       valueAsDecimal:
         type: string
         description: '?'
-        #nullable: true
+  clientId:
+    type: string
+    description: the id of the client creating this invoice
+  invoiceDate:
+    type: string
+    description:
+      custom invoice date if not the created date of the invoice,
+      invoices with a future date will be scheduled
+    example: '2022-11-28T13:59:46+00:00'
+  dueDate:
+    type: string
+    example: '2023-04-26T18:40:41.322Z'
+    description: due date to be shown on the invoice
+  invoiceId:
+    type: string
+    description: invoice number. Appears in screens shown to the Buyer and emails sent.
+  buyer:
+    $ref: ./buyer.yaml
+  shipping:
+    $ref: ../../globalTypes/shipping.yaml
+  items:
+    type: array
+    items:
+      $ref: ./items.yaml
   requireBuyerNameAndEmail:
     type: boolean
     description: flag indicating whether a buyer name and email are required, they will be requested at checkout if not provider by the caller.
-    #nullable: true
+
   buyerDataCollectionMessage:
     type: string
     description: the message to display when collecting buyer user data
-    #nullable: true
   notes:
     type: string
     description: notes for the merchant only, these are not visible to the buyers
-    #nullable: true
   notesToRecipient:
     type: string
     description: any additional information to share with the buyer about the transaction
-    #nullable: true
   termsAndConditions:
     type: string
     description: any terms and conditions, e.g. a cancellation policy
-    #nullable: true
   merchantOptions:
     $ref: ./merchantOptions.yaml
   customOptions:
     type: object
     description: any custom data the caller wishes to attach to the invoice which will be sent back in notifications
-    #nullable: true
     properties:
       additionalProp1:
         type: string
-        #nullable: true
       additionalProp2:
         type: string
-        #nullable: true
       additionalProp3:
         type: string
-        #nullable: true
   metadata:
     type: object
     properties:
@@ -134,7 +117,6 @@ properties:
       hostname:
         type: string
         description: '?'
-        #nullable: true
   poNumber:
     type: string
     format: InvoiceBuilder
