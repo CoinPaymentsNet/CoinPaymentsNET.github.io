@@ -38,6 +38,8 @@ paths:
 #    $ref: 'paths/currencies/required-confirmations.yaml'
   '/currencies/conversions':
     $ref: 'paths/currencies/conversions.yaml'
+
+  # Invoices
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
   '/merchant/invoices/{id}':
@@ -46,6 +48,8 @@ paths:
     $ref: 'paths/invoices/payouts.yaml'
   '/merchant/invoices/{id}/hitory':
     $ref: 'paths/invoices/history.yaml'
+  # '/merchant/invoices/{id}/payouts'
+  #   :ref: 'paths/invoices/payouts.yaml'
 
   # Wallets
   '/merchant/wallets':

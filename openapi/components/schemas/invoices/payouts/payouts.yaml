@@ -2,40 +2,50 @@ type: object
 properties:
   paidTransactions:
     type: array
+    description: An array of paid transaction details, including transaction hash, amount, and conversion Id.
     items:
       $ref: ./paidTransaction.yaml
   paid:
     type: string
-    description: paid at
+    description: The date and time when the payment was made.
     format: '2022-11-29T12:42:44.513Z'
   completedTxId:
     type: string
+    description: The ID of the completed transaction.
     format: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
   externalAddress:
     type: string
+    description: The external address where the payout is deposited
     format: '378a37b57b6b4a4a93fd352b06ce1829'
   destinationCurrencyId:
     type: string
+    description: The currency ID of the destination for the payout
     format: '1'
   expectedDisplayValue:
     type: string
+    description: The expected display value of the payout.
     format: '0.01'
   sourceCurrencyId:
     type: string
+    description: The currency ID of the source for the payout
     format: '101'
   destinationAccountId:
     type: string
+    description: The ID of the destination account for the payout
     format: '378a37b57b6b4a4a93fd352b06ce1829'
   isConversion:
     type: boolean
+    description:  Indicates whether a currency conversion is involved in the payout
     example: false
   conversionProgress:
     type: string
+    description: The progress status of the currency conversion
     example: 0
   settlementModeErrorCode:
     type: number
     example: 0
   destinationAmount:
+    description: The destination amount of the payout, including payout amount, state and merchant fees.
     $ref: ./destinationAmount.yaml
   items:
     type: array

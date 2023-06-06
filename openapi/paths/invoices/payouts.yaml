@@ -3,12 +3,15 @@ get:
     - Invoices API
   summary: Get invoices payouts
   description: |
-    Get list of merchant invoices by invoice Id
+    Get payout details for an invoice, including if invoice has been fully paid out,
+    the exact amount they will receive and in what currency, which address payout will be deposited,
+    and who (Buyer) performed the payment.
   operationId: getInvoicePayouts
   parameters:
     - name: id
       in: path
       required: true
+      description: invoice Id
       schema:
         type: string
         example: '5xyKTbjTMcbXMUsaprSRaP'
