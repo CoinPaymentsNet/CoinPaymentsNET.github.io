@@ -2,10 +2,14 @@ type: object
 properties:
   displayValue:
     type: string
-    format: '0.01'
+    description: 'The value formatted for display (e.g 0.1234 BTC)'
   value:
     type: string
-    format: '0.01'
+    description: |
+      This parameter represents the monetary value as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
+      with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
+      an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
+      If no value is provided, the default is 0.
   currencyId:
     $ref: ./currencyId.yaml
 

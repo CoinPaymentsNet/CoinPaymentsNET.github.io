@@ -1,45 +1,62 @@
 type: object
 properties:
   id:
+    description: the unique id of the currency on the CoinPayments platform
     $ref: ../../../globalTypes/id.yaml
   type:
     type: string
-    format: 'crypto'
+    description: the type of the currency (e.g crypto, token or fiat )
   symbol:
     type: string
-    description: currency symbol
-    format: 'BTC'
+    description: |
+      ticker symbol for the currency.  For fiat currencies this is the three character (ISO-4217) currency code,
+      and for crypto currencies their multi-character symbol.
+    example: 'BTC'
   name:
     type: string
-    format: string
+    description: the name of the currency, e.g. 'United States Dollar' or 'Bitcoin'
   logo:
     type: object
+    description: the logo urls for the currency
     properties:
       imageUrl:
         type: string
-        format: 'string'
+        description: |
+          'Link to a CoinPayments hosted image for a currency, 64x64 is the default size returned.'
+           Replace "64x64" in the image url with these alternative sizes: 32, 64, 128, 200.
       vectorUrl:
         type: string
-        format: 'string'
+        description: If available then the link to a CoinPayments hosted vector image (SVG) for the currency.
   decimalPlaces:
     type: number
+    description: the number of digits after the decimal separator, e.g. 2 for USD, 8 for BTC, 0 for JPY
     example: 0
   rank:
     type: number
+    description: the relative ordering/ranking of this currency to the other supported currencies on the CoinPayments platform
     example: 0
   capabilities:
     type: array
+    description: |
+      the capabilities of the currency on the CoinPayments platform:
+      - multiSigAccounts: Multi signature 2-of-3 wallets where the user holds the private key
+      - sharedAccounts: Shared accounts where the keys are held on the server only
+      - payments: Can be accepted as payments
+      - singleSigAccounts: Single signature account for personal use.
     items:
       type: string
       example: 'multiSigAccounts'
   urls:
     type: object
+    description: Contains various URLs for a currency
     properties:
       websites:
         type: array
+        description: the official websites for the currency
         items:
           type: string
       explorers:
         type: array
+        description: the explorers for the currency (if crypto or a token)
         items:
           type: string

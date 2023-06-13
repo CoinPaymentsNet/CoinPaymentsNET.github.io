@@ -1,0 +1,10 @@
+type: object
+properties:
+  displayValue:
+    type: string
+  contractAddress:
+    $ref: ../../../globalTypes/address.yaml
+  value:
+    type: string
+  currencyId:
+    $ref: ../../../globalTypes/currencyId.yaml

@@ -17,7 +17,7 @@ properties:
     type: number
     example: 1
   contractAddress:
-    description: contract address
+    description: 'the address of the contract if this money object represents an ERC20 or similar token value'
     type: string
     example: 'Asaiuqhdaknxyuiw21w2w2223'
   label:

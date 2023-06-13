@@ -45,16 +45,22 @@ properties:
         description: original currency od of the item
       contractAddress:
         type: string
-        description: 'address of the smart contract of the invoice currency, (if applicable)'
+        description: 'the address of the contract if this money object represents an ERC20 or similar token value'
       displayValue:
         type: string
-        description: 'value in the invoice currency in the original format (e.g 0.1234 BTC)'
+        description: 'The value formatted for display (e.g 0.1234 BTC)'
       value:
         type: string
-        description: '?'
+        description: |
+          This parameter represents the monetary value as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
+          with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
+          an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
+          If no value is provided, the default is 0.
       valueAsDecimal:
         type: string
-        description: '?'
+        description: |
+          The decimalValue represents the monetary value with decimal precision derived from the value field,
+          which is the integer representation in the smallest unit of the currency or token.
   clientId:
     type: string
     description: the id of the client creating this invoice
@@ -135,7 +141,7 @@ properties:
         description: the currency id of the wallet or address into which to payout to
       contractAddress:
         type: string
-        description: address of the smart contract if the currency supports it and it should be used
+        description: 'the address of the contract if this money object represents an ERC20 or similar token value'
       address:
         type: string
         description: the external address into which to pay out

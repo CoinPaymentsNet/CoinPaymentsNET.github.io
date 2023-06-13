@@ -1,27 +1,41 @@
 type: object
 properties:
   currency:
+    description: the currency (merchant's accepted currency) that will be received
     $ref: ./currency.yaml
   merchantFees:
+    description: The amount for service fees in the merchant's accepted currency
     $ref: ./merchantFees.yaml
   payoutAmount:
-    $ref: ./fees.yaml
+    description: |
+      This is the amount to be finally paid out to the merchant in the merchant's accepted currency.
+      An object with the same fields and desription as the fees object in the "transactionFee" under merchantFees.
+    $ref: ./simulateFees.yaml
   payoutAmountInInvoiceCurrency:
-    $ref: ./fees.yaml
+    description: |
+      The Pay out amount in the invoice currency.
+      An object with the same fields and desription as the fees object in the "transactionFee" under merchantFees.
+    $ref: ./simulateFees.yaml
   merchantFeestInInvoiceCurrency:
-    $ref: ./fees.yaml
+    description: |
+      The merchant fees in the invoice currency.
+      An object with the same fields as the fees object in the "transactionFee" under merchantFees.
+    $ref: ./simulateFees.yaml
   merchantPayoutAddress:
     type: string
-    format: '378a37b57b6b4a4a93fd352b06ce1829'
+    description: the merchants payment output address at the time the hot wallet was created
   sent:
+    description: the timestamp of when this payout was sent (e.g. broadcast on the blockchain)
     $ref: ../../../globalTypes/datetime.yaml
   created:
     $ref: ../../../globalTypes/datetime.yaml
   expected:
+    description: the approximate timestamp of when this payout is expected to be sent (e.g. broadcast on the blockchain)
     $ref: ../../../globalTypes/datetime.yaml
   confirmed:
+    description: the timestamp of when this payout was confirmed (e.g. on the blockchain)
     $ref: ../../../globalTypes/datetime.yaml
   state:
     type: string
-    format: scheduled
+    description: the current state of the payout
 

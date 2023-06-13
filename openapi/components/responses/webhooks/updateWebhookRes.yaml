@@ -14,6 +14,7 @@ properties:
   currencyId:
     $ref: ../../globalTypes/currencyId.yaml
   contractAddress:
+    description: 'the address of the contract if this money object represents an ERC20 or similar token value'
     $ref: ../../globalTypes/address.yaml
   label:
     description: label for callback address

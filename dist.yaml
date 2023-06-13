@@ -685,13 +685,20 @@ paths:
       tags:
         - Invoices API
       summary: Get invoices payouts
-      description: |
-        Get list of merchant invoices by invoice Id
+      description: >
+        Get payout details for an invoice, including if invoice has been fully
+        paid out,
+
+        the exact amount they will receive and in what currency, which address
+        payout will be deposited,
+
+        and who (Buyer) performed the payment.
       operationId: getInvoicePayouts
       parameters:
         - name: id
           in: path
           required: true
+          description: invoice Id
           schema:
             type: string
             example: 5xyKTbjTMcbXMUsaprSRaP
@@ -1380,6 +1387,26 @@ components:
           to:
             type: string
             example: '6'
+    globalAmount:
+      type: object
+      properties:
+        currencyId:
+          type: string
+          description: the currency id of the wallet or address into which to payout to
+        contractAddress:
+          type: string
+          description: >-
+            Optional address of the smart contract if the currency supports it
+            and it should be used
+        displayValue:
+          type: string
+          description: '?'
+        value:
+          type: string
+          description: '?'
+        valueAsDecimal:
+          type: string
+          description: '?'
     fullName:
       type: object
       properties:
@@ -1439,40 +1466,20 @@ components:
       properties:
         method:
           type: string
-          description: '?'
+          description: Shipment method
         companyName:
           type: string
-          description: '?'
+          description: Company name
         name:
           $ref: '#/components/schemas/fullName'
         emailAddress:
           type: string
-          description: '?'
+          description: email address
         phoneNumber:
           type: string
-          description: '?'
+          description: phone number
         address:
           $ref: '#/components/schemas/physicalAddress'
-    globalAmount:
-      type: object
-      properties:
-        currencyId:
-          type: string
-          description: the currency id of the wallet or address into which to payout to
-        contractAddress:
-          type: string
-          description: >-
-            Optional address of the smart contract if the currency supports it
-            and it should be used
-        displayValue:
-          type: string
-          description: '?'
-        value:
-          type: string
-          description: '?'
-        valueAsDecimal:
-          type: string
-          description: '?'
     items:
       type: object
       description: array of items that a buyer intends to purchase from the merchant
@@ -1544,31 +1551,14 @@ components:
           $ref: '#/components/schemas/notifications'
     invoice:
       type: object
+      description: >
+        Request to create an invoice, which is a list of goods or services with
+        a statement of the sum due provided
+
+        by the merchant, that a buyer intends to purchase
       required:
         - amount
       properties:
-        invoiceDate:
-          type: string
-          description: >-
-            custom invoice date if not the created date of the invoice, invoices
-            with a future date will be scheduled
-          example: '2022-11-28T13:59:46+00:00'
-        dueDate:
-          type: string
-          example: '2023-04-26T18:40:41.322Z'
-          description: due date to be shown on the invoice
-        clientId:
-          type: string
-          description: the id of the client creating this invoice
-        invoiceId:
-          type: string
-          description: >-
-            invoice number. Appears in screens shown to the Buyer and emails
-            sent.
-        buyer:
-          $ref: '#/components/schemas/buyer'
-        shipping:
-          $ref: '#/components/schemas/shipping'
         isEmailDelivery:
           type: boolean
           description: indicates if invoice will be email delivered, deaults to false
@@ -1588,10 +1578,6 @@ components:
         description:
           type: string
           description: the purchase description, can be provided instead of a list of items
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/items'
         amount:
           type: object
           properties:
@@ -1613,16 +1599,57 @@ components:
               description: original currency od of the item
             contractAddress:
               type: string
-              description: '?'
+              description: >-
+                the address of the contract if this money object represents an
+                ERC20 or similar token value
             displayValue:
               type: string
-              description: '?'
+              description: The value formatted for display (e.g 0.1234 BTC)
             value:
               type: string
-              description: '?'
+              description: >
+                This parameter represents the monetary value as an integer in
+                the base (smallest) unit of the currency. For instance, Bitcoin
+                can be divided into 8 decimal places,
+
+                with each division known as a Satoshi. Therefore, 1 BTC would
+                have a value of 100,000,000 Satoshis, and 0.00031 BTC would have
+                a value of 31,000 Satoshis. Similarly,
+
+                an amount of $9.99 USD would be represented as 999 cents. In the
+                case of zero-decimal currencies like the Yen, a value of ¥500
+                would be represented as 500.
+
+                If no value is provided, the default is 0.
             valueAsDecimal:
               type: string
               description: '?'
+        clientId:
+          type: string
+          description: the id of the client creating this invoice
+        invoiceDate:
+          type: string
+          description: >-
+            custom invoice date if not the created date of the invoice, invoices
+            with a future date will be scheduled
+          example: '2022-11-28T13:59:46+00:00'
+        dueDate:
+          type: string
+          example: '2023-04-26T18:40:41.322Z'
+          description: due date to be shown on the invoice
+        invoiceId:
+          type: string
+          description: >-
+            invoice number. Appears in screens shown to the Buyer and emails
+            sent.
+        buyer:
+          $ref: '#/components/schemas/buyer'
+        shipping:
+          $ref: '#/components/schemas/shipping'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/items'
         requireBuyerNameAndEmail:
           type: boolean
           description: >-
@@ -1758,28 +1785,45 @@ components:
           $ref: '#/components/schemas/amount'
     currency:
       type: object
+      descripton: >
+        Represents money, in any form (e.g. crypto/fiat currencies and tokens),
+        supported on the CoinPayments
+
+        platform in some capacity (e.g. holding in a wallet and/or payment
+        processing).
       properties:
         id:
+          description: the unique id of the currency on the CoinPayments platform
           $ref: '#/components/schemas/id'
         type:
           type: string
-          format: crypto
+          description: the type of the currency (e.g crypto, token or fiat )
         symbol:
           type: string
-          description: currency symbol
-          format: BTC
+          description: >
+            ticker symbol for the currency.  For fiat currencies this is the
+            three character (ISO-4217) currency code,
+
+            and for crypto currencies their multi-character symbol.
+          example: BTC
         name:
           type: string
-          format: string
+          description: the name of the currency, e.g. 'United States Dollar' or 'Bitcoin'
         logo:
           type: object
+          description: the logo urls for the currency
           properties:
             imageUrl:
               type: string
-              format: string
+              description: >
+                'Link to a CoinPayments hosted image for a currency, 64x64 is
+                the default size returned.'
+                 Replace "64x64" in the image url with these alternative sizes: 32, 64, 128, 200.
             vectorUrl:
               type: string
-              format: string
+              description: >-
+                If available then the link to a CoinPayments hosted vector image
+                (SVG) for the currency.
         decimalPlaces:
           type: number
           example: 0
@@ -1788,18 +1832,33 @@ components:
           example: 0
         capabilities:
           type: array
+          description: >
+            the capabilities of the currency on the CoinPayments platform:
+
+            - multiSigAccounts: Multi signature 2-of-3 wallets where the user
+            holds the private key
+
+            - sharedAccounts: Shared accounts where the keys are held on the
+            server only
+
+            - payments: Can be accepted as payments
+
+            - singleSigAccounts: Single signature account for personal use.
           items:
             type: string
             example: multiSigAccounts
         urls:
           type: object
+          description: Contains various URLs for a currency
           properties:
             websites:
               type: array
+              description: the official websites for the currency
               items:
                 type: string
             explorers:
               type: array
+              descripton: the explorers for the currency (if crypto or a token)
               items:
                 type: string
     address:
@@ -1862,40 +1921,54 @@ components:
       properties:
         paidTransactions:
           type: array
+          description: >-
+            An array of paid transaction details, including transaction hash,
+            amount, and conversion Id.
           items:
             $ref: '#/components/schemas/paidTransaction'
         paid:
           type: string
-          description: paid at
+          description: The date and time when the payment was made.
           format: '2022-11-29T12:42:44.513Z'
         completedTxId:
           type: string
+          description: The ID of the completed transaction.
           format: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         externalAddress:
           type: string
+          description: The external address where the payout is deposited
           format: 378a37b57b6b4a4a93fd352b06ce1829
         destinationCurrencyId:
           type: string
+          description: The currency ID of the destination for the payout
           format: '1'
         expectedDisplayValue:
           type: string
+          description: The expected display value of the payout.
           format: '0.01'
         sourceCurrencyId:
           type: string
+          description: The currency ID of the source for the payout
           format: '101'
         destinationAccountId:
           type: string
+          description: The ID of the destination account for the payout
           format: 378a37b57b6b4a4a93fd352b06ce1829
         isConversion:
           type: boolean
+          description: Indicates whether a currency conversion is involved in the payout
           example: false
         conversionProgress:
           type: string
+          description: The progress status of the currency conversion
           example: 0
         settlementModeErrorCode:
           type: number
           example: 0
         destinationAmount:
+          description: >-
+            The destination amount of the payout, including payout amount, state
+            and merchant fees.
           $ref: '#/components/schemas/destinationAmount'
         items:
           type: array
@@ -2349,7 +2422,9 @@ components:
       type: object
       properties:
         items:
-          $ref: '#/components/schemas/rateItemRes'
+          type: array
+          items:
+            $ref: '#/components/schemas/rateItemRes'
   responses:
     Problem:
       description: Problem

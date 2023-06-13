@@ -6,6 +6,7 @@ get:
     Get payout details for an invoice, including if invoice has been fully paid out,
     the exact amount they will receive and in what currency, which address payout will be deposited,
     and who (Buyer) performed the payment.
+
   operationId: getInvoicePayouts
   parameters:
     - name: id

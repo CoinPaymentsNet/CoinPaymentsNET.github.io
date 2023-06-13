@@ -3,6 +3,8 @@ properties:
   transactionFees:
     $ref: ./fees.yaml
   networkFee:
-    $ref: ./fees.yaml
+    description:  An object with the same fields as the fees object in the "transactionFee"
+    $ref: ./simulateFees.yaml
   conversionFee:
-    $ref: ./fees.yaml
+    description:  An object with the same fields as the fees object in the "transactionFee"
+    $ref: ./simulateFees.yaml
