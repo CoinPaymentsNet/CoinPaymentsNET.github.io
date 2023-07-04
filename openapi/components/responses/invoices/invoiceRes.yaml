@@ -2,7 +2,7 @@ type: object
 properties:
   id:
     type: string
-    description: the CoinPayments id for the invoice
+    description: the CoinPayments id of the invoice
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
 
 

@@ -1,35 +1,49 @@
 type: object
 properties:
+  walletId:
+    description: Id of the wallet
+    type: string
+    example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
   currencyId:
-    description: currency Id
+    description: Id of the currency which this wallet was created for
     type: number
     example: 1
   label:
-    description: wallet label
+    description: Label of the wallet
     type: string
     example: John's wallet
-  walletId:
-    description: wallet Id
-    type: string
-    example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
   balance:
-    description: balance available on this wallet
+    description: Balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
     type: string
     example: '0.874833322'
+  tokenBalances:
+    description: Token (e.g. ERC20) balances for this wallet if available in smallest units (e.g. Weis for Ethereum)
+    type: string
+    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   depositAddress:
-    description: address to deposit funds into the wallet
+    description: Blockchain address of this wallet allowing it to receive funds
     type: string
-    example: 'Asaiuqhdaknxyuiw21w2w2223'
+    example: '0x9939b7b208012cd0395d1411272be6e34c04af7b'
   walletStatus:
-    description: status of the wallet in the system
+    description: |
+      Status of the wallet, should be Active (2) for valid usable wallets.
+      walletStatues can hold one of the following values [ Created, Active, Deactivated or Deleted ]
     type: string
-    example: unknown
+    example: Active
   canCreateAddress:
-    description: indicates whether the wallet can create an address
+    description: Specifies whether this wallet is allowed to create additional deposit addresses
     type: boolean
     example: true
   updatedAt:
-    description: date of last time the wallet data was modified by the user
+    description: The date when the properties of the wallet were last updated
     type: string
     example: '2022-10-05T06:05:07.520Z'
+  isVaultLocked:
+    description: flag that determines if the wallet vault is locked or not
+    type: boolean
+    example: true
+  vaultLockoutEndDateTime:
+    description: DateTime that specifies the planned date the vault will be unlocked
+    type: string
+    example: '2023-07-04T22:21:41.535Z'
 

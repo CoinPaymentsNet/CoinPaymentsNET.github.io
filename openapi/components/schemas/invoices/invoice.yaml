@@ -26,6 +26,10 @@ properties:
     description: the purchase description, can be provided instead of a list of items
   amount:
     type: object
+    description: |
+      represent the value of the item in the original currency, typically fiat currency such as USD or EUR.
+      Values will be used to calculate the amount the buyer should
+      pay in his or her selected currency of payment.
     properties:
       breakdown:
         type: object
@@ -42,7 +46,7 @@ properties:
             $ref: ../../globalTypes/globalAmount.yaml
       currencyId:
         type: string
-        description: original currency od of the item
+        description: original currency iD of the item
       contractAddress:
         type: string
         description: 'the address of the contract if this money object represents an ERC20 or similar token value'

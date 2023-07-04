@@ -5,7 +5,7 @@ properties:
     description: An array of paid transaction details, including transaction hash, amount, and conversion Id.
     items:
       $ref: ./paidTransaction.yaml
-  paid:
+  paidDate:
     type: string
     description: The date and time when the payment was made.
     format: '2022-11-29T12:42:44.513Z'

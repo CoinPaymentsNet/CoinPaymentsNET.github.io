@@ -1396,17 +1396,33 @@ components:
         contractAddress:
           type: string
           description: >-
-            Optional address of the smart contract if the currency supports it
-            and it should be used
+            the address of the contract if this money object represents an ERC20
+            or similar token value
         displayValue:
           type: string
-          description: '?'
+          description: The value formatted for display (e.g 0.1234 BTC)
         value:
           type: string
-          description: '?'
+          description: >
+            This parameter represents the monetary value as an integer in the
+            base (smallest) unit of the currency. For instance, Bitcoin can be
+            divided into 8 decimal places,
+
+            with each division known as a Satoshi. Therefore, 1 BTC would have a
+            value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of
+            31,000 Satoshis. Similarly,
+
+            an amount of $9.99 USD would be represented as 999 cents. In the
+            case of zero-decimal currencies like the Yen, a value of ¥500 would
+            be represented as 500.
+
+            If no value is provided, the default is 0.
         valueAsDecimal:
           type: string
-          description: '?'
+          description: >
+            The decimalValue represents the monetary value with decimal
+            precision derived from the value field, which is the integer
+            representation in the smallest unit of the currency or token.
     fullName:
       type: object
       properties:
@@ -1580,6 +1596,13 @@ components:
           description: the purchase description, can be provided instead of a list of items
         amount:
           type: object
+          description: >
+            represent the value of the item in the original currency, typically
+            fiat currency such as USD or EUR.
+
+            Values will be used to calculate the amount the buyer should
+
+            pay in his or her selected currency of payment.
           properties:
             breakdown:
               type: object
@@ -1596,7 +1619,7 @@ components:
                   $ref: '#/components/schemas/globalAmount'
             currencyId:
               type: string
-              description: original currency od of the item
+              description: original currency iD of the item
             contractAddress:
               type: string
               description: >-
@@ -1623,7 +1646,12 @@ components:
                 If no value is provided, the default is 0.
             valueAsDecimal:
               type: string
-              description: '?'
+              description: >
+                The decimalValue represents the monetary value with decimal
+                precision derived from the value field,
+
+                which is the integer representation in the smallest unit of the
+                currency or token.
         clientId:
           type: string
           description: the id of the client creating this invoice
@@ -1712,8 +1740,8 @@ components:
             contractAddress:
               type: string
               description: >-
-                address of the smart contract if the currency supports it and it
-                should be used
+                the address of the contract if this money object represents an
+                ERC20 or similar token value
             address:
               type: string
               description: the external address into which to pay out
@@ -1734,7 +1762,7 @@ components:
       properties:
         id:
           type: string
-          description: the CoinPayments id for the invoice
+          description: the CoinPayments id of the invoice
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
     id:
       type: string
@@ -1756,10 +1784,23 @@ components:
           properties:
             displayValue:
               type: string
-              format: '0.0123'
+              description: The value formatted for display (e.g 0.1234 BTC)
             value:
               type: string
-              format: '0.0123'
+              description: >
+                This parameter represents the monetary value as an integer in
+                the base (smallest) unit of the currency. For instance, Bitcoin
+                can be divided into 8 decimal places,
+
+                with each division known as a Satoshi. Therefore, 1 BTC would
+                have a value of 100,000,000 Satoshis, and 0.00031 BTC would have
+                a value of 31,000 Satoshis. Similarly,
+
+                an amount of $9.99 USD would be represented as 999 cents. In the
+                case of zero-decimal currencies like the Yen, a value of ¥500
+                would be represented as 500.
+
+                If no value is provided, the default is 0.
             currencyId:
               $ref: '#/components/schemas/currencyId'
         conversionId:
@@ -1770,10 +1811,23 @@ components:
       properties:
         displayValue:
           type: string
-          format: '0.01'
+          description: The value formatted for display (e.g 0.1234 BTC)
         value:
           type: string
-          format: '0.01'
+          description: >
+            This parameter represents the monetary value as an integer in the
+            base (smallest) unit of the currency. For instance, Bitcoin can be
+            divided into 8 decimal places,
+
+            with each division known as a Satoshi. Therefore, 1 BTC would have a
+            value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of
+            31,000 Satoshis. Similarly,
+
+            an amount of $9.99 USD would be represented as 999 cents. In the
+            case of zero-decimal currencies like the Yen, a value of ¥500 would
+            be represented as 500.
+
+            If no value is provided, the default is 0.
         currencyId:
           $ref: '#/components/schemas/currencyId'
     destinationAmount:
@@ -1785,12 +1839,6 @@ components:
           $ref: '#/components/schemas/amount'
     currency:
       type: object
-      descripton: >
-        Represents money, in any form (e.g. crypto/fiat currencies and tokens),
-        supported on the CoinPayments
-
-        platform in some capacity (e.g. holding in a wallet and/or payment
-        processing).
       properties:
         id:
           description: the unique id of the currency on the CoinPayments platform
@@ -1826,9 +1874,15 @@ components:
                 (SVG) for the currency.
         decimalPlaces:
           type: number
+          description: >-
+            the number of digits after the decimal separator, e.g. 2 for USD, 8
+            for BTC, 0 for JPY
           example: 0
         rank:
           type: number
+          description: >-
+            the relative ordering/ranking of this currency to the other
+            supported currencies on the CoinPayments platform
           example: 0
         capabilities:
           type: array
@@ -1858,7 +1912,7 @@ components:
                 type: string
             explorers:
               type: array
-              descripton: the explorers for the currency (if crypto or a token)
+              description: the explorers for the currency (if crypto or a token)
               items:
                 type: string
     address:
@@ -1869,12 +1923,39 @@ components:
       properties:
         displayValue:
           type: string
-          format: '0.01'
+          description: The value formatted for display (e.g 0.1234 BTC)
+        contractAddress:
+          description: >-
+            the address of the contract if this money object represents an ERC20
+            or similar token value
+          $ref: '#/components/schemas/address'
+        value:
+          type: string
+          description: >
+            This parameter represents the monetary value as an integer in the
+            base (smallest) unit of the currency. For instance, Bitcoin can be
+            divided into 8 decimal places,
+
+            with each division known as a Satoshi. Therefore, 1 BTC would have a
+            value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of
+            31,000 Satoshis. Similarly,
+
+            an amount of $9.99 USD would be represented as 999 cents. In the
+            case of zero-decimal currencies like the Yen, a value of ¥500 would
+            be represented as 500.
+
+            If no value is provided, the default is 0.
+        currencyId:
+          $ref: '#/components/schemas/currencyId'
+    simulateFees:
+      type: object
+      properties:
+        displayValue:
+          type: string
         contractAddress:
           $ref: '#/components/schemas/address'
         value:
           type: string
-          format: '0.0123'
         currencyId:
           $ref: '#/components/schemas/currencyId'
     merchantFees:
@@ -1883,9 +1964,15 @@ components:
         transactionFees:
           $ref: '#/components/schemas/fees'
         networkFee:
-          $ref: '#/components/schemas/fees'
+          description: >-
+            An object with the same fields as the fees object in the
+            "transactionFee"
+          $ref: '#/components/schemas/simulateFees'
         conversionFee:
-          $ref: '#/components/schemas/fees'
+          description: >-
+            An object with the same fields as the fees object in the
+            "transactionFee"
+          $ref: '#/components/schemas/simulateFees'
     datetime:
       type: string
       example: '2022-11-29T19:10:04.228Z'
@@ -1893,29 +1980,58 @@ components:
       type: object
       properties:
         currency:
+          description: the currency (merchant's accepted currency) that will be received
           $ref: '#/components/schemas/currency'
         merchantFees:
+          description: The amount for service fees in the merchant's accepted currency
           $ref: '#/components/schemas/merchantFees'
         payoutAmount:
-          $ref: '#/components/schemas/fees'
+          description: >
+            This is the amount to be finally paid out to the merchant in the
+            merchant's accepted currency.
+
+            An object with the same fields and desription as the fees object in
+            the "transactionFee" under merchantFees.
+          $ref: '#/components/schemas/simulateFees'
         payoutAmountInInvoiceCurrency:
-          $ref: '#/components/schemas/fees'
+          description: >
+            The Pay out amount in the invoice currency.
+
+            An object with the same fields and desription as the fees object in
+            the "transactionFee" under merchantFees.
+          $ref: '#/components/schemas/simulateFees'
         merchantFeestInInvoiceCurrency:
-          $ref: '#/components/schemas/fees'
+          description: >
+            The merchant fees in the invoice currency.
+
+            An object with the same fields as the fees object in the
+            "transactionFee" under merchantFees.
+          $ref: '#/components/schemas/simulateFees'
         merchantPayoutAddress:
           type: string
-          format: 378a37b57b6b4a4a93fd352b06ce1829
+          description: >-
+            the merchants payment output address at the time the hot wallet was
+            created
         sent:
+          description: >-
+            the timestamp of when this payout was sent (e.g. broadcast on the
+            blockchain)
           $ref: '#/components/schemas/datetime'
         created:
           $ref: '#/components/schemas/datetime'
         expected:
+          description: >-
+            the approximate timestamp of when this payout is expected to be sent
+            (e.g. broadcast on the blockchain)
           $ref: '#/components/schemas/datetime'
         confirmed:
+          description: >-
+            the timestamp of when this payout was confirmed (e.g. on the
+            blockchain)
           $ref: '#/components/schemas/datetime'
         state:
           type: string
-          format: scheduled
+          description: the current state of the payout
     payouts:
       type: object
       properties:
@@ -1926,7 +2042,7 @@ components:
             amount, and conversion Id.
           items:
             $ref: '#/components/schemas/paidTransaction'
-        paid:
+        paidDate:
           type: string
           description: The date and time when the payment was made.
           format: '2022-11-29T12:42:44.513Z'
@@ -2017,38 +2133,58 @@ components:
     MerchantWalletObj:
       type: object
       properties:
+        walletId:
+          description: Id of the wallet
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         currencyId:
-          description: currency Id
+          description: Id of the currency which this wallet was created for
           type: number
           example: 1
         label:
-          description: wallet label
+          description: Label of the wallet
           type: string
           example: John's wallet
-        walletId:
-          description: wallet Id
-          type: string
-          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         balance:
-          description: balance available on this wallet
+          description: Balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
           type: string
           example: '0.874833322'
+        tokenBalances:
+          description: >-
+            Token (e.g. ERC20) balances for this wallet if available in smallest
+            units (e.g. Weis for Ethereum)
+          type: string
+          example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
         depositAddress:
-          description: address to deposit funds into the wallet
+          description: Blockchain address of this wallet allowing it to receive funds
           type: string
-          example: Asaiuqhdaknxyuiw21w2w2223
+          example: '0x9939b7b208012cd0395d1411272be6e34c04af7b'
         walletStatus:
-          description: status of the wallet in the system
+          description: >
+            Status of the wallet, should be Active (2) for valid usable wallets.
+
+            walletStatues can hold one of the following values [ Created,
+            Active, Deactivated or Deleted ]
           type: string
-          example: unknown
+          example: Active
         canCreateAddress:
-          description: indicates whether the wallet can create an address
+          description: >-
+            Specifies whether this wallet is allowed to create additional
+            deposit addresses
           type: boolean
           example: true
         updatedAt:
-          description: date of last time the wallet data was modified by the user
+          description: The date when the properties of the wallet were last updated
           type: string
           example: '2022-10-05T06:05:07.520Z'
+        isVaultLocked:
+          description: flag that determines if the wallet vault is locked or not
+          type: boolean
+          example: true
+        vaultLockoutEndDateTime:
+          description: DateTime that specifies the planned date the vault will be unlocked
+          type: string
+          example: '2023-07-04T22:21:41.535Z'
     arrayOfWallets:
       type: array
       items:
