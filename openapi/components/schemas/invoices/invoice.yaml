@@ -46,7 +46,7 @@ properties:
             $ref: ../../globalTypes/globalAmount.yaml
       currencyId:
         type: string
-        description: original currency iD of the item
+        description: original currency Id of the item
       contractAddress:
         type: string
         description: 'the address of the contract if this money object represents an ERC20 or similar token value'
