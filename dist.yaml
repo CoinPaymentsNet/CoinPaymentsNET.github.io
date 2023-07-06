@@ -1619,7 +1619,7 @@ components:
                   $ref: '#/components/schemas/globalAmount'
             currencyId:
               type: string
-              description: original currency iD of the item
+              description: original currency Id of the item
             contractAddress:
               type: string
               description: >-
@@ -2239,99 +2239,128 @@ components:
       type: object
       properties:
         id:
-          description: transaction Id
+          description: Id of the transaction in the system
           type: string
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         dateCreated:
-          description: transaction date
+          description: Date when transaction was created
           type: string
           example: '2022-10-05T08:39:41.494Z'
+        dateCompleted:
+          description: Date when transaction was received or sent to the chain
+          type: string
+          example: '2022-10-05T08:40:41.494Z'
         fromOwnerId:
           description: Id of the owner of the wallet who sent the transaction
           type: string
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         fromWalletId:
-          description: sender wallet Id
+          description: Id of the wallet which the transaction was sent from
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        toWalletId:
+          description: Id of the wallet which the transaction was sent to
           type: string
           example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         fromCurrencyId:
-          description: sender currency Id
+          description: Id of the currency that was used to send this transaction
           type: number
           example: 1
+        toCurrencyId:
+          description: Id of the currency which this transaction is sending funds to
+          type: number
+          example: 2
         fromAmount:
-          description: amount in source currency
+          description: >-
+            Amount of funds that was sent in this transaction in smallest units
+            (e.g. Satoshis for Bitcoin)
           type: string
           example: '0.22390234'
+        toAmount:
+          description: >-
+            Amount of funds that was received in this transaction in smallest
+            units (e.g. Satoshis for Bitcoin)
+          type: string
+          example: '0.13448434'
         fromAddress:
-          description: sender wallet address
+          description: >-
+            Address of the wallet which was used when this transaction was
+            created
+          type: string
+          example: 1AYASDI34W2W2SIFFRE32452S1Q
+        toAddress:
+          description: Address which this transaction is sending funds to
           type: string
           example: 1AYASDI34W2W2SIFFRE32452S1Q
         fromContractAddress:
-          description: sender contract address
-          type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
-        toWalletId:
-          description: benificiary wallet Id
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        toCurrencyId:
-          description: benificiary currency Id
-          type: number
-          example: 2
-        spendRequestId:
-          description: spend request id
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        toAmount:
-          description: amount in receiving currency
-          type: string
-          example: '0.13448434'
-        toAddress:
-          description: benificiary wallet address
+          description: >-
+            Address of the contract for tokens being sent if this transaction is
+            an ERC20 or similar token transfer
           type: string
           example: 1AYASDI34W2W2SIFFRE32452S1Q
         toContractAddress:
-          description: benificiary contract address
+          description: >-
+            Address of the contract for tokens being received if this
+            transaction is an ERC20 or similar token transfer
           type: string
           example: 1AYASDI34W2W2SIFFRE32452S1Q
+        confirmations:
+          description: Current number of confirmations that this transaction has
+          type: number
+          example: 2
+        requiredConfirmations:
+          description: >-
+            Required number of confirmations to consider this transaction
+            confirmed
+          type: number
+          example: 5
+        spendRequestId:
+          description: Id of the spend request which was used to create this transaction
+          type: string
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
         coinPaymentsFee:
-          description: platform fees
+          description: >-
+            Amount of funds withheld as system fee for this transaction in
+            smallest units (e.g. Satoshis for Bitcoin)
           type: string
           example: '0.000012'
         transactionStatus:
-          description: transaction status
+          description: Status of this transaction
           type: string
           example: unknown
         transactionType:
-          description: transaction type
+          description: Type of this transaction
           type: string
           example: unknown
         memo:
-          description: otional memo
+          description: User-defined custom note for this transaction
           type: string
-          example: memo
+          example: July rent
         txHash:
-          description: transaction hash
+          description: Blockchain transaction hash (only for external transfers)
           type: string
           example: 1AYASDI34W2W2SIFFRE32452S1Q3289y7debugDSDSd38d3xSSA33ASDRxw98
         outputIndex:
-          description: output index
+          description: >-
+            Index of the output in which this transaction received funds (only
+            for UTXO receives)
           type: number
           example: 1
         blockchainFee:
-          description: platform fees
+          description: >-
+            Amount of funds spent as a blockchain fee for this transaction in
+            smallest units (e.g. Satoshis for Bitcoin)
           type: string
           example: '0.00000032'
         feeCurrency:
-          description: currency fees
+          description: >-
+            Currency in which CoinPayments fees were deducted. The format is
+            {CurrencyId}:{ContractAddress?} where ContractAddress is optional
+            e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
           type: string
           example: '0.00000032'
         blockNumberTxAppearedAt:
           description: date of appearing the transaction in the blockchain
-          type: string
-          example: '2022-10-05T08:40:41.494Z'
-        dateCompleted:
-          description: date of transaction completion
           type: string
           example: '2022-10-05T08:40:41.494Z'
     arrayOfWalletTransactions:
