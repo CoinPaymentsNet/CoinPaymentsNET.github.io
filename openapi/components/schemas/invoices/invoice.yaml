@@ -14,13 +14,13 @@ properties:
     properties:
       to:
         type: string
-        description: the email to field, multiple addresses separated by semicolons
+        description: to email address. the value can take multiple addresses separated by semicolons
       cc:
         type: string
-        description: the email to field, multiple addresses separated by semicolons
+        description: field to add multiple recepients separated by semicolons
       bcc:
         type: string
-        description: the email to field, multiple addresses separated by semicolons
+        description: bcc field similar to "cc" field except that other recipients won't be able to see that someone else has been sent a copy of the email.
   description:
     type: string
     description: the purchase description, can be provided instead of a list of items
