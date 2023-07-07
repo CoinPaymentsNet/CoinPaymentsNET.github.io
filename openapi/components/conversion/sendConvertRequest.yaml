@@ -6,10 +6,16 @@ required:
 properties:
   fromContractAddress:
     type: string
-    description: (Optional) Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+    description: |
+      The contract address of the source cryptocurrency if it is a token.
+      It is required only if you are performing a conversion from a specific token.
+      e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
   toContractAddress:
     type: string
-    description: (Optional) Address of the contract of the CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+    description: |
+      The contract address of the target cryptocurrency if it is a token.
+      It is required only if you are converting to a specific token.
+      e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
   toAddress:
     type: string
     description: Address which client wants to send funds to
@@ -18,7 +24,7 @@ properties:
     description: ID of the currency of the spend destination
   blockchainFeeOverrideInSmallestUnits:
     type: number
-    description: (Optional) Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
+    description: Used for overriding the system suggested blockchain fee (within 10% range) to manage the transaction processing speed
   amountInSmallestUnits:
     description: |
       refers to the amount of a specific cryptocurrency, such as Bitcoin, measured in its smallest divisible unit, AKA atomic units.
@@ -33,9 +39,8 @@ properties:
   receiverPaysFee:
     type: boolean
     description: |
-      Specifies that the receiver of the conversion will pay the fees meaning that
-      the AmountInSmallestUnits will be deducted from the source balance
-      and receiver will get the AmountInSmallestUnits minus fees.
-      Otherwise fees will be added to the AmountInSmallestUnits and
-      the total sum will be deducted from the source balance
-      while the receiver will get exactly AmountInSmallestUnits
+      When set to true, the receiver of the conversion will pay the fees. In this case,
+      the AmountInSmallestUnits will be deducted from the source balance, and the receiver will receive the remaining amount after deducting the fees.
+      When set to false (or not provided), the fees will be added to the AmountInSmallestUnits,
+      and the total sum (including fees) will be deducted from the source balance.
+      The receiver will receive the AmountInSmallestUnits exactly as specified.

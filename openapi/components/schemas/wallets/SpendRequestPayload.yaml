@@ -34,15 +34,13 @@ properties:
   memo:
     description: user-defined note for the spend
     type: string
-    example: 'test memo'
   receiverPaysFee:
     description: |
-      Specifies that the receiver of the transfer will pay the fees, meaning that the
-      AmountInSmallestUnits will be deducted from the sender balance
-      and receiver will get the CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits minus fees.
-      Otherwise fees will be added to the AmountInSmallestUnits and
-      the total sum will be deducted from the sender balance while the receiver will get exactly
-      CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits
+      When set to true, the receiver of the conversion will pay the fees. In this case,
+      the AmountInSmallestUnits will be deducted from the source balance, and the receiver will receive the remaining amount after deducting the fees.
+      When set to false (or not provided), the fees will be added to the AmountInSmallestUnits,
+      and the total sum (including fees) will be deducted from the source balance.
+      The receiver will receive the AmountInSmallestUnits exactly as specified.
     type: boolean
     example: false
 

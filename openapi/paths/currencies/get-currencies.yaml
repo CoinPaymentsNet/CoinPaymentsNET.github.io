@@ -2,7 +2,7 @@ get:
   tags:
     - Currencies API
   summary: List currencies and their capabilities
-  description: Retrieves a list of all currencies and their capabilities
+  description: Returns a page of the supported currencies on the CoinPayments.net platform, by default ordered by their rank on CoinPayments.net.
   operationId: listPlatformSupportedCurrencies
   parameters:
     - name: q

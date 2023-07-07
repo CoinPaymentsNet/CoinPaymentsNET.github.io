@@ -122,12 +122,13 @@ properties:
     properties:
       integration:
         type: string
-        description: '?'
+        description: 'integration name'
         format: 'InvoiceBuilder'
       hostname:
         type: string
-        description: '?'
+        description: 'server name of the integration api'
   poNumber:
+    description: Optional Purchase order number on the integration API.
     type: string
     format: InvoiceBuilder
   webhook:
