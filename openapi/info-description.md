@@ -31,6 +31,9 @@ The free-to-set-up wallet is available on web and mobile, enabling account manag
 # Common API Errors
 This section provides an overview of the common errors that you may encounter when utilizing CoinPayment API. By familiarizing yourself with these errors, you will be better equipped to handle potential issues and troubleshoot effectively. Understanding these errors will contribute to a smoother integration process and ensure a more seamless payment experience for your users.
 
+### Unauthorized
+This error occurs when an invalid `clientId` or `clientSecret` is used to generate API signature to authenticate requests. It may also occur if a `clientId` is valid but the integration is either deleted or the user's account does not exist. or an invalid or incorrect client secret is provided. In such cases, the API returns an "Unauthorized" error.
+
 ### Insufficient Funds
 This error can occur in different scenarios, such as during withdrawal to an external address or when converting a coin to another, whether to an internal or external address. It arises when the user's wallet does not have enough balance to cover the requested transaction amount.
 
@@ -50,4 +53,7 @@ When sending a request to create a withdrawal or a conversion, if the provided a
 
 ### Invalid or Unsupported Currency:
 This error occurs when the requested invoice, withdrawal, conversion involves an invalid or unsupported currency. It could be due to the currency not being listed or supported on the platform. Users can utilize the currencies API included in the documentation to list all supported currencies and verify if their intended currency is supported before initiating the transaction.
+
+### Bad request ( Input validation errors ):
+This error occurs when there are issues with the validation of fields in the request's payload. For example, if a required field is not sent, or if the fields have invalid values or incorrect types. The API response for a validation error includes a description of the error and may provide details about the missing fields or the specific issues with the payload.
 
