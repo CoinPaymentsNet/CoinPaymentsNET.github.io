@@ -4,7 +4,7 @@ info:
   title: CoinPayments API Documentation
   x-logo:
     url: ./logo.png
-  description: >
+  description: >+
     Welcome to CoinPayments API documentation!
 
 
@@ -68,6 +68,64 @@ info:
 
     5. Advanced security measures to ensure that all transactions are safe and
     secure.
+
+
+
+    # Common API Errors
+
+    This section provides an overview of the common errors that you may
+    encounter when utilizing CoinPayment API. By familiarizing yourself with
+    these errors, you will be better equipped to handle potential issues and
+    troubleshoot effectively. Understanding these errors will contribute to a
+    smoother integration process and ensure a more seamless payment experience
+    for your users.
+
+
+    ## Insufficient Funds
+
+    This error can occur in different scenarios, such as during withdrawal to an
+    external address or when converting a coin to another, whether to an
+    internal or external address. It arises when the user's wallet does not have
+    enough balance to cover the requested transaction amount.
+
+
+    ## Invalid Address
+
+    When sending a request to create a withdrawal or a conversion, if the
+    provided address is not valid or formatted incorrectly, this error is
+    triggered. Users should double-check the address they provided and ensure it
+    follows the required format. here are examples of Valid addresses
+
+
+
+    ### Valid UTXO-Based Coin Addresses:
+
+    - Bitcoin (BTC): `1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2`
+
+    - Bitcoin Cash (BCH):
+    `bitcoincash:qr7uq7uvujmzhcv29tw92q0hs7fwpht4fvl4a4kj9a`
+
+    - Litecoin (LTC): `LZx9pzGfH6mKSzVsJZnryeVrRzt6X8uZ9r`
+
+
+    ### Valid Token Coin Addresses:
+
+    - Ethereum (ETH): `0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf`
+
+    - ERC-20 Tokens (e.g., DAI, USDT):
+    `0x6B175474E89094C44Da98b954EedeAC495271d0F`
+
+
+
+    ## Invalid or Unsupported Currency:
+
+    - This error occurs when the requested invoice, withdrawal, conversion
+    involves an invalid or unsupported currency. It could be due to the currency
+    not being listed or supported on the platform. Users can utilize the
+    currencies API included in the documentation to list all supported
+    currencies and verify if their intended currency is supported before
+    initiating the transaction.
+
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -466,7 +524,9 @@ paths:
       tags:
         - Currencies API
       summary: List currencies and their capabilities
-      description: Retrieves a list of all currencies and their capabilities
+      description: >-
+        Returns a page of the supported currencies on the CoinPayments.net
+        platform, by default ordered by their rank on CoinPayments.net.
       operationId: listPlatformSupportedCurrencies
       parameters:
         - name: q
@@ -1005,6 +1065,7 @@ paths:
       description: >
         Similar to the create withdrawal flow, Converting from a coin to another
         two-step process:
+
 
         1- Send convert request: This request will trigger a response containing
         a preview of the transaction, including any applicable fees.
@@ -1584,13 +1645,18 @@ components:
           properties:
             to:
               type: string
-              description: the email to field, multiple addresses separated by semicolons
+              description: >-
+                to email address. the value can take multiple addresses
+                separated by semicolons
             cc:
               type: string
-              description: the email to field, multiple addresses separated by semicolons
+              description: field to add multiple recepients separated by semicolons
             bcc:
               type: string
-              description: the email to field, multiple addresses separated by semicolons
+              description: >-
+                bcc field similar to "cc" field except that other recipients
+                won't be able to see that someone else has been sent a copy of
+                the email.
         description:
           type: string
           description: the purchase description, can be provided instead of a list of items
@@ -1716,12 +1782,13 @@ components:
           properties:
             integration:
               type: string
-              description: '?'
+              description: integration name
               format: InvoiceBuilder
             hostname:
               type: string
-              description: '?'
+              description: server name of the integration api
         poNumber:
+          description: Optional Purchase order number on the integration API.
           type: string
           format: InvoiceBuilder
         webhook:
@@ -2416,24 +2483,23 @@ components:
         memo:
           description: user-defined note for the spend
           type: string
-          example: test memo
         receiverPaysFee:
           description: >
-            Specifies that the receiver of the transfer will pay the fees,
-            meaning that the
+            When set to true, the receiver of the conversion will pay the fees.
+            In this case,
 
-            AmountInSmallestUnits will be deducted from the sender balance
+            the AmountInSmallestUnits will be deducted from the source balance,
+            and the receiver will receive the remaining amount after deducting
+            the fees.
 
-            and receiver will get the
-            CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits
-            minus fees.
+            When set to false (or not provided), the fees will be added to the
+            AmountInSmallestUnits,
 
-            Otherwise fees will be added to the AmountInSmallestUnits and
+            and the total sum (including fees) will be deducted from the source
+            balance.
 
-            the total sum will be deducted from the sender balance while the
-            receiver will get exactly
-
-            CoinPayments.Api.Models.WalletSpendRequestDto.AmountInSmallestUnits
+            The receiver will receive the AmountInSmallestUnits exactly as
+            specified.
           type: boolean
           example: false
     SpendRequestConfirmationSuccess:
@@ -2452,15 +2518,23 @@ components:
       properties:
         fromContractAddress:
           type: string
-          description: >-
-            (Optional) Address of the contract e.g.
-            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+          description: >
+            The contract address of the source cryptocurrency if it is a token.
+
+            It is required only if you are performing a conversion from a
+            specific token.
+
+            e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20
+            TetherUSD
         toContractAddress:
           type: string
-          description: >-
-            (Optional) Address of the contract of the
-            CoinPayments.Api.Models.WalletSpendRequestDto.ToCurrencyId e.g.
-            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+          description: >
+            The contract address of the target cryptocurrency if it is a token.
+
+            It is required only if you are converting to a specific token.
+
+            e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20
+            TetherUSD
         toAddress:
           type: string
           description: Address which client wants to send funds to
@@ -2470,8 +2544,8 @@ components:
         blockchainFeeOverrideInSmallestUnits:
           type: number
           description: >-
-            (Optional) Used for overriding the system suggested blockchain fee
-            (within 10% range) to manage the transaction processing speed
+            Used for overriding the system suggested blockchain fee (within 10%
+            range) to manage the transaction processing speed
         amountInSmallestUnits:
           description: >
             refers to the amount of a specific cryptocurrency, such as Bitcoin,
@@ -2492,18 +2566,21 @@ components:
         receiverPaysFee:
           type: boolean
           description: >
-            Specifies that the receiver of the conversion will pay the fees
-            meaning that
+            When set to true, the receiver of the conversion will pay the fees.
+            In this case,
 
-            the AmountInSmallestUnits will be deducted from the source balance
+            the AmountInSmallestUnits will be deducted from the source balance,
+            and the receiver will receive the remaining amount after deducting
+            the fees.
 
-            and receiver will get the AmountInSmallestUnits minus fees.
+            When set to false (or not provided), the fees will be added to the
+            AmountInSmallestUnits,
 
-            Otherwise fees will be added to the AmountInSmallestUnits and
+            and the total sum (including fees) will be deducted from the source
+            balance.
 
-            the total sum will be deducted from the source balance
-
-            while the receiver will get exactly AmountInSmallestUnits
+            The receiver will receive the AmountInSmallestUnits exactly as
+            specified.
     convertRequestSuccess:
       type: object
       properties:

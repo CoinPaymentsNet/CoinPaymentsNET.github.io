@@ -26,3 +26,28 @@ The free-to-set-up wallet is available on web and mobile, enabling account manag
 3. Callback Addresses feature allows merchant to receive payment without specifying the amount or time in advance.
 4. Real-time updates using Webhooks, The API provides updates on the status of transactions, allowing merchants and customers to track the progress of their payments.
 5. Advanced security measures to ensure that all transactions are safe and secure.
+
+
+# Common API Errors
+This section provides an overview of the common errors that you may encounter when utilizing CoinPayment API. By familiarizing yourself with these errors, you will be better equipped to handle potential issues and troubleshoot effectively. Understanding these errors will contribute to a smoother integration process and ensure a more seamless payment experience for your users.
+
+### Insufficient Funds
+This error can occur in different scenarios, such as during withdrawal to an external address or when converting a coin to another, whether to an internal or external address. It arises when the user's wallet does not have enough balance to cover the requested transaction amount.
+
+### Invalid Address
+When sending a request to create a withdrawal or a conversion, if the provided address is not valid or formatted incorrectly, this error is triggered. Users should double-check the address they provided and ensure it follows the required format. here are examples of Valid addresses
+
+
+#### Valid UTXO-Based Coin Addresses:
+- Bitcoin (BTC): `1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2`
+- Bitcoin Cash (BCH): `bitcoincash:qr7uq7uvujmzhcv29tw92q0hs7fwpht4fvl4a4kj9a`
+- Litecoin (LTC): `LZx9pzGfH6mKSzVsJZnryeVrRzt6X8uZ9r`
+
+#### Valid Token Coin Addresses:
+- Ethereum (ETH): `0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf`
+- ERC-20 Tokens (e.g., DAI, USDT): `0x6B175474E89094C44Da98b954EedeAC495271d0F`
+
+
+### Invalid or Unsupported Currency:
+This error occurs when the requested invoice, withdrawal, conversion involves an invalid or unsupported currency. It could be due to the currency not being listed or supported on the platform. Users can utilize the currencies API included in the documentation to list all supported currencies and verify if their intended currency is supported before initiating the transaction.
+
