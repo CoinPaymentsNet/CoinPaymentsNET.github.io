@@ -13,6 +13,4 @@ get:
           schema:
             $ref: ../../components/schemas/currencies/requiredConfirmations.yaml
     '400':
-      description: Bad request example!
-
-
+      description: Bad request

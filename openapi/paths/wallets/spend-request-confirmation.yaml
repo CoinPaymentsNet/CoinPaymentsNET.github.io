@@ -19,8 +19,8 @@ post:
         application/json:
           schema:
             $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
-    '400':
-      description: Bad Request
+    '404':
+      description: Spend confirmation not found
       $ref: ../../components/responses/Problem.yaml
 
 

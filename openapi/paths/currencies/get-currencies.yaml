@@ -7,28 +7,24 @@ get:
   parameters:
     - name: q
       in: query
-      ##nullable: true
       schema:
         type: string
         example: 'BTC'
       description: search query to find currencies with names and/or codes
     - name: types
       in: query
-      ##nullable: true
       schema:
         type: string
         example: 'crypto,token,fiat'
       description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
     - name: capabilities
       in: query
-      ##nullable: true
       schema:
         type: string
         example: 'multiSigAccounts,sharedAccounts,payments,singleSigAccounts'
       description: search query to find currencies with names and/or codes
     - name: after
       in: query
-      ##nullable: true
       schema:
         type: string
         example: ''
@@ -42,5 +38,4 @@ get:
             $ref: ../../components/schemas/currencies/arrayOfCurrencies.yaml
     '400':
       description: Bad Request
-      $ref: ../../components/responses/Problem.yaml
 

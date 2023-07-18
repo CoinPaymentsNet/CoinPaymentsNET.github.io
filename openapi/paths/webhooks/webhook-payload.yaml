@@ -13,8 +13,4 @@ post:
           schema:
             $ref: ../../components/responses/Webhooks/notification-payload.yaml
     '400':
-      description: Faluir status code ( 400 )
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/schemas/Problem.yaml
+      description: CoinPayments API could not reach your server

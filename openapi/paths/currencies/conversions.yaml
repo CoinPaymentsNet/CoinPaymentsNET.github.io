@@ -13,6 +13,6 @@ get:
           schema:
             $ref: ../../components/schemas/currencies/currencyConversions.yaml
     '400':
-      description: Bad request example!
+      description: Bad request
 
 

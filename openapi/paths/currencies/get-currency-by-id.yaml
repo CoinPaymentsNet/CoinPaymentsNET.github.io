@@ -19,7 +19,7 @@ get:
         application/json:
           schema:
             $ref: ../../components/schemas/currencies/currencySchema.yaml
-    '400':
-      description: Bad request example!
+    '404':
+      description: currency not found
 
 

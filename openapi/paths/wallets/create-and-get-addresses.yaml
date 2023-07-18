@@ -30,7 +30,7 @@ post:
           schema:
             $ref: ../../components/responses/wallets/addressRes.yaml
     '404':
-      description: Currency Not Found!
+      description: Wallet Not Found!
 get:
   tags:
     - Wallets API
@@ -52,11 +52,7 @@ get:
         application/json:
           schema:
             $ref: ../../components/responses/wallets/list-of-addresses.yaml
-    '400':
-      description: Bad Request
-      $ref: ../../components/responses/Problem.yaml
     '404':
-      description: No wallets found
-      $ref: ../../components/responses/Problem.yaml
+      description: Wallet not found
 
 

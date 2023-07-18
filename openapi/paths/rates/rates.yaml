@@ -36,6 +36,6 @@ get:
           schema:
             $ref: ../../components/responses/rates/ratesRes.yaml
     '400':
-      description: Bad request example!
+      description: Bad request
 
 

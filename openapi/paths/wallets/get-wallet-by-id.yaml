@@ -19,8 +19,8 @@ get:
         application/json:
           schema:
             $ref: ../../components/schemas/wallets/MerchantWalletObj.yaml
-    '400':
-      description: Bad Request
-      $ref: ../../components/responses/Problem.yaml
+    '404':
+      description: Wallet not found
+      # $ref: ../../components/responses/Problem.yaml
 
 

@@ -35,6 +35,7 @@ post:
           schema:
             $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
     '400':
-      description: Bad Request
-      $ref: ../../components/responses/Problem.yaml
+      description: Not enough funds
+    '404':
+      description: Wallet not found
 

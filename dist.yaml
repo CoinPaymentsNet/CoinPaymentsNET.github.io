@@ -4,7 +4,7 @@ info:
   title: CoinPayments API Documentation
   x-logo:
     url: ./logo.png
-  description: >+
+  description: >
     Welcome to CoinPayments API documentation!
 
 
@@ -81,7 +81,16 @@ info:
     for your users.
 
 
-    ## Insufficient Funds
+    ### Unauthorized
+
+    This error occurs when an invalid `clientId` or `clientSecret` is used to
+    generate API signature to authenticate requests. It may also occur if a
+    `clientId` is valid but the integration is either deleted or the user's
+    account does not exist. or an invalid or incorrect client secret is
+    provided. In such cases, the API returns an "Unauthorized" error.
+
+
+    ### Insufficient Funds
 
     This error can occur in different scenarios, such as during withdrawal to an
     external address or when converting a coin to another, whether to an
@@ -89,7 +98,7 @@ info:
     enough balance to cover the requested transaction amount.
 
 
-    ## Invalid Address
+    ### Invalid Address
 
     When sending a request to create a withdrawal or a conversion, if the
     provided address is not valid or formatted incorrectly, this error is
@@ -98,7 +107,7 @@ info:
 
 
 
-    ### Valid UTXO-Based Coin Addresses:
+    #### Valid UTXO-Based Coin Addresses:
 
     - Bitcoin (BTC): `1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2`
 
@@ -108,7 +117,7 @@ info:
     - Litecoin (LTC): `LZx9pzGfH6mKSzVsJZnryeVrRzt6X8uZ9r`
 
 
-    ### Valid Token Coin Addresses:
+    #### Valid Token Coin Addresses:
 
     - Ethereum (ETH): `0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf`
 
@@ -117,15 +126,26 @@ info:
 
 
 
-    ## Invalid or Unsupported Currency:
+    ### Invalid or Unsupported Currency:
 
-    - This error occurs when the requested invoice, withdrawal, conversion
+    This error occurs when the requested invoice, withdrawal, conversion
     involves an invalid or unsupported currency. It could be due to the currency
     not being listed or supported on the platform. Users can utilize the
     currencies API included in the documentation to list all supported
     currencies and verify if their intended currency is supported before
     initiating the transaction.
 
+
+    ### Bad request ( Input validation errors ):
+
+    This error occurs when there are issues with the validation of fields in the
+    request's payload. For example, if a required field is not sent, or if the
+    fields have invalid values or incorrect types. The API response for a
+    validation error includes a description of the error and may provide details
+    about the missing fields or the specific issues with the payload.
+
+
+    ###
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -565,7 +585,6 @@ paths:
                 $ref: '#/components/schemas/arrayOfCurrencies'
         '400':
           description: Bad Request
-          $ref: '#/components/responses/Problem'
   /currencies/{id}:
     get:
       tags:
@@ -588,8 +607,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/currencySchema'
-        '400':
-          description: Bad request example!
+        '404':
+          description: currency not found
   /currencies/blockchain-nodes/{id}/latest-block-number:
     get:
       tags:
@@ -612,8 +631,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/latest-block-number'
-        '400':
-          description: Bad request example!
+        '404':
+          description: Block number not found
   /currencies/conversions:
     get:
       tags:
@@ -630,7 +649,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/currencyConversions'
         '400':
-          description: Bad request example!
+          description: Bad request
   /merchant/invoices:
     post:
       tags:
@@ -831,12 +850,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/arrayOfWallets'
-        '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
         '404':
-          description: No wallets found
-          $ref: '#/components/responses/Problem'
+          description: Wallet not found
   /merchant/wallets/{walletIdStr}:
     get:
       tags:
@@ -859,9 +874,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantWalletObj'
-        '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
+        '404':
+          description: Wallet not found
   /merchant/wallets/{walletIdStr}/addresses:
     post:
       tags:
@@ -902,7 +916,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/addressRes'
         '404':
-          description: Currency Not Found!
+          description: Wallet Not Found!
     get:
       tags:
         - Wallets API
@@ -924,12 +938,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/list-of-addresses'
-        '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
         '404':
-          description: No wallets found
-          $ref: '#/components/responses/Problem'
+          description: Wallet not found
   /merchant/wallets/{walletIdStr}/transactions:
     get:
       tags:
@@ -952,9 +962,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/arrayOfWalletTransactions'
-        '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
+        '404':
+          description: Wallet not found
   /merchant/wallets/{walletIdStr}/transaction:
     get:
       tags:
@@ -980,9 +989,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/arrayOfWalletTransactions'
-        '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
+        '404':
+          description: Wallet not found
   /merchant/wallets/{walletIdStr}/spend/request:
     post:
       tags:
@@ -1030,8 +1038,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
         '400':
-          description: Bad Request
-          $ref: '#/components/responses/Problem'
+          description: Not enough funds
+        '404':
+          description: Wallet not found
   /merchant/wallets/{walletIdStr}/spend/confirmation:
     post:
       tags:
@@ -1054,8 +1063,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SpendRequestConfirmationSuccess'
-        '400':
-          description: Bad Request
+        '404':
+          description: Spend confirmation not found
           $ref: '#/components/responses/Problem'
   /merchant/wallets/{walletIdStr}/convert/request:
     post:
@@ -1106,7 +1115,6 @@ paths:
                 $ref: '#/components/schemas/convertRequestSuccess'
         '400':
           description: Bad Request
-          $ref: '#/components/responses/Problem'
   /merchant/wallets/{walletIdStr}/convert/confirmation:
     post:
       tags:
@@ -1134,7 +1142,6 @@ paths:
                 $ref: '#/components/schemas/convertRequestConfirmation'
         '400':
           description: Bad Request
-          $ref: '#/components/responses/Problem'
   /merchant/your-server-url:
     post:
       tags:
@@ -1151,11 +1158,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/notification-payload'
         '400':
-          description: Faluir status code ( 400 )
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Problem'
+          description: CoinPayments API could not reach your server
   /merchant/clients/{clientId}/webhooks:
     post:
       tags:
@@ -1236,8 +1239,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/webhookSchema'
-        '400':
-          description: Bad request example!
+        '404':
+          description: Wallet not found
     delete:
       tags:
         - Webhooks API
@@ -1261,8 +1264,8 @@ paths:
       responses:
         '204':
           description: Success status code - no content
-        '400':
-          description: Bad request example!
+        '404':
+          description: Wallet not found
   /rates:
     get:
       tags:
@@ -1307,7 +1310,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ratesRes'
         '400':
-          description: Bad request example!
+          description: Bad request
 components:
   securitySchemes:
     main_auth:
@@ -1388,44 +1391,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/currencySchema'
-    Problem:
-      type: object
-      additionalProperties: true
-      minProperties: 1
-      description: >-
-        The Problem Details JSON Object
-        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
-      properties:
-        type:
-          type: string
-          description: >-
-            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
-            that identifies the problem type. It should provide human-readable
-            documentation for the problem type. When this member is not present,
-            its value is assumed to be "about:blank".
-          format: uri
-        title:
-          type: string
-          description: >-
-            A short, human-readable summary of the problem type. It SHOULD NOT
-            change from occurrence to occurrence of the problem, except for
-            purposes of localization.
-        status:
-          type: integer
-          description: The HTTP status code.
-          minimum: 400
-          maximum: 599
-        detail:
-          type: string
-          description: >-
-            A human-readable explanation specific to this occurrence of the
-            problem.
-        instance:
-          type: string
-          description: >-
-            A URI reference that identifies the specific occurrence of the
-            problem.  It may or may not yield further information if
-            dereferenced.
     latest-block-number:
       type: object
       properties:
@@ -2509,6 +2474,44 @@ components:
           description: Id of newely created wallet
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+    Problem:
+      type: object
+      additionalProperties: true
+      minProperties: 1
+      description: >-
+        The Problem Details JSON Object
+        [[RFC7807](https://tools.ietf.org/html/rfc7807)].
+      properties:
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+          format: uri
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+        status:
+          type: integer
+          description: The HTTP status code.
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          description: >-
+            A human-readable explanation specific to this occurrence of the
+            problem.
+        instance:
+          type: string
+          description: >-
+            A URI reference that identifies the specific occurrence of the
+            problem.  It may or may not yield further information if
+            dereferenced.
     sendConvertRequest:
       type: object
       required:

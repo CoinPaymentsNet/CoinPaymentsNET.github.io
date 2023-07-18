@@ -25,8 +25,8 @@ put:
         application/json:
           schema:
             $ref: ../../components/schemas/webhooks/webhookSchema.yaml
-    '400':
-      description: Bad request example!
+    '404':
+      description: Wallet not found
 delete:
   tags:
     - Webhooks API
@@ -50,5 +50,5 @@ delete:
   responses:
     '204':
       description: Success status code - no content
-    '400':
-      description: Bad request example!
+    '404':
+      description: Wallet not found

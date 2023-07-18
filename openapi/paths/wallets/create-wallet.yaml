@@ -41,11 +41,8 @@ get:
         application/json:
           schema:
             $ref: ../../components/schemas/wallets/arrayOfWallets.yaml
-    '400':
-      description: Bad Request
-      $ref: ../../components/responses/Problem.yaml
     '404':
-      description: No wallets found
-      $ref: ../../components/responses/Problem.yaml
+      description: Wallet not found
+
 
 

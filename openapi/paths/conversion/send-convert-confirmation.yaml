@@ -22,6 +22,6 @@ post:
             $ref: ../../components/conversion/convertRequestConfirmation.yaml
     '400':
       description: Bad Request
-      $ref: ../../components/responses/Problem.yaml
+
 
 
