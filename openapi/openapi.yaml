@@ -67,11 +67,11 @@ paths:
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
 
-  # CONVERSION
-  '/merchant/wallets/{walletIdStr}/convert/request':
-    $ref: 'paths/conversion/send-convert-request.yaml'
-  '/merchant/wallets/{walletIdStr}/convert/confirmation':
-    $ref: 'paths/conversion/send-convert-confirmation.yaml'
+  # # CONVERSION
+  # '/merchant/wallets/{walletIdStr}/convert/request':
+  #   $ref: 'paths/conversion/send-convert-request.yaml'
+  # '/merchant/wallets/{walletIdStr}/convert/confirmation':
+  #   $ref: 'paths/conversion/send-convert-confirmation.yaml'
 
   # Clients
   '/merchant/your-server-url':

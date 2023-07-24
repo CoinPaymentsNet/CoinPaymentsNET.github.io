@@ -1,7 +1,7 @@
 post:
   tags:
     - Wallets API
-  summary: Confirm wihtdrawal
+  summary: Confirm spend or convert request
   description: Send a request to confirm the withdrawal
   operationId: spendRequestConfirmation
   parameters:

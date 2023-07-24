@@ -1,7 +1,7 @@
 post:
   tags:
     - Wallets API
-  summary: Create Withdrawal
+  summary: Create spend or convert request
   description:
     $ref: './create-withdrawal-description.md'
   operationId: sendSpendRequest

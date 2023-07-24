@@ -996,10 +996,12 @@ paths:
       tags:
         - Wallets API
       summary: Create Withdrawal
-      description: >+
-        Creating withdrawal is a two-step process:
+      description: >-
+        The Spend Request API allows users to initiate a withdrawal or a
+        conversion transaction, both features follow a two-step process:
 
-        1- Send a withdrawal request: This request will trigger a response
+
+        1- **Send spend request**: This request will trigger a response
         containing a preview of the transaction,
 
         including any applicable fees. The purpose of this step is to allow
@@ -1008,13 +1010,15 @@ paths:
         including the amount and any associated fees before proceeding.
 
 
-        2- Confirm the withdrawal: This step is pretty straightforward, the
-        confirm withdrawal endpoint takes the "spendRequestId"
-
-        as a URL param to identify, confirm and publish the transaction.
+        2- **Confirm spending funds**: the confirm spending funds endpoint is
+        used to confirm spending funds from the merchant wallet, or to confirm
+        converting funds, it is used to trigger publishing the transaction on
+        the blockchain.
 
         Note: The "spendRequestId" included in the response from the first step.
 
+
+        ![markdown file changed](./mermaid-withdrawal-svg.svg)
       operationId: sendSpendRequest
       requestBody:
         content:
@@ -1067,82 +1071,6 @@ paths:
         '404':
           description: Spend confirmation not found
           $ref: '#/components/responses/Problem'
-  /merchant/wallets/{walletIdStr}/convert/request:
-    post:
-      tags:
-        - Conversion API
-      summary: Convert between cryptocurrencies
-      description: >
-        Similar to the create withdrawal flow, Converting from a coin to another
-        two-step process:
-
-
-        1- Send convert request: This request will trigger a response containing
-        a preview of the transaction, including any applicable fees.
-
-        The purpose of this step is to allow users to review and verify the
-        information provided,
-
-        including the amount and any associated fees before proceeding.
-
-
-        2- Confirm conversion: This step is straightforward, the confirm
-        Conversion endpoint expects the "spendRequestId"
-
-        as a URL param to identify, confirm and publish the transaction.
-
-        Note: The "spendRequestId" included in the response from the first step.
-      operationId: convertCoins
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/sendConvertRequest'
-        description: Convert Request payload
-      parameters:
-        - name: walletIdStr
-          in: path
-          required: true
-          schema:
-            type: string
-            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-          description: the Id of the wallet you want to convert funds from
-      responses:
-        '200':
-          description: Ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/convertRequestSuccess'
-        '400':
-          description: Bad Request
-  /merchant/wallets/{walletIdStr}/convert/confirmation:
-    post:
-      tags:
-        - Conversion API
-      summary: Confirm conversion
-      description: Send a request to confirm converting funds from the wallet
-      operationId: ConvertRequestConfirmation
-      parameters:
-        - name: walletIdStr
-          in: path
-          required: true
-          schema:
-            type: string
-            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-          description: >-
-            the Id of the wallet you want to convert funds from. Reminder; this
-            field is included in the response returned from the first ( Send
-            convert request )
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/convertRequestConfirmation'
-        '400':
-          description: Bad Request
   /merchant/your-server-url:
     post:
       tags:
@@ -2513,92 +2441,6 @@ components:
             A URI reference that identifies the specific occurrence of the
             problem.  It may or may not yield further information if
             dereferenced.
-    sendConvertRequest:
-      type: object
-      required:
-        - toCurrencyId
-        - amountInSmallestUnits
-        - toAddress
-      properties:
-        fromContractAddress:
-          type: string
-          description: >
-            The contract address of the source cryptocurrency if it is a token.
-
-            It is required only if you are performing a conversion from a
-            specific token.
-
-            e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20
-            TetherUSD
-        toContractAddress:
-          type: string
-          description: >
-            The contract address of the target cryptocurrency if it is a token.
-
-            It is required only if you are converting to a specific token.
-
-            e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20
-            TetherUSD
-        toAddress:
-          type: string
-          description: Address which client wants to send funds to
-        toCurrencyId:
-          type: integer
-          description: ID of the currency of the spend destination
-        blockchainFeeOverrideInSmallestUnits:
-          type: number
-          description: >-
-            Used for overriding the system suggested blockchain fee (within 10%
-            range) to manage the transaction processing speed
-        amountInSmallestUnits:
-          description: >
-            refers to the amount of a specific cryptocurrency, such as Bitcoin,
-            measured in its smallest divisible unit, AKA atomic units.
-
-            (e.g., Satoshis for Bitcoin).
-
-            It allows for precise and detailed transactions by specifying the
-            amount in the smallest possible denomination.
-
-            This approach enables you to send fractional amounts of the currency
-            accurately.
-          type: string
-          example: '9900000'
-        memo:
-          type: string
-          description: Optional user-defined note to associate with the spend request
-        receiverPaysFee:
-          type: boolean
-          description: >
-            When set to true, the receiver of the conversion will pay the fees.
-            In this case,
-
-            the AmountInSmallestUnits will be deducted from the source balance,
-            and the receiver will receive the remaining amount after deducting
-            the fees.
-
-            When set to false (or not provided), the fees will be added to the
-            AmountInSmallestUnits,
-
-            and the total sum (including fees) will be deducted from the source
-            balance.
-
-            The receiver will receive the AmountInSmallestUnits exactly as
-            specified.
-    convertRequestSuccess:
-      type: object
-      properties:
-        convertRequestId:
-          description: Id of the convert request
-          type: string
-          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
-    convertRequestConfirmation:
-      type: object
-      properties:
-        convertRequestId:
-          description: Id of convert request
-          type: string
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
     notification-payload:
       type: object
       properties:
