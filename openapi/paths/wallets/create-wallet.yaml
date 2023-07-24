@@ -25,7 +25,7 @@ get:
   tags:
     - Wallets API
   summary: Get Wallets
-  description: Retrieves a list of wallets
+  description: Retrieves a list of wallets woth their balances, addresses, statuses and other info.
   operationId: getMerchantWallets
 #  parameters:
 #    - name: username
