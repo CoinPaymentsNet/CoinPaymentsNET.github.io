@@ -996,7 +996,7 @@ paths:
       tags:
         - Wallets API
       summary: Create Withdrawal
-      description: >
+      description: >+
         Creating withdrawal is a two-step process:
 
         1- Send a withdrawal request: This request will trigger a response
@@ -1014,6 +1014,7 @@ paths:
         as a URL param to identify, confirm and publish the transaction.
 
         Note: The "spendRequestId" included in the response from the first step.
+
       operationId: sendSpendRequest
       requestBody:
         content:
@@ -1689,8 +1690,8 @@ components:
         invoiceDate:
           type: string
           description: >-
-            custom invoice date if not the created date of the invoice, invoices
-            with a future date will be scheduled
+            allows for optional customization of the invoice date, which can
+            differ from the automatically generated creation date of the invoice
           example: '2022-11-28T13:59:46+00:00'
         dueDate:
           type: string

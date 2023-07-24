@@ -70,9 +70,7 @@ properties:
     description: the id of the client creating this invoice
   invoiceDate:
     type: string
-    description:
-      custom invoice date if not the created date of the invoice,
-      invoices with a future date will be scheduled
+    description: allows for optional customization of the invoice date, which can differ from the automatically generated creation date of the invoice
     example: '2022-11-28T13:59:46+00:00'
   dueDate:
     type: string
