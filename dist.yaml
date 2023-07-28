@@ -2021,7 +2021,7 @@ components:
           format: '1'
         expectedDisplayValue:
           type: string
-          description: The expected display value of the payout.
+          description: The expected display value of the payout
           format: '0.01'
         sourceCurrencyId:
           type: string

@@ -9,33 +9,33 @@ properties:
     type: number
     example: 1
   label:
-    description: Label of the wallet
+    description: label of the wallet
     type: string
     example: John's wallet
   balance:
-    description: Balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
+    description: balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
     type: string
     example: '0.874833322'
   tokenBalances:
-    description: Token (e.g. ERC20) balances for this wallet if available in smallest units (e.g. Weis for Ethereum)
+    description: token (e.g. ERC20) balances for this wallet if available in smallest units (e.g. Weis for Ethereum)
     type: string
     example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   depositAddress:
-    description: Blockchain address of this wallet allowing it to receive funds
+    description: blockchain address of this wallet allowing it to receive funds
     type: string
     example: '0x9939b7b208012cd0395d1411272be6e34c04af7b'
   walletStatus:
     description: |
-      Status of the wallet, should be Active (2) for valid usable wallets.
-      walletStatues can hold one of the following values [ Created, Active, Deactivated or Deleted ]
+      status of the wallet, should be Active (2) for valid usable wallets.
+      walletStatues can hold one of the following values [Created, Active, Deactivated or Deleted]
     type: string
     example: Active
   canCreateAddress:
-    description: Specifies whether this wallet is allowed to create additional deposit addresses
+    description: specifies whether this wallet is allowed to create additional deposit addresses
     type: boolean
     example: true
   updatedAt:
-    description: The date when the properties of the wallet were last updated
+    description: the date when the properties of the wallet were last updated
     type: string
     example: '2022-10-05T06:05:07.520Z'
   isVaultLocked:
@@ -43,7 +43,7 @@ properties:
     type: boolean
     example: true
   vaultLockoutEndDateTime:
-    description: DateTime that specifies the planned date the vault will be unlocked
+    description: when used, the vault will start the countdown to unlock when when the specified date and time is reached
     type: string
     example: '2023-07-04T22:21:41.535Z'
 
