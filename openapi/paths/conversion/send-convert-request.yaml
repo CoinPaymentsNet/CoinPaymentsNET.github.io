@@ -11,7 +11,7 @@ post:
 
     2- Confirm conversion: This step is straightforward, the confirm Conversion endpoint expects the "spendRequestId"
     as a URL param to identify, confirm and publish the transaction.
-    Note: The "spendRequestId" included in the response from the first step.
+    **Note**: The "spendRequestId" included in the response from the first step.
   operationId: convertCoins
   requestBody:
     content:

@@ -4,7 +4,7 @@ required:
     - label
 properties:
   currencyId:
-    description: User supplied currencyId
+    description: user supplied currencyId
     type: number
     example: 1
   label:

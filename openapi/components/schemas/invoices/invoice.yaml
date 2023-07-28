@@ -126,7 +126,7 @@ properties:
         type: string
         description: 'server name of the integration api'
   poNumber:
-    description: Optional Purchase order number on the integration API.
+    description: optional Purchase order number on the integration API.
     type: string
     format: InvoiceBuilder
   webhook:
@@ -137,7 +137,7 @@ properties:
     default: false
   payoutConfig:
     type: object
-    description: Represents info specifying payout configuration for invoice
+    description: represents info specifying payout configuration for invoice
     properties:
       currencyId:
         type: string

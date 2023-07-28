@@ -35,7 +35,7 @@ properties:
     example: '9900000'
   memo:
     type: string
-    description: Optional user-defined note to associate with the spend request
+    description: optional user-defined note to associate with the spend request
   receiverPaysFee:
     type: boolean
     description: |

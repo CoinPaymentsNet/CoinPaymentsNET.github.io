@@ -13,7 +13,7 @@ info:
 
     CoinPayments API is a RESTful JSON API for interacting with blockchains,
 
-    accessed over HTTP or HTTPS from the domain **https://coinpayments/api/v1**
+    accessed over HTTPS from the domain **https://coinpayments/api/v1**
 
 
     # Overview
@@ -136,7 +136,7 @@ info:
     initiating the transaction.
 
 
-    ### Bad request ( Input validation errors ):
+    ### Bad request (Input validation errors):
 
     This error occurs when there are issues with the validation of fields in the
     request's payload. For example, if a required field is not sent, or if the
@@ -147,7 +147,7 @@ info:
 
     ###
   license:
-    name: Apache 2.0
+    name: CoinPayments 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 tags:
   - name: Authentication
@@ -419,7 +419,7 @@ tags:
 
 
 
-      **Important Note:**
+      **Important Note**:
 
 
       If WebhookUrl field of the body is specified then the following requests
@@ -657,10 +657,10 @@ paths:
       summary: Create Invoice
       description: >+
         CoinPayments exposes invoices API endpoints allowing merchants to create
-        and send invoices 
+        and send invoices
 
         to their clients to pay for goods and services in cryptocurrencies
-        supported by the merchant's platform. 
+        supported by the merchant's platform.
 
 
         Here are the steps for creating and paying an invoice using our payment
@@ -669,16 +669,16 @@ paths:
         1. Input the product or service name, price, and any applicable
         discounts in the corresponding fields ( see request payload below ).
 
-        2. Specify how you want to send the invoice to the payer: 
+        2. Specify how you want to send the invoice to the payer:
 
         either via email or by providing a link for them to access in their
         browser.
 
 
-        **Note** To send the invoice via email, you must set the value of the
+        **Note**: To send the invoice via email, you must set the value of the
         `isEmailDelivery` field to "true" and populate the `emailAddress` field.
         If you prefer to create the invoice and send the link manually through
-        your preferred method, 
+        your preferred method,
 
         set the value of `isEmailDelivery` to "false" and leave the
         `emailAddress` field blank.
@@ -688,7 +688,7 @@ paths:
         details and click on the payment button to proceed to the checkout page.
 
         4. On the checkout page, you can choose or specify your preferred
-        payment coin from the list of available currencies. 
+        payment coin from the list of available currencies.
 
         Please note that only coins supported by CoinPayments and enabled by the
         merchant are available for selection.
@@ -1682,7 +1682,7 @@ components:
               type: string
               description: server name of the integration api
         poNumber:
-          description: Optional Purchase order number on the integration API.
+          description: optional Purchase order number on the integration API.
           type: string
           format: InvoiceBuilder
         webhook:
@@ -1693,7 +1693,7 @@ components:
           default: false
         payoutConfig:
           type: object
-          description: Represents info specifying payout configuration for invoice
+          description: represents info specifying payout configuration for invoice
           properties:
             currencyId:
               type: string
@@ -2103,7 +2103,7 @@ components:
           type: number
           example: 1
         label:
-          description: Label of the wallet
+          description: abel of the wallet
           type: string
           example: John's wallet
         balance:
@@ -2157,11 +2157,11 @@ components:
         - label
       properties:
         currencyId:
-          description: User supplied currencyId
+          description: user supplied currencyId
           type: number
           example: 1
         label:
-          description: Label denoting the wallet
+          description: label denoting the wallet
           type: string
           example: John's wallet
         webhookUrl:
