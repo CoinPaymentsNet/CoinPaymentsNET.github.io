@@ -19,15 +19,15 @@ properties:
     format: '378a37b57b6b4a4a93fd352b06ce1829'
   destinationCurrencyId:
     type: string
-    description: The currency ID of the destination for the payout
+    description: The currency ID of the destination address for the payout
     format: '1'
   expectedDisplayValue:
     type: string
-    description: The expected display value of the payout.
+    description: The expected amount of the payout.
     format: '0.01'
   sourceCurrencyId:
     type: string
-    description: The currency ID of the source for the payout
+    description: The ID of the source currency for the payout
     format: '101'
   destinationAccountId:
     type: string
@@ -45,7 +45,7 @@ properties:
     type: number
     example: 0
   destinationAmount:
-    description: The destination amount of the payout, including payout amount, state and merchant fees.
+    description: The destination amount of the payout, including the ammount in the buyer's currency (amount) and the amount in the seller's currency (nativeAmount)
     $ref: ./destinationAmount.yaml
   items:
     type: array

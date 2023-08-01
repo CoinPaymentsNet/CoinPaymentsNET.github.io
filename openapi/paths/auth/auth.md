@@ -4,17 +4,17 @@ In this scheme, the API server generates a unique signature for each request usi
 
 #### Prerequisites
 To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT SECRET.
-If you haven't yet created your credentials, you may skip to next section.
+If you have already created your credentials, you may skip to next section.
 
 
 ## Create credentials
 First, you need to [create an account](https://identity.coinpaymints.com/Identity/Account/SignUp?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fdashboard.coinpaymints.com%252Fcallback%26nonce%3D1d30da16-4ff7-4c2c-2006-33bebbb54bd8%26signup%3D1)
-##### Once you're logged into your account, Go to Dashboard Business tools 👇
+##### Once you're logged into your account, click on Integrations 👇
 
 ![markdown file changed](./integrations-1.png)
 
 
-##### Integrations 🏗
+##### API Integrations 🏗
 ![markdown file changed](./integration-2.png)
 
 
@@ -22,7 +22,7 @@ First, you need to [create an account](https://identity.coinpaymints.com/Identit
 ![markdown file changed](./integration-3.png)
 
 
-##### give a name and a URL to your integration - more on the URL later. 📛
+##### Give a name and a URL to your integration - more on the URL later.
 ![markdown file changed](./integration-4.png)
 
 
@@ -48,7 +48,7 @@ The following sections are instructions for properly populating these headers.
 ### X-CoinPayments-Client
 Populate this header with your **CLIENT ID**
 
-Example Value
+Example value
 `cc7caaa431d54ad6accfd28b20170ee4`
 
 
@@ -64,7 +64,7 @@ Example value:
 `2022-12-19T19:27:04`
 ---
 ### Construct the request queryString
-To create an API signature takes a query string you first need to construct the query string which is made of the
+To create an API signature, you first need to construct the query string which is made of the
 following attributes concatenated together
 * method
 * url
@@ -73,7 +73,7 @@ following attributes concatenated together
 
 Example ( Javascript )
 ```javascript
-const queryString = `\ufeff${method}${url}${clientId}${JSON.stringify(requestPayload)}`;
+const queryString = `\ufeff${method}${url}${clientId}${date}${JSON.stringify(requestPayload)}`;
 ```
 
 For requests with no request body, replace last attribute by an empty string:
@@ -84,13 +84,13 @@ const queryString = `\ufeff${method}${url}${clientId}${''}`;
 
 ---
 ### X-CoinPayments-Signature
-Next step is to use the your `clientSecret` to generate the signature using SHA-256 encryption Algorithm as follows:
+Next step is to use your `clientSecret` to generate the signature using SHA-256 encryption algorithm as follows:
 
 ```javascript
 const hash = CryptoJS.HmacSHA256(queryString, CryptoJS.enc.Utf8.parse(clientSecret));
 const signature = CryptoJS.enc.Base64.stringify(hash);
 ```
-example value:
+Example value:
 `oW7d1ktvK7R6741oACgVR3bysGTPY8tqren0WTmmEk0=`
 
 ---
@@ -105,7 +105,7 @@ const date = new Date().toISOString().split('.')[0];
 const createWalletDto = {
   currencyId: 2,
   label: 'Online Shop Wallet',
-  webhookUrl: 'ttps://mysite.com/api/v1/payment/notification',
+  webhookUrl: 'https://mysite.com/api/v1/payment/notification',
 };
 
 const queryString = `\ufeff${method}${url}${clientId}${date}${JSON.stringify(createWalletDto)}`;

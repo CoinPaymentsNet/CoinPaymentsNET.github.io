@@ -63,7 +63,7 @@ properties:
       valueAsDecimal:
         type: string
         description: |
-          The decimalValue represents the monetary value with decimal precision derived from the value field,
+          The decimal value represents the monetary value with decimal precision derived from the value field,
           which is the integer representation in the smallest unit of the currency or token.
   clientId:
     type: string

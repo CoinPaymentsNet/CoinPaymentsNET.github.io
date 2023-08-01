@@ -49,13 +49,13 @@ properties:
     type: string
     example: '1AYASDI34W2W2SIFFRE32452S1Q'
   fromContractAddress:
-    description: Address of the contract for tokens being sent if this transaction is an ERC20 or similar token transfer
+    description: Address of the sender contract. e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
     type: string
-    example: '1AYASDI34W2W2SIFFRE32452S1Q'
+    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   toContractAddress:
-    description: Address of the contract for tokens being received if this transaction is an ERC20 or similar token transfer
+    description: Address of the reciever contract. e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
     type: string
-    example: '1AYASDI34W2W2SIFFRE32452S1Q'
+    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   confirmations:
     description: Current number of confirmations that this transaction has
     type: number
@@ -89,7 +89,7 @@ properties:
     type: string
     example: '1AYASDI34W2W2SIFFRE32452S1Q3289y7debugDSDSd38d3xSSA33ASDRxw98'
   outputIndex:
-    description: Index of the output in which this transaction received funds (only for UTXO receives)
+    description: Index of the output in which this transaction receives funds (only for UTXO received transactions)
     type: number
     example: 1
   blockchainFee:
@@ -97,7 +97,7 @@ properties:
     type: string
     example: '0.00000032'
   feeCurrency:
-    description: Currency in which CoinPayments fees were deducted. The format is {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
+    description: Currency in which CoinPayments fees were deducted. The format is {CurrencyId}:{ContractAddress} where ContractAddress is optional e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
     type: string
     example: '0.00000032'
   blockNumberTxAppearedAt:

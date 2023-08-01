@@ -554,7 +554,7 @@ paths:
           schema:
             type: string
             example: BTC
-          description: search query to find currencies with names and/or codes
+          description: search query to find currencies by name or symbol
         - name: types
           in: query
           schema:
@@ -677,7 +677,7 @@ paths:
 
         **Note**: To send the invoice via email, you must set the value of the
         `isEmailDelivery` field to "true" and populate the `emailAddress` field.
-        If you prefer to create the invoice and send the link manually through
+        If the payer prefer to create the invoice and send the link manually through
         your preferred method,
 
         set the value of `isEmailDelivery` to "false" and leave the
@@ -687,7 +687,7 @@ paths:
         3. Upon accessing the invoice link, the payer can review the bill
         details and click on the payment button to proceed to the checkout page.
 
-        4. On the checkout page, you can choose or specify your preferred
+        4. On the checkout page, the payer can choose or specify the preferred
         payment coin from the list of available currencies.
 
         Please note that only coins supported by CoinPayments and enabled by the
@@ -1375,7 +1375,7 @@ components:
         valueAsDecimal:
           type: string
           description: >
-            The decimalValue represents the monetary value with decimal
+            The decimal value represents the monetary value with decimal
             precision derived from the value field, which is the integer
             representation in the smallest unit of the currency or token.
     fullName:
@@ -1498,8 +1498,7 @@ components:
     notifications:
       type: array
       description: >
-        specify the event name you want your server to be notified when it
-        occures
+        specify the event name you want your server to be notified of when it occurs,
 
         i.e. send notification when an invoice is created
       items:
@@ -1532,7 +1531,7 @@ components:
       properties:
         isEmailDelivery:
           type: boolean
-          description: indicates if invoice will be email delivered, deaults to false
+          description: indicates if invoice will be sent via email, deaults to false
           default: false
         emailDelivery:
           type: object
@@ -1540,15 +1539,15 @@ components:
             to:
               type: string
               description: >-
-                to email address. the value can take multiple addresses
+                to recipient's email address. The value can take multiple addresses
                 separated by semicolons
             cc:
               type: string
-              description: field to add multiple recepients separated by semicolons
+              description: field to add additional multiple recepients separated by semicolons
             bcc:
               type: string
               description: >-
-                bcc field similar to "cc" field except that other recipients
+                "bcc" field is similar to "cc" field except that other recipients
                 won't be able to see that someone else has been sent a copy of
                 the email.
         description:
@@ -1557,7 +1556,7 @@ components:
         amount:
           type: object
           description: >
-            represent the value of the item in the original currency, typically
+            represents the value of the item in the original currency, typically
             fiat currency such as USD or EUR.
 
             Values will be used to calculate the amount the buyer should
@@ -1607,7 +1606,7 @@ components:
             valueAsDecimal:
               type: string
               description: >
-                The decimalValue represents the monetary value with decimal
+                The decimal value represents the monetary value with decimal
                 precision derived from the value field,
 
                 which is the integer representation in the smallest unit of the
@@ -1641,8 +1640,8 @@ components:
         requireBuyerNameAndEmail:
           type: boolean
           description: >-
-            flag indicating whether a buyer name and email are required, they
-            will be requested at checkout if not provider by the caller.
+            flag indicating whether a buyer's name and email are required, they
+            will be requested at checkout if not provided by the caller.
         buyerDataCollectionMessage:
           type: string
           description: the message to display when collecting buyer user data
@@ -1682,7 +1681,7 @@ components:
               type: string
               description: server name of the integration api
         poNumber:
-          description: optional Purchase order number on the integration API.
+          description: Optional purchase order number on the integration API.
           type: string
           format: InvoiceBuilder
         webhook:

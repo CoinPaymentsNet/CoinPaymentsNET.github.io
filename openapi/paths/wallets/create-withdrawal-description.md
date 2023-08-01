@@ -8,6 +8,7 @@ including the amount and any associated fees before proceeding.
 
 3- **Confirm spending funds**: the confirm spending funds endpoint is used to confirm spending funds from the merchant wallet, or to confirm converting funds, it is used to trigger publishing the transaction on the blockchain.
 
-Note: The "spendRequestId" included in the response from the first step.
+
+Note: The "spendRequestId" is included in the response from the first step.
 
 ![markdown file changed](./withdrawal_flow.png)

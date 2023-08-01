@@ -10,7 +10,7 @@ get:
       schema:
         type: string
         example: 'BTC'
-      description: search query to find currencies with names and/or codes
+      description: search query to find currencies by name or symbol
     - name: types
       in: query
       schema:
@@ -22,13 +22,13 @@ get:
       schema:
         type: string
         example: 'multiSigAccounts,sharedAccounts,payments,singleSigAccounts'
-      description: search query to find currencies with names and/or codes
+      description: search query to find currencies by name or symbol
     - name: after
       in: query
       schema:
         type: string
         example: ''
-      description: search query to find currencies with names and/or codes
+      description: search query to find currencies by name or symbol
   responses:
     '200':
       description: Ok

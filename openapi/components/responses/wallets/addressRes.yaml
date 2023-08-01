@@ -1,7 +1,7 @@
 type: object
 properties:
   addressId:
-    description: Id of newely created address
+    description: Id of newly created address
     type: string
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
   networkAddress:

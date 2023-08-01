@@ -23,7 +23,7 @@ properties:
     $ref: ./simulateFees.yaml
   merchantPayoutAddress:
     type: string
-    description: the merchants payment output address at the time the hot wallet was created
+    description: the merchant's payment output address at the time the hot wallet was created
   sent:
     description: the timestamp of when this payout was sent (e.g. broadcast on the blockchain)
     $ref: ../../../globalTypes/datetime.yaml

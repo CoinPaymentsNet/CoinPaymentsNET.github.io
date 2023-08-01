@@ -14,7 +14,7 @@ Here is a list of invoice events for which merchants can choose to receive notif
 Merchants have the flexibility to create webhooks either through the user-friendly UI or via API calls. To create a webhook through the UI, simply follow these steps:
 
 - Access the dashboard and click on "Integrations" in the left sidebar.
-- Choose "API integrations", click "Add New", and provide a name for your integration client, along wit- your server URL.
+- Choose "API integrations", click "Add New", and provide a name for your integration client, along with your server URL.
 - On the right side of the popup screen, open the dropdown menu to specify the events for which you wan- to receive notifications.
 - Click "OK" to confirm your selections.
 

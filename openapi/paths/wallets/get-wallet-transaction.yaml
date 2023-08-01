@@ -2,9 +2,11 @@ get:
   tags:
     - Wallets API
   summary: Get wallet transaction
-  description: Get a specific transaction of the wallet,
-    If trasncationId is specified then the specified then the spend request Id is ignored, otherwise,
-    the first spending transaction with matching spendRequestId is returned
+  description: |
+    Get a specific transaction of a wallet. This request requires the walletIdStr URL parameter. Additionally,
+    there are two optional query parameters: transactionId and spendRequestId.
+    If both transactionId and spendRequestId are specified, transactionId takes precedence. If only spendRequestId is provided,
+    the first transaction that matches the spendRequestId will be returned.
   operationId: getTransactionByWalletId
   parameters:
     - name: walletIdStr
@@ -14,6 +16,18 @@ get:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
       description: the wallet Id
+    - name: transactionId
+      in: query
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+      description: the transaction Id
+    - name: spendRequestId
+      in: query
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+      description: the spend request Id
   responses:
     '200':
       description: Ok
