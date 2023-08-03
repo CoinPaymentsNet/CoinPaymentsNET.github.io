@@ -28,6 +28,61 @@ get:
   description: |
     Get list of merchant invoices
   operationId: getListOfInvoices
+  parameters:
+        - name: clientId
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional clientId field to allow filtering by integration clientId.
+        - name: status
+          in: query
+          schema:
+            type: string
+            example: draft, paid, pending, cancelled, completed
+          description: optional status field to allow filtering by invoice status.
+        - name: from
+          in: query
+          schema:
+            type: string
+            example: 2023-01-01
+          description: optional "from" field to allow filtering by invoice creation date.
+        - name: to
+          in: query
+          schema:
+            type: string
+            example: 2023-01-30
+          description: optional "to" field to allow filtering by invoice creation date.
+        - name: q
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional search string to find invoices with these words.
+        - name: integration
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional integration field to allow filtering by integration.
+        - name: payoutWalletId
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional query to filter the invoices by the wallet they were paid out to (for 'paid' and 'completed' invoices).
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            example: 10
+          description: used to specify the number of records to return in one page.
+        - name: after
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: used to specify a cursor or marker that indicates the starting point of the next page of data.
   responses:
     '200':
       description: Success
@@ -37,5 +92,7 @@ get:
             $ref: ../../components/schemas/invoices/invoices.yaml
     '404':
       description: Merchant Not Found!
+
+
 
 
