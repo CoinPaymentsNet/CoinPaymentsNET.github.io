@@ -13,7 +13,8 @@ properties:
     example: John's wallet
   webhookUrl:
     description:
-      when provided, CoinPayments API will be sending appropriate requests to it
+      when provided, CoinPayments API will be sending notifications to this URL
+      when withdrawals are processed or when funds are moved
     type: string
     example: 'https://myapi.com'
 
