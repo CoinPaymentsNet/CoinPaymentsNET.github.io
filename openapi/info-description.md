@@ -57,4 +57,8 @@ This error occurs when the requested invoice, withdrawal, conversion involves an
 ### Bad request ( Input validation errors ):
 This error occurs when there are issues with the validation of fields in the request's payload. For example, if a required field is not sent, or if the fields have invalid values or incorrect types. The API response for a validation error includes a description of the error and may provide details about the missing fields or the specific issues with the payload.
 
-###
+
+
+# Rate limits
+The API provides access to our platform's data and functionality, but in order to maintain the stability and performance of our services, rate limits have been implemented. Rate limits are set to prevent excessive use of the API and to ensure fair usage among all integrations.
+Currently, the rate limit is capped at a maximum of 70 requests per second.
