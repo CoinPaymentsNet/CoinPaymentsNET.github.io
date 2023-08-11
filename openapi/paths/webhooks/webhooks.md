@@ -8,7 +8,8 @@ Here is a list of invoice events for which merchants can choose to receive notif
 
 - invoiceCreated: triggered when a new invoice is created
 - invoicePending: triggered when an invoice is pending payment
-- invoicePaid: triggered when an invoice is successfully paid
+- invoicePaid: triggered when an invoice is successfully paid, a paid invoice means the funds are received in the seller or merchant's wallet, however the transaction is not yet settled or confirmed on the blockchain.
+- invoiceCompleted: triggered when the invoice is paid **and** the transaction has aquired the minimum confirmations required to mark it confirmed. only when an invoice is marked `Completed`, users are free to use the funds.
 - invoiceCancelled: triggered when an invoice is cancelled
 
 Merchants have the flexibility to create webhooks either through the user-friendly UI or via API calls. To create a webhook through the UI, simply follow these steps:
