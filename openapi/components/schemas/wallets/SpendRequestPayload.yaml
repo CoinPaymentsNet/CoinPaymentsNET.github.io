@@ -2,6 +2,7 @@ type: object
 required:
   - toCurrencyId
   - amountInSmallestUnits
+  - toAddress
 properties:
   fromContractAddress:
     description: Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
