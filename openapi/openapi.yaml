@@ -22,9 +22,7 @@ tags:
   - name: Webhooks API
     description:
       $ref: 'paths/webhooks/webhooks.md'
-  # - name: Webhooks
-  #   description:
-  #     $ref: 'paths/clients/description.md'
+
 servers:
   - url: 'https://api.coinpayments/api/v1'
 paths:
@@ -34,8 +32,6 @@ paths:
     $ref: 'paths/currencies/get-currency-by-id.yaml'
   '/currencies/blockchain-nodes/{id}/latest-block-number':
     $ref: 'paths/currencies/get-latest-block-number.yaml'
-#  '/currencies/required-confirmations':
-#    $ref: 'paths/currencies/required-confirmations.yaml'
   '/currencies/conversions':
     $ref: 'paths/currencies/conversions.yaml'
 
@@ -48,8 +44,6 @@ paths:
     $ref: 'paths/invoices/payouts.yaml'
   '/merchant/invoices/{id}/hitory':
     $ref: 'paths/invoices/history.yaml'
-  # '/merchant/invoices/{id}/payouts'
-  #   :ref: 'paths/invoices/payouts.yaml'
 
   # Wallets
   '/merchant/wallets':
@@ -67,11 +61,6 @@ paths:
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
 
-  # # CONVERSION
-  # '/merchant/wallets/{walletIdStr}/convert/request':
-  #   $ref: 'paths/conversion/send-convert-request.yaml'
-  # '/merchant/wallets/{walletIdStr}/convert/confirmation':
-  #   $ref: 'paths/conversion/send-convert-confirmation.yaml'
 
   # Clients
   '/merchant/your-server-url':

@@ -11,7 +11,7 @@ get:
       required: true
       schema:
         type: string
-        example: '1'
+        example: '2'
   responses:
     '200':
       description: Success status code ( 200 )
