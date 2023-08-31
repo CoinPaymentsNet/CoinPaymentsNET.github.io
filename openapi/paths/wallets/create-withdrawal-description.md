@@ -13,4 +13,6 @@ Note: The "spendRequestId" is included in the response from the first step.
 <br/>
 <br/>
 
+Here's a simplified flowchart explaining the withdrawal/conversion flow:
+
 ![markdown file changed](./withdrawal-flowchart.png)
