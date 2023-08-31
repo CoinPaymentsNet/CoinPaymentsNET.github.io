@@ -9,3 +9,8 @@ including the amount and any associated fees before proceeding.
 
 Note: The "spendRequestId" is included in the response from the first step.
 
+
+<br/>
+<br/>
+
+![markdown file changed](./withdrawal-flowchart.png)
