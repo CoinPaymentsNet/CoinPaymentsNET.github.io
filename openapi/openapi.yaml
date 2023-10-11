@@ -15,7 +15,8 @@ tags:
     description:
       $ref: './paths/auth/auth.md'
   - name: Invoices API
-    description: './paths/invoices/invoice-description'
+    description:
+      $ref: './paths/invoices/invoice-description.md'
   - name: Wallets API
     description:
       $ref: './paths/wallets/wallets-description.md'

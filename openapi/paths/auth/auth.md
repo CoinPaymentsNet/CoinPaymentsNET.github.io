@@ -8,7 +8,7 @@ If you have already created your credentials, you may skip to next section.
 
 
 ## Create credentials
-First, you need to [create an account](https://identity.coinpaymints.com/Identity/Account/SignUp?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fdashboard.coinpaymints.com%252Fcallback%26nonce%3D1d30da16-4ff7-4c2c-2006-33bebbb54bd8%26signup%3D1)
+First, you need to [create an account](https://signin.coinpayments.net/Identity/Account/SignUp?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fnew.coinpayments.net%252Fcallback%26nonce%3D5c9d038a-7d3b-410d-345c-1b196492ce13)
 ##### Once you're logged into your account, click on Integrations 👇
 
 ![markdown file changed](./integrations-1.png)
@@ -98,7 +98,7 @@ Here is a complete example of how to generate an API signature for making a call
 ```javascript
 const clientId = 'd0ccc52b8204460783d375e278082de2';
 const clientSecret = 'WYEB+hN+89waO76QeO9T7IIqhdo/60GHrdYu2vEa7Tg=';
-const url = `https://api.coinpaymints.com/api/v1/merchant/wallets`;
+const url = `https://api.coinpayments.net/api/v1/merchant/wallets`;
 const method = 'POST';
 const date = new Date().toISOString().split('.')[0];
 
@@ -135,17 +135,3 @@ console.log(response);
 
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
