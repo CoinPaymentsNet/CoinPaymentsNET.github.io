@@ -2,8 +2,6 @@ post:
   tags:
     - Invoices API
   summary: Create Invoice
-  description:
-    $ref: ./invoice-description.md
   operationId: createInvoice
   requestBody:
     content:
