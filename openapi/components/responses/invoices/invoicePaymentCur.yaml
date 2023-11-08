@@ -1,0 +1,8 @@
+type: object
+description: Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
+  by the merchant, that a buyer intends to purchase
+properties:
+  isEmailDelivery:
+    type: boolean
+    description: default value to be used for whitelabeling checkout flow. For invoice document delivery indicates if invoice will be email delivered
+    default: false

@@ -13,13 +13,14 @@ info:
 
     CoinPayments API is a RESTful JSON API for interacting with blockchains,
 
-    accessed over HTTPS from the domain **https://api.coinpayments.net/api/v1/**
+    accessed over HTTP or HTTPS from the domain
+    **https://api.coinpayments.net/api/v1/**
 
 
     # Overview
 
     Coinpayments API docs defines a standard, language-agnostic interface to
-    CoinPayments API
+    CoinPayments API.
 
     The platform allows merchants to integrate the payment system into their own
     websites or applications,
@@ -136,7 +137,7 @@ info:
     initiating the transaction.
 
 
-    ### Bad request (Input validation errors):
+    ### Bad request ( Input validation errors ):
 
     This error occurs when there are issues with the validation of fields in the
     request's payload. For example, if a required field is not sent, or if the
@@ -145,13 +146,22 @@ info:
     about the missing fields or the specific issues with the payload.
 
 
-    ###
+
+
+    # Rate limits
+
+    The API provides access to our platform's data and functionality, but in
+    order to maintain the stability and performance of our services, rate limits
+    have been implemented. Rate limits are set to prevent excessive use of the
+    API and to ensure fair usage among all integrations.
+
+    Currently, the rate limit is capped at a maximum of 70 requests per second.
   license:
-    name: CoinPayments 2.0
+    name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 tags:
   - name: Authentication
-    description: >+
+    description: >
       CoinPayments API uses SHA-256 which is a way of authenticating an API
       request to ensure that it comes from a trusted source.
 
@@ -165,7 +175,8 @@ tags:
       To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT
       SECRET.
 
-      If you haven't yet created your credentials, you may skip to next section.
+      If you have already created your credentials, you may skip to next
+      section.
 
 
 
@@ -174,15 +185,14 @@ tags:
       First, you need to [create an
       account](https://signin.coinpayments.net/Identity/Account/SignUp?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fnew.coinpayments.net%252Fcallback%26nonce%3D5c9d038a-7d3b-410d-345c-1b196492ce13)
 
-      ##### Once you're logged into your account, Go to Dashboard Business tools
-      👇
+      ##### Once you're logged into your account, click on Integrations 👇
 
 
       ![markdown file changed](./integrations-1.png)
 
 
 
-      ##### Integrations 🏗
+      ##### API Integrations 🏗
 
       ![markdown file changed](./integration-2.png)
 
@@ -194,8 +204,7 @@ tags:
 
 
 
-      ##### give a name and a URL to your integration - more on the URL later.
-      📛
+      ##### Give a name and a URL to your integration - more on the URL later.
 
       ![markdown file changed](./integration-4.png)
 
@@ -242,7 +251,7 @@ tags:
       Populate this header with your **CLIENT ID**
 
 
-      Example Value
+      Example value
 
       `cc7caaa431d54ad6accfd28b20170ee4`
 
@@ -271,8 +280,8 @@ tags:
 
       ### Construct the request queryString
 
-      To create an API signature takes a query string you first need to
-      construct the query string which is made of the
+      To create an API signature, you first need to construct the query string
+      which is made of the
 
       following attributes concatenated together
 
@@ -290,7 +299,7 @@ tags:
       ```javascript
 
       const queryString =
-      `\ufeff${method}${url}${clientId}${JSON.stringify(requestPayload)}`;
+      `\ufeff${method}${url}${clientId}${date}${JSON.stringify(requestPayload)}`;
 
       ```
 
@@ -311,8 +320,8 @@ tags:
 
       ### X-CoinPayments-Signature
 
-      Next step is to use the your `clientSecret` to generate the signature
-      using SHA-256 encryption Algorithm as follows:
+      Next step is to use your `clientSecret` to generate the signature using
+      SHA-256 encryption algorithm as follows:
 
 
       ```javascript
@@ -324,7 +333,7 @@ tags:
 
       ```
 
-      example value:
+      Example value:
 
       `oW7d1ktvK7R6741oACgVR3bysGTPY8tqren0WTmmEk0=`
 
@@ -350,7 +359,7 @@ tags:
       const createWalletDto = {
         currencyId: 2,
         label: 'Online Shop Wallet',
-        webhookUrl: 'ttps://mysite.com/api/v1/payment/notification',
+        webhookUrl: 'https://mysite.com/api/v1/payment/notification',
       };
 
 
@@ -390,23 +399,120 @@ tags:
       ```
 
 
+
       ---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   - name: Invoices API
-    description: ./paths/invoices/invoice-description
+    description: >-
+      CoinPayments exposes invoices API endpoints allowing merchants to
+      implement a payment gateway on their platform and let 
+
+      buyers pay for goods and services in cryptocurrencies supported by the
+      merchant’s platform.
+
+      With CoinPayments invoices API you may:
+       - send out invoices to their clients.
+       - launch an integrated hosted checkout to merchant’s payment flow that will be acting on the whitelabeling basis.
+      CoinPayment’s invoices API is built around “invoice” entity. In other
+      words, under the hood it generates an invoice with
+
+      all the buyer’s and merchant’s data plus information on the
+      product/service. Thus, merchant’s will be flexible in 
+
+      managing payments with the help of this data via a set of available
+      endpoints.
+
+      Below you will find information on how payment flow is organized for each
+      of the above-mentioned approaches.
+
+
+      **Payment Flow for Sent out Invoices**
+
+
+      Imagine a case where you have a platform that provides services on
+      subscription basis. Every month you need to send out 
+
+      invoices to your users with the reminder to pay for the subscription. In
+      order to automate this flow, you may want to 
+
+      use CoinPayments API. Here are the steps that should take place in order
+      payment could occur:
+
+
+      1. Merchant adds details on services for which invoice is issued,
+      indicates user’s details like name, payment address 
+
+      and email
+
+      2. With the help of Create Invoice endpoint merchant generates an invoice
+      entity with the data from step 1 and launches 
+
+      the payment flow
+
+      3. As a response to the Create Invoice endpoint, merchant receives all
+      invoice entity data including:
+       - paymentId to get payment address and check payment status
+       - link to the invoice document with the active payment button that would lead user to payment checkout
+       - date when invoice expires
+       - array of allowed currencies with currency description, payment amount and fees.
+
+      4. Link to the invoice is sent to the user’s email address
+
+      5. User selects currency for payment, which triggers the Get Payment
+      Address endpoint and merchant receives payment 
+
+      address
+
+      6. After that merchant can check the status of the payment with the help
+      of Get Payment Status endpoint that includes:
+       - status of payment
+       - how much was detected and confirmed on blockchain
+       - how much was detected but not confirmed yet.
+
+      **Payment Flow for Integrated Checkout with Whitelabeling**
+
+
+      Imagine a case where you have an online shop and you want to accept
+      payment for goods in cryptocurrency. With 
+
+      CoinPayments API you will be able to allow buyers to add goods to the
+      shopping cart, click “pay” and they will be 
+
+      forwarded to the payment gateway provided by CoinPayments. Here are the
+      steps that should take place in order payment 
+
+      could occur:
+
+
+      1. Buyer selects product/service on the merchant’s site.
+
+      2. With the help of Create Invoice endpoint merchant generates an invoice
+      entity and launches the payment flow.
+
+      3. As a response to the Create Invoice endpoint, merchant receives all
+      invoice entity data including:
+       - paymentId to get payment address and check payment status
+       - link to the checkout for payment
+       - date when invoice expires
+       - array of allowed currencies with currency description, payment amount and fees.
+      4. Once buyer clicks “Pay” in your website, they are forwarded to the
+      CoinPayments checkout window where they select 
+
+      currency for payment. This triggers the Get Payment Address endpoint and
+      merchant receives payment address
+
+      5. After that merchant can check the status of the payment with the help
+      of Get Payment Status endpoint that includes:
+       - status of payment
+       - how much was detected and confirmed on blockchain
+       - how much was detected but not confirmed yet.
+
+      Below we will provide you with the detailed information on each of the
+      invoices endpoints and their field values. 
+
+      Although endpoints are the same for both described use-cases, there exists
+      a slight difference in fields to be used for 
+
+      either flow which will be addressed additionally.
   - name: Wallets API
     description: >+
       The Wallets API enables merchants to create and manage their wallets and
@@ -419,12 +525,12 @@ tags:
 
 
 
-      **Important Note**:
+      **Important Note:**
 
 
-      If WebhookUrl field of the body is specified then the following requests
-      will be sent to the provided URL (Maximum 5 attempts with 5 seconds
-      timeout for a single request and 1 second delay between retries) All keys
+      If WebhookUrl field of the body is specified, then the following requests
+      will be sent to the provided URL (maximum 5 attempts with 5-seconds
+      timeout for a single request and 1-second delay between retries). All keys
       and values of the webhook payloads are strings. Samples of data being
       sent:
 
@@ -477,7 +583,7 @@ tags:
       ```
 
   - name: Webhooks API
-    description: >+
+    description: >-
       CoinPayments API offers webhook notifications, a powerful feature that
       allows merchants to seamlessly enable and manage notifications sent from
       CoinPayments API to their own merchant API when specific events occur.
@@ -501,13 +607,20 @@ tags:
       notifications:
 
 
-      - invoiceCreated: triggered when a new invoice is created
+      - **invoiceCreated:** triggered when a new invoice is created
 
-      - invoicePending: triggered when an invoice is pending payment
+      - **invoicePending:** triggered when an invoice is pending payment
 
-      - invoicePaid: triggered when an invoice is successfully paid
+      - **invoicePaid:** triggered when an invoice is successfully paid, a paid
+      invoice means the funds are received in the seller or merchant's wallet,
+      however the transaction is not yet settled or confirmed on the blockchain.
 
-      - invoiceCancelled: triggered when an invoice is cancelled
+      - **invoiceCompleted:** triggered when the invoice is paid **and** the
+      transaction has aquired the minimum confirmations required to mark it
+      confirmed. only when an invoice is marked `Completed`, users are free to
+      use the funds.
+
+      - **invoiceCancelled:** triggered when an invoice is cancelled
 
 
       Merchants have the flexibility to create webhooks either through the
@@ -518,7 +631,7 @@ tags:
       - Access the dashboard and click on "Integrations" in the left sidebar.
 
       - Choose "API integrations", click "Add New", and provide a name for your
-      integration client, along wit- your server URL.
+      integration client, along with your server URL.
 
       - On the right side of the popup screen, open the dropdown menu to specify
       the events for which you wan- to receive notifications.
@@ -536,6 +649,17 @@ tags:
       status update, and the actual invoice object
 
 
+      </br>
+
+      </br>
+
+      Below is a descriptive flowchart illustrating the process of webhook
+      notifications. This example specifically focuses on the scenario where the
+      client intends for their server API to receive notifications upon invoice 
+      completion
+
+
+      ![markdown file changed](./webhook-flowchart.png)
 servers:
   - url: https://api.coinpayments/api/v1
 paths:
@@ -569,13 +693,13 @@ paths:
           schema:
             type: string
             example: multiSigAccounts,sharedAccounts,payments,singleSigAccounts
-          description: search query to find currencies with names and/or codes
+          description: search query to find currencies by name or symbol
         - name: after
           in: query
           schema:
             type: string
             example: ''
-          description: search query to find currencies with names and/or codes
+          description: search query to find currencies by name or symbol
       responses:
         '200':
           description: Ok
@@ -599,7 +723,7 @@ paths:
           required: true
           schema:
             type: string
-            example: '1'
+            example: '2'
       responses:
         '200':
           description: Success status code ( 200 )
@@ -655,54 +779,6 @@ paths:
       tags:
         - Invoices API
       summary: Create Invoice
-      description: >+
-        CoinPayments exposes invoices API endpoints allowing merchants to create
-        and send invoices
-
-        to their clients to pay for goods and services in cryptocurrencies
-        supported by the merchant's platform.
-
-
-        Here are the steps for creating and paying an invoice using our payment
-        system:
-
-        1. Input the product or service name, price, and any applicable
-        discounts in the corresponding fields ( see request payload below ).
-
-        2. Specify how you want to send the invoice to the payer:
-
-        either via email or by providing a link for them to access in their
-        browser.
-
-
-        **Note**: To send the invoice via email, you must set the value of the
-        `isEmailDelivery` field to "true" and populate the `emailAddress` field.
-        If the payer prefer to create the invoice and send the link manually through
-        your preferred method,
-
-        set the value of `isEmailDelivery` to "false" and leave the
-        `emailAddress` field blank.
-
-
-        3. Upon accessing the invoice link, the payer can review the bill
-        details and click on the payment button to proceed to the checkout page.
-
-        4. On the checkout page, the payer can choose or specify the preferred
-        payment coin from the list of available currencies.
-
-        Please note that only coins supported by CoinPayments and enabled by the
-        merchant are available for selection.
-
-        5. Review the wallet address and QR code provided, then use them to
-        complete the payment using your selected coin.
-
-        6. Once the payment has been successfully processed, the invoice will be
-        marked as paid.
-
-
-
-        ![markdown file changed](./mermaid-invoice.png)
-
       operationId: createInvoice
       requestBody:
         content:
@@ -727,6 +803,65 @@ paths:
       description: |
         Get list of merchant invoices
       operationId: getListOfInvoices
+      parameters:
+        - name: clientId
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional clientId field to allow filtering by integration clientId.
+        - name: status
+          in: query
+          schema:
+            type: string
+            example: draft, paid, pending, cancelled, completed
+          description: optional status field to allow filtering by invoice status.
+        - name: from
+          in: query
+          schema:
+            type: string
+            example: '2023-01-01'
+          description: optional "from" field to allow filtering by invoice creation date.
+        - name: to
+          in: query
+          schema:
+            type: string
+            example: '2023-01-30'
+          description: optional "to" field to allow filtering by invoice creation date.
+        - name: q
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional search string to find invoices with these words.
+        - name: integration
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: optional integration field to allow filtering by integration.
+        - name: payoutWalletId
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: >-
+            optional query to filter the invoices by the wallet they were paid
+            out to (for 'paid' and 'completed' invoices).
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            example: 10
+          description: used to specify the number of records to return in one page.
+        - name: after
+          in: query
+          schema:
+            type: string
+            example: 9c2cbbb936824b9d91a1229321bfd03a
+          description: >-
+            used to specify a cursor or marker that indicates the starting point
+            of the next page of data.
       responses:
         '200':
           description: Success
@@ -768,8 +903,8 @@ paths:
         Get payout details for an invoice, including if invoice has been fully
         paid out,
 
-        the exact amount they will receive and in what currency, which address
-        payout will be deposited,
+        the exact amount the merchant will receive and in what currency, which
+        address payout will be deposited to,
 
         and who (Buyer) performed the payment.
       operationId: getInvoicePayouts
@@ -818,8 +953,9 @@ paths:
       tags:
         - Wallets API
       summary: Create wallet
-      description: |
-        Creates new wallet by currency Id
+      description: >
+        Creates new wallet by currency Id. Note: you can get the currency Id
+        from the currencies API.
       operationId: createMerchantWallet
       requestBody:
         content:
@@ -841,7 +977,9 @@ paths:
       tags:
         - Wallets API
       summary: Get Wallets
-      description: Retrieves a list of wallets
+      description: >-
+        Retrieves a list of wallets woth their balances, addresses, statuses and
+        other info.
       operationId: getMerchantWallets
       responses:
         '200':
@@ -888,11 +1026,11 @@ paths:
         The walletIdStr parameter is a required path parameter that identifies
         the target wallet.
 
-        The request body is optional, but if included, it can contain an label
-        field to provide a label for the new address. The response to a
-        successful request returns a 201 Created status code and an object
-        containing the ID of the new address, the ID of the wallet where it was
-        created, and its label (if any).
+        The request body is optional, but if included, it can contain a label
+        field to provide a label for the new address.
+
+        The response to a successful request returns a 201 Created status code
+        and an object containing the address and the address ID.
       operationId: createWalletAddress
       parameters:
         - name: walletIdStr
@@ -909,7 +1047,7 @@ paths:
             example: shop tests address
             description: label for the address
       responses:
-        '200':
+        '201':
           description: Success
           content:
             application/json:
@@ -969,10 +1107,17 @@ paths:
       tags:
         - Wallets API
       summary: Get wallet transaction
-      description: >-
-        Get a specific transaction of the wallet, If trasncationId is specified
-        then the specified then the spend request Id is ignored, otherwise, the
-        first spending transaction with matching spendRequestId is returned
+      description: >
+        Get a specific transaction of a wallet. This request requires the
+        walletIdStr URL parameter. Additionally,
+
+        there are two optional query parameters: transactionId and
+        spendRequestId.
+
+        If both transactionId and spendRequestId are specified, transactionId
+        takes precedence. If only spendRequestId is provided,
+
+        the first transaction that matches the spendRequestId will be returned.
       operationId: getTransactionByWalletId
       parameters:
         - name: walletIdStr
@@ -982,6 +1127,18 @@ paths:
             type: string
             example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
           description: the wallet Id
+        - name: transactionId
+          in: query
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the transaction Id
+        - name: spendRequestId
+          in: query
+          schema:
+            type: string
+            example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+          description: the spend request Id
       responses:
         '200':
           description: Ok
@@ -995,8 +1152,8 @@ paths:
     post:
       tags:
         - Wallets API
-      summary: Create Withdrawal
-      description: >-
+      summary: Create spend or convert request
+      description: >
         The Spend Request API allows users to initiate a withdrawal or a
         conversion transaction, both features follow a two-step process:
 
@@ -1015,10 +1172,22 @@ paths:
         converting funds, it is used to trigger publishing the transaction on
         the blockchain.
 
-        Note: The "spendRequestId" included in the response from the first step.
 
 
-        ![markdown file changed](./mermaid-withdrawal-svg.svg)
+        Note: The "spendRequestId" is included in the response from the first
+        step.
+
+
+
+        <br/>
+
+        <br/>
+
+
+        Here's a simplified flowchart explaining the withdrawal/conversion flow:
+
+
+        ![markdown file changed](./withdrawal-flowchart.png)
       operationId: sendSpendRequest
       requestBody:
         content:
@@ -1050,7 +1219,7 @@ paths:
     post:
       tags:
         - Wallets API
-      summary: Confirm wihtdrawal
+      summary: Confirm spend or convert request
       description: Send a request to confirm the withdrawal
       operationId: spendRequestConfirmation
       parameters:
@@ -1342,6 +1511,60 @@ components:
           to:
             type: string
             example: '6'
+    fullName:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: first name of the buyer
+        lastName:
+          type: string
+          description: last name of the buyer
+    physicalAddress:
+      type: object
+      properties:
+        address1:
+          type: string
+          description: main address
+        address2:
+          type: string
+          description: additional address data
+        address3:
+          type: string
+          description: additional address data
+        provinceOrState:
+          type: string
+          description: Province or state of the buyer
+        city:
+          type: string
+          description: city of the buyer
+        suburbOrDistrict:
+          type: string
+          description: Suburb or district of the buyer
+        countryCode:
+          type: string
+          format: US
+        postalCode:
+          type: string
+          format: '10101'
+    buyer:
+      type: object
+      properties:
+        companyName:
+          type: string
+          format: Rushing Turtles
+        name:
+          $ref: '#/components/schemas/fullName'
+        emailAddress:
+          type: string
+          description: email address of the buyer
+          format: johndoe@gmail.com
+        phoneNumber:
+          type: string
+          description: phone number of the buyer
+          format: '01010101010'
+        address:
+          $ref: '#/components/schemas/physicalAddress'
     globalAmount:
       type: object
       properties:
@@ -1378,60 +1601,40 @@ components:
             The decimal value represents the monetary value with decimal
             precision derived from the value field, which is the integer
             representation in the smallest unit of the currency or token.
-    fullName:
+    items:
       type: object
+      description: array of items that a buyer intends to purchase from the merchant
       properties:
-        firstName:
+        customId:
           type: string
-          description: first name of the buyer
-        lastName:
+          description: item Id in the merchant's system
+        sku:
           type: string
-          description: last name of the buyer
-    physicalAddress:
-      type: object
-      properties:
-        address1:
-          type: string
-          description: main address
-        address2:
-          type: string
-          description: second address
-        address3:
-          type: string
-          description: third address
-        city:
-          type: string
-          description: city of the buyer
-        provinceOrState:
-          type: string
-          description: Province or state of the buyer
-        suburbOrDistrict:
-          type: string
-          description: Suburb or district of the buyer
-        countryCode:
-          type: string
-          format: US
-        postalCode:
-          type: string
-          format: '10101'
-    buyer:
-      type: object
-      properties:
+          description: item SKU number
         name:
-          $ref: '#/components/schemas/fullName'
-        companyName:
           type: string
-          format: Rushing Turtles
-        address:
-          $ref: '#/components/schemas/physicalAddress'
-        emailAddress:
+          description: name or title of the item
+          example: Iphone 22
+        description:
           type: string
-          description: email address of the buyer
-          format: johndoe@gmail.com
-        phoneNumber:
-          type: string
-          description: phone number of the buyer
-          format: '01010101010'
+          description: description of the item
+        quantity:
+          type: object
+          properties:
+            value:
+              type: number
+              description: >-
+                the quantity of the item. Must be greater than 0 and less than
+                999,999,999. Defaults to 1 if not provided
+            type:
+              type: string
+              example: 1
+        originalAmount:
+          $ref: '#/components/schemas/globalAmount'
+        amount:
+          $ref: '#/components/schemas/globalAmount'
+        tax:
+          $ref: '#/components/schemas/globalAmount'
     shipping:
       type: object
       properties:
@@ -1451,29 +1654,6 @@ components:
           description: phone number
         address:
           $ref: '#/components/schemas/physicalAddress'
-    items:
-      type: object
-      description: array of items that a buyer intends to purchase from the merchant
-      properties:
-        name:
-          type: string
-          description: name or title of the item
-          example: Iphone 22
-        quantity:
-          type: object
-          properties:
-            value:
-              type: number
-              description: >-
-                the quantity of the item. Must be greater than 0 and less than
-                999,999,999‬. defaults to 1 if not provided.
-            type:
-              type: string
-              example: 1
-        originalAmount:
-          $ref: '#/components/schemas/globalAmount'
-        amount:
-          $ref: '#/components/schemas/globalAmount'
     merchantOptions:
       type: object
       properties:
@@ -1498,9 +1678,11 @@ components:
     notifications:
       type: array
       description: >
-        specify the event name you want your server to be notified of when it occurs,
+        specify the event name you want your server to be notified about when it
+        occures
 
-        i.e. send notification when an invoice is created
+
+        e.g. send notification when an invoice is created
       items:
         type: string
       example:
@@ -1531,37 +1713,67 @@ components:
       properties:
         isEmailDelivery:
           type: boolean
-          description: indicates if invoice will be sent via email, deaults to false
+          description: >-
+            default value to be used for whitelabeling checkout flow. For
+            invoice document delivery indicates if invoice will be email
+            delivered
           default: false
         emailDelivery:
           type: object
+          description: email addresses to be used for invoice delivery
           properties:
             to:
               type: string
               description: >-
-                to recipient's email address. The value can take multiple addresses
+                to email address. The value can take multiple addresses
                 separated by semicolons
             cc:
               type: string
-              description: field to add additional multiple recepients separated by semicolons
+              description: field to add multiple recipients separated by semicolons
             bcc:
               type: string
               description: >-
-                "bcc" field is similar to "cc" field except that other recipients
+                bcc field similar to "cc" field except that other recipients
                 won't be able to see that someone else has been sent a copy of
-                the email.
+                the email
+        dueDate:
+          type: string
+          example: '2023-04-26T18:40:41.322Z'
+          description: >-
+            to be used for invoice doc delivery. Date when invoice is to be
+            mailed out to the user
+        invoiceDate:
+          type: string
+          example: '2022-11-28T13:59:46+00:00'
+          description: to be used for invoice doc. Date when invoice was issued
+        draft:
+          type: boolean
+          description: >-
+            Default value to be used for whitelabeling checkout flow. flag
+            indicating whether this is a draft invoice
+          default: false
+        clientId:
+          type: string
+          description: the id of the client (merchant) creating this invoice
+        invoiceId:
+          type: string
+          description: >-
+            default value to be used for whitelabeling checkout flow. For
+            invoice document delivery invoice number assigned by the merchant
+          default: false
+        buyer:
+          $ref: '#/components/schemas/buyer'
         description:
           type: string
           description: the purchase description, can be provided instead of a list of items
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/items'
         amount:
           type: object
-          description: >
-            represents the value of the item in the original currency, typically
-            fiat currency such as USD or EUR.
-
-            Values will be used to calculate the amount the buyer should
-
-            pay in his or her selected currency of payment.
+          description: |
+            detailed amount of purchase with the breakdown of all fees
           properties:
             breakdown:
               type: object
@@ -1586,11 +1798,11 @@ components:
                 ERC20 or similar token value
             displayValue:
               type: string
-              description: The value formatted for display (e.g 0.1234 BTC)
+              description: the value formatted for display (e.g 0.1234 BTC)
             value:
               type: string
               description: >
-                This parameter represents the monetary value as an integer in
+                this parameter represents the monetary value as an integer in
                 the base (smallest) unit of the currency. For instance, Bitcoin
                 can be divided into 8 decimal places,
 
@@ -1602,7 +1814,7 @@ components:
                 case of zero-decimal currencies like the Yen, a value of ¥500
                 would be represented as 500.
 
-                If no value is provided, the default is 0.
+                If no value is provided, the default is 0
             valueAsDecimal:
               type: string
               description: >
@@ -1611,37 +1823,13 @@ components:
 
                 which is the integer representation in the smallest unit of the
                 currency or token.
-        clientId:
-          type: string
-          description: the id of the client creating this invoice
-        invoiceDate:
-          type: string
-          description: >-
-            allows for optional customization of the invoice date, which can
-            differ from the automatically generated creation date of the invoice
-          example: '2022-11-28T13:59:46+00:00'
-        dueDate:
-          type: string
-          example: '2023-04-26T18:40:41.322Z'
-          description: due date to be shown on the invoice
-        invoiceId:
-          type: string
-          description: >-
-            invoice number. Appears in screens shown to the Buyer and emails
-            sent.
-        buyer:
-          $ref: '#/components/schemas/buyer'
         shipping:
           $ref: '#/components/schemas/shipping'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/items'
         requireBuyerNameAndEmail:
           type: boolean
           description: >-
-            flag indicating whether a buyer's name and email are required, they
-            will be requested at checkout if not provided by the caller.
+            flag indicating whether a buyer name and email are required, they
+            will be requested at checkout if not provider by the caller.
         buyerDataCollectionMessage:
           type: string
           description: the message to display when collecting buyer user data
@@ -1658,11 +1846,12 @@ components:
           description: any terms and conditions, e.g. a cancellation policy
         merchantOptions:
           $ref: '#/components/schemas/merchantOptions'
-        customOptions:
+        customData:
           type: object
           description: >-
-            any custom data the caller wishes to attach to the invoice which
-            will be sent back in notifications
+            any custom data merchant wishes to attach to the invoice that may be
+            further used for custom merchant's purposes. Not visible on UI for
+            buyers
           properties:
             additionalProp1:
               type: string
@@ -1679,24 +1868,22 @@ components:
               format: InvoiceBuilder
             hostname:
               type: string
-              description: server name of the integration api
+              description: server name of the integration API
         poNumber:
-          description: Optional purchase order number on the integration API.
           type: string
+          description: optional Purchase order number on the integration API.
           format: InvoiceBuilder
-        webhook:
+        webhooks:
           $ref: '#/components/schemas/webhookSchema'
-        draft:
-          type: boolean
-          description: flag indicating whether this is a draft invoice
-          default: false
         payoutConfig:
           type: object
-          description: represents info specifying payout configuration for invoice
+          description: >-
+            configs for payout for this particular invoice. Overrides account
+            payout configs
           properties:
             currencyId:
               type: string
-              description: the currency id of the wallet or address into which to payout to
+              description: the currency Id of the wallet or address into which to payout to
             contractAddress:
               type: string
               description: >-
@@ -1704,15 +1891,27 @@ components:
                 ERC20 or similar token value
             address:
               type: string
-              description: the external address into which to pay out
+              description: the external address into which to pay out to
             frequency:
               type: array
+              description: frequency of payout execution
               example:
                 - normal
                 - asSoonAsPossible
                 - hourly
                 - nightly
                 - weekly
+        payment:
+          type: object
+          description: >-
+            is used for white labeling checkout mode. Defines additional data
+            required for this type of payments
+          properties:
+            refundEmail:
+              type: string
+              description: >-
+                Is used for white labeling checkout mode. Email of the payer for
+                possible refund in case there is a problem with payment
     invoices:
       type: array
       items:
@@ -1970,7 +2169,7 @@ components:
         merchantPayoutAddress:
           type: string
           description: >-
-            the merchants payment output address at the time the hot wallet was
+            the merchant's payment output address at the time the hot wallet was
             created
         sent:
           description: >-
@@ -2016,15 +2215,15 @@ components:
           format: 378a37b57b6b4a4a93fd352b06ce1829
         destinationCurrencyId:
           type: string
-          description: The currency ID of the destination for the payout
+          description: The currency ID of the destination address for the payout
           format: '1'
         expectedDisplayValue:
           type: string
-          description: The expected display value of the payout
+          description: The expected amount of the payout.
           format: '0.01'
         sourceCurrencyId:
           type: string
-          description: The currency ID of the source for the payout
+          description: The ID of the source currency for the payout
           format: '101'
         destinationAccountId:
           type: string
@@ -2043,8 +2242,9 @@ components:
           example: 0
         destinationAmount:
           description: >-
-            The destination amount of the payout, including payout amount, state
-            and merchant fees.
+            The destination amount of the payout, including the ammount in the
+            buyer's currency (amount) and the amount in the seller's currency
+            (nativeAmount)
           $ref: '#/components/schemas/destinationAmount'
         items:
           type: array
@@ -2102,39 +2302,39 @@ components:
           type: number
           example: 1
         label:
-          description: abel of the wallet
+          description: label of the wallet
           type: string
           example: John's wallet
         balance:
-          description: Balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
+          description: balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
           type: string
           example: '0.874833322'
         tokenBalances:
           description: >-
-            Token (e.g. ERC20) balances for this wallet if available in smallest
+            token (e.g. ERC20) balances for this wallet if available in smallest
             units (e.g. Weis for Ethereum)
           type: string
           example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
         depositAddress:
-          description: Blockchain address of this wallet allowing it to receive funds
+          description: blockchain address of this wallet allowing it to receive funds
           type: string
           example: '0x9939b7b208012cd0395d1411272be6e34c04af7b'
         walletStatus:
           description: >
-            Status of the wallet, should be Active (2) for valid usable wallets.
+            status of the wallet, should be Active (2) for valid usable wallets.
 
-            walletStatues can hold one of the following values [ Created,
-            Active, Deactivated or Deleted ]
+            walletStatues can hold one of the following values [Created, Active,
+            Deactivated or Deleted]
           type: string
           example: Active
         canCreateAddress:
           description: >-
-            Specifies whether this wallet is allowed to create additional
+            specifies whether this wallet is allowed to create additional
             deposit addresses
           type: boolean
           example: true
         updatedAt:
-          description: The date when the properties of the wallet were last updated
+          description: the date when the properties of the wallet were last updated
           type: string
           example: '2022-10-05T06:05:07.520Z'
         isVaultLocked:
@@ -2142,7 +2342,9 @@ components:
           type: boolean
           example: true
         vaultLockoutEndDateTime:
-          description: DateTime that specifies the planned date the vault will be unlocked
+          description: >-
+            when used, the vault will start the countdown to unlock when when
+            the specified date and time is reached
           type: string
           example: '2023-07-04T22:21:41.535Z'
     arrayOfWallets:
@@ -2160,20 +2362,20 @@ components:
           type: number
           example: 1
         label:
-          description: label denoting the wallet
+          description: Label denoting the wallet
           type: string
           example: John's wallet
         webhookUrl:
           description: >-
-            when provided, CoinPayments API will be sending appropriate requests
-            to it
+            when provided, CoinPayments API will be sending notifications to
+            this URL when withdrawals are processed or when funds are moved
           type: string
           example: https://myapi.com
     NewWallet:
       type: object
       properties:
         walletId:
-          description: Id of newely created wallet
+          description: Id of newly created wallet
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         address:
@@ -2184,7 +2386,7 @@ components:
       type: object
       properties:
         addressId:
-          description: Id of newely created address
+          description: Id of newly created address
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
         networkAddress:
@@ -2254,16 +2456,16 @@ components:
           example: 1AYASDI34W2W2SIFFRE32452S1Q
         fromContractAddress:
           description: >-
-            Address of the contract for tokens being sent if this transaction is
-            an ERC20 or similar token transfer
+            Address of the sender contract. e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
           type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
+          example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
         toContractAddress:
           description: >-
-            Address of the contract for tokens being received if this
-            transaction is an ERC20 or similar token transfer
+            Address of the reciever contract. e.g.
+            "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
           type: string
-          example: 1AYASDI34W2W2SIFFRE32452S1Q
+          example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
         confirmations:
           description: Current number of confirmations that this transaction has
           type: number
@@ -2302,8 +2504,8 @@ components:
           example: 1AYASDI34W2W2SIFFRE32452S1Q3289y7debugDSDSd38d3xSSA33ASDRxw98
         outputIndex:
           description: >-
-            Index of the output in which this transaction received funds (only
-            for UTXO receives)
+            Index of the output in which this transaction receives funds (only
+            for UTXO received transactions)
           type: number
           example: 1
         blockchainFee:
@@ -2315,7 +2517,7 @@ components:
         feeCurrency:
           description: >-
             Currency in which CoinPayments fees were deducted. The format is
-            {CurrencyId}:{ContractAddress?} where ContractAddress is optional
+            {CurrencyId}:{ContractAddress} where ContractAddress is optional
             e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
           type: string
           example: '0.00000032'
@@ -2332,6 +2534,7 @@ components:
       required:
         - toCurrencyId
         - amountInSmallestUnits
+        - toAddress
       properties:
         fromContractAddress:
           description: >-
@@ -2399,9 +2602,55 @@ components:
       type: object
       properties:
         spendRequestId:
-          description: Id of newely created wallet
+          description: Id of spend request
           type: string
           example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        fromWalletId:
+          description: Id of wallet from which the amount is to be deducted
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        fromContractAddress:
+          description: >-
+            Address of the contract (if the withdrawal is from a contract
+            wallet)
+          type: string
+          example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
+        fromCurrencyId:
+          description: Id of the currency from which the amount is to be deducted
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        toAddress:
+          description: Address to which the amount is to be transferred
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        toContractAddress:
+          description: Address of the contract (if the withdrawal is to a contract wallet)
+          type: string
+          example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
+        toCurrencyId:
+          description: Id of the currency to which the amount is to be transferred
+          type: string
+          example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+        blockchainFee:
+          description: Fee to be paid to the blockchain
+          type: number
+          example: 0.0001
+        coinpaymentsFee:
+          description: Fee to be paid to coinpayments
+          type: number
+          example: 0.0001
+        fromAmount:
+          description: Amount to be deducted from the wallet
+          type: number
+          example: 0.0987
+        toAmount:
+          description: Amount to be transferred to the address
+          type: number
+          example: 0.0123
+        memo:
+          description: Optional user-defined note for the spend
+          type: string
+          example: This is a memo
     Problem:
       type: object
       additionalProperties: true

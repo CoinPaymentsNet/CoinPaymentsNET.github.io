@@ -1,8 +1,32 @@
 type: object
 properties:
-  id:
-    type: string
-    description: the CoinPayments id of the invoice
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+  invoices:
+    type: array of objects
+    description: array of invoices in all available currencies
+    properties:
+      id:
+        type: string
+        description: id of the invoice
+      link:
+        type: string
+        description: link to the invoice document
+      payment:
+        type: object
+        description: payment details
+        properties:
+          paymentId:
+            type: string
+            description: id of the payment
+          expires:
+            type: string
+            description: the timestamp when the payment expires and new payments will no longer be accepted
+            example: '2023-09-02T08:06:26+00:00'
+          paymentCurrencies:
+            $ref: ./invoicePaymentCur.yaml
+          refundEmail:
+            type: string
+            description: email address provided by the buyer for the case when refund should be executed, e.g. some problem with payment or overpayment has occurred
+
+
 
 

@@ -1,20 +1,58 @@
-CoinPayments exposes invoices API endpoints allowing merchants to create and send invoices
-to their clients to pay for goods and services in cryptocurrencies supported by the merchant's platform.
+CoinPayments exposes invoices API endpoints allowing merchants to implement a payment gateway on their platform and let 
+buyers pay for goods and services in cryptocurrencies supported by the merchant’s platform.
+With CoinPayments invoices API you may:
+ - send out invoices to their clients.
+ - launch an integrated hosted checkout to merchant’s payment flow that will be acting on the whitelabeling basis.
+CoinPayment’s invoices API is built around “invoice” entity. In other words, under the hood it generates an invoice with
+all the buyer’s and merchant’s data plus information on the product/service. Thus, merchant’s will be flexible in 
+managing payments with the help of this data via a set of available endpoints.
+Below you will find information on how payment flow is organized for each of the above-mentioned approaches.
 
-Here are the steps for creating and paying an invoice using our payment system:
-1. input the product or service name, price, and any applicable discounts in the corresponding fields.
-2. specify how you want to send the invoice to the payer:
-either via email or by providing a link for them to access in their browser.
+**Payment Flow for Sent out Invoices**
 
-**Note:** to send the invoice via email, you must set the value of the `isEmailDelivery` field to "true" and populate the `emailAddress` field. If you prefer to create the invoice and send the link manually through your preferred method,
-set the value of `isEmailDelivery` to "false" and leave the `emailAddress` field blank.
+Imagine a case where you have a platform that provides services on subscription basis. Every month you need to send out 
+invoices to your users with the reminder to pay for the subscription. In order to automate this flow, you may want to 
+use CoinPayments API. Here are the steps that should take place in order payment could occur:
 
-3. upon accessing the invoice link, the payer can review the bill details and click on the payment button to proceed to the checkout page.
-4. on the checkout page, you can choose or specify your preferred payment coin from the list of available currencies.
-Please note that only coins supported by CoinPayments and enabled by the merchant are available for selection.
-5. review the wallet address and QR code provided, then use them to complete the payment using your selected coin.
-6. once the payment has been successfully processed, the invoice will be marked as paid.
+1. Merchant adds details on services for which invoice is issued, indicates user’s details like name, payment address 
+and email
+2. With the help of Create Invoice endpoint merchant generates an invoice entity with the data from step 1 and launches 
+the payment flow
+3. As a response to the Create Invoice endpoint, merchant receives all invoice entity data including:
+ - paymentId to get payment address and check payment status
+ - link to the invoice document with the active payment button that would lead user to payment checkout
+ - date when invoice expires
+ - array of allowed currencies with currency description, payment amount and fees.
 
+4. Link to the invoice is sent to the user’s email address
+5. User selects currency for payment, which triggers the Get Payment Address endpoint and merchant receives payment 
+address
+6. After that merchant can check the status of the payment with the help of Get Payment Status endpoint that includes:
+ - status of payment
+ - how much was detected and confirmed on blockchain
+ - how much was detected but not confirmed yet.
 
-![markdown file changed](./mermaid-invoice.png)
+**Payment Flow for Integrated Checkout with Whitelabeling**
 
+Imagine a case where you have an online shop and you want to accept payment for goods in cryptocurrency. With 
+CoinPayments API you will be able to allow buyers to add goods to the shopping cart, click “pay” and they will be 
+forwarded to the payment gateway provided by CoinPayments. Here are the steps that should take place in order payment 
+could occur:
+
+1. Buyer selects product/service on the merchant’s site.
+2. With the help of Create Invoice endpoint merchant generates an invoice entity and launches the payment flow.
+3. As a response to the Create Invoice endpoint, merchant receives all invoice entity data including:
+ - paymentId to get payment address and check payment status
+ - link to the checkout for payment
+ - date when invoice expires
+ - array of allowed currencies with currency description, payment amount and fees.
+4. Once buyer clicks “Pay” in your website, they are forwarded to the CoinPayments checkout window where they select 
+currency for payment. This triggers the Get Payment Address endpoint and merchant receives payment address
+5. After that merchant can check the status of the payment with the help of Get Payment Status endpoint that includes:
+ - status of payment
+ - how much was detected and confirmed on blockchain
+ - how much was detected but not confirmed yet.
+
+Below we will provide you with the detailed information on each of the invoices endpoints and their field values. 
+Although endpoints are the same for both described use-cases, there exists a slight difference in fields to be used for 
+either flow which will be addressed additionally.

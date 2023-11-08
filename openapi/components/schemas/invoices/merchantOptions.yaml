@@ -2,17 +2,22 @@ type: object
 properties:
   showAddress:
     type: boolean
+    description: indicates whether to show merchant’s address on the invoice
     default: false
   showPhone:
     type: boolean
+    description: indicates whether to show merchant’s phone number on the invoice
     default: false
   showRegistrationNumber:
     type: boolean
+    description: indicates whether to show merchant’s registration number on the invoice
     default: false
   showEmail:
     type: boolean
+    description: indicates whether to show merchant’s email address on the invoice
     default: false
   additionalInfo:
     type: string
+    description: indicates whether to show any other merchant’s additional info on the invoice
     format: additional Info
     #nullable: true
