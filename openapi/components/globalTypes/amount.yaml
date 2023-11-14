@@ -11,5 +11,9 @@ properties:
       an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
       If no value is provided, the default is 0.
   currencyId:
-    $ref: ./currencyId.yaml
+    type: string
+    description: the currency id of the wallet or address into which to payout to or Id of the native invoice currency
+  valueAsDecimal:
+    type: string
+    description: the decimal value represents the monetary value of the full invoice amount with decimal precision derinvoicePaymentAmountDue.yamlived from the value field, which is the integer representation in the smallest unit of the currency or token
 

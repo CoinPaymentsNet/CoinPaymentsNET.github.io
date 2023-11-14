@@ -24,7 +24,10 @@ properties:
               description: the timestamp when the payment expires and new payments will no longer be accepted
               example: '2023-09-02T08:06:26+00:00'
             paymentCurrencies:
-              $ref: ./invoicePaymentCur.yaml
+              type: array
+              description: details of the currency in which payment can be done together with the breakdown of the invoice amount in this currency
+              items:
+                $ref: ./invoicePaymentCur.yaml
             refundEmail:
               type: string
               description: email address provided by the buyer for the case when refund should be executed, e.g. some problem with payment or overpayment has occurred

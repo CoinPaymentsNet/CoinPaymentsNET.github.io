@@ -1,0 +1,48 @@
+type: object
+description: the currency id of the wallet or address into which to payout to
+properties:
+  id:
+    type: string
+    description: id of the cryptocurrency that can be applied for payment
+  type:
+    type: array
+    description: type of the currency that can be applied for payment. Possible values - 'crypto', 'token', 'fiat'
+  symbol:
+    type: string
+    description: currency ticker
+  name:
+    type: string
+    description: name of the currency
+  logo:
+    type: string
+    description: link to the logo of the currency
+  decimalPlaces:
+    type: integer
+    description: number of decimal places to display for the cryptocurrency value
+  rank:
+    type: integer
+    description: rank of the cryptocurrency depending on its reliability on the market
+  status:
+    type: string
+    description: status of the currency in the system. Possible values - 'active', 'underMaintenance', 'deleted'
+  capabilities:
+    type: string
+    description: specific capabilities of the currency. Possible values - 'payments', 'singleSigAccounts', 'pooledAccounts'
+  urls:
+    type: object
+    description: web links pertaining to the cryptocurrency
+    properties:
+      websites:
+        type: array
+        description: list of links to websites pertaining to the cryptocurrency
+      explorers:
+        type: array
+        description: list of links to explorers pertaining to the cryptocurrency
+  requiredConfirmations:
+    type: integer
+    description: number of confirmations required on chain for the transaction in the cryptocurrency to be considered completed
+
+
+
+
+
