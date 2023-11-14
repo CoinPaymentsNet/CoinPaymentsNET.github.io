@@ -39,6 +39,8 @@ paths:
   # Invoices
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
+  '/invoices/{id}/payment-currencies/{currencyId}':
+    $ref: 'paths/invoices/get-payment-address.yaml'
   '/merchant/invoices/{id}':
     $ref: 'paths/invoices/get-by-id.yaml'
   '/merchant/invoices/{id}/payouts':

@@ -28,6 +28,9 @@ properties:
     type: string
     example: active
   capabilities:
+    type: string
+    description: specific capabilities of the cryptocurrency. Possible values - 'payments', 'singleSigAccounts', 'pooledAccounts'
+  urls:
     $ref: './urls.yaml'
   requiredConfirmations:
     type: integer
