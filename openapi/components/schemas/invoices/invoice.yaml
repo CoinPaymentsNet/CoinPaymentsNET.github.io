@@ -157,8 +157,10 @@ properties:
         description: frequency of payout execution. Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
   payment:
     type: object
-    description: is used for white labeling checkout mode. Defines additional data required for this type of payments
+    description: the field contains additional data specific for whitelabeled payments, e.g. buyer's email that is used 
+      for possible refunds
     properties:
       refundEmail:
         type: string
-        description: Is used for white labeling checkout mode. Email of the payer for possible refund in case there is a problem with payment
+        description: Provide the buyer’s email address to create a white-labeling payment flow. **Note**, the email is 
+          only used for transaction status updates and refunds; never for marketing purposes

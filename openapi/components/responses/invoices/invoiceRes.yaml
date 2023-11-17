@@ -2,7 +2,8 @@ type: object
 properties:
   invoices:
     type: array
-    description: array of invoices in all available currencies
+    description: invoice in all available currencies. **Note**, for Invoice Links flow, only "id" and "link" properties
+      are necessary
     items:
       type: object
       properties:

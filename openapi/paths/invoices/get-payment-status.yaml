@@ -1,11 +1,11 @@
 get:
   tags:
     - Invoices API
-  summary: Get payment address by currency id
+  summary: Get payment status once payment is made
   description: |
-    Once invoice is created and buyer selects currency for payment, by using this endpoint merchant obtains address for 
-    payment that is then displayed to buyer in the checkout window and may be used for money transfer.
-  operationId: getPaymentAddressByCurrencyId
+    Although it is usually sufficient to rely on webhooks for up-to-date status of your transactions, merchants are also
+    able to verify the webhook information with this endpoint.
+  operationId: getPaymentStatus
   parameters:
     - name: invoiceId
       in: path
@@ -24,7 +24,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/invoices/address-by-currency.yaml
+            $ref: ../../components/schemas/invoices/payment-status.yaml
     '401':
       description: Unauthorized
     '403':
