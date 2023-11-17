@@ -9,8 +9,18 @@ properties:
     description: timestamp when invoice expires
   status:
     type: string
-    description: current status of the invoice. Possible values - 'draft, 'scheduled', 'unpaid', 'pending', 'paid', 
-      'completed, 'cancelled', 'timedOut', 'deleted'
+    description: current status of the invoice. Possible values - 'draft', 'scheduled', 'unpaid', 'pending', 'paid', 
+      'completed', 'cancelled', 'timedOut', 'deleted'
+    example: ["draft",
+              "scheduled",
+              "unpaid",
+              "pending",
+              "paid",
+              "completed",
+              "cancelled",
+              "timedOut",
+              "deleted"
+    ]
   payment:
     type: object
     description: details of payment of the invoice

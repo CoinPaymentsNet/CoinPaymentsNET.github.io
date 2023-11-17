@@ -155,6 +155,12 @@ properties:
       frequency:
         type: array
         description: frequency of payout execution. Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
+        example: ['normal',
+                  'asSoonAsPossible',
+                  'hourly',
+                  'nightly',
+                  'weekly'
+        ]
   payment:
     type: object
     description: the field contains additional data specific for whitelabeled payments, e.g. buyer's email that is used 
