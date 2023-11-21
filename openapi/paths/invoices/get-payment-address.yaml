@@ -20,7 +20,8 @@ get:
         example: '2'
   responses:
     '200':
-      description: Success status code ( 200 )
+      description: Success status code (200) - 
+        Address for buyer to make payment with indication of currency, amount, and expiration timer
       content:
         application/json:
           schema:

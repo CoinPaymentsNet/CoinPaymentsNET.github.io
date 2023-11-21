@@ -14,6 +14,10 @@ tags:
   - name: Authentication
     description:
       $ref: './paths/auth/auth.md'
+  - name: Currencies API
+    description: "Currencies API"
+  - name: Rates API
+    description: "Rates API"
   - name: Invoices API
     description:
       $ref: './paths/invoices/invoice-description.md'

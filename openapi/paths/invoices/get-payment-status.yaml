@@ -20,7 +20,7 @@ get:
         example: '2'
   responses:
     '200':
-      description: Success status code ( 200 )
+      description: Success status code ( 200 ) - Status of the invoice
       content:
         application/json:
           schema:

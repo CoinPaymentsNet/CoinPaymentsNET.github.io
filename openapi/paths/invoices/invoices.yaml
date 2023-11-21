@@ -2,6 +2,9 @@ post:
   tags:
     - Invoices API
   summary: Create Invoice
+  description: |
+    Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
+      by the merchant, that a buyer intends to purchase
   operationId: createInvoice
   requestBody:
     content:
@@ -11,7 +14,9 @@ post:
     description: Create Invoice
   responses:
     '200':
-      description: Success
+      description: Success. 
+        Invoice in all available currencies. **Note**, for Invoice Links flow, only "id" and "link" properties
+        are necessary
       content:
         application/json:
           schema:
