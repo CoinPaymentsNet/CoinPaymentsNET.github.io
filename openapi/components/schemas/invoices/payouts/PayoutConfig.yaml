@@ -1,0 +1,29 @@
+type: object
+properties:
+  currencyId:
+    type: object
+    description: the currency id of the wallet or address into which to payout to
+    format: int32
+    properties:
+      id:
+        type: integer
+        description: currency Id in CoinPayments
+      smart_contract:
+        type: string
+        description: Optional address of the smart contract if the currency supports it
+  address:
+    type: string
+    description: the external address into which to pay out
+  wallet_id:
+    type: string
+    description: id of the wallet into which to payout to. Used if no address is available for the merchant
+  frequency:
+    type: string
+    description: the frequency of payout of the funds to merchant's wallet or address in the currency of payment. 
+      Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
+    example: ['normal',
+              'asSoonAsPossible',
+              'hourly',
+              'nightly',
+              'weekly'
+      ]

@@ -1,3 +1,9 @@
 type: array of strings
 description: specify the event name you want your server to be notified about when it occurs, e.g. send notification when an invoice is created.
-  Possible values of the array - 'invoiceCreated', 'invoicePending', 'invoicePaid', 'invoiceCompleted', 'invoiceCancelled', 'invoiceTimedOut'
+example: ['invoiceCreated',
+          'invoicePending',
+          'invoicePaid',
+          'invoiceCompleted',
+          'invoiceCancelled',
+          'invoiceTimedOut'
+  ]

@@ -1,4 +1,5 @@
 type: object
+description: List of merchant webhook notifications
 properties:
   items:
     $ref: ./itemRes.yaml

@@ -21,15 +21,23 @@ Here is a list of events for which merchants can choose to receive notifications
 - **invoiceTimedOut:** triggered once invoice expiration date and time is over
 
 Merchants have the flexibility to set up webhooks either through the user-friendly UI or via API calls. To set up 
-webhook notifications through the UI, simply follow these steps:
-
+webhook notifications, first, [create an API integration via CoinPayments UI](../auth/auth.md#Create-credentials). Then
+follow these steps:
 - Access the dashboard and click on "Integrations" in the left sidebar.
-- Choose "API integrations", click "Add New", and provide a name for your integration client, along with your server URL.
+- Click on the integration that you want to use for webhooks.
 - On the left side of the popup screen, in the "Permissions" field select all necessary actions for which you would like to enable your API integration. 
 For invoices select "Create Invoice", "List Invoices", "Find Invoice", "Invoice Payouts", "List Invoice History".
 - Click "Save" to confirm your selections.
+
+To create a webhook through the UI, continue in the popup screen with the following steps:
 - On the right side of the popup screen, open the dropdown menu to specify the events for which you want to receive notifications.
 - Click "Save" to confirm your selections.
+
+To set up webhook notifications through the API calls, follow these steps:
+- Create a webhook using ['createWebhook' endpoint](./webhook.yaml) indicating merchant's 'clientId' of the API integration. 
+- In the request body provide a list of notification types you want to receive in the 'notifications' parameter. Possible values are:
+'invoiceCreated', 'invoicePending', 'invoicePaid', 'invoiceCompleted', 'invoiceCancelled', 'invoiceTimedOut'.
+- In the request body provide your server URL where the notifications will be sent in the 'notificationsUrl' parameter.
 
 Once completed, your webhook notifications are all set, and your API will receive notifications based on the events you 
 have chosen. This allows you to stay updated in real-time on the activities that matter most to your business.

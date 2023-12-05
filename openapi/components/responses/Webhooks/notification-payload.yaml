@@ -260,7 +260,7 @@ properties:
               description: if payer is a system guest or a registered user
             "hot_wallet":
               type: object
-              description: wallet details where payment is received
+              description: object containing data about payment amount and pooled wallet where payment is sent
               properties:
                 "id":
                   type: string
@@ -312,29 +312,11 @@ properties:
                 "buyer_fee":
                   type: object
                   description: breakdown of additional fees paid by the buyer
-                  properties:
-                    "coin_payments_fee":
-                      type: integer
-                      description: fees charged by CoinPayments
-                    "network_fee":
-                      type: integer
-                      description: amount of network fees charged for payment
-                    "conversion_fee":
-                      type: integer
-                      description: fees charged for conversion
+                  $ref: ../../globalTypes/personFeeSummary.yaml
                 "merchant_fee":
                   type: object
                   description: breakdown of additional fees paid by the merchant
-                  properties:
-                    "coin_payments_fee":
-                      type: integer
-                      description: fees charged by CoinPayments
-                    "network_fee":
-                      type: integer
-                      description: amount of network fees charged for payment
-                    "conversion_fee":
-                      type: integer
-                      description: fees charged for conversion if payment currency is set for conversion payout mode
+                  $ref: ../../globalTypes/personFeeSummary.yaml
                 "payout_frequency":
                   type: string
                   description: frequency mode for funds payout set by the merchant
@@ -342,8 +324,35 @@ properties:
                   type: integer
                   description: time when payout is created
                 "error":
-                  type:
-                  description:
+                  type: object
+                  description: payment error details
+                  properties:
+                    code:
+                      type: string
+                      description: error code
+                    message:
+                      type: string
+                      description: error message
+                      example: ['Unknown = 0',
+                                'NegativeRate = 1',
+                                'PayoutAddressIsNull = 2',
+                                'PaymentSubTotalIsLessThanMerchantTotalFee = 4',
+                                'TotalBuyerWillPayIsNegativeOrZero = 8',
+                                'TotalBuyerWillPayIsLessThanBuyerNetworkFee = 16',
+                                'TotalMerchantFeeRatioIsMoreThanMaximumRatioSetting = 32',
+                                'PayoutAmountIsLessThanDust = 64',
+                                'CurrencyIsNotActive = 128',
+                                'AmountIsBelowOfConversionLimit = 256',
+                                'AmountIsAboveOfConversionLimit = 512',
+                                'UserLimitIsReached = 1024',
+                                'NotEnoughToActivateRippleAddress = 2048',
+                                'ConversionPairDoesNotExist = 4096',
+                                'AddressIsNotValid = 8_192',
+                                'DoesNotHaveCompletedKyc = 16_384',
+                                'UnstoppableDomainNotFound = 32_768',
+                                'UnstoppableDomainNotFoundForCurrency = 65_536',
+                                'UserWalletIsLocked = 131_072'
+                        ]
                 "confirmations":
                   type: integer
                   description: amount of confirmations gathered by the payment transaction on chain
@@ -358,17 +367,17 @@ properties:
                   description: amount of payment that was detected on chain but that has not received necessary amount of confirmations yet
                 "assignment":
                   type: object
-                  description:
+                  description: dates of assignment of the pooled wallet to the hot wallet for payment
                   properties:
                     "assigned_from":
                       type: string
-                      description: timestamp from when assignment is valid
+                      description: timestamp from when assignment of the pooled wallet to the hot wallet is valid
                     "assigned_until":
                       type: string
-                      description: timestamp until assignment is valid
+                      description: timestamp until assignment of the pooled wallet to the hot wallet is valid
                     "completed_date":
                       type: string
-                      description: timestamp when assignment is completed
+                      description: timestamp when assignment of the pooled wallet to the hot wallet is completed
                 "pooled_wallet_id":
                   type: string
                   description: id of the wallet in the pool of addresses used for payment receipt
@@ -386,10 +395,50 @@ properties:
               description: if payment is active or expired
             "estimated_amounts":
               type: array
-              description:
+              description: amount of the invoice to be paid displayed at the checkout in all the available currencies
+              items:
+                type: object
+                description: estimated amounts to be paid in all available currencies
+                properties:
+                  "rate":
+                    type: decimal
+                    description: rate of the currency at the time of checkout
+                  "sub_total":
+                    type: decimal
+                    description: payment subtotal
+                  "markup_or_discount":
+                    type: decimal
+                    description: amount of markup or discount provided by merchant for the currency
+                  "buyer_fees":
+                    type: object
+                    description: fees to be paid by the buyer
+                    $ref: ../../globalTypes/personFeeSummary.yaml
+                  "merchant_fees":
+                    type: object
+                    description: fees to be paid by the merchant
+                    $ref: ../../globalTypes/personFeeSummary.yaml
+                  "approximate_network_amount":
+                    type: decimal
+                    description: approximate network fee to be paid by the buyer. Calculated before buyer initiates the payment.
+                      Used for 'invoiceCreated' event
+                  "payout_info":
+                    type: object
+                    description: payout info for the currency of payment
+                    $ref: ../../globalTypes/InvoicePayoutConfig.yaml
+                  "from_currency":
+                    type: object
+                    description: ???
+                    properties:
+                      "id":
+                        type: integer
+                        description: currency id
+                      "smart_contract":
+                        type: object
+                        description: currency smart contract details
       "payout_config":
         type: object
         description: config details of the payout mode
+        $ref: ../../schemas/invoices/payouts/PayoutConfig.yaml
       "partial_accept_available":
         type: boolean
         description: if accepting partial payment is possible

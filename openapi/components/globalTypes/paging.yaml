@@ -1,4 +1,5 @@
 type: object
+description: pagination of the response display
 properties:
   cursor:
     type: object
