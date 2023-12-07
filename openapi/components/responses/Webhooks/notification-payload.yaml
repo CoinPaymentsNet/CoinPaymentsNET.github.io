@@ -427,7 +427,7 @@ properties:
                     $ref: ../../globalTypes/InvoicePayoutConfig.yaml
                   "from_currency":
                     type: object
-                    description: ???
+                    description: currency for which payment has been calculated
                     properties:
                       "id":
                         type: integer
