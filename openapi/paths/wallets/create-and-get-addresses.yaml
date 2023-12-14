@@ -7,6 +7,7 @@ post:
     The walletIdStr parameter is a required path parameter that identifies the target wallet.
     The request body is optional, but if included, it can contain a label field to provide a label for the new address.
     The response to a successful request returns a 201 Created status code and an object containing the address and the address ID.
+
   operationId: createWalletAddress
   parameters:
       - name: walletIdStr
@@ -15,7 +16,7 @@ post:
         schema:
           type: string
           example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-        description: the wallet Id
+          description: the wallet Id
       - name: label
         in: query
         #nullable: true
@@ -23,6 +24,11 @@ post:
           type: string
           example: shop tests address
           description: label for the address
+      - name: notificationUrl
+        in: query
+        schema:
+          type: string
+          description: an optional URL for receiving webhook notifications
   responses:
     '201':
       description: Success
@@ -37,7 +43,7 @@ get:
     - Wallets API
   summary: Get wallet addresses
   description: Retrieves a list of wallet addresses
-  operationId: getWalletAddresss
+  operationId: getWalletAddresses
   parameters:
       - name: walletIdStr
         in: path
@@ -45,7 +51,7 @@ get:
         schema:
           type: string
           example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-        description: the wallet Id
+          description: the wallet Id
   responses:
     '200':
       description: OK

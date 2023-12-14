@@ -2,7 +2,7 @@ post:
   tags:
     - Wallets API
   summary: Confirm spend or convert request
-  description: Send a request to confirm the withdrawal
+  description: Send a request to confirm the withdrawal or conversion
   operationId: spendRequestConfirmation
   parameters:
     - name: walletIdStr
@@ -11,14 +11,25 @@ post:
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description:  the wallet Id from which you intend to withdraw funds
+        description:  the wallet Id from which you intend to withdraw funds
+    - name: X-Real-IP
+      in: header
+      schema:
+        type: string
+        description: Ip address of the sender
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            spendRequestId:
+              type: string
+              description: id of the spend request for withdrawal or conversion
+
   responses:
     '200':
       description: Success
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/responses/wallets/SpendRequestConfirmationSuccess.yaml
     '404':
       description: Spend confirmation not found
       $ref: ../../components/responses/Problem.yaml

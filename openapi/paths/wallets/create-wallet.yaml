@@ -3,7 +3,7 @@ post:
     - Wallets API
   summary: Create wallet
   description: |
-    Creates new wallet by currency Id. Note: you can get the currency Id from the currencies API.
+    Creates new wallet by currency Id. Note: you can get the currency Id from the [Сurrencies API](../currencies/get-currencies.yaml).
   operationId: createMerchantWallet
   requestBody:
     content:
@@ -25,7 +25,7 @@ get:
   tags:
     - Wallets API
   summary: Get Wallets
-  description: Retrieves a list of wallets woth their balances, addresses, statuses and other info.
+  description: Retrieves a list of wallets with their balances, addresses, statuses and other info.
   operationId: getMerchantWallets
 #  parameters:
 #    - name: username

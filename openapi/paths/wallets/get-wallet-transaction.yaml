@@ -15,26 +15,26 @@ get:
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description: the wallet Id
+        description: the wallet Id
     - name: transactionId
       in: query
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description: the transaction Id
+        description: the transaction Id
     - name: spendRequestId
       in: query
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description: the spend request Id
+        description: the spend request Id
   responses:
     '200':
       description: Ok
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/wallets/arrayOfWalletTransactions.yaml
+            $ref: ../../components/schemas/wallets/WalletTransactionObj.yaml
     '404':
       description: Wallet not found
 

@@ -1,25 +1,24 @@
 type: object
 required:
   - toCurrencyId
-  - amountInSmallestUnits
   - toAddress
 properties:
-  fromContractAddress:
-    description: Address of the contract e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-    type: string
-    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
-  toContractAddress:
-    description: Address of the contract of the CurrencyId e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-    type: string
-    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
   toAddress:
-    description: Address which client wants to send funds to
+    description: Address where client wants to send funds to
     type: string
     example: 'mtxASJZHNmGeUPQ3DxLvJeKja6Lh7TcJM9'
   toCurrencyId:
-    description: currency Id of benificiary wallet
+    description: currency Id of the benificiary wallet
     type: number
     example: 6
+  fromContractAddress:
+    description: Address of the contract of the "fromCurrency" e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+    type: string
+    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
+  toContractAddress:
+    description: Address of the contract of the "toCurrency" e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
+    type: string
+    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
   amountInSmallestUnits:
     description: |
       refers to the amount of a specific cryptocurrency, such as Bitcoin, measured in its smallest divisible unit, AKA atomic units
@@ -33,11 +32,11 @@ properties:
     type: number
     example: '0.0003234'
   memo:
-    description: user-defined note for the spend
+    description: user-defined note for the funds withdrawal
     type: string
   receiverPaysFee:
     description: |
-      When set to true, the receiver of the conversion will pay the fees. In this case,
+      When set to true, the receiver of the transaction will pay the fees. In this case,
       the AmountInSmallestUnits will be deducted from the source balance, and the receiver will receive the remaining amount after deducting the fees.
       When set to false (or not provided), the fees will be added to the AmountInSmallestUnits,
       and the total sum (including fees) will be deducted from the source balance.

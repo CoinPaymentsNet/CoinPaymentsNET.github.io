@@ -5,13 +5,6 @@ post:
   description:
     $ref: './create-withdrawal-description.md'
   operationId: sendSpendRequest
-  requestBody:
-    content:
-      application/json:
-        schema:
-          $ref: ../../components/schemas/wallets/SpendRequestPayload.yaml
-    description: Withdrawal Request payload
-    required: true
   parameters:
     - name: walletIdStr
       in: path
@@ -19,7 +12,14 @@ post:
       schema:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-      description: the wallet Id from which you intend to withdraw funds
+        description: the wallet Id where you intend to withdraw funds from
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/wallets/SpendRequestPayload.yaml
+    description: Withdrawal Request payload
+    required: true
   responses:
     '200':
       description: Ok

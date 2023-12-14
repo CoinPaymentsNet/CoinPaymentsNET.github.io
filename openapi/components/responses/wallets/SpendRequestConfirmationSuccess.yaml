@@ -5,7 +5,11 @@ properties:
     type: string
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
   fromWalletId:
-    description: Id of wallet from which the amount is to be deducted
+    description: Id of wallet from where the amount is to be deducted
+    type: string
+    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+  toAddress:
+    description: Address where the amount is to be transferred
     type: string
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
   fromContractAddress:
@@ -13,41 +17,37 @@ properties:
     type: string
     example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
   fromCurrencyId:
-    description: Id of the currency from which the amount is to be deducted
+    description: Id of the currency of withdrawal
     type: string
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-  toAddress:
-    description: Address to which the amount is to be transferred
-    type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
-  toContractAddress:
-    description: Address of the contract (if the withdrawal is to a contract wallet)
-    type: string
-    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
   toCurrencyId:
-    description: Id of the currency to which the amount is to be transferred
+    description: Id of the currency of receipt
     type: string
     example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
   blockchainFee:
-    description: Fee to be paid to the blockchain
+    description: Fee to be paid to the blockchain for the transfer
     type: number
     example: 0.0001
   coinpaymentsFee:
-    description: Fee to be paid to coinpayments
+    description: CoinPayments network fee
     type: number
     example: 0.0001
   fromAmount:
-    description: Amount to be deducted from the wallet
+    description: Amount to be spent
     type: number
     example: 0.0987
   toAmount:
-    description: Amount to be transferred to the address
+    description: Amount to be transferred to the destination address
     type: number
     example: 0.0123
   memo:
     description: Optional user-defined note for the spend
     type: string
     example: 'This is a memo'
+  toContractAddress:
+    description: Contract address of the destination currency for conversions (if the conversion pertains tokens)
+    type: string
+    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
 
 
 

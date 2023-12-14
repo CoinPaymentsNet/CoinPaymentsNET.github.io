@@ -4,40 +4,55 @@ properties:
     description: Id of the wallet
     type: string
     example: 0a54b29f-51cb-44a8-9bed-111c5cb1b335
+  walletType:
+    type: string
+    description: type of the wallet
+    example: [ "singleSigCryptoWallet"
+      ]
   currencyId:
     description: Id of the currency which this wallet was created for
     type: number
     example: 1
+  isActive:
+    type: boolean
+    description: status of the wallet, i.e. whether it is active and not deactivated or deleted
+  isLocked:
+    type: boolean
+    description: Indicates whether this wallet is locked due to legal reasons
   label:
     description: label of the wallet
     type: string
     example: John's wallet
-  balance:
-    description: balance of the wallet in smallest units (e.g. Satoshis for Bitcoin)
-    type: string
-    example: '0.874833322'
-  tokenBalances:
-    description: token (e.g. ERC20) balances for this wallet if available in smallest units (e.g. Weis for Ethereum)
-    type: string
-    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   depositAddress:
     description: blockchain address of this wallet allowing it to receive funds
     type: string
     example: '0x9939b7b208012cd0395d1411272be6e34c04af7b'
-  walletStatus:
-    description: |
-      status of the wallet, should be Active (2) for valid usable wallets.
-      walletStatues can hold one of the following values [Created, Active, Deactivated or Deleted]
-    type: string
-    example: Active
+  confirmedBalance:
+    description: balance of the wallet including only confirmed deposits and withdrawals
+    $ref: ../../globalTypes/amount.yaml
+  unconfirmedBalance:
+    description: balance of the wallet including all unconfirmed deposits and withdrawals
+    $ref: ../../globalTypes/amount.yaml
+  unconfirmedNativeBalance:
+    description: balance of the wallet including all unconfirmed deposits and withdrawals in its native currency
+    $ref: ../../globalTypes/amount.yaml
+  confirmedNativeBalance:
+    description: balance of the wallet including only confirmed deposits and withdrawals in its native currency
+    $ref: ../../globalTypes/amount.yaml
+  confirmedTokens:
+    description: token (e.g. ERC20) balances for this wallet if available in smallest units (e.g. Weis for Ethereum)
+    type: array
+    items:
+      $ref: ../../globalTypes/token.yaml
+  unconfirmedTokens:
+    description: the amount of tokens (like ERC20) pending for this wallet
+    type: array
+    items:
+      $ref: ../../globalTypes/token.yaml
   canCreateAddress:
     description: specifies whether this wallet is allowed to create additional deposit addresses
     type: boolean
     example: true
-  updatedAt:
-    description: the date when the properties of the wallet were last updated
-    type: string
-    example: '2022-10-05T06:05:07.520Z'
   isVaultLocked:
     description: flag that determines if the wallet vault is locked or not
     type: boolean
@@ -46,4 +61,10 @@ properties:
     description: when used, the vault will start the countdown to unlock when when the specified date and time is reached
     type: string
     example: '2023-07-04T22:21:41.535Z'
+  contractAddress:
+    type: string
+    description: An optional address of the smart contract representing a token
+  hasActiveAddress:
+    type: boolean
+    description: indicates whether the wallet has at least on active address
 

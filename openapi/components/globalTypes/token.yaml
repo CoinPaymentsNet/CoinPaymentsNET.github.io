@@ -1,0 +1,24 @@
+type: object
+description: Monetary value (an amount with a currency and contract address)
+properties:
+  contractAddress:
+    type: string
+    description: Blockchain address of the contract representing the token
+  nativeValue:
+    type: string
+    description: Token amount equivalent in native currency
+  nativeCurrencyId:
+    type: integer
+    description: id of the native currency of the wallet
+  displayValue:
+    type: string
+    description: the wallet balance value formatted for display
+  value:
+    type: string
+    description: this parameter represents the monetary value as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
+      with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
+      an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
+      If no value is provided, the default is 0.
+  valueAsDecimal:
+    type: string
+    description: the decimal value represents the monetary value with decimal precision derived from the value field, which is the integer representation in the smallest unit of the currency or token.
