@@ -3,5 +3,7 @@ description: currency logo / icon
 properties:
   iamgeUrl:
     type: string
+    description: link to the currency logo image
   vectorUrl:
     type: string
+    description: link to the currency logo in vector format

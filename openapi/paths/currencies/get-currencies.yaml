@@ -10,25 +10,29 @@ get:
       schema:
         type: string
         example: 'BTC'
-      description: search query to find currencies by name or symbol
+        description: search query to find currencies by name or symbol
     - name: types
       in: query
       schema:
-        type: string
-        example: 'crypto,token,fiat'
-      description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
+        type: array of strings
+        example: 'crypto, token, fiat'
+        description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
     - name: capabilities
       in: query
       schema:
-        type: string
-        example: 'multiSigAccounts,sharedAccounts,payments,singleSigAccounts'
-      description: search query to find currencies by name or symbol
+        type: array of strings
+        example: 'pooledAccounts, payments, singleSigAccounts'
+        description: comma separated list of capabilities, currencies without the specified capabilities won't be returned
     - name: after
       in: query
       schema:
         type: string
-        example: ''
-      description: search query to find currencies by name or symbol
+        description: ???
+    - name: limit
+      in: query
+      schema:
+        type: string
+        description: number of items to be shown on the page
   responses:
     '200':
       description: Ok

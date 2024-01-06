@@ -1,4 +1,5 @@
 type: object
+description: currency details
 properties:
   id:
     description: currency Id
@@ -20,20 +21,28 @@ properties:
     $ref: './logo.yaml'
   decimalPlaces:
     type: integer
+    description: number of decimal places to display amounts in the currency
     example: 0
   rank:
     type: integer
     example: 0
+    description: rank of the currency in the CoinPayments system
   status:
     type: string
     example: active
+    description: status of the currency in the CoinPayments system
   capabilities:
-    type: string
+    type: array of strings
     description: specific capabilities of the cryptocurrency. Possible values - 'payments', 'singleSigAccounts', 'pooledAccounts'
+    example: [ 'payments',
+               'singleSigAccounts',
+               'pooledAccounts'
+          ]
   urls:
     $ref: './urls.yaml'
   requiredConfirmations:
     type: integer
+    description: number of required confirmations on chain for the transaction to be considered completed
     example: 0
 
 

@@ -15,6 +15,8 @@ tags:
     description:
       $ref: './paths/auth/auth.md'
   - name: Currencies API
+    description:
+      $ref: './paths/currencies/currencies-description.md'
   - name: Rates API
     description: "Rates API"
   - name: Invoices API
