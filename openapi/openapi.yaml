@@ -18,7 +18,7 @@ tags:
     description:
       $ref: './paths/currencies/currencies-description.md'
   - name: Rates API
-    description: "Rates API"
+    description: "API for rates supported by CoinPayments."
   - name: Invoices API
     description:
       $ref: './paths/invoices/invoice-description.md'
@@ -40,6 +40,8 @@ paths:
     $ref: 'paths/currencies/get-latest-block-number.yaml'
   '/currencies/conversions':
     $ref: 'paths/currencies/conversions.yaml'
+  '/currencies/required-confirmations':
+    $ref: 'paths/currencies/required-confirmations.yaml'
 
   # Invoices
   '/merchant/invoices':

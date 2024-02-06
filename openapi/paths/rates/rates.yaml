@@ -3,7 +3,8 @@ get:
     - Rates API
   summary: Conversion rates between currencies
   description: |
-    Returns the currency conversion rates for the specified from currencies converted to the specified to currencies
+    Returns the currency conversion rates for the specified from currencies converted to the specified to currencies.
+    **Note:** The endpoint does not require authorization.
   operationId: getConversionsBetweenTwoCurrencies
   parameters:
     - name: from
