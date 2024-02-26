@@ -7,7 +7,7 @@ get:
     payment that is then displayed to buyer in the checkout window and may be used for money transfer.
   operationId: getPaymentAddressByCurrencyId
   parameters:
-    - name: invoiceId
+    - name: id
       in: path
       required: true
       schema:
