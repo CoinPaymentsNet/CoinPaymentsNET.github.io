@@ -92,21 +92,21 @@ properties:
   blockchainFeeCurrency:
     description: Currency in which blockchain network fees were deducted. The format is {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
     type: string
-    nullable: true
+    #nullable: true
   coinPaymentsFeeCurrency:
     type: string
     description: >-
       Currency in which CoinPayments fee was deducted. The format is
       {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null
       "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
-    nullable: true
+    #nullable: true
   blockNumberTxAppearedAt:
     description: block number where the transaction appeared on the blockchain
     type: string
   supportTransactionId:
     type: string
     description: support Id of the transaction in CoinPayments system
-    nullable: true
+    #nullable: true
   confirmations:
     description: Current number of confirmations that this transaction has on the blockchain
     type: number
@@ -118,23 +118,23 @@ properties:
   fromAmountNative:
     type: string
     description: amount sent in native transaction currency
-    nullable: true
+    #nullable: true
   toAmountNative:
     type: string
     description: amount received in native transaction currency
-    nullable: true
+    #nullable: true
   coinpaymentsFeeNative:
     type: string
     description: CoinPayments network fee in native transaction currency
-    nullable: true
+    #nullable: true
   blockchainFeeNative:
     type: string
     description: blockchain network fee in native transaction currency
-    nullable: true
+    #nullable: true
   isInvoicePaymentSend:
     type: boolean
     description: flag indicating if this transaction is a payment of the invoice
   paymentType:
     type: string
     description: type of payment that transaction covers
-    nullable: true
+    #nullable: true
