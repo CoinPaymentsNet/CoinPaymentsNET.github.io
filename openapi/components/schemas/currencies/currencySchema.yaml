@@ -32,8 +32,9 @@ properties:
     example: active
     description: status of the currency in the CoinPayments system
   capabilities:
-    type: array of strings
-    description: specific capabilities of the cryptocurrency. Possible values - 'payments', 'singleSigAccounts', 'pooledAccounts'
+    type: array
+    description: specific capabilities of the cryptocurrency provided as a comma separated list of strings. Possible values - 
+      'payments', 'singleSigAccounts', 'pooledAccounts'
     example: [ 'payments',
                'singleSigAccounts',
                'pooledAccounts'

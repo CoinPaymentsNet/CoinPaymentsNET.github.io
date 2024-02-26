@@ -20,14 +20,13 @@ get:
     - name: capabilities
       in: query
       schema:
-        type: array of strings
+        type: array
         example: 'pooledAccounts, payments, singleSigAccounts'
         description: comma separated list of capabilities, currencies without the specified capabilities won't be returned
     - name: after
       in: query
       schema:
         type: string
-        description: ???
     - name: limit
       in: query
       schema:
