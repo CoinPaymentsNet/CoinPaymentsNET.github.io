@@ -20,8 +20,8 @@ UTXO addresses with CoinPayments are always permanent.
 
 **Important Note:**
 
-Unlike wallets created via UI, wallets created via API can send webhook notifications to the URL specified by the merchant
-when funds are received by the wallet:
+Unlike wallets and addresses created via UI, wallets and addresses created via API can send webhook notifications to 
+the URL specified by the merchant when funds are received by the wallet/address:
 ```javascript
 {
   "walletId" : "58f78b24-1de0-42b3-9a48-94f3e9c57752",
