@@ -14,7 +14,7 @@ get:
     - name: types
       in: query
       schema:
-        type: array[string]
+        type: array
         example: 'crypto, token, fiat'
         description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
     - name: capabilities
