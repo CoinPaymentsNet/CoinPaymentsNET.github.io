@@ -7,7 +7,7 @@ properties:
   address:
     type: string
     description: the external address into which to pay out
-    x-nullable: true
+    #nullable: true
   wallet_id:
     type: string
     description: wallet into which to payout to if payout is internal

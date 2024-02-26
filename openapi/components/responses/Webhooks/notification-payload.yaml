@@ -401,13 +401,13 @@ properties:
                 description: estimated amounts to be paid in all available currencies
                 properties:
                   "rate":
-                    type: decimal
+                    type: integer
                     description: rate of the currency at the time of checkout
                   "sub_total":
-                    type: decimal
+                    type: integer
                     description: payment subtotal
                   "markup_or_discount":
-                    type: decimal
+                    type: integer
                     description: amount of markup or discount provided by merchant for the currency
                   "buyer_fees":
                     type: object
@@ -418,7 +418,7 @@ properties:
                     description: fees to be paid by the merchant
                     $ref: ../../globalTypes/personFeeSummary.yaml
                   "approximate_network_amount":
-                    type: decimal
+                    type: integer
                     description: approximate network fee to be paid by the buyer. Calculated before buyer initiates the payment.
                       Used for 'invoiceCreated' event
                   "payout_info":
