@@ -2,11 +2,13 @@ type: object
 properties:
   websites:
     type: array
+    description: links to the currency origin sites
     items:
       type: string
     example: ['https://bitcoin.org']
   explorers:
     type: array
+    description: links to the currency explorer sites
     items:
       type: string
       example: ['https://blockchain.info']

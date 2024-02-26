@@ -14,6 +14,11 @@ tags:
   - name: Authentication
     description:
       $ref: './paths/auth/auth.md'
+  - name: Currencies API
+    description:
+      $ref: './paths/currencies/currencies-description.md'
+  - name: Rates API
+    description: "API for rates supported by CoinPayments."
   - name: Invoices API
     description:
       $ref: './paths/invoices/invoice-description.md'
@@ -35,10 +40,16 @@ paths:
     $ref: 'paths/currencies/get-latest-block-number.yaml'
   '/currencies/conversions':
     $ref: 'paths/currencies/conversions.yaml'
+  '/currencies/required-confirmations':
+    $ref: 'paths/currencies/required-confirmations.yaml'
 
   # Invoices
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
+  '/invoices/{id}/payment-currencies/{currencyId}':
+    $ref: 'paths/invoices/get-payment-address.yaml'
+  '/invoices/{id}/payment-currencies/{currencyId}/status':
+    $ref: 'paths/invoices/get-payment-status.yaml'
   '/merchant/invoices/{id}':
     $ref: 'paths/invoices/get-by-id.yaml'
   '/merchant/invoices/{id}/payouts':

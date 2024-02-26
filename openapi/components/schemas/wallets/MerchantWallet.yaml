@@ -4,7 +4,7 @@ required:
     - label
 properties:
   currencyId:
-    description: user supplied currencyId
+    description: Id of the currency for which wallet is created
     type: number
     example: 1
   label:
@@ -17,4 +17,7 @@ properties:
       when withdrawals are processed or when funds are moved
     type: string
     example: 'https://myapi.com'
+  contractAddress:
+    type: string
+    description: an optional address of the smart contract representing a token
 

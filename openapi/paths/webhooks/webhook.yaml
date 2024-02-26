@@ -31,7 +31,7 @@ get:
     - Webhooks API
   summary: Get webhooks of merchant
   description: |
-    Get list of merchant invoices
+    Get list of merchant webhook notifications
   operationId: getMerchantWebhooks
   parameters:
     - name: clientId
@@ -42,7 +42,7 @@ get:
         $ref: ../../components/globalTypes/id.yaml
   responses:
     '200':
-      description: Success
+      description: Success - List of merchant webhook notifications
       content:
         application/json:
           schema:

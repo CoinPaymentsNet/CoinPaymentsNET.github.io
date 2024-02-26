@@ -1,14 +1,10 @@
 type: array
-description: |
-  specify the event name you want your server to be notified about when it occures
-
-  e.g. send notification when an invoice is created
-items:
-  type: string
-example: [
-  'invoiceCreated',
-  'invoicePending',
-  'invoicePaid',
-  'invoiceCompleted',
-  'invoiceCancelled'
-]
+description: specify the event name you want your server to be notified about when it occurs, e.g. send notification when an invoice is created.
+  Provide values as a comma separated list of strings.
+example: ['invoiceCreated',
+          'invoicePending',
+          'invoicePaid',
+          'invoiceCompleted',
+          'invoiceCancelled',
+          'invoiceTimedOut'
+  ]

@@ -3,7 +3,8 @@ post:
     - Webhooks API
   summary: Notification Payload
   description: |
-    Below is the payload sent from CPs API to your server API
+    All webhooks sent by CPs API contain information on the event they signalize about and information on the invoice 
+    and payment to which the event refers. Below is the payload of the webhooks sent from CPs API to your server API.
   operationId: notificationPayload
   responses:
     '200':

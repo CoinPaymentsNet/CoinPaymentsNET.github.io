@@ -1,0 +1,54 @@
+type: object
+description: Status of invoice
+properties:
+  created:
+    type: string
+    description: timestamp when invoice was created
+  expires:
+    type: string
+    description: timestamp when invoice expires
+  status:
+    type: string
+    description: current status of the invoice. Possible values - 'draft', 'scheduled', 'unpaid', 'pending', 'paid', 
+      'completed', 'cancelled', 'timedOut', 'deleted'
+    example: ["draft",
+              "scheduled",
+              "unpaid",
+              "pending",
+              "paid",
+              "completed",
+              "cancelled",
+              "timedOut",
+              "deleted"
+    ]
+  payment:
+    type: object
+    description: details of payment of the invoice
+    properties:
+      currencyId:
+        type: integer
+        description: id of the currency of payment of the invoice
+      confirmations:
+        type: integer
+        description: number of confirmations on the blockchain received by payment of the invoice
+      requiredConfirmations:
+        type: integer
+        description: number of confirmations on the blockchain required by payment of the invoice to be considered completed
+      confirmedAmount:
+        type: object
+        description: Amount of payment on chain that received required amount of confirmations
+        $ref: ../../globalTypes/fees.yaml
+      unconfirmedAmount:
+        type: object
+        description: Amount of payment on chain that has not received required amount of confirmations yet
+        $ref: ../../globalTypes/fees.yaml
+      expectedAmount:
+        type: object
+        description: Amount of payment expected to be received as a result of payment of the invoice
+        $ref: ../../globalTypes/fees.yaml
+  partialAcceptAvailable:
+    type: boolean
+    description: Flag that indicates if acceptance of partial payment is possible
+
+
+

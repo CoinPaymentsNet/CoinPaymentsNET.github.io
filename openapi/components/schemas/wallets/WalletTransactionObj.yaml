@@ -1,4 +1,5 @@
 type: object
+description: wallet transaction details
 properties:
   id:
     description: Id of the transaction in the system
@@ -17,11 +18,15 @@ properties:
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   fromWalletId:
-    description: Id of the wallet which the transaction was sent from
+    description: Id of the wallet where the transaction was sent from
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   toWalletId:
-    description: Id of the wallet which the transaction was sent to
+    description: Id of the wallet where the transaction was sent to
+    type: string
+    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
+  spendRequestId:
+    description: Id of the spend request which was used to create this transaction
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   fromCurrencyId:
@@ -29,7 +34,7 @@ properties:
     type: number
     example: 1
   toCurrencyId:
-    description: Id of the currency which this transaction is sending funds to
+    description: Id of the currency of receipt for this transaction
     type: number
     example: 2
   fromAmount:
@@ -40,67 +45,96 @@ properties:
     description: Amount of funds that was received in this transaction in smallest units (e.g. Satoshis for Bitcoin)
     type: string
     example: '0.13448434'
+  coinPaymentsFee:
+    description: Amount of funds withheld as system fee for this transaction in smallest units (e.g. Satoshis for Bitcoin)
+    type: string
+    example: '0.000012'
+  transactionStatus:
+    description: Status of this transaction
+    type: string
+    example: 'created'
+  transactionType:
+    description: Type of this transaction
+    type: string
+    example: 'externalSpend'
+  memo:
+    description: User-defined custom note for this transaction
+    type: string
+    example: 'July rent'
   fromAddress:
     description: Address of the wallet which was used when this transaction was created
     type: string
     example: '1AYASDI34W2W2SIFFRE32452S1Q'
   toAddress:
-    description: Address which this transaction is sending funds to
+    description: Address where this transaction is sending funds to
     type: string
     example: '1AYASDI34W2W2SIFFRE32452S1Q'
-  fromContractAddress:
-    description: Address of the sender contract. e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-    type: string
-    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
-  toContractAddress:
-    description: Address of the reciever contract. e.g. "0xdac17f958d2ee523a2206206994597c13d831ec7" for ERC20 TetherUSD
-    type: string
-    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
-  confirmations:
-    description: Current number of confirmations that this transaction has
-    type: number
-    example: 2
-  requiredConfirmations:
-    description: Required number of confirmations to consider this transaction confirmed
-    type: number
-    example: 5
-  spendRequestId:
-    description: Id of the spend request which was used to create this transaction
-    type: string
-    example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
-  coinPaymentsFee:
-      description: Amount of funds withheld as system fee for this transaction in smallest units (e.g. Satoshis for Bitcoin)
-      type: string
-      example: '0.000012'
-  transactionStatus:
-    description: Status of this transaction
-    type: string
-    example: 'unknown'
-  transactionType:
-    description: Type of this transaction
-    type: string
-    example: 'unknown'
-  memo:
-    description: User-defined custom note for this transaction
-    type: string
-    example: 'July rent'
   txHash:
     description: Blockchain transaction hash (only for external transfers)
     type: string
     example: '1AYASDI34W2W2SIFFRE32452S1Q3289y7debugDSDSd38d3xSSA33ASDRxw98'
   outputIndex:
-    description: Index of the output in which this transaction receives funds (only for UTXO received transactions)
+    description: Index of the output where this transaction receives funds (only for UTXO deposit transactions)
     type: number
     example: 1
   blockchainFee:
     description: Amount of funds spent as a blockchain fee for this transaction in smallest units (e.g. Satoshis for Bitcoin)
     type: string
     example: '0.00000032'
-  feeCurrency:
-    description: Currency in which CoinPayments fees were deducted. The format is {CurrencyId}:{ContractAddress} where ContractAddress is optional e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
+  fromContractAddress:
+    description: Address of the sender contract if this transaction is an ERC20 or similar token transfer
     type: string
-    example: '0.00000032'
+    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+  toContractAddress:
+    description: Address of the reciever contractif this transaction is an ERC20 or similar token transfer
+    type: string
+    example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+  blockchainFeeCurrency:
+    description: Currency in which blockchain network fees were deducted. The format is {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
+    type: string
+    #nullable: true
+  coinPaymentsFeeCurrency:
+    type: string
+    description: >-
+      Currency in which CoinPayments fee was deducted. The format is
+      {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null
+      "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
+    #nullable: true
   blockNumberTxAppearedAt:
-    description: date of appearing the transaction in the blockchain
+    description: block number where the transaction appeared on the blockchain
     type: string
-    example: '2022-10-05T08:40:41.494Z'
+  supportTransactionId:
+    type: string
+    description: support Id of the transaction in CoinPayments system
+    #nullable: true
+  confirmations:
+    description: Current number of confirmations that this transaction has on the blockchain
+    type: number
+    example: 2
+  requiredConfirmations:
+    description: Required number of confirmations on the blockchain to consider this transaction confirmed
+    type: number
+    example: 5
+  fromAmountNative:
+    type: string
+    description: amount sent in native transaction currency
+    #nullable: true
+  toAmountNative:
+    type: string
+    description: amount received in native transaction currency
+    #nullable: true
+  coinpaymentsFeeNative:
+    type: string
+    description: CoinPayments network fee in native transaction currency
+    #nullable: true
+  blockchainFeeNative:
+    type: string
+    description: blockchain network fee in native transaction currency
+    #nullable: true
+  isInvoicePaymentSend:
+    type: boolean
+    description: flag indicating if this transaction is a payment of the invoice
+  paymentType:
+    type: string
+    description: type of payment that transaction covers
+    #nullable: true

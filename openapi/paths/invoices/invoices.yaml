@@ -2,6 +2,9 @@ post:
   tags:
     - Invoices API
   summary: Create Invoice
+  description: |
+    Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
+      by the merchant, that a buyer intends to purchase
   operationId: createInvoice
   requestBody:
     content:
@@ -9,16 +12,19 @@ post:
         schema:
           $ref: ../../components/schemas/invoices/invoice.yaml
     description: Create Invoice
-    required: true
   responses:
     '200':
-      description: Success
+      description: Success. 
+        Invoice in all available currencies. **Note**, for Invoice Links flow, only "id" and "link" properties
+        are necessary
       content:
         application/json:
           schema:
             $ref: ../../components/responses/invoices/invoiceRes.yaml
-    '404':
-      description: Merchant Not Found!
+    '401':
+      description: Not Authorized
+    '403':
+      description: Forbidden
 get:
   tags:
     - Invoices API

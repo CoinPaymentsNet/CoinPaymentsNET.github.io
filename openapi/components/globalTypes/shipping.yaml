@@ -2,17 +2,19 @@ type: object
 properties:
   method:
     type: string
-    description: 'Shipment method'
+    description: Shipment method
   companyName:
     type: string
-    description: 'Company name'
+    description: receiver company name
   name:
+    description: receiver name
     $ref: ./fullName.yaml
   emailAddress:
     type: string
-    description: 'email address'
+    description: receiver email address
   phoneNumber:
     type: string
-    description: 'phone number'
+    description: receiver phone number
   address:
+    description: receiver address
     $ref: ./physicalAddress.yaml

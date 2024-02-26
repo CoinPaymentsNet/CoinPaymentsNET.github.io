@@ -1,2 +1,3 @@
 type: string
+description: url of your site where webhook notifications should be sent
 example: 'https://site.com/api/{YOUR_WEBHOOK_PATH}'

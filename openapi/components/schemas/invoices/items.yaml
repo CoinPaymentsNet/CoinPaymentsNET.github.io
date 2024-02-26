@@ -1,20 +1,35 @@
 type: object
 description: array of items that a buyer intends to purchase from the merchant
 properties:
+  customId:
+    type: string
+    description: item Id in the merchant's system
+  sku:
+    type: string
+    description: item SKU number
   name:
     type: string
     description: name or title of the item
     example: 'Iphone 22'
+  description:
+    type: string
+    description: description of the item
   quantity:
     type: object
     properties:
       value:
         type: number
-        description: the quantity of the item. Must be greater than 0 and less than 999,999,999‬. defaults to 1 if not provided.
+        description: the quantity of the item. Must be greater than 0 and less than 999,999,999. Defaults to 1 if not provided
       type:
-        type: string
+        type: integer
+        description: id of the type of the sold product
         example: 1
   originalAmount:
+    description: represents the value of one item in the original currency, typically fiat currency such as USD or EUR. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
     $ref: ../../globalTypes/globalAmount.yaml
   amount:
+    description: represents the total value of all bought items in the original currency, typically fiat currency such as USD or EUR. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
+    $ref: ../../globalTypes/globalAmount.yaml
+  tax:
+    description: Amount of tax to be added to the amount of the purchase. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
     $ref: ../../globalTypes/globalAmount.yaml

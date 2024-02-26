@@ -30,7 +30,7 @@ properties:
     type: string
     description: >-
       A URI reference that identifies the specific
-      occurrence of the problem.  It may or may not yield further
+      occurrence of the problem. It may or may not yield further
       information if dereferenced.
 
 #    Consumers SHOULD NOT parse the "detail" member for information;

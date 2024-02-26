@@ -2,23 +2,23 @@ type: object
 properties:
   address1:
     type: string
-    description: 'main address'
+    description: main address
     #nullable: true
   address2:
     type: string
-    description: 'second address'
+    description: additional address data
     #nullable: true
   address3:
     type: string
-    description: 'third address'
-    #nullable: true
-  city:
-    type: string
-    description: city of the buyer
+    description: additional address data
     #nullable: true
   provinceOrState:
     type: string
     description: Province or state of the buyer
+    #nullable: true
+  city:
+    type: string
+    description: city of the buyer
     #nullable: true
   suburbOrDistrict:
     type: string

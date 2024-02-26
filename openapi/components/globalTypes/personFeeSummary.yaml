@@ -1,0 +1,12 @@
+type: object
+description: breakdown of additional fees paid by the buyer
+properties:
+  "coin_payments_fee":
+    type: integer
+    description: fees charged by CoinPayments
+  "network_fee":
+    type: integer
+    description: amount of network fees charged for payment
+  "conversion_fee":
+    type: integer
+    description: fees charged for conversion

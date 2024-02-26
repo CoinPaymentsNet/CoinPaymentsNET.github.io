@@ -3,7 +3,7 @@ put:
     - Webhooks API
   summary: Update Webhook
   description: |
-    Update Webhook by client Id and webhook Id
+    Update list of webhook notifications and/or webhook integration Url
   operationId: updateWebhook
   parameters:
     - name: clientId
@@ -26,13 +26,13 @@ put:
           schema:
             $ref: ../../components/schemas/webhooks/webhookSchema.yaml
     '404':
-      description: Wallet not found
+      description: Webhook not found
 delete:
   tags:
     - Webhooks API
   summary: Delete Webhook
   description: |
-    delete a webhook by client Id and webhook Id
+    Delete a webhook integration by client Id and webhook Id
   operationId: deleteWebhook
   parameters:
     - name: clientId
@@ -51,4 +51,4 @@ delete:
     '204':
       description: Success status code - no content
     '404':
-      description: Wallet not found
+      description: Webhook not found

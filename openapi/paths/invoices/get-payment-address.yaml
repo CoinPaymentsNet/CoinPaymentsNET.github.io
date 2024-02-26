@@ -1,0 +1,34 @@
+get:
+  tags:
+    - Invoices API
+  summary: Get payment address by currency id
+  description: |
+    Once invoice is created and buyer selects currency for payment, by using this endpoint merchant obtains address for 
+    payment that is then displayed to buyer in the checkout window and may be used for money transfer.
+  operationId: getPaymentAddressByCurrencyId
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+    - name: currencyId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '2'
+  responses:
+    '200':
+      description: Success status code (200) - 
+        Address for buyer to make payment with indication of currency, amount, and expiration timer
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/invoices/address-by-currency.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+
+

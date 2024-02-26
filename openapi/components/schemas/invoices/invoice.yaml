@@ -1,96 +1,102 @@
 type: object
-description: |
-  Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
+description: Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
   by the merchant, that a buyer intends to purchase
 required:
   - amount
 properties:
   isEmailDelivery:
     type: boolean
-    description: indicates if invoice will be email delivered, deaults to false
+    description: default value to be used for whitelabeling checkout flow. For invoice document delivery indicates if invoice will be email delivered
     default: false
   emailDelivery:
     type: object
+    description: email addresses to be used for invoice delivery
     properties:
       to:
         type: string
-        description: to email address. the value can take multiple addresses separated by semicolons
+        description: to email address. The value can take multiple addresses separated by semicolons
       cc:
         type: string
-        description: field to add multiple recepients separated by semicolons
+        description: field to add multiple recipients separated by semicolons
       bcc:
         type: string
-        description: bcc field similar to "cc" field except that other recipients won't be able to see that someone else has been sent a copy of the email.
+        description: bcc field similar to "cc" field except that other recipients won't be able to see that someone else has been sent a copy of the email
+  dueDate:
+    type: string
+    example: '2023-04-26T18:40:41.322Z'
+    description: to be used for invoice doc delivery. Date when invoice is to be mailed out to the user
+  invoiceDate:
+    type: string
+    example: '2022-11-28T13:59:46+00:00'
+    description: to be used for invoice doc. Date when invoice was issued
+  draft:
+    type: boolean
+    description: Default value to be used for whitelabeling checkout flow. flag indicating whether this is a draft invoice
+    default: false
+  clientId:
+    type: string
+    description: the id of the client (merchant) creating this invoice
+  invoiceId:
+    type: string
+    description: default value to be used for whitelabeling checkout flow. For invoice document delivery invoice number assigned by the merchant
+    default: false
+  buyer:
+    $ref: ./buyer.yaml
   description:
     type: string
     description: the purchase description, can be provided instead of a list of items
+  items:
+    type: array
+    description: array of items that a buyer intends to purchase from the merchant
+    items:
+      $ref: ./items.yaml
   amount:
     type: object
-    description: |
-      represent the value of the item in the original currency, typically fiat currency such as USD or EUR.
-      Values will be used to calculate the amount the buyer should
-      pay in his or her selected currency of payment.
+    description: detailed amount of purchase with the breakdown of all fees
     properties:
       breakdown:
         type: object
         properties:
           subtotal:
+            description: sum of purchased items
             $ref: ../../globalTypes/globalAmount.yaml
           shipping:
+            description: cost of shipping
             $ref: ../../globalTypes/globalAmount.yaml
           handling:
+            description: service cost for processing order
             $ref: ../../globalTypes/globalAmount.yaml
           taxTotal:
+            description: tax cost
             $ref: ../../globalTypes/globalAmount.yaml
           discount:
+            description: discount amount
             $ref: ../../globalTypes/globalAmount.yaml
       currencyId:
         type: string
         description: original currency Id of the item
       contractAddress:
         type: string
-        description: 'the address of the contract if this money object represents an ERC20 or similar token value'
+        description: the address of the contract if this money object represents an ERC20 or similar token value
       displayValue:
         type: string
-        description: 'The value formatted for display (e.g 0.1234 BTC)'
+        description: the value formatted for display (e.g 0.1234 BTC)
       value:
         type: string
-        description: |
-          This parameter represents the monetary value as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
+        description: this parameter represents the monetary value as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
           with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
           an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
-          If no value is provided, the default is 0.
+          If no value is provided, the default is 0
       valueAsDecimal:
         type: string
-        description: |
-          The decimal value represents the monetary value with decimal precision derived from the value field,
+        description: the decimal value represents the monetary value with decimal precision derived from the value field,
           which is the integer representation in the smallest unit of the currency or token.
-  clientId:
-    type: string
-    description: the id of the client creating this invoice
-  invoiceDate:
-    type: string
-    description: allows for optional customization of the invoice date, which can differ from the automatically generated creation date of the invoice
-    example: '2022-11-28T13:59:46+00:00'
-  dueDate:
-    type: string
-    example: '2023-04-26T18:40:41.322Z'
-    description: due date to be shown on the invoice
-  invoiceId:
-    type: string
-    description: invoice number. Appears in screens shown to the Buyer and emails sent.
-  buyer:
-    $ref: ./buyer.yaml
   shipping:
+    description: shipping method info
     $ref: ../../globalTypes/shipping.yaml
-  items:
-    type: array
-    items:
-      $ref: ./items.yaml
   requireBuyerNameAndEmail:
     type: boolean
     description: flag indicating whether a buyer name and email are required, they will be requested at checkout if not provider by the caller.
-
   buyerDataCollectionMessage:
     type: string
     description: the message to display when collecting buyer user data
@@ -104,10 +110,11 @@ properties:
     type: string
     description: any terms and conditions, e.g. a cancellation policy
   merchantOptions:
+    description: merchant's details to be shown on the invoice
     $ref: ./merchantOptions.yaml
-  customOptions:
+  customData:
     type: object
-    description: any custom data the caller wishes to attach to the invoice which will be sent back in notifications
+    description: any custom data merchant wishes to attach to the invoice that may be further used for custom merchant's purposes. Not visible on UI for buyers
     properties:
       additionalProp1:
         type: string
@@ -120,40 +127,46 @@ properties:
     properties:
       integration:
         type: string
-        description: 'integration name'
-        format: 'InvoiceBuilder'
+        description: integration name
+        format: InvoiceBuilder
       hostname:
         type: string
-        description: 'server name of the integration api'
+        description: server name of the integration API
   poNumber:
-    description: optional Purchase order number on the integration API.
     type: string
+    description: optional Purchase order number on the integration API.
     format: InvoiceBuilder
-  webhook:
+  webhooks:
+    description: data on webhooks sent for invoices
     $ref: ../webhooks/webhookSchema.yaml
-  draft:
-    type: boolean
-    description: flag indicating whether this is a draft invoice
-    default: false
   payoutConfig:
     type: object
-    description: represents info specifying payout configuration for invoice
+    description: configs for payout for this particular invoice. Overrides account payout configs
     properties:
       currencyId:
         type: string
-        description: the currency id of the wallet or address into which to payout to
+        description: the currency Id of the wallet or address into which to payout to
       contractAddress:
         type: string
-        description: 'the address of the contract if this money object represents an ERC20 or similar token value'
+        description: the address of the contract if this money object represents an ERC20 or similar token value
       address:
         type: string
-        description: the external address into which to pay out
+        description: the external address into which to pay out to
       frequency:
         type: array
-        example: [
-          'normal',
-          'asSoonAsPossible',
-          'hourly',
-          'nightly',
-          'weekly'
+        description: frequency of payout execution. Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
+        example: ['normal',
+                  'asSoonAsPossible',
+                  'hourly',
+                  'nightly',
+                  'weekly'
         ]
+  payment:
+    type: object
+    description: the field contains additional data specific for whitelabeled payments, e.g. buyer's email that is used 
+      for possible refunds
+    properties:
+      refundEmail:
+        type: string
+        description: Provide the buyer’s email address to create a white-labeling payment flow. **Note**, the email is 
+          only used for transaction status updates and refunds; never for marketing purposes

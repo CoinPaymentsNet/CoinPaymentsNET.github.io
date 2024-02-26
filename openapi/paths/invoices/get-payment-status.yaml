@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Invoices API
+  summary: Get payment status once payment is made
+  description: |
+    Although it is usually sufficient to rely on webhooks for up-to-date status of your transactions, merchants are also
+    able to verify the webhook information with this endpoint.
+  operationId: getPaymentStatus
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        $ref: ../../components/globalTypes/id.yaml
+    - name: currencyId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '2'
+  responses:
+    '200':
+      description: Success status code ( 200 ) - Status of the invoice
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/invoices/payment-status.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+
+

@@ -1,7 +1,7 @@
 type: object
 properties:
   id:
-    description: callback address id
+    description: address id
     type: string
     example: '3fa85f64-5717-4562-b3fc-2c963f66afa6'
   type:
@@ -9,9 +9,439 @@ properties:
     type: string
     example: 'invoiceCreated'
   timestamp:
-    description: date and time of creating the callback address
+    description: date and time of producing the event
     type: string
     example: '2023-04-07T06:58:19.9798764+00:0'
   invoice:
-    $ref: ../../schemas/invoices/invoice.yaml
+    type: object
+    description: details of the invoice to which refers the webhook notification
+    properties:
+      "invoice_id":
+        type: string
+        description: invoice number assigned by the merchant
+      "id":
+        type: string
+        description: invoice id assigned by the system
+      "user_id":
+        type: string
+        description: the id of the merchant creating this invoice
+      "merchant_id":
+        type: string
+        description: the id of the merchant creating this invoice
+      "merchant_client_id":
+        type: string
+        description: the id of the client API integration creating this invoice
+      "invoice_number":
+        type: string
+        description: invoice number assigned by the merchant
+      "invoice_number_suffix":
+        type: string
+        description: suffix of the invoice number assigned by the merchant
+      "created_at":
+        type: string
+        description: timestamp when invoice was created
+      "invoice_date":
+        type: string
+        description: date when invoice was issued
+      "due_date":
+        type: string
+        description: date when invoice is due to be paid
+      "description":
+        type: string
+        description: description of the invoice
+      "expires_date":
+        type: string
+        description: date when invoice expires
+      "custom_data":
+        type: object
+        description: any custom data merchant wishes to attach to the invoice that may be further used for custom 
+          merchant's purposes. Not visible on UI for buyers
+        properties:
+          additionalProp1:
+            type: string
+          additionalProp2:
+            type: string
+          additionalProp3:
+            type: string
+      "notes":
+        type: string
+        description: notes for the merchant only, these are not visible to the buyers
+      "notes_to_recipient":
+        type: string
+        description: any additional information to share with the buyer about the transaction
+      "buyer_data_collection_message":
+        type: string
+        description: the message to display when collecting buyer user data
+      "terms_and_conditions":
+        type: string
+        description: any terms and conditions, e.g. a cancellation policy
+      "metadata":
+        type: object
+        properties:
+          integration:
+            type: string
+            description: integration name
+            format: InvoiceBuilder
+          hostname:
+            type: string
+            description: server name of the integration API
+      "po_number":
+        type: string
+        description: optional Purchase order number on the integration API.
+        format: InvoiceBuilder
+      "buyer":
+        type: object
+        description: buyer's data
+        properties:
+          "company_name":
+            type: string
+            description: name of the buyer's company
+          "email":
+            type: string
+            description: buyer's email address
+          "first_name":
+            type: string
+            description: buyer's name
+          "last_name":
+            type: string
+            description: buyer's last name
+          "phone_number":
+            type: string
+            description: buyer's phone number
+          "address":
+            $ref: ../../globalTypes/physicalAddress.yaml
+      "shipping":
+        description: shipping method details
+        $ref: ../../globalTypes/shipping.yaml
+      "line_items":
+        type: object
+        description: purchase item data
+        properties:
+          "amount":
+            type: string
+            description: purchase cost
+          "custom_id":
+            type: string
+            description: id of the purchase item in merchant's system
+          "description":
+            type: string
+            description: description of the purchase item
+          "name":
+            type: string
+            description: name of purchase item
+          "original_amount":
+            type: string
+            description: purchase item cost
+          "quantity":
+            type: integer
+            description: quantity of the purchase items bought
+          "sku":
+            type: string
+            description: purchase item SKU number
+          "tax":
+            type: string
+            description: tax amount
+          "type":
+            type: string
+            description: purchase item type
+      "merchant_options":
+        description: merchant's details to be shown on the invoice
+        $ref: ../../schemas/invoices/merchantOptions.yaml
+      "email_delivery_options":
+        type: object
+        description: email addresses to be used for invoice delivery
+        properties:
+          to:
+            type: string
+            description: to email address. The value can take multiple addresses separated by semicolons
+          cc:
+            type: string
+            description: field to add multiple recipients separated by semicolons
+          bcc:
+            type: string
+            description: bcc field similar to "cc" field except that other recipients won't be able to see that someone else has been sent a copy of the email
+      "amount":
+        type: object
+        description: invoice amount
+        properties:
+          "currency_id":
+            type: integer
+            description: id of the currency in the system
+          "subtotal":
+            type: string
+            description: subtotal amount of the purchase
+          "shipping_total":
+            type: string
+            description: shipping amount of the purchase
+          "handling_total":
+            type: string
+            description: handling service amount of the purchase
+          "discount_total":
+            type: string
+            description: discount amount of the purchase
+          "tax_total":
+            type: string
+            description: tax amount of the purchase
+          "total":
+            type: string
+            description: total amount of the purchase
+      "state":
+        type: string
+        description: current status of the invoice
+      "flags":
+        type: object
+        properties:
+          "require_buyer_name_and_email":
+            type: boolean
+            description: if buyer's email and name required
+          "send_payment_complete_email_notification":
+            type: boolean
+            description: if sending of the payment completion email required
+          "is_pos":
+            type: boolean
+            description: if point of sale required
+      "canceled_at":
+        type: integer
+        description: time when invoice is canceled
+      "completed_at":
+        type: integer
+        description: time when invoice is completed
+      "confirmed_at":
+        type: integer
+        description: time when invoice is confirmed
+      "payments":
+        type: array
+        description: details of the invoice payment
+        items:
+          type: object
+          description: payment details
+          properties:
+            id:
+              type: string
+              description: payment id
+            "invoice_id":
+              type: string
+              description: invoice id
+            "created_at":
+              type: integer
+              description: time when payment is created
+            "expires_at":
+              type: integer
+              description: time when payment expires
+            "cancelled_at":
+              type: integer
+              description: time when invoice is canceled
+            "detected_at":
+              type: integer
+              description: time when payment is detected in mempool or on chain
+            "pending_at":
+              type: integer
+              description: time when invoice is identified as pending
+            "confirmed_at":
+              type: integer
+              description: time when payment is confirmed
+            "completed_at":
+              type: integer
+              description: time when payment is completed
+            "scheduled_at":
+              type: integer
+              description: time when invoice is scheduled for sending out
+            "state":
+              type: string
+              description: payment/invoice status
+            "refunded_at":
+              type: integer
+              description: time when payment is refunded
+            "refund_email":
+              type: string
+              description: email for making refund
+            "is_guest":
+              type: boolean
+              description: if payer is a system guest or a registered user
+            "hot_wallet":
+              type: object
+              description: object containing data about payment amount and pooled wallet where payment is sent
+              properties:
+                "id":
+                  type: string
+                  description: wallet id
+                "payment_id":
+                  type: string
+                  description: payment id
+                "currency":
+                  type: object
+                  description: payment currency details
+                  properties:
+                    "id":
+                      type: integer
+                      description: payment currency id
+                    "smart_contract":
+                      type: object
+                      description: payment smart contract details
+                "merchant_payout_currency":
+                  type: object
+                  description: details of the payout currency of the merchant balance
+                  properties:
+                    "id":
+                      type: integer
+                      description: payout currency id
+                    "smart_contract":
+                      type: object
+                      description: payout currency smart contract details
+                "currency_rate_from_invoice_currency":
+                  type: integer
+                  description: rate of the payment currency to the invoice currency
+                "payment_receive_address":
+                  type: string
+                  description: address of payment is received
+                "merchant_payout_address":
+                  type: string
+                  description: address to payout funds to the merchant
+                "merchant_payout_wallet_id":
+                  type: string
+                  description: id of the payout wallet of the merchant
+                "payment_sub_total":
+                  type: string
+                  description: invoice amount subtotal
+                "merchant_markup_or_discount":
+                  type: integer
+                  description: amount of the discount provided by the merchant for the currency
+                "is_conversion":
+                  type: boolean
+                  description: if conversion is required by payout settings of the merchant for the currency of payment
+                "buyer_fee":
+                  type: object
+                  description: breakdown of additional fees paid by the buyer
+                  $ref: ../../globalTypes/personFeeSummary.yaml
+                "merchant_fee":
+                  type: object
+                  description: breakdown of additional fees paid by the merchant
+                  $ref: ../../globalTypes/personFeeSummary.yaml
+                "payout_frequency":
+                  type: string
+                  description: frequency mode for funds payout set by the merchant
+                "created_at":
+                  type: integer
+                  description: time when payout is created
+                "error":
+                  type: object
+                  description: payment error details
+                  properties:
+                    code:
+                      type: string
+                      description: error code
+                    message:
+                      type: string
+                      description: error message
+                      example: ['Unknown = 0',
+                                'NegativeRate = 1',
+                                'PayoutAddressIsNull = 2',
+                                'PaymentSubTotalIsLessThanMerchantTotalFee = 4',
+                                'TotalBuyerWillPayIsNegativeOrZero = 8',
+                                'TotalBuyerWillPayIsLessThanBuyerNetworkFee = 16',
+                                'TotalMerchantFeeRatioIsMoreThanMaximumRatioSetting = 32',
+                                'PayoutAmountIsLessThanDust = 64',
+                                'CurrencyIsNotActive = 128',
+                                'AmountIsBelowOfConversionLimit = 256',
+                                'AmountIsAboveOfConversionLimit = 512',
+                                'UserLimitIsReached = 1024',
+                                'NotEnoughToActivateRippleAddress = 2048',
+                                'ConversionPairDoesNotExist = 4096',
+                                'AddressIsNotValid = 8_192',
+                                'DoesNotHaveCompletedKyc = 16_384',
+                                'UnstoppableDomainNotFound = 32_768',
+                                'UnstoppableDomainNotFoundForCurrency = 65_536',
+                                'UserWalletIsLocked = 131_072'
+                        ]
+                "confirmations":
+                  type: integer
+                  description: amount of confirmations gathered by the payment transaction on chain
+                "confirmed_amount":
+                  type: integer
+                  description: amount of payment that received necessary amount of confirmation on chain
+                "required_confirmations":
+                  type: integer
+                  description: amount of confirmations required for the payment currency for the transaction to be completed
+                "unconfirmed_amount":
+                  type: integer
+                  description: amount of payment that was detected on chain but that has not received necessary amount of confirmations yet
+                "assignment":
+                  type: object
+                  description: dates of assignment of the pooled wallet to the hot wallet for payment
+                  properties:
+                    "assigned_from":
+                      type: string
+                      description: timestamp from when assignment of the pooled wallet to the hot wallet is valid
+                    "assigned_until":
+                      type: string
+                      description: timestamp until assignment of the pooled wallet to the hot wallet is valid
+                    "completed_date":
+                      type: string
+                      description: timestamp when assignment of the pooled wallet to the hot wallet is completed
+                "pooled_wallet_id":
+                  type: string
+                  description: id of the wallet in the pool of addresses used for payment receipt
+                "expires_at":
+                  type: integer
+                  description: time when pooled wallet returns to the system pool of addresses
+            "payout":
+              type: object
+              description: payout mode details
+            "refund":
+              type: object
+              description: refund details
+            "is_active":
+              type: boolean
+              description: if payment is active or expired
+            "estimated_amounts":
+              type: array
+              description: amount of the invoice to be paid displayed at the checkout in all the available currencies
+              items:
+                type: object
+                description: estimated amounts to be paid in all available currencies
+                properties:
+                  "rate":
+                    type: integer
+                    description: rate of the currency at the time of checkout
+                  "sub_total":
+                    type: integer
+                    description: payment subtotal
+                  "markup_or_discount":
+                    type: integer
+                    description: amount of markup or discount provided by merchant for the currency
+                  "buyer_fees":
+                    type: object
+                    description: fees to be paid by the buyer
+                    $ref: ../../globalTypes/personFeeSummary.yaml
+                  "merchant_fees":
+                    type: object
+                    description: fees to be paid by the merchant
+                    $ref: ../../globalTypes/personFeeSummary.yaml
+                  "approximate_network_amount":
+                    type: integer
+                    description: approximate network fee to be paid by the buyer. Calculated before buyer initiates the payment.
+                      Used for 'invoiceCreated' event
+                  "payout_info":
+                    type: object
+                    description: payout info for the currency of payment
+                    $ref: ../../globalTypes/InvoicePayoutConfig.yaml
+                  "from_currency":
+                    type: object
+                    description: currency for which payment has been calculated
+                    properties:
+                      "id":
+                        type: integer
+                        description: currency id
+                      "smart_contract":
+                        type: object
+                        description: currency smart contract details
+      "payout_config":
+        type: object
+        description: config details of the payout mode
+        $ref: ../../schemas/invoices/payouts/PayoutConfig.yaml
+      "partial_accept_available":
+        type: boolean
+        description: if accepting partial payment is possible
+
+
 

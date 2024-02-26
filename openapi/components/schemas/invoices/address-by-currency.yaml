@@ -1,0 +1,22 @@
+type: object
+description: Address for buyer to make payment with indication of currency, amount, and expiration timer
+properties:
+  currency:
+    $ref: ../currencies/currencySchema.yaml
+  amount:
+    type: object
+    description: amount of purchase
+    $ref: ../../globalTypes/invoicePaymentAmountDue.yaml
+  addresses:
+    type: object
+    description: addresses where payments to an invoice can be sent
+    properties:
+      address:
+        type: string
+        description: raw payment address
+      biP21:
+        type: string
+        description: BIP21 payment code, if available
+  expires:
+    type: string
+    description: date and time when payment expires and a new payment must be started to send payment

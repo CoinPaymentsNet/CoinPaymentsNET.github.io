@@ -1,0 +1,22 @@
+type: object
+properties:
+  to_currency:
+    type: integer
+    description: the currency id of the wallet or address into which to payout to
+    format: int32
+  address:
+    type: string
+    description: the external address into which to pay out
+    #nullable: true
+  wallet_id:
+    type: string
+    description: wallet into which to payout to if payout is internal
+  frequency:
+    type: array
+    description: frequency with which payout in this currency takes place. Provided as an array of strings.
+    example: ['normal',
+              'asSoonAsPossible',
+              'hourly',
+              'nightly',
+              'weekly'
+      ]

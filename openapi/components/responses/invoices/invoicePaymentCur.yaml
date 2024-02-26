@@ -1,0 +1,25 @@
+type: object
+properties:
+  currency:
+    type: object
+    description: details of the cryptocurrency that can be applied for payment
+    $ref: ../../globalTypes/currency.yaml
+  isDisabled:
+    type: boolean
+    description: flag indicating whether this currency is currently unavailable (e.g. node or services is down)
+  amount:
+    type: object
+    description: due amount of the invoice in the cryptocurrency
+    $ref: ../../globalTypes/invoicePaymentAmountDue.yaml
+  nativePreferredAmount:
+    type: object
+    description: due amount of the invoice in the native fiat currency
+    $ref: ../../globalTypes/invoicePaymentAmountDue.yaml
+  approximateNetworkAmount:
+    type: object
+    description: approximate network fee amount in the cryptocurrency
+    $ref: ../../globalTypes/fees.yaml
+  approximateNetworkInNativeCurrencyAmount:
+    type: object
+    description: approximate network fee amount in the native fiat currency
+    $ref: ../../globalTypes/fees.yaml

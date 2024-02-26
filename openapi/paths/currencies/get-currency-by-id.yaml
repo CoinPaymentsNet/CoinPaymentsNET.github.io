@@ -2,8 +2,7 @@ get:
   tags:
     - Currencies API
   summary: Get currency by Id
-  description: |
-    Get Currency by Id
+  description: Get currency information by currency Id in the CoinPayments system
   operationId: getCurrencyById
   parameters:
     - name: id
