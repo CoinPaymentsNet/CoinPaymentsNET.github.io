@@ -24,10 +24,11 @@ Unlike wallets created via UI, wallets created via API can send webhook notifica
 when funds are received by the wallet:
 ```javascript
 {
-  "eventType" : "transferReceived",
   "walletId" : "58f78b24-1de0-42b3-9a48-94f3e9c57752",
-  "currencyId" : "4",
-  "transactionId" : "f8ea1354-b3c9-470f-af09-c2ba96f2e391" ,
-  "amount" : "1000000000000000000"
+  "address" : "3HX4jDA4ESQahmE9w448TKUQiF786paVBT",
+  "transactionId" : "f8ea1354-b3c9-470f-af09-c2ba96f2e391",
+  "transactionType" : "UtxoExternalReceive",
+  "amount" : "1.5",
+  "symbol" : "BTC"
 }
 ```
