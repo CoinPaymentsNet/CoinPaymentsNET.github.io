@@ -7,7 +7,7 @@ get:
     able to verify the webhook information with this endpoint.
   operationId: getPaymentStatus
   parameters:
-    - name: invoiceId
+    - name: id
       in: path
       required: true
       schema:
