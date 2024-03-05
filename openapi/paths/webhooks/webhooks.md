@@ -38,7 +38,7 @@ To create a webhook through the UI, continue in the popup screen with the follow
 - Click "Save" to confirm your selections.
 
 To set up webhook notifications through the API calls, follow these steps:
-- Create a webhook using ['createWebhook' endpoint](./webhook.yaml) indicating merchant's 'clientId' of the API integration. 
+- Create a webhook using ['createWebhook' endpoint](/webhook.yaml) indicating merchant's 'clientId' of the API integration. 
 - In the request body provide a list of notification types you want to receive in the 'notifications' parameter. Possible values are:
 'invoiceCreated', 'invoicePending', 'invoicePaid', 'invoiceCompleted', 'invoiceCancelled', 'invoiceTimedOut'.
 - In the request body provide your server URL where the notifications will be sent in the 'notificationsUrl' parameter.
