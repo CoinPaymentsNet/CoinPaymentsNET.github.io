@@ -17,7 +17,9 @@ properties:
     description: indicates whether to show merchant’s email address on the invoice
     default: false
   additionalInfo:
-    type: string
+    type: object
     description: indicates whether to show any other merchant’s additional info on the invoice
     format: additional Info
-    #nullable: true
+    properties:
+      additionalInfo:
+        type: 'null'

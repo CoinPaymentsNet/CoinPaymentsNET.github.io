@@ -1,20 +1,28 @@
 type: object
 properties:
   addressId:
-    type: string
+    type: object
     description: the unique id of the address of the wallet
-    #nullable: true
+    properties:
+      addressId:
+        type: 'null'
   label:
-    type: string
+    type: object
     description: user supplied or system generated label for this address
-    #nullable: true
+    properties:
+      label:
+        type: 'null'
   address:
-    type: string
+    type: object
     description: the network address
-    #nullable: true
+    properties:
+      address:
+        type: 'null'
   notificationUrl:
-    type: string
+    type: object
     description: if provided, webhook notifications will be sent to this address when new  deposit is received
-    #nullable: true
+    properties:
+      notificationUrl:
+        type: 'null'
 additionalProperties: false
 description: Represents a deposit address of a wallet on the CoinPayments® platform.

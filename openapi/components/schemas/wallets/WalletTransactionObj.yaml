@@ -90,23 +90,29 @@ properties:
     type: string
     example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   blockchainFeeCurrency:
+    type: object
     description: Currency in which blockchain network fees were deducted. The format is {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
-    type: string
-    #nullable: true
+    properties:
+      blockchainFeeCurrency:
+        type: 'null'
   coinPaymentsFeeCurrency:
-    type: string
+    type: object
     description: >-
       Currency in which CoinPayments fee was deducted. The format is
       {CurrencyId}:{ContractAddress?} where ContractAddress is optional e.g.null
       "1", "4:0xdac17f958d2ee523a2206206994597c13d831ec7"
-    #nullable: true
+    properties:
+      coinPaymentsFeeCurrency:
+        type: 'null'
   blockNumberTxAppearedAt:
     description: block number where the transaction appeared on the blockchain
     type: string
   supportTransactionId:
-    type: string
+    type: object
     description: support Id of the transaction in CoinPayments system
-    #nullable: true
+    properties:
+      supportTransactionId:
+        type: 'null'
   confirmations:
     description: Current number of confirmations that this transaction has on the blockchain
     type: number
@@ -116,25 +122,35 @@ properties:
     type: number
     example: 5
   fromAmountNative:
-    type: string
+    type: object
     description: amount sent in native transaction currency
-    #nullable: true
+    properties:
+      fromAmountNative:
+        type: 'null'
   toAmountNative:
-    type: string
+    type: object
     description: amount received in native transaction currency
-    #nullable: true
+    properties:
+      toAmountNative:
+        type: 'null'
   coinpaymentsFeeNative:
-    type: string
+    type: object
     description: CoinPayments network fee in native transaction currency
-    #nullable: true
+    properties:
+      coinpaymentsFeeNative:
+        type: 'null'
   blockchainFeeNative:
-    type: string
+    type: object
     description: blockchain network fee in native transaction currency
-    #nullable: true
+    properties:
+      blockchainFeeNative:
+        type: 'null'
   isInvoicePaymentSend:
     type: boolean
     description: flag indicating if this transaction is a payment of the invoice
   paymentType:
-    type: string
+    type: object
     description: type of payment that transaction covers
-    #nullable: true
+    properties:
+      paymentType:
+        type: 'null'

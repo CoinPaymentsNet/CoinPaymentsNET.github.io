@@ -1,10 +1,14 @@
 type: object
 properties:
   firstName:
-    type: string
+    type: object
     description: first name of the buyer
-    #nullable: true
+    properties:
+      firstName:
+        type: 'null'
   lastName:
-    type: string
+    type: object
     description: last name of the buyer
-    #nullable: true
+    properties:
+      lastName:
+        type: 'null'
