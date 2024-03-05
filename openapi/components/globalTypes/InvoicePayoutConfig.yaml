@@ -9,8 +9,7 @@ properties:
     description: the external address into which to pay out
     properties:
       address:
-        type: string
-        nullable: true
+        type: 'null'
   wallet_id:
     type: string
     description: wallet into which to payout to if payout is internal
