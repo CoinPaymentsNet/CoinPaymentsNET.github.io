@@ -5,9 +5,11 @@ properties:
     description: the currency id of the wallet or address into which to payout to
     format: int32
   address:
-    type: string
+    type: object
     description: the external address into which to pay out
-    #nullable: true
+    properties:
+      type: string
+      nullable: true
   wallet_id:
     type: string
     description: wallet into which to payout to if payout is internal
