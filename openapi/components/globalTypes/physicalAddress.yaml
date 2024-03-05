@@ -1,34 +1,50 @@
 type: object
 properties:
   address1:
-    type: string
+    type: object
     description: main address
-    #nullable: true
+    properties:
+      address1:
+        type: 'null'
   address2:
-    type: string
+    type: object
     description: additional address data
-    #nullable: true
+    properties:
+      address2:
+        type: 'null'
   address3:
-    type: string
+    type: object
     description: additional address data
-    #nullable: true
+    properties:
+      address3:
+        type: 'null'
   provinceOrState:
-    type: string
+    type: object
     description: Province or state of the buyer
-    #nullable: true
+    properties:
+      provinceOrState:
+        type: 'null'
   city:
-    type: string
+    type: object
     description: city of the buyer
-    #nullable: true
+    properties:
+      city:
+        type: 'null'
   suburbOrDistrict:
-    type: string
+    type: object
     description: Suburb or district of the buyer
-    #nullable: true
+    properties:
+      suburbOrDistrict:
+        type: 'null'
   countryCode:
-    type: string
+    type: object
     format: 'US'
-    #nullable: true
+    properties:
+      countryCode:
+        type: 'null'
   postalCode:
-    type: string
+    type: object
     format: '10101'
-    #nullable: true
+    properties:
+      postalCode:
+        type: 'null'

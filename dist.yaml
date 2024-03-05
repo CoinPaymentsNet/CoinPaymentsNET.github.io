@@ -1679,7 +1679,7 @@ components:
       type: array
       description: >
         specify the event name you want your server to be notified about when it
-        occures
+        occurs
 
 
         e.g. send notification when an invoice is created
