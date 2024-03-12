@@ -24,6 +24,11 @@ post:
           type: string
           example: shop tests address
           description: label for the address
+      - name: type
+        in: query
+        schema:
+          type: string
+          description: type of the address, can be personal or commercial
       - name: notificationUrl
         in: query
         schema:
