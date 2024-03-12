@@ -8,7 +8,7 @@ invoices and merchant wallets and addresses.
 
 This section provides information on the invoices webhooks. Webhooks for wallets and addresses are set up within 
 Create-wallet and Create-address-for-an-existing-wallet requests. You can find more information about this 
-[here](../wallets/wallets-description.md).
+[here](/#tag/Wallets-API).
 
 It's important to note that webhooks are tied to integration clients, and merchants can create multiple clients under 
 their main account on the CoinPayments website, providing flexibility and customization options.
@@ -25,7 +25,7 @@ Here is a list of events for which merchants can choose to receive notifications
 - **invoiceTimedOut:** triggered once invoice expiration date and time is over
 
 Merchants have the flexibility to set up webhooks either through the user-friendly UI or via API calls. To set up 
-webhook notifications, first, [create an API integration via CoinPayments UI](../auth/auth.md#Create-credentials). Then
+webhook notifications, first, [create an API integration via CoinPayments UI](/#section/Create-credentials). Then
 follow these steps:
 - Access the dashboard and click on "Integrations" in the left sidebar.
 - Click on the integration that you want to use for webhooks.
@@ -38,7 +38,7 @@ To create a webhook through the UI, continue in the popup screen with the follow
 - Click "Save" to confirm your selections.
 
 To set up webhook notifications through the API calls, follow these steps:
-- Create a webhook using ['createWebhook' endpoint](/webhook.yaml) indicating merchant's 'clientId' of the API integration. 
+- Create a webhook using ['createWebhook' endpoint](/#operation/createWebhook) indicating merchant's 'clientId' of the API integration. 
 - In the request body provide a list of notification types you want to receive in the 'notifications' parameter. Possible values are:
 'invoiceCreated', 'invoicePending', 'invoicePaid', 'invoiceCompleted', 'invoiceCancelled', 'invoiceTimedOut'.
 - In the request body provide your server URL where the notifications will be sent in the 'notificationsUrl' parameter.

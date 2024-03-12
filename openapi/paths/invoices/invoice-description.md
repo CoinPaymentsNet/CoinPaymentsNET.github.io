@@ -30,7 +30,7 @@ and email.
 the transaction has to be completed.
 8. At the same time currency of payment is reflected in the transaction details of the payment in the merhant's
 transaction history. 
-9. Additionally, if the merchant has [webhooks](../webhooks/webhooks.md) set-up, CoinPayments will be sending invoice payment 
+9. Additionally, if the merchant has [webhooks](/#tag/Webhooks-API) set-up, CoinPayments will be sending invoice payment 
 notifications for each status change thereof (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
 invoiceCancelled, invoiceTimedOut).
 
@@ -57,7 +57,7 @@ the transaction has to be completed.
  - status of payment
  - how much was detected and confirmed on blockchain
  - how much was detected but not confirmed yet.
-5. Additionally, if the merchant has [webhooks](../webhooks/webhooks.md) set-up, CoinPayments will be sending payment
+5. Additionally, if the merchant has [webhooks](/#tag/Webhooks-API) set-up, CoinPayments will be sending payment
    notifications for each status change (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
    invoiceCancelled, invoiceTimedOut).
 
