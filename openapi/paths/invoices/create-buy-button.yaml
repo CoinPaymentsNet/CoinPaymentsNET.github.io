@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Invoices API
+  summary: Create Buy-Now Button
+  description: |
+    Request to create a buy-now button, which allows for quick checkout for goods or services with a statement of the 
+    sum due, that is offered by the merchant, and that a buyer intends to purchase. The request creates a button script
+    to be inserted into the merchant's website
+  operationId: createBuyNowButton
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/invoices/buy-now-button.yaml
+    description: Create Buy-Now Button
+  responses:
+    '200':
+      description: Success.
+    '401':
+      description: Not Authorized
+    '403':
+      description: Forbidden

@@ -98,7 +98,7 @@ Here is a complete example of how to generate an API signature for making a call
 ```javascript
 const clientId = 'd0ccc52b8204460783d375e278082de2';
 const clientSecret = 'WYEB+hN+89waO76QeO9T7IIqhdo/60GHrdYu2vEa7Tg=';
-const url = `https://api.coinpayments.net/api/v1/merchant/wallets`;
+const url = `https://api.coinpayments.com/api/v1/merchant/wallets`;
 const method = 'POST';
 const date = new Date().toISOString().split('.')[0];
 

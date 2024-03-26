@@ -30,8 +30,10 @@ tags:
       $ref: 'paths/webhooks/webhooks.md'
 
 servers:
-  - url: 'https://api.coinpayments/api/v1'
+  - url: 'https://api.coinpayments.com/api/v1'
 paths:
+
+  # Currencies
   '/currencies':
     $ref: 'paths/currencies/get-currencies.yaml'
   '/currencies/{id}':
@@ -46,6 +48,8 @@ paths:
   # Invoices
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
+  '/merchant/invoices/buy-now-button':
+    $ref: 'paths/invoices/create-buy-button.yaml'
   '/invoices/{id}/payment-currencies/{currencyId}':
     $ref: 'paths/invoices/get-payment-address.yaml'
   '/invoices/{id}/payment-currencies/{currencyId}/status':
