@@ -435,7 +435,7 @@ properties:
             "payout":
               type: object
               description: payout mode details
-              items:
+              properties:
                 "destinationAmountInNativeCurrency":
                   type: integer
                   description: payment amount without deduction of fees in default fiat currency
