@@ -16,16 +16,16 @@ properties:
     type: object
     description: details of the invoice to which refers the webhook notification
     properties:
-      "invoice_id":
+      "invoiceId":
         type: string
         description: invoice number assigned by the merchant
       "id":
         type: string
         description: invoice id assigned by the system
-      "user_id":
+      "userId":
         type: string
         description: the id of the merchant creating this invoice
-      "merchant_id":
+      "merchantId":
         type: string
         description: the id of the merchant creating this invoice
       "merchant_client_id":
@@ -258,10 +258,58 @@ properties:
             "is_guest":
               type: boolean
               description: if payer is a system guest or a registered user
-            "hot_wallet":
+            "hotWallet":
               type: object
               description: object containing data about payment amount and pooled wallet where payment is sent
               properties:
+                "nativeCurrency":
+                  type: object
+                  description: default fiat currency of the merchant's settings for displaying payment amount in fiat
+                  properties:
+                    "id":
+                      type: integer
+                      description: fiat currency id
+                    "smartContract":
+                      type: string
+                      description: currency smart contract. Default - null
+                "paymentSubTotalInNativeCurrency":
+                  type: integer
+                  description: amount of payment in the default fiat currency
+                "merchantMarkupOrDiscountInNativeCurrency":
+                  type: integer
+                  description: markup or discount amount to the payment amount in the default fiat currency
+                "buyerFeeInNativeCurrency":
+                  type: object
+                  description: fee amount charged from the buyer in the default fiat currency
+                  properties:
+                    "coinPaymentsFee":
+                      type: integer
+                      description: amount of fee charged from buyer by CoinPayments in the default fiat currency
+                    "networkFee":
+                      type: integer
+                      description: amount of the network fee charged from buyer in the default fiat currency
+                    "conversionFee":
+                      type: integer
+                      description: amount of conversion fee charged from the buyer in the default fiat currency
+                "merchantFeeInNativeCurrency":
+                  type: object
+                  description: fee amount charged from the merchant in the default fiat currency
+                  properties:
+                    "coinPaymentsFee":
+                      type: integer
+                      description: amount of fee charged from merchant by CoinPayments in the default fiat currency
+                    "networkFee":
+                      type: integer
+                      description: amount of the network fee charged from merchant in the default fiat currency
+                    "conversionFee":
+                      type: integer
+                      description: amount of conversion fee charged from merchant in the default fiat currency
+                "confirmedAmountInNativeCurrency":
+                  type: integer
+                  description: confirmed amount of payment in the default fiat currency
+                "unconfirmedAmountInNativeCurrency":
+                  type: integer
+                  description: unconfirmed amount of payment in the default fiat currency
                 "id":
                   type: string
                   description: wallet id
@@ -387,9 +435,99 @@ properties:
             "payout":
               type: object
               description: payout mode details
+              items:
+                "destinationAmountInNativeCurrency":
+                  type: integer
+                  description: payment amount without deduction of fees in default fiat currency
+                "payoutAmountToMerchantInNativeCurrency":
+                  type: integer
+                  description: final amount with deduction of fees to be paid out to the merchant in default fiat currency
+                "buyerBlockchainFeeAfterGroupingInNativeCurrency":
+                  type: integer
+                  description: network fee paid by buyer in default fiat currency
+                "merchantBlockchainFeeAfterGroupingInNativeCurrency":
+                  type: integer
+                  description: network fee paid by merchant in default fiat currency
+                "refundAmountToKeepInWalletInNativeCurrency":
+                  type: integer
+                "id":
+                  type: string
+                  description: payout id
+                "invoicePaymentId":
+                  type: string
+                  description: id of the invoice payment
+                "invoicePaymentHotWalletId":
+                  type: string
+                  description: id of the hot wallet for receiving invoice payment
+                "created":
+                  type: string
+                  description: date and time when payment was created
+                "sent":
+                  type: string
+                  description: date and time when payment was sent
+                "confirmed":
+                  type: string
+                  description: date and time when payment was confirmed on chain
+                "failed":
+                  type: string
+                  description: date and time when payment failure was detected
+                "merchantPayoutWalletId":
+                  type: string
+                  description: id of the wallet where payout is made for the merchant
+                "merchantPayoutWalletCurrencyId":
+                  type: integer
+                  description: id of the currency of the wallet used for payout for the merchant
+                "merchantPayoutWalletSmartContract":
+                  type: object
+                  description: details of the smart contract of the currency of the wallet where payout is made for the merchant
+                "serviceFeePayoutWalletId":
+                  type: string
+                  description: id of the wallet where service fee for payout is sent
+                "spendRequestId":
+                  type: string
+                  description: id of the spend request for putting transaction on chain for payout to external address
+                "merchantPayoutAddress":
+                  type: string
+                  description: id of the merchant external payout address
+                "payoutAmountToMerchant":
+                  type: integer
+                  description: amount to be paid out to merchant to the payout address
+                "refundAmountToKeepInWallet":
+                  type: integer
+                "blockchainTransactionId":
+                  type: string
+                  description: id of the transaction on blockchain for sending paid out amount to the external merchant's address
+                "state":
+                  type: string
+                  description: current state of the payment
+                "batchId":
+                  type: string
+                  description: id of the transaction batch within which CoinPayments sends paid out amount to the merchant's external address
+                "destinationAmount":
+                  type: integer
+                  description: amount of payment without deduction of fees
+                "transactionId":
+                  type: integer
+                  description: payout transaction id in CP system
+                "buyerBlockchainFeeAfterGrouping":
+                  type: integer
+                  description: network fee paid by buyer
+                "merchantBlockchainFeeAfterGrouping":
+                  type: integer
+                  description: network fee paid by merchant
             "refund":
               type: object
               description: refund details
+              items:
+                "payoutAmountInNativeCurrency":
+                  type: integer
+                  description: amount to be refunded in the default fiat currency
+                "payoutNetworkFeesInNativeCurrency":
+                  type: integer
+                  description: CP fees to be charged for performing refund in the default fiat currency
+                "estimatedNetworkFeesInNativeCurrency":
+                  type: integer
+                  description: amount of blockchain network fees for putting refund transaction on chain in the default fiat currency
             "is_active":
               type: boolean
               description: if payment is active or expired

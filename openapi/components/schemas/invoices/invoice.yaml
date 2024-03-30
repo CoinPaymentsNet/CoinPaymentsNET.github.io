@@ -24,11 +24,11 @@ properties:
   dueDate:
     type: string
     example: '2023-04-26T18:40:41.322Z'
-    description: to be used for invoice doc delivery. Date when invoice is to be mailed out to the user
+    description: date until invoice document is due
   invoiceDate:
     type: string
     example: '2022-11-28T13:59:46+00:00'
-    description: to be used for invoice doc. Date when invoice was issued
+    description: to be used for invoice doc delivery. Date when invoice is to be mailed out to the user
   draft:
     type: boolean
     description: Default value to be used for whitelabeling checkout flow. flag indicating whether this is a draft invoice

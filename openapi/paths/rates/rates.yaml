@@ -19,16 +19,6 @@ get:
         type: integer
       in: query
       description: comma separated list of currency ids for which to retrieve conversion rates for (from the from currencies)
-    - name: fromToken
-      in: query
-      schema:
-        type: integer
-      description: optional, contract address of the token on the from currency
-    - name: toToken
-      in: query
-      schema:
-        type: integer
-      description: optional, contract address of the token on the quote currency
   responses:
     '200':
       description: Success status code ( 200 )
