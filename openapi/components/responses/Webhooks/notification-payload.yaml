@@ -518,7 +518,7 @@ properties:
             "refund":
               type: object
               description: refund details
-              items:
+              properties:
                 "payoutAmountInNativeCurrency":
                   type: integer
                   description: amount to be refunded in the default fiat currency
