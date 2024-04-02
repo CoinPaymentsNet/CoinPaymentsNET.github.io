@@ -448,8 +448,6 @@ properties:
                 "merchantBlockchainFeeAfterGroupingInNativeCurrency":
                   type: integer
                   description: network fee paid by merchant in default fiat currency
-                "refundAmountToKeepInWalletInNativeCurrency":
-                  type: integer
                 "id":
                   type: string
                   description: payout id
@@ -480,20 +478,12 @@ properties:
                 "merchantPayoutWalletSmartContract":
                   type: object
                   description: details of the smart contract of the currency of the wallet where payout is made for the merchant
-                "serviceFeePayoutWalletId":
-                  type: string
-                  description: id of the wallet where service fee for payout is sent
-                "spendRequestId":
-                  type: string
-                  description: id of the spend request for putting transaction on chain for payout to external address
                 "merchantPayoutAddress":
                   type: string
                   description: id of the merchant external payout address
                 "payoutAmountToMerchant":
                   type: integer
                   description: amount to be paid out to merchant to the payout address
-                "refundAmountToKeepInWallet":
-                  type: integer
                 "blockchainTransactionId":
                   type: string
                   description: id of the transaction on blockchain for sending paid out amount to the external merchant's address
@@ -508,7 +498,7 @@ properties:
                   description: amount of payment without deduction of fees
                 "transactionId":
                   type: integer
-                  description: payout transaction id in CP system
+                  description: payout transaction id in CoinPayments system
                 "buyerBlockchainFeeAfterGrouping":
                   type: integer
                   description: network fee paid by buyer
@@ -521,13 +511,13 @@ properties:
               properties:
                 "payoutAmountInNativeCurrency":
                   type: integer
-                  description: amount to be refunded in the default fiat currency
+                  description: amount that was refunded in the default fiat currency
                 "payoutNetworkFeesInNativeCurrency":
                   type: integer
-                  description: CP fees to be charged for performing refund in the default fiat currency
+                  description: actual amount of blockchain network fees for putting refund transaction on chain in the default fiat currency
                 "estimatedNetworkFeesInNativeCurrency":
                   type: integer
-                  description: amount of blockchain network fees for putting refund transaction on chain in the default fiat currency
+                  description: estimated amount of blockchain network fees for putting refund transaction on chain in the default fiat currency
             "is_active":
               type: boolean
               description: if payment is active or expired
