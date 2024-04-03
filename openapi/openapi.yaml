@@ -66,8 +66,12 @@ paths:
     $ref: 'paths/wallets/create-wallet.yaml'
   '/merchant/wallets/{walletIdStr}':
     $ref: 'paths/wallets/get-wallet-by-id.yaml'
+  '/merchant/wallets/{walletIdStr}/webhook':
+    $ref: 'paths/wallets/update-wallet-webhook-url.yaml'
   '/merchant/wallets/{walletIdStr}/addresses':
     $ref: 'paths/wallets/create-and-get-addresses.yaml'
+  '/merchant/wallets/{walletIdStr}/addresses/{addressIdStr}/webhook':
+    $ref: 'paths/wallets/update-address-webhook-url.yaml'
   '/merchant/wallets/{walletIdStr}/transactions':
     $ref: 'paths/wallets/get-wallet-transactions.yaml'
   '/merchant/wallets/{walletIdStr}/transaction':

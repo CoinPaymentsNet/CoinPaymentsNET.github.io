@@ -1,0 +1,40 @@
+put:
+  tags:
+    - Wallets API
+  summary: Update address webhook Url
+  description: |
+    Allows to update Url used to receiving webhooks for address transactions
+  operationId: updateAddressWebhookUrl
+  parameters:
+    - name: walletIdStr
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        description: the wallet Id
+    - name: addressIdStr
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        description: the address Id
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            notificationUrl:
+              type: string
+              description: merchant's Url where webhooks are sent
+    description: Update address webhook Url
+    required: true
+  responses:
+    '200':
+      description: Success
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden

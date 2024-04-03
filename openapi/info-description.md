@@ -3,7 +3,7 @@ Welcome to CoinPayments API documentation!
 ![markdown file changed](./charlie.png)
 
 CoinPayments API is a RESTful JSON API for interacting with blockchains,
-accessed over HTTP or HTTPS from the domain **https://api.coinpayments.net/api/v1/**
+accessed over HTTP or HTTPS from the domain **https://api.coinpayments.com/api/v1/**
 
 # Overview
 Coinpayments API docs defines a standard, language-agnostic interface to CoinPayments API.
