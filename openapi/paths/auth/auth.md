@@ -178,5 +178,5 @@ pm.request.headers.add({
 })
 ```
 
-![markdown file changed](./postman-2.png)
 ---
+![markdown file changed](./postman-2.png)
