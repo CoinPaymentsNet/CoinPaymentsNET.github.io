@@ -7,14 +7,17 @@ To Integrate Coin Payments API you need to obtain CLIENT ID and CLIENT SECRET.
 If you have already created your credentials, you may skip to next section.
 
 
-## Create credentials
-First, you need to [create an account](https://signin.coinpayments.net/Identity/Account/SignUp?returnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Dcoinpayments-aphrodite%26response_type%3Did_token%2520token%26scope%3Dopenid%2520profile%2520orion%26redirect_uri%3Dhttps%253A%252F%252Fnew.coinpayments.net%252Fcallback%26nonce%3D5c9d038a-7d3b-410d-345c-1b196492ce13)
+## Create Credentials
+First, you need to [create an account](https://vip.coinpayments.com/Identity/Account/SignUp).
+
+Then [log into your account](https://vip.coinpayments.com/Identity/Account/Welcome).
+
 ##### Once you're logged into your account, click on Integrations 👇
 
 ![markdown file changed](./integrations-1.png)
 
 
-##### API Integrations 🏗
+##### API integrations 🏗
 ![markdown file changed](./integration-2.png)
 
 
@@ -46,7 +49,7 @@ The following sections are instructions for properly populating these headers.
 ---
 
 ### X-CoinPayments-Client
-Populate this header with your **CLIENT ID**
+Populate this header with your `clientId`.
 
 Example value
 `cc7caaa431d54ad6accfd28b20170ee4`
@@ -133,5 +136,47 @@ const response = await this.httpsService.request(options).toPromise();
 console.log(response);
 ```
 
+---
 
+## Authentication for Postman
+
+When setting up authentication with Postman to test out our [API collection](https://coinpayments.postman.co/workspace/Team-Workspace~09eaa205-3e67-47b7-86d7-1d5709bf0610/collection/28654468-da626518-a5d1-44ac-ab0b-d59e23d051dc?action=share&creator=28654468&active-environment=28654468-0e4b6fab-4efd-4c74-a76e-d21527672c78), 
+follow these steps:
+
+1. Set up environment variables:
+  - Use **https://api.coinpayments.com/api/v1/** as `baseUrl`.
+  - Provide your `clientID` and `clientSecret` from your [API integration](/#section/Create-credentials).
+
+![markdown file changed](./postman-1.png)
+
+2. Provide the following script in the collection **Pre-request Script** section:
+
+---
+```javascript
+const clientId = pm.environment.get('clientId');
+const clientSecret = pm.environment.get('clientSecret');
+
+const date = new Date().toISOString().split('.')[0];
+
+const queryString = `\ufeff${pm.request.method}${pm.variables.replaceIn(pm.request.url.toString())}${clientId}${date}${pm.request.body}`;
+const hash = CryptoJS.HmacSHA256(queryString, CryptoJS.enc.Utf8.parse(clientSecret));
+const signature = CryptoJS.enc.Base64.stringify(hash);
+
+pm.request.headers.add({
+    key: 'X-CoinPayments-Client',
+    value: clientId
+})
+
+pm.request.headers.add({
+    key: 'X-CoinPayments-Timestamp',
+    value: date
+})
+
+pm.request.headers.add({
+    key: 'X-CoinPayments-Signature',
+    value: signature
+})
+```
+
+![markdown file changed](./postman-2.png)
 ---

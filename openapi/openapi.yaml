@@ -1,6 +1,5 @@
 openapi: 3.1.0
 info:
-  version: 2.0.0
   title: CoinPayments API Documentation
   x-logo:
     url: ./logo.png
@@ -58,7 +57,7 @@ paths:
     $ref: 'paths/invoices/get-by-id.yaml'
   '/merchant/invoices/{id}/payouts':
     $ref: 'paths/invoices/payouts.yaml'
-  '/merchant/invoices/{id}/hitory':
+  '/merchant/invoices/{id}/history':
     $ref: 'paths/invoices/history.yaml'
 
   # Wallets

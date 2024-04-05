@@ -14,7 +14,7 @@ their specific business needs.
 
 Currently, CoinPayments API supports only creation of temporary account-based addresses for their wallets with the plan to extend to 
 permanent account-based addresses in future. Such temporary addresses are used as commercial addresses for commercial 
-fees, e.g. gambler casino accounts. The life-time of such addresses is configurable via admin dashboard.
+fees, e.g. gambler casino accounts.
 
 UTXO addresses with CoinPayments are always permanent.
 
