@@ -58,7 +58,7 @@ paths:
     $ref: 'paths/invoices/get-by-id.yaml'
   '/merchant/invoices/{id}/payouts':
     $ref: 'paths/invoices/payouts.yaml'
-  '/merchant/invoices/{id}/hitory':
+  '/merchant/invoices/{id}/history':
     $ref: 'paths/invoices/history.yaml'
 
   # Wallets

@@ -16,7 +16,7 @@ In these docs you'll find everything you need to leverage CoinPayments for your 
 
 Also, while studying documentation, you can test it in Postman. For this, you can download API collection 
 [here](https://coinpayments.postman.co/workspace/Team-Workspace~09eaa205-3e67-47b7-86d7-1d5709bf0610/collection/28654468-da626518-a5d1-44ac-ab0b-d59e23d051dc?action=share&creator=28654468&active-environment=28654468-0e4b6fab-4efd-4c74-a76e-d21527672c78).
-
+For information on authentication with the Postman collection, please, visit [this section](/#tag/Authentication/Authentication-for-Postman).
 
 # Features
 CoinPayments provides a multi-currency wallet that enables businesses and individuals to store, send,
