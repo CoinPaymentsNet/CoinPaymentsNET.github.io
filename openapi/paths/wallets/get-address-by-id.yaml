@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Wallets API
+  summary: Get Address of the Wallet by Id
+  description: Retrieves address by wallet and address Ids
+  operationId: getMerchantAddressById
+  parameters:
+      - name: walletIdStr
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+          description: the wallet Id
+      - name: addressIdStr
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+          description: the address Id
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/addressByIdRes.yaml
+    '404':
+      description: Address not found
+      # $ref: ../../components/responses/Problem.yaml
+
+

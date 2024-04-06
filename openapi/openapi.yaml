@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 2.0.0
+  version: ''
   title: CoinPayments API Documentation
   x-logo:
     url: ./logo.png
@@ -70,6 +70,8 @@ paths:
     $ref: 'paths/wallets/update-wallet-webhook-url.yaml'
   '/merchant/wallets/{walletIdStr}/addresses':
     $ref: 'paths/wallets/create-and-get-addresses.yaml'
+  '/merchant/wallets/{walletIdStr}/addresses/{addressIdStr}':
+    $ref: 'paths/wallets/get-address-by-id.yaml'
   '/merchant/wallets/{walletIdStr}/addresses/{addressIdStr}/webhook':
     $ref: 'paths/wallets/update-address-webhook-url.yaml'
   '/merchant/wallets/{walletIdStr}/transactions':
