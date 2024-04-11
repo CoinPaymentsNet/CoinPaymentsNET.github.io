@@ -44,6 +44,9 @@ get:
       in: query
       required: false
       description: Optional parameter; if specified, only webhooks that support this notification type are returned. Available values are invoiceCreated, invoicePending, invoicePaid, invoiceCompleted, invoiceCancelled, invoiceTimedOut
+      schema:
+        type: string
+        description: type of the webhook notification. Available values are invoiceCreated, invoicePending, invoicePaid, invoiceCompleted, invoiceCancelled, invoiceTimedOut
   responses:
     '200':
       description: Success - List of merchant webhook notifications
