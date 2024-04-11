@@ -1,4 +1,7 @@
 type: object
+required:
+  - notificationsUrl
+  - notifications
 properties:
   notificationsUrl:
     $ref: ../../globalTypes/notificationUrl.yaml

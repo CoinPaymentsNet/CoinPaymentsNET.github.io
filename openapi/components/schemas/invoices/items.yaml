@@ -1,5 +1,10 @@
 type: object
 description: array of items that a buyer intends to purchase from the merchant
+required:
+  - name
+  - quantity
+  - originalAmount
+  - amount
 properties:
   customId:
     type: string

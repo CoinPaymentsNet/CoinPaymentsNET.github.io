@@ -4,7 +4,7 @@ get:
   summary: Get wallet transaction
   description: |
     Get a specific transaction of a wallet. This request requires the walletIdStr URL parameter. Additionally,
-    there are two optional query parameters: transactionId and spendRequestId.
+    there are two optional query parameters: transactionId and spendRequestId. For a valid request at least one of these parameters must be specified.
     If both transactionId and spendRequestId are specified, transactionId takes precedence. If only spendRequestId is provided,
     the first transaction that matches the spendRequestId will be returned.
   operationId: getTransactionByWalletId

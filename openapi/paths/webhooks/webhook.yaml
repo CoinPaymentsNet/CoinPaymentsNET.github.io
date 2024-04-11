@@ -40,6 +40,10 @@ get:
       description: client Id
       schema:
         $ref: ../../components/globalTypes/id.yaml
+    - name: type
+      in: query
+      required: false
+      description: Optional parameter; if specified, only webhooks that support this notification type are returned. Available values are invoiceCreated, invoicePending, invoicePaid, invoiceCompleted, invoiceCancelled, invoiceTimedOut
   responses:
     '200':
       description: Success - List of merchant webhook notifications

@@ -2,7 +2,10 @@ type: object
 description: Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
   by the merchant, that a buyer intends to purchase
 required:
+  - clientId
+  - items
   - amount
+  - payment
 properties:
   isEmailDelivery:
     type: boolean
@@ -31,7 +34,7 @@ properties:
     description: to be used for invoice doc delivery. Date when invoice is to be mailed out to the user
   draft:
     type: boolean
-    description: Default value to be used for whitelabeling checkout flow. flag indicating whether this is a draft invoice
+    description: Default value to be used for whitelabeling checkout flow. Flag indicating whether this is a draft invoice
     default: false
   clientId:
     type: string
@@ -52,10 +55,16 @@ properties:
       $ref: ./items.yaml
   amount:
     type: object
+    required:
+      - breakdown
+      - currencyId
+      - value
     description: detailed amount of purchase with the breakdown of all fees
     properties:
       breakdown:
         type: object
+        required:
+          - subtotal
         properties:
           subtotal:
             description: sum of purchased items
@@ -139,30 +148,32 @@ properties:
   webhooks:
     description: data on webhooks sent for invoices
     $ref: ../webhooks/webhookSchema.yaml
-  payoutConfig:
-    type: object
-    description: configs for payout for this particular invoice. Overrides account payout configs
-    properties:
-      currencyId:
-        type: string
-        description: the currency Id of the wallet or address into which to payout to
-      contractAddress:
-        type: string
-        description: the address of the contract if this money object represents an ERC20 or similar token value
-      address:
-        type: string
-        description: the external address into which to pay out to
-      frequency:
-        type: array
-        description: frequency of payout execution. Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
-        example: ['normal',
-                  'asSoonAsPossible',
-                  'hourly',
-                  'nightly',
-                  'weekly'
-        ]
+  #payoutConfig:
+   # type: object
+    #description: configs for payout for this particular invoice. Overrides account payout configs
+    #properties:
+     # currencyId:
+      #  type: string
+       # description: the currency Id of the wallet or address into which to payout to
+      #contractAddress:
+       # type: string
+       # description: the address of the contract if this money object represents an ERC20 or similar token value
+      #address:
+       # type: string
+        #description: the external address into which to pay out to
+      #frequency:
+       # type: array
+        #description: frequency of payout execution. Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
+        #example: ['normal',
+         #         'asSoonAsPossible',
+         #        'hourly',
+         #         'nightly',
+         #         'weekly'
+       # ]
   payment:
     type: object
+    required:
+      - refundEmail
     description: the field contains additional data specific for whitelabeled payments, e.g. buyer's email that is used 
       for possible refunds
     properties:
