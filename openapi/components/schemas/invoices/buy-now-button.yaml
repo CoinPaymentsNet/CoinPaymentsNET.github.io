@@ -13,6 +13,9 @@ properties:
   ipnUrl:
     type: string
     description: the url for receiving webhooks on payment
+  notifications:
+    type: array
+    description: comma separated list of strings designating notification types to be sent as webhooks for the payment. Available values are invoiceCreated, invoicePending, invoicePaid, invoiceCompleted, invoiceCancelled, invoiceTimedOut
   emailNotifications:
     type: boolean
     description: flag indicating whether to send an email notification once payment completes successfully
@@ -22,47 +25,6 @@ properties:
   buttonStyle:
     type: string
     description: style of the button
-  isEmailDelivery:
-    type: boolean
-    description: default value to be used for white labeling checkout flow. For invoice document delivery indicates if invoice will be email delivered
-    default: false
-  emailDelivery:
-    type: object
-    description: email addresses to be used for invoice delivery
-    properties:
-      to:
-        type: string
-        description: to email address. The value can take multiple addresses separated by semicolons
-      cc:
-        type: string
-        description: field to add multiple recipients separated by semicolons
-      bcc:
-        type: string
-        description: bcc field similar to "cc" field except that other recipients won't be able to see that someone else has been sent a copy of the email
-  dueDate:
-    type: string
-    example: '2023-04-26T18:40:41.322Z'
-    description: date until invoice is due
-  invoiceDate:
-    type: string
-    example: '2022-11-28T13:59:46+00:00'
-    description: to be used for invoice doc email delivery. Date when invoice is to be mailed out to the user
-  draft:
-    type: boolean
-    description: Default value to be used for whitelabeling checkout flow. flag indicating whether this is a draft invoice
-    default: false
-  clientId:
-    type: string
-    description: the id of the client (merchant) creating this invoice
-  invoiceId:
-    type: string
-    description: default value to be used for whitelabeling checkout flow. For invoice document delivery invoice number assigned by the merchant
-    default: false
-  buyer:
-    $ref: ./buyer.yaml
-  description:
-    type: string
-    description: the purchase description, can be provided instead of a list of items
   items:
     type: array
     description: array of items that a buyer intends to purchase from the merchant
@@ -70,6 +32,10 @@ properties:
       $ref: ./items.yaml
   amount:
     type: object
+    required:
+      - breakdown
+      - currencyId
+      - value
     description: detailed amount of purchase with the breakdown of all fees
     properties:
       breakdown:
@@ -109,82 +75,3 @@ properties:
         type: string
         description: the decimal value represents the monetary value with decimal precision derived from the value field,
           which is the integer representation in the smallest unit of the currency or token.
-  shipping:
-    description: shipping method info
-    $ref: ../../globalTypes/shipping.yaml
-  requireBuyerNameAndEmail:
-    type: boolean
-    description: flag indicating whether a buyer name and email are required, they will be requested at checkout if not provider by the caller.
-  buyerDataCollectionMessage:
-    type: string
-    description: the message to display when collecting buyer user data
-  notes:
-    type: string
-    description: notes for the merchant only, these are not visible to the buyers
-  notesToRecipient:
-    type: string
-    description: any additional information to share with the buyer about the transaction
-  termsAndConditions:
-    type: string
-    description: any terms and conditions, e.g. a cancellation policy
-  merchantOptions:
-    description: merchant's details to be shown on the invoice
-    $ref: ./merchantOptions.yaml
-  customData:
-    type: object
-    description: any custom data merchant wishes to attach to the invoice that may be further used for custom merchant's purposes. Not visible on UI for buyers
-    properties:
-      additionalProp1:
-        type: string
-      additionalProp2:
-        type: string
-      additionalProp3:
-        type: string
-  metadata:
-    type: object
-    properties:
-      integration:
-        type: string
-        description: integration name
-        format: InvoiceBuilder
-      hostname:
-        type: string
-        description: server name of the integration API
-  poNumber:
-    type: string
-    description: optional Purchase order number on the integration API.
-    format: InvoiceBuilder
-  webhooks:
-    description: data on webhooks sent for invoices
-    $ref: ../webhooks/webhookSchema.yaml
-  payoutConfig:
-    type: object
-    description: configs for payout for this particular invoice. Overrides account payout configs
-    properties:
-      currencyId:
-        type: string
-        description: the currency Id of the wallet or address into which to payout to
-      contractAddress:
-        type: string
-        description: the address of the contract if this money object represents an ERC20 or similar token value
-      address:
-        type: string
-        description: the external address into which to pay out to
-      frequency:
-        type: array
-        description: frequency of payout execution. Possible values of the array - 'normal', 'asSoonAsPossible', 'hourly', 'nightly', 'weekly'
-        example: ['normal',
-                  'asSoonAsPossible',
-                  'hourly',
-                  'nightly',
-                  'weekly'
-        ]
-  payment:
-    type: object
-    description: the field contains additional data specific for white labeled payments, e.g. buyer's email that is used
-      for possible refunds
-    properties:
-      refundEmail:
-        type: string
-        description: Provide the buyer’s email address to create a white-labeling payment flow. **Note**, the email is
-          only used for transaction status updates and refunds; never for marketing purposes

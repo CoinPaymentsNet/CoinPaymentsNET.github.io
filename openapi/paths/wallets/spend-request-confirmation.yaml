@@ -12,16 +12,13 @@ post:
         type: string
         example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
         description:  the wallet Id from which you intend to withdraw funds
-    - name: X-Real-IP
-      in: header
-      schema:
-        type: string
-        description: Ip address of the sender
   requestBody:
     content:
       application/json:
         schema:
           type: object
+          required:
+            - spendRequestId
           properties:
             spendRequestId:
               type: string

@@ -11,7 +11,8 @@ get:
       in: path
       required: true
       schema:
-        $ref: ../../components/globalTypes/id.yaml
+        type: string
+        description: Id of the invoice
     - name: currencyId
       in: path
       required: true

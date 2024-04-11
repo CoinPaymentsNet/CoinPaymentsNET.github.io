@@ -24,11 +24,6 @@ post:
           type: string
           example: shop tests address
           description: label for the address
-      - name: type
-        in: query
-        schema:
-          type: string
-          description: type of the address, can be personal or commercial
       - name: notificationUrl
         in: query
         schema:
@@ -57,6 +52,18 @@ get:
           type: string
           example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
           description: the wallet Id
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: used for paging. The page is limited to 100 items. Number of addresses to skip before displaying the following batch of addresses
+      - name: take
+        in: query
+        required: false
+        schema:
+          type: integer
+          description: used for paging. The page is limited to 100 items. Number of addresses to display in the batch
   responses:
     '200':
       description: OK

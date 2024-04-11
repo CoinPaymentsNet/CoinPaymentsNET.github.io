@@ -2,7 +2,7 @@ get:
   tags:
     - Currencies API
   summary: List currencies and their capabilities
-  description: Returns a page of the supported currencies on the CoinPayments.net platform, by default ordered by their rank on CoinPayments.net.
+  description: Returns a page of the supported currencies on the CoinPayments.com platform, by default ordered by their rank on CoinPayments.com.
   operationId: listPlatformSupportedCurrencies
   parameters:
     - name: q
@@ -22,16 +22,7 @@ get:
       schema:
         type: array
         example: 'pooledAccounts, payments, singleSigAccounts'
-        description: comma separated list of capabilities, currencies without the specified capabilities won't be returned
-    - name: after
-      in: query
-      schema:
-        type: string
-    - name: limit
-      in: query
-      schema:
-        type: string
-        description: number of items to be shown on the page
+        description: comma separated list of capabilities. If not specified, all currencies are returned; if specified, currencies without the specified capabilities won't be returned
   responses:
     '200':
       description: Ok

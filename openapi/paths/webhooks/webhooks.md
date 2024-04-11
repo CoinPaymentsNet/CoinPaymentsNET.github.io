@@ -3,12 +3,22 @@ notifications sent from CoinPayments API to their own merchant API when specific
 with real-time updates on important activities within their CoinPayments account.
 
 To set up webhook notifications, merchants can easily define a public endpoint URL on their server API and specify the 
-events for which they want to receive notifications. Currently, CoinPayments supports webhook notifications for 
-invoices and merchant wallets and addresses.
+events for which they want to receive notifications. 
 
+CoinPayments will send webhooks from one of these IPs:
+
+`hook1.coinpayments.com` - `23.183.244.249`
+
+`hook2.coinpayments.com` - `23.183.244.250`
+
+:::attention **Note**
+
+Currently, CoinPayments supports webhook notifications for **invoices** and **merchant wallets and addresses**.
 This section provides information on the invoices webhooks. Webhooks for wallets and addresses are set up within 
-Create-wallet and Create-address-for-an-existing-wallet requests. You can find more information about this 
-[here](/#tag/Wallets-API).
+**Create-wallet** and **Create-address-for-an-existing-wallet** requests. You can find more information about this 
+**[here](/#tag/Wallets-API)**.
+
+:::
 
 It's important to note that webhooks are tied to integration clients, and merchants can create multiple clients under 
 their main account on the CoinPayments website, providing flexibility and customization options.
