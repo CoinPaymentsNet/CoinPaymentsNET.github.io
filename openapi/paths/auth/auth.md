@@ -145,7 +145,7 @@ follow these steps:
 
 1. Set up environment variables:
   - Use **https://api.coinpayments.com/api/v1/** as `baseUrl`.
-  - Provide your `clientID` and `clientSecret` from your [API integration](/#section/Create-credentials).
+  - Provide your `clientID` and `clientSecret` from your [API integration](/#section/Create-Credentials).
 
 ![markdown file changed](./postman-1.png)
 
