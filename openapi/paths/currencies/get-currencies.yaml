@@ -17,12 +17,6 @@ get:
         type: array
         example: 'crypto, token, fiat'
         description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
-    - name: capabilities
-      in: query
-      schema:
-        type: array
-        example: 'pooledAccounts, payments, singleSigAccounts'
-        description: comma separated list of capabilities. If not specified, all currencies are returned; if specified, currencies without the specified capabilities won't be returned
   responses:
     '200':
       description: Ok

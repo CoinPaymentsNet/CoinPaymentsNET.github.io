@@ -31,14 +31,6 @@ properties:
     type: string
     example: active
     description: status of the currency in the CoinPayments system
-  capabilities:
-    type: array
-    description: specific capabilities of the cryptocurrency provided as a comma separated list of strings. Possible values - 
-      'payments', 'singleSigAccounts', 'pooledAccounts'
-    example: [ 'payments',
-               'singleSigAccounts',
-               'pooledAccounts'
-          ]
   urls:
     $ref: './urls.yaml'
   requiredConfirmations:
