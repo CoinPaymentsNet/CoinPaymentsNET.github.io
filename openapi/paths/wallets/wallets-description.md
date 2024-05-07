@@ -21,14 +21,19 @@ UTXO addresses with CoinPayments are always permanent.
 **Important Note:**
 
 Unlike wallets and addresses created via UI, wallets and addresses created via API can send webhook notifications to 
-the URL specified by the merchant when funds are received by the wallet/address:
+the URL specified by the merchant when funds are received by/withdrawn from the wallet/address:
 ```javascript
 {
-  "walletId" : "58f78b24-1de0-42b3-9a48-94f3e9c57752",
-  "address" : "3HX4jDA4ESQahmE9w448TKUQiF786paVBT",
-  "transactionId" : "f8ea1354-b3c9-470f-af09-c2ba96f2e391",
-  "transactionType" : "UtxoExternalReceive",
-  "amount" : "1.5",
-  "symbol" : "BTC"
+  "walletId":"4ca18e8e-915b-4a69-a17a-0b0b666858a7",
+  "address":"myGTmrMtU6vUULkYRCDxJMggF7egsXhcTi",
+  "transactionId":"cb44e78f-a97b-44b5-a23d-1e3b025aab47",
+  "txHash":"9d9dd1f6f4a62388797e6beeb76c1a3c34d41942303ce6fb49177d3c88a74d11",
+  "transactionType":"UtxoExternalReceive",
+  "amount":"2",
+  "symbol":"LTCT",
+  "nativeAmount":"173.35",
+  "nativeSymbol":"USD",
+  "confirmations":3,
+  "requiredConfirmations":3
 }
 ```
