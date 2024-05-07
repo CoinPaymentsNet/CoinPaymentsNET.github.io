@@ -6,7 +6,7 @@ properties:
     type: string
     example: '1'
   type:
-    description: currency type
+    description: currency type, i.e. crypto or fiat
     type: string
     example: 'crypto'
   symbol:

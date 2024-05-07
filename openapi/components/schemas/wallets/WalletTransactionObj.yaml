@@ -50,7 +50,11 @@ properties:
     type: string
     example: '0.000012'
   transactionStatus:
-    description: Status of this transaction
+    description: Status of this transaction. Possible values are
+      - *created* - CPS initiated withdrawal tx processing. Tx is not on the blockchain yet.
+      - *completed* - CPS puts tx on chain. Tx can be detected in the blockchain mempool. Or an internal withdrawal is completed.
+      - *confirmedOnBlockchain* - Tx received all required confirmations on the blockchain, withdrawal/deposit is completed.
+      - *pendingReceive* - CPS waits for incoming deposit. Tx is on chain, waiting for required amount of confirmations.
     type: string
     example: 'created'
   transactionType:
@@ -86,7 +90,7 @@ properties:
     type: string
     example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   toContractAddress:
-    description: Address of the reciever contractif this transaction is an ERC20 or similar token transfer
+    description: Address of the reciever contract, if this transaction is an ERC20 or similar token transfer
     type: string
     example: '0xdac17f958d2ee523a2206206994597c13d831ec7'
   blockchainFeeCurrency:
