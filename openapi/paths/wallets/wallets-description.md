@@ -21,7 +21,7 @@ fees, e.g. gambler casino accounts.
 
 UTXO addresses with CoinPayments are always permanent.
 
-**Important Note:**
+**Note:**
 
 Unlike wallets and addresses created via UI, wallets and addresses created via API can send webhook notifications to 
 the URL specified by the merchant when funds are received by/withdrawn from the wallet/address:
