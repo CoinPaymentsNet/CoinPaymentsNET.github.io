@@ -12,7 +12,10 @@ initiate withdrawal requests from their wallets to any external or internal addr
 powerful functionality, merchants have extensive control and flexibility in managing their cryptocurrency wallets to cater to
 their specific business needs.
 
-Currently, CoinPayments API supports only creation of temporary account-based addresses for their wallets with the plan to extend to 
+**Note:** When sending funds to an address, make sure that the address you are sending to matches the token/coin
+that you credit to the address. Otherwise, this may lead to the funds being stuck in the network or even lost.
+
+**Important:** Currently, CoinPayments API supports only creation of temporary account-based addresses for their wallets with the plan to extend to 
 permanent account-based addresses in future. Such temporary addresses are used as commercial addresses for commercial 
 fees, e.g. gambler casino accounts.
 
