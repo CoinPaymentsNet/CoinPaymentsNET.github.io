@@ -27,7 +27,7 @@ properties:
         description: the quantity of the item. Must be greater than 0 and less than 999,999,999. Defaults to 1 if not provided
       type:
         type: integer
-        description: id of the type of the sold product
+        description: type of the sold product, can be "1" = "hours" or "2" = "units"
         example: 1
   originalAmount:
     description: represents the value of one item in the original currency, typically fiat currency such as USD or EUR. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
