@@ -72,6 +72,71 @@ the transaction has to be completed.
    notifications for each status change (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
    invoiceCancelled, invoiceTimedOut).
 
+A merchant can simplify the payment process for the buyer by incorporating payment details like payment amount, currency
+and payment address into a QR code. Below is an example of a script to create a QR code:
+
+---
+```javascript
+
+<div id="canvas"></div>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<script type="text/javascript">
+  const generateQRData = (currency, address, tag, amount) => {
+    switch (currency.name) {
+      case 'Bitcurrency SV':
+        return `bitcurrency:${address}?sv&amount=${amount}`;
+      case 'Tether USD (Omni)':
+        return `bitcurrency:${address}?amount=${amount}&req-asset=${currency.id}`;
+      case 'BinanceCoin':
+        return `bnb:${address}?sv&amount=${amount}&req-asset=${currency.id}`;
+      case 'Tether USD (ERC20)':
+        return `ethereum:${address}?value=${amount}&req-asset=${currency.id.slice(currency.id.indexOf(':') + 1)}`;
+      case 'Tether USD (TRC20)':
+        return `tron:${address}?value=${amount}&req-asset=${currency.id.slice(currency.id.indexOf(':') + 1)}`;
+      default:
+        return `${currency?.name?.toLowerCase().replace(/ /g, '')}:${address}?amount=${amount}${tag ? `&tag=${tag}` : ''}`;
+    }
+  };
+
+  const color = "#2A5ED5";
+  const corner = "#000000";
+  const margin = 5;
+
+  const qrCode = new QRCodeStyling({
+    width: 200,
+    height: 200,
+    dotsOptions: {
+      color: color,
+      type: "square"
+    },
+    backgroundOptions: {
+      color: "transparent",
+      gradient: null
+    },
+    cornersSquareOptions: {
+      type: "square",
+      color: corner
+    },
+    cornersDotOptions: {
+      type: "square",
+      color: corner
+    },
+    imageOptions: {
+      crossOrigin: "anonymous",
+      imageSize: 0.5,
+      margin: margin
+    }
+  });
+
+  qrCode.append(document.querySelector('#canvas'));
+  qrCode.update({
+    data: generateQRData(currency, address, tag, amount)
+  });
+  </script>
+
+```
+---
+
 **Payment Flow for Integrated Checkout with Buy-Now Button**
 
 Let us consider another case for an online shop where you want to accept payment for goods in cryptocurrency and want

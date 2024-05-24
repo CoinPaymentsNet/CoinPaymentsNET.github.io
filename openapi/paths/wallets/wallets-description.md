@@ -21,6 +21,13 @@ fees, e.g. gambler casino accounts.
 
 UTXO addresses with CoinPayments are always permanent.
 
+A common case for merchants is to use wallets and addresses created via API for receiving payments from their customers,
+e.g. top-up a subscription or casino account. A merchant can simplify the payment process for the buyer by incorporating
+payment details like payment amount, currency and payment address into a QR code.
+
+For the QR code script example check description of the **Payment Flow for Integrated Checkout with White Labeling** 
+in the **[Invoices API](#tag/Invoices-API)**.
+
 **Note:**
 
 Unlike wallets and addresses created via UI, wallets and addresses created via API can send webhook notifications to 
