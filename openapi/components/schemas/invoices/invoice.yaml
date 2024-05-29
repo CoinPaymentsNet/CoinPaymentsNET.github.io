@@ -177,6 +177,14 @@ properties:
     description: the field contains additional data specific for whitelabeled payments, e.g. buyer's email that is used 
       for possible refunds
     properties:
+      paymentCurrency:
+        type: string
+        description: id of the currency to conduct payment of the invoice. By providing this value in the 'createInvoice' 
+          request, merchant automatically generates payment address for the identified currency. The response in this 
+          case will contain payment address (HotWallet) information for buyer to make a payment. In case 'paymentCurrency' 
+          is not specified in the 'createInvoice' request, the response will contain the list of all available currencies
+          for payment. Selecting the address for payment should be triggered as a separate action by using 
+          'getPaymentAddressByCurrency' endpoint
       refundEmail:
         type: string
         description: Provide the buyer’s email address to create a white-labeling payment flow. **Note**, the email is 

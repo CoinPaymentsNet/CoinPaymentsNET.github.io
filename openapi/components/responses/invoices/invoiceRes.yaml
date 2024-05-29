@@ -32,7 +32,14 @@ properties:
             refundEmail:
               type: string
               description: email address provided by the buyer for the case when refund should be executed, e.g. some problem with payment or overpayment has occurred
-
+        hotWallet:
+          type: object
+          description: payment address information for sending funds for the invoice. Is added to this response body 
+            in case payment currency id is specified in the 'createInvoice' request. In case 'paymentCurrency'
+            is not specified in the 'createInvoice' request, the response will contain the list of all available currencies
+            for payment. Selecting the address for payment should be triggered as a separate action by using
+            'getPaymentAddressByCurrency' endpoint
+          $ref: ../../schemas/invoices/address-by-currency.yaml
 
 
 
