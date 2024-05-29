@@ -20,3 +20,7 @@ properties:
   expires:
     type: string
     description: date and time when payment expires and a new payment must be started to send payment
+  remainingAmount:
+    type: object
+    description: remaining amount to be paid on the invoice to the payment address
+    $ref: ../../globalTypes/globalAmount.yaml
