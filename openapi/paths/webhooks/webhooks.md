@@ -11,6 +11,17 @@ CoinPayments will send webhooks from one of these IPs:
 
 `hook2.coinpayments.com` - `23.183.244.250`
 
+The webhook messages will contain the following headers for the merchant to be able to verify the 
+[authentication](#section/Generate-API-Signature) of the notification:
+
+```
+const headers = {
+  'X-CoinPayments-Client': clientId,
+  'X-CoinPayments-Timestamp': date,
+  'X-CoinPayments-Signature': signature,
+};
+```
+
 **Note:** Currently, CoinPayments supports webhook notifications for **invoices** and **merchant wallets and addresses**.
 This section provides information on the invoices webhooks. Webhooks for wallets and addresses are set up within 
 **Create-wallet** and **Create-address-for-an-existing-wallet** requests. You can find more information about this 
