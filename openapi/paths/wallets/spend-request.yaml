@@ -21,7 +21,7 @@ post:
     description: Withdrawal Request payload
     required: true
   responses:
-    '200':
+    '202':
       description: Ok
       content:
         application/json:
