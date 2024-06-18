@@ -20,4 +20,8 @@ properties:
   contractAddress:
     type: string
     description: an optional address of the smart contract representing a token
+  usePermanentAddresses:
+    type: boolean
+    description: flag that indicates whether the wallet is to use permanent addresses or temporary ones. The wallet will 
+      support addresses of one type only
 
