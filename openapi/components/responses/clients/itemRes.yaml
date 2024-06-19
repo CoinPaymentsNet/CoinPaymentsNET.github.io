@@ -1,7 +1,9 @@
 type: object
 properties:
   id:
-    $ref: ../../globalTypes/id.yaml
+    type: string
+    description: id of the webhook integration
+    example: 'wLKBuD6h3Vama4mGDqHeF'
   notificationUrl:
     $ref: ../../globalTypes/notificationUrl.yaml
   notifications:
