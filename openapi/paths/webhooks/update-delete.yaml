@@ -15,16 +15,18 @@ put:
     - name: webhookId
       in: path
       required: true
-      description: webhook Id
       schema:
-        $ref: ../../components/globalTypes/id.yaml
+        type: string
+        description: webhook integration Id
+        example: 'wLKBuD6h3Vama4mGDqHeF'
+  requestBody:
+    content:
+      application/json:
+        schema:
+            $ref: ../../components/schemas/webhooks/webhookSchema.yaml
   responses:
     '200':
-      description: Success status code ( 200 )
-      content:
-        application/json:
-          schema:
-            $ref: ../../components/schemas/webhooks/webhookSchema.yaml
+      description: Success
     '404':
       description: Webhook not found
 delete:

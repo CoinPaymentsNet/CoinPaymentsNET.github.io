@@ -8,11 +8,12 @@ properties:
     description: name of the address
     type: string
   address:
-    description: network address
+    description: merchant address
     type: string
   notificationUrl:
     description: url for sending webhooks for the address
     type: string
   rentedTill:
-    description: Indicates a date, when this address is going to be returned to the pool (only relevant for account-based coins, that are using address pools)
+    description: date and time until account-based address is in lease by the merchant. If no new deposit is made to the
+      address until the indicated date and time, the address returns to the pool of CoinPayments addresses
     type: string
