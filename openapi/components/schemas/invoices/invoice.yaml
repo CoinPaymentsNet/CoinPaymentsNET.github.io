@@ -147,7 +147,9 @@ properties:
     format: InvoiceBuilder
   webhooks:
     description: data on webhooks sent for invoices
-    $ref: ../webhooks/webhookSchema.yaml
+    type: array
+    items:
+      $ref: ../webhooks/webhookSchema.yaml
   #payoutConfig:
    # type: object
     #description: configs for payout for this particular invoice. Overrides account payout configs
