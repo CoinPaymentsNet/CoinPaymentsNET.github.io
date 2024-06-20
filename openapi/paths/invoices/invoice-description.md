@@ -201,6 +201,16 @@ clicks. Here are the steps that should take place in order payment could occur:
    notifications for each status change (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
    invoiceCancelled, invoiceTimedOut).
 
+**Payment Settings**
+
+Funds that merchants receive via payments are primarily deposited to the CoinPayments system balance. From there, Coinpayments
+conducts payouts to the merchant's balance. CoinPayments UI provides the merchant with a possibility to set up mode and 
+frequency for paying out funds from CoinPayments balance to the merchant's own balance. The settings are set up by
+currency.
+
+![markdown file changed](./payouts.png)
+ 
+
 Below, you will find the detailed information on each of the invoices endpoints and their field values. 
 Endpoints are the same for both described use-cases with the slight difference in utilizing certain fields in schemas.
 All such differences will be outlined explicitly.
