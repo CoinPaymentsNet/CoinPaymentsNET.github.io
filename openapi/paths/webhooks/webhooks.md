@@ -11,8 +11,10 @@ CoinPayments will send webhooks from one of these IPs:
 
 `hook2.coinpayments.com` - `23.183.244.250`
 
-The webhook messages will contain the following headers for the merchant to be able to verify the 
-[authentication](#section/Generate-API-Signature) of the notification:
+## Authenticate Webhooks from CoinPayments to Your Server
+
+All webhook messages from CoinPayments contain the same headers as used by merchants to [sign requests](#section/Generate-API-Signature)
+to CoinPayments API:
 
 ```
 const headers = {
@@ -21,6 +23,113 @@ const headers = {
   'X-CoinPayments-Signature': signature,
 };
 ```
+
+By verifying the signature with the help of the private key, merchant can make sure that the received webhook is 
+produced by CoinPayments server.
+
+Here is an example of the received notification with headers included:
+
+`POST` to webhook URL: http://localhost:9004/api/invoices/callbacks
+
+Headers:
+
+```
+X-CoinPayments-Signature = 60NsOvvOwtWxtNBpkrY615Y3iPNGDAWReegr2LUwIpY=
+X-CoinPayments-Client = dc6a16e545c34187ba21a9edbbe484a5
+X-CoinPayments-Timestamp = 2024-07-01T11:04:10
+```
+
+Body (JSON):
+
+```
+{
+  "id": "8a49a588266246a2ab5f43217ca993bd",
+  "type": "InvoiceCreated",
+  "timestamp": "2024-07-01T11:04:06.8033575+00:00",
+  "invoice": {
+    "invoiceId": "0067",
+    "id": "2008d68d-0f66-44ec-8500-68d054b882b9",
+    "userId": "fd2d3885-b90b-4c8a-bf6d-bd94970781db",
+    "userEmail": "mykola.lutsenko+t21@hypedriven.com",
+    "merchantId": "91695d60-c082-406d-a2ed-5be6fbae58a4",
+    "merchantClientId": "dc6a16e5-45c3-4187-ba21-a9edbbe484a5",
+    "invoiceNumber": "0067",
+    "invoiceNumberSuffix": null,
+    "createdAt": 1719831846,
+    "invoiceDate": null,
+    "dueDate": null,
+    "description": null,
+    "expiresDate": 1751367846,
+    "customData": null,
+    "notes": null,
+    "notesToRecipient": null,
+    "buyerDataCollectionMessage": null,
+    "termsAndConditions": null,
+    "metadata": null,
+    "poNumber": null,
+    "buyer": null,
+    "shipping": null,
+    "lineItems": [
+      {
+        "amount": 10000,
+        "customId": null,
+        "description": null,
+        "name": "test item",
+        "originalAmount": 10000,
+        "quantity": 1,
+        "sku": null,
+        "tax": null,
+        "type": "Quantity"
+      }
+    ],
+    "merchantOptions": {
+      "additionalInfo": null,
+      "showAddress": false,
+      "showEmail": true,
+      "showPhone": false,
+      "showRegistrationNumber": false
+    },
+    "emailDeliveryOptions": null,
+    "amount": {
+      "currency": {
+        "id": 5057,
+        "smartContract": null
+      },
+      "subtotal": 10000,
+      "shippingTotal": 0,
+      "handlingTotal": 0,
+      "discountTotal": 0,
+      "taxTotal": 0,
+      "total": 10000
+    },
+    "state": "Unpaid",
+    "flags": {
+      "requireBuyerNameAndEmail": false,
+      "sendPaymentCompleteEmailNotification": false,
+      "isPos": false
+    },
+    "canceledAt": null,
+    "completedAt": null,
+    "confirmedAt": null,
+    "payments": [],
+    "payoutConfig": null,
+    "partialAcceptAvailable": false
+  }
+}
+
+```
+
+By using the following secret:
+
+`ClientSecret` - `9ZFHcnGMxawADeXRfDtNkQDCjFUK5998oOMhl51QvzM=`
+
+merchant can verify the signature within the header:
+
+`X-CoinPayments-Signature = 60NsOvvOwtWxtNBpkrY615Y3iPNGDAWReegr2LUwIpY=`
+
+thus, making sure the webhook notification is authentic.
+
+---
 
 **Note:** Currently, CoinPayments supports webhook notifications for **invoices** and **merchant wallets and addresses**.
 This section provides information on the invoices webhooks. Webhooks for wallets and addresses are set up within 
