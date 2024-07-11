@@ -2,7 +2,6 @@ type: object
 description: Request to create an invoice, which is a list of goods or services with a statement of the sum due provided
   by the merchant, that a buyer intends to purchase
 required:
-  - clientId
   - items
   - amount
   - payment
@@ -146,10 +145,15 @@ properties:
     description: optional Purchase order number on the integration API.
     format: InvoiceBuilder
   webhooks:
-    description: data on webhooks sent for invoices
+    description: data on webhooks sent for the invoice
     type: array
     items:
-      $ref: ../webhooks/webhookSchema.yaml
+      type: object
+      properties:
+        notificationsUrl:
+          $ref: ../../globalTypes/notificationUrl.yaml
+        notifications:
+          $ref: ../../globalTypes/notifications.yaml
   #payoutConfig:
    # type: object
     #description: configs for payout for this particular invoice. Overrides account payout configs

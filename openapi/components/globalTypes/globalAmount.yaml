@@ -2,7 +2,7 @@ type: object
 properties:
   currencyId:
     type: string
-    description: the currency id of the wallet or address into which to payout to
+    description: the currency id of the wallet or address into which to payout to. Currency ids can be checked via Currencies API
   contractAddress:
     type: string
     description: the address of the contract if this money object represents an ERC20 or similar token value
@@ -15,6 +15,8 @@ properties:
       with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
       an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
       If no value is provided, the default is 0.
+    example: '20000'
   valueAsDecimal:
-    type: string
+    type: integer
     description: the decimal value represents the monetary value with decimal precision derived from the value field, which is the integer representation in the smallest unit of the currency or token.
+    example: 20000
