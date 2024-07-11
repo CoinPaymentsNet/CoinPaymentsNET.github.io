@@ -25,10 +25,24 @@ The free-to-set-up wallet is available on web and mobile, enabling account manag
 
 #### Some of the key features of the website include:
 1. Support for multiple popular cryptocurrencies, allowing customers to pay with the digital currency of their choice.
-2. Generate invoices and manually share them with buyers through a link or via email.
-3. Callback Addresses feature allows merchant to receive payment without specifying the amount or time in advance.
-4. Real-time updates using Webhooks, The API provides updates on the status of transactions, allowing merchants and customers to track the progress of their payments.
-5. Advanced security measures to ensure that all transactions are safe and secure.
+2. Processing and managing various transaction types:
+   - `InternalReceive` - receiving funds within the system;
+   - `UtxoExternalReceive` - receiving funds from external UTXO transfers;
+   - `AccountBasedExternalReceive` - receiving funds from external account-based transfers;
+   - `ExternalSpend` - sending funds to the address that does not belong to CoinPayments;
+   - `InternalSpend` - sending funds from one CoinPayments user to another;
+   - `SameUserSpend` - sending funds from one wallet to another for the same CoinPayments user;
+   - `SameUserReceive` - receiving funds from one wallet to another for the same CoinPayments user;
+   - `AccountBasedExternalTokenReceive` - receiving tokens from external account-based transfers;
+   - `AccountBasedTokenSpend` - sending account-based tokens to external address;
+   - `Conversion` - converting funds between user's wallets;
+   - `AutoSweeping` - funds swept automatically to an external wallet by the auto-sweeping feature configured by the user;
+   - `ReceiveTestFundsFromPool` - give out funding for testing;
+   - `ReturnTestFundsToPool` - return test fund.
+3. Generate invoices and manually share them with buyers through a link or via email.
+4. Callback Addresses feature allows merchant to receive payment without specifying the amount or time in advance.
+5. Real-time updates using Webhooks, The API provides updates on the status of transactions, allowing merchants and customers to track the progress of their payments.
+6. Advanced security measures to ensure that all transactions are safe and secure.
 
 
 # Common API Errors
