@@ -11,7 +11,7 @@ CoinPayments will send webhooks from one of these IPs:
 
 `hook2.coinpayments.com` - `23.183.244.250`
 
-## Webhook Types
+## Webhook Types and Statuses
 
 Currently, CoinPayments supports webhook notifications for the following transaction types:
 - **invoices**
@@ -24,14 +24,14 @@ This section provides information focused on the invoices webhooks. Webhooks for
 
 Here is a list of invoice events for which merchants can choose to receive notifications:
 
-- **invoiceCreated:** triggered when a new invoice is created
+- **invoiceCreated:** triggered when a new invoice is created. Invoice state transmitted - "unpaid"
 - **invoicePending:** triggered when the transfer amount is detected on the blockchain and the transaction has received
-    enough confirmations on chain
+    enough confirmations on chain. Invoice state transmitted - "pending"
 - **invoicePaid:** triggered when an invoice is successfully paid. A paid invoice means the funds are received in the 
-    CoinPayments' wallet for further payout to the merchant
-- **invoiceCompleted:** triggered when the invoice is paid **and** funds are added to merchant's balance
-- **invoiceCancelled:** triggered when an invoice is cancelled by the merchant
-- **invoiceTimedOut:** triggered once invoice expiration date and time is over
+    CoinPayments' wallet for further payout to the merchant. Invoice state transmitted - "paid"
+- **invoiceCompleted:** triggered when the invoice is paid **and** funds are added to merchant's balance. Invoice state transmitted - "completed"
+- **invoiceCancelled:** triggered when an invoice is cancelled by the merchant. Invoice state transmitted - "cancelled"
+- **invoiceTimedOut:** triggered once invoice expiration date and time is over. Invoice state transmitted - "tinedOut"
 
 ---
 
@@ -54,10 +54,14 @@ To set up webhook notifications through the API calls, follow these steps:
 - Create a webhook using ['createWebhook' endpoint](/#operation/createWebhook) indicating merchant's 'clientId' of the API integration. 
 - In the request body provide a list of notification types you want to receive in the 'notifications' parameter. Possible values are:
 'invoiceCreated', 'invoicePending', 'invoicePaid', 'invoiceCompleted', 'invoiceCancelled', 'invoiceTimedOut'.
+  
+  **Note:** If the list of notifications that merchant wants to receive is not provided, the merchant will receive a 
+  "bad request" error in the response
+
 - In the request body provide your server URL where the notifications will be sent in the 'notificationsUrl' parameter.
 
 Once completed, your webhook notifications are all set, and your API will receive notifications based on the events you 
-have chosen. This allows you to stay updated in real-time on the activities that matter most to your business.
+have chosen. This allows you to stay updated in real-time on the activities that matter most to your business. 
 
 **Note:** Webhooks are tied to integration clients, and merchants can create multiple clients under
 their main account on the CoinPayments website, providing flexibility and customization options.
