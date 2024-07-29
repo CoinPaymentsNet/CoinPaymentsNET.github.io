@@ -15,7 +15,10 @@ properties:
     description: the url for receiving webhooks on payment
   notifications:
     type: array
-    description: comma separated list of strings designating notification types to be sent as webhooks for the payment. Available values are invoiceCreated, invoicePending, invoicePaid, invoiceCompleted, invoiceCancelled, invoiceTimedOut
+    description: comma separated list of strings designating notification types to be sent as webhooks for the payment. 
+      Available values are invoiceCreated, invoicePending, invoicePaid, invoiceCompleted, invoiceCancelled, invoiceTimedOut.
+      If the list of notification events that merchant wants to receive is not provided, the merchant will receive a 
+      "bad request" error in the response
   emailNotifications:
     type: boolean
     description: flag indicating whether to send an email notification once payment completes successfully

@@ -28,7 +28,7 @@ post:
     '200':
       description: Success
     '404':
-      description: Spend confirmation not found
+      description: Spend request not found or expired
       $ref: ../../components/responses/Problem.yaml
 
 

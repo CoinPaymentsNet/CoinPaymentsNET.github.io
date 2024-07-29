@@ -248,7 +248,7 @@ properties:
               description: time when invoice is scheduled for sending out
             "state":
               type: string
-              description: payment/invoice status
+              description: payment/invoice status. Available values are "unpaid", "Pending", "Paid", "Completed", "Cancelled", "TimedOut"
             "refundedAt":
               type: integer
               description: time when payment is refunded

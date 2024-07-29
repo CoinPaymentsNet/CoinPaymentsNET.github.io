@@ -17,6 +17,16 @@ get:
         type: array
         example: 'crypto, token, fiat'
         description: comma separated list of the types of currencies to return (e.g. 'coin', 'token', 'fiat', etc.). By default currencies of all types are returned
+    - name: capabilities
+      in: query
+      schema:
+        type: array
+        example: 'payments, singleSigAccounts, utxo, pooledAccounts'
+        description: search query to find currencies by capability. "payments" is for currencies in which payments can be received.
+          "singleSigAccounts" is for currencies supported by singleSig accounts. "utxo" is for UTXO currencies, otherwise 
+          the currency is an account-based currency. "pooledAccounts" means the currency is using pooled accounts in CoinPayments. 
+          Mainly such currency is an account-based currency and by default the addresses of merchant wallets for such 
+          currency will be temporary. For these currencies it is possible to create wallets with permanent addresses, if requested explicitly
   responses:
     '200':
       description: Ok

@@ -12,6 +12,13 @@ initiate withdrawal requests from their wallets to any external or internal addr
 powerful functionality, merchants have extensive control and flexibility in managing their cryptocurrency wallets to cater to
 their specific business needs.
 
+**Note:** When sending funds to an address, make sure that the address you are sending to matches the token/coin
+that you credit to the address. Otherwise, this may lead to the funds being stuck in the network or even lost.
+
+---
+
+## Permanent vs. Temporary Addresses
+
 Addresses created via CoinPayments API are used as commercial addresses for commercial funds, e.g. gambler casino accounts.
 Hence, merchants require flexibility when accumulating and sweeping funds from such commercial addresses.
 
@@ -48,21 +55,25 @@ is charged only once when the first withdrawal from the address takes place. How
 everytime funds are withdrawn from each address. Unlike with UTXO addresses, accumulation of network fees for withdrawals 
 from the account-based addresses is not possible, hence, leading to larger expenses at the merchant's side.
 
-**Note:** When sending funds to an address, make sure that the address you are sending to matches the token/coin
-that you credit to the address. Otherwise, this may lead to the funds being stuck in the network or even lost.
+---
 
-A common case for merchants is to use wallets and addresses created via API for receiving payments from their customers,
-e.g. top-up a subscription or casino account. A merchant can simplify the payment process for the buyer by incorporating
-payment details like payment amount, currency and payment address into a QR code. This will decrease the possibility of 
-an error when sending funds.
-
-For the QR code script example check description of the **Payment Flow for Integrated Checkout with White Labeling** 
-in the **[Invoices API](#tag/Invoices-API)**.
-
-**Note:**
+## Webhook Notifications
 
 Unlike wallets and addresses created via UI, wallets and addresses created via API can send webhook notifications to 
-the URL specified by the merchant when funds are received by/withdrawn from the wallet/address:
+the URL specified by the merchant. The URL for receiving webhook notifications is specified at [wallet/address creation](#operation/createMerchantWallet) 
+or [update](#operation/updateWalletWebhookUrl).
+
+The list of wallet/address transactions that support webhook notifications includes:
+- **InternalReceive** - receiving funds within the system;
+- **UtxoExternalReceive** - receiving funds from external UTXO transfers;
+- **AccountBasedExternalReceive** - receiving funds from external account-based transfers;
+- **ExternalSpend** - sending funds to the address that does not belong to CoinPayments;
+- **SameUserReceive** - receiving funds from one wallet to another for the same CoinPayments user;
+- **AccountBasedExternalTokenReceive** - receiving tokens from external account-based transfers;
+- **AccountBasedTokenSpend** - sending account-based tokens to external address;
+
+Below is an example of the webhook notification thrown when an external deposit is received by a wallet:
+
 ```javascript
 {
   "walletId":"4ca18e8e-915b-4a69-a17a-0b0b666858a7",
@@ -78,3 +89,15 @@ the URL specified by the merchant when funds are received by/withdrawn from the 
   "requiredConfirmations":3
 }
 ```
+
+---
+
+## Simplify Wallet Top-up
+
+A common case for merchants is to use wallets and addresses created via API for receiving payments from their customers,
+e.g. top-up a subscription or casino account. A merchant can simplify the payment process for the buyer by incorporating
+payment details like payment amount, currency and payment address into a QR code. This will decrease the possibility of
+an error when sending funds.
+
+For the QR code script example check description of the **Payment Flow for Integrated Checkout with White Labeling**
+in the **[Invoices API](#tag/Invoices-API)**.

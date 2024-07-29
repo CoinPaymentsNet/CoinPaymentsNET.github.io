@@ -1,6 +1,7 @@
 type: array
 description: specify the event name you want your server to be notified about when it occurs, e.g. send notification when an invoice is created.
-  Provide values as a comma separated list of strings.
+  Provide values as a comma separated list of strings. If the list of notification events that merchant wants to receive is not 
+  provided, the merchant will receive a "bad request" error in the response
 example: ['invoiceCreated',
           'invoicePending',
           'invoicePaid',
