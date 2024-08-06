@@ -67,6 +67,7 @@ The list of wallet/address transactions that support webhook notifications inclu
 - **InternalReceive** - receiving funds within the system;
 - **UtxoExternalReceive** - receiving funds from external UTXO transfers;
 - **AccountBasedExternalReceive** - receiving funds from external account-based transfers;
+- **InternalSpend** - sending funds to the address that belongs to CoinPayments;
 - **ExternalSpend** - sending funds to the address that does not belong to CoinPayments;
 - **SameUserReceive** - receiving funds from one wallet to another for the same CoinPayments user;
 - **AccountBasedExternalTokenReceive** - receiving tokens from external account-based transfers;
