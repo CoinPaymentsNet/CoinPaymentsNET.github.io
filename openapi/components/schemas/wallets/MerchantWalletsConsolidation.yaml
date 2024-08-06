@@ -10,7 +10,7 @@ properties:
           type: string
           description: id of the wallet participating in consolidation
         addresses:
-          type: array of strings
+          type: array
           description: list of wallet addresses participating in consolidation
           example: [
             "3fa85f64-5717-4562-b3fc-2c963f66afa6"
