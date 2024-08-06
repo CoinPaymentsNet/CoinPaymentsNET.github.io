@@ -80,6 +80,10 @@ paths:
     $ref: 'paths/wallets/get-wallet-transaction.yaml'
   '/merchant/wallets/{walletIdStr}/consolidation':
     $ref: 'paths/wallets/create-and-get-wallet-consolidation.yaml'
+  '/merchant/wallets/consolidation-preview':
+    $ref: 'paths/wallets/create-wallets-consolidation-preview.yaml'
+  '/merchant/wallets/consolidation':
+    $ref: 'paths/wallets/create-wallets-consolidation.yaml'
   '/merchant/wallets/{walletIdStr}/spend/request':
     $ref: 'paths/wallets/spend-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':

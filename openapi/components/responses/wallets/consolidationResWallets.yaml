@@ -1,0 +1,57 @@
+type: object
+description: Information about merchant wallet consolidation (sweeping funds from addresses to the main wallet balance)
+properties:
+  newReceivedInternal:
+    description: amount of funds received as an internal transfer
+    type: string
+  newReceivedExternal:
+    description: amount of funds received as an external transfer
+    type: string
+  activationFee:
+    description: fee for activating new permanent account-based addresses within the wallet
+    type: string
+  transferFee:
+    description: fee for transfer funds from permanent account-based addresses within the wallet to the wallet balance
+    type: string
+  totalFee:
+    description: total fee for sweeping funds from permanent account-based addresses within the wallet to the wallet balance
+    type: string
+  available:
+    description: amount of funds that will be transferred to the wallet balance after deduction of all fees
+    type: string
+  addresses:
+    type: array
+    description: list of addresses participating in funds sweep with their details
+    items:
+      type: object
+      description: Information about a single address participating in consolidation of funds within merchant wallet 
+        (sending funds to the main wallet)
+      properties:
+        newReceivedInternal:
+          description: amount of funds received as an internal transfer to the address
+          type: string
+        newReceivedExternal:
+          description: amount of funds received as an external transfer to the address
+          type: string
+        activationFee:
+          description: fee for activating the address
+          type: string
+        transferFee:
+          description: fee for transfer funds from this address to the wallet balance
+          type: string
+        totalFee:
+          description: total fee for sweeping funds from this addresses to the wallet balance
+          type: string
+        available:
+          description: amount of funds that will be transferred to the wallet balance after deduction of all fees from 
+            the address balance
+          type: string
+        address:
+          description: address from which funds are swept to the wallet balance
+          type: string
+        addressId:
+          description: ID of the address from which funds are swept to the wallet balance within CPS
+          type: string
+        walletId:
+          description: ID of the wallet where belongs the address from which funds are swept to the wallet balance within CPS
+          type: string
