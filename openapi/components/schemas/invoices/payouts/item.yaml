@@ -16,7 +16,7 @@ properties:
       The Pay out amount in the invoice currency.
       An object with the same fields and desription as the fees object in the "transactionFee" under merchantFees.
     $ref: ./simulateFees.yaml
-  merchantFeestInInvoiceCurrency:
+  merchantFeesInInvoiceCurrency:
     description: |
       The merchant fees in the invoice currency.
       An object with the same fields as the fees object in the "transactionFee" under merchantFees.
