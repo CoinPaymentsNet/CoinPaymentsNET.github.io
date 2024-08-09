@@ -82,7 +82,7 @@ Below is an example of the webhook notification thrown when an external deposit 
   "transactionId":"cb44e78f-a97b-44b5-a23d-1e3b025aab47",
   "txHash":"9d9dd1f6f4a62388797e6beeb76c1a3c34d41942303ce6fb49177d3c88a74d11",
   "spendRequestId": "448c1624-98e7-43c9-85f4-75ed0c97a8bb"
-  "transactionType":"UtxoExternalReceive",
+  "transactionType":"ExternalSpend",
   "amount":"2",
   "symbol":"LTCT",
   "nativeAmount":"173.35",
