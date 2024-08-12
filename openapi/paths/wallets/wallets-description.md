@@ -73,7 +73,7 @@ The list of wallet/address transactions that support webhook notifications inclu
 - **AccountBasedExternalTokenReceive** - receiving tokens from external account-based transfers;
 - **AccountBasedTokenSpend** - sending account-based tokens to external address;
 
-Below is an example of the webhook notification thrown when an external deposit is received by a wallet:
+Below is an example of the webhook notification thrown when an external withdrawal is made from a wallet:
 
 ```javascript
 {
