@@ -8,3 +8,9 @@ properties:
     description: the network address that was created.
     type: string
     example: LNUPQLeQFfF67RtH1dqFBiwJhYBNZCW7pm
+  rentedTill:
+    description: date and time until account-based address is in lease by the merchant. If no new deposit is made to the
+      address until the indicated date and time, the address returns to the pool of CoinPayments addresses (applied for
+      temporary account-based addresses)
+    type: string
+    example: '2024-08-14T16:48:38'

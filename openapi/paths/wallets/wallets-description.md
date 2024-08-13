@@ -87,6 +87,8 @@ Below is an example of the webhook notification thrown when an external withdraw
   "symbol":"LTCT",
   "nativeAmount":"173.35",
   "nativeSymbol":"USD",
+  "coinPaymentsFee": "10.01",
+  "coinPaymentsFeeSymbol": "LTCT",
   "confirmations":3,
   "requiredConfirmations":3
 }
