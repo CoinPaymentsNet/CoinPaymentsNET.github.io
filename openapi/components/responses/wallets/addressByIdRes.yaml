@@ -15,5 +15,6 @@ properties:
     type: string
   rentedTill:
     description: date and time until account-based address is in lease by the merchant. If no new deposit is made to the
-      address until the indicated date and time, the address returns to the pool of CoinPayments addresses
+      address until the indicated date and time, the address returns to the pool of CoinPayments addresses (applied for
+      temporary account-based addresses)
     type: string

@@ -17,18 +17,19 @@ post:
           type: string
           example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
           description: the wallet Id
-      - name: label
-        in: query
-        #nullable: true
+  requestBody:
+    content:
+      application/json:
         schema:
-          type: string
-          example: shop tests address
-          description: label for the address
-      - name: notificationUrl
-        in: query
-        schema:
-          type: string
-          description: an optional URL for receiving webhook notifications
+          type: object
+          properties:
+            label:
+              type: string
+              example: shop tests address
+              description: label for the address
+            notificationUrl:
+              type: string
+              description: an optional URL for receiving webhook notifications
   responses:
     '201':
       description: Success
