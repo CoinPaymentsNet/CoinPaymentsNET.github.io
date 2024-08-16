@@ -5,8 +5,8 @@ required:
 properties:
   currencyId:
     description: Id of the currency for which wallet is created
-    type: number
-    example: 1
+    type: string
+    example: 4:0x152649ea73beab28c5b49b26eb48f7ead6d4c898
   label:
     description: Label denoting the wallet
     type: string
