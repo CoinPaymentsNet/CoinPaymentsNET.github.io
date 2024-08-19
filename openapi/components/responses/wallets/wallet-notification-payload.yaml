@@ -1,0 +1,52 @@
+type: object
+properties:
+  walletId:
+    description: wallet id
+    type: string
+    example: '4ca18e8e-915b-4a69-a17a-0b0b666858a7'
+  address:
+    description: wallet address involved into the transaction performance
+    type: string
+    example: 'myGTmrMtU6vUULkYRCDxJMggF7egsXhcTi'
+  transactionId:
+    description: id of the transaction that is being executed
+    type: string
+    example: 'cb44e78f-a97b-44b5-a23d-1e3b025aab47'
+  txHash:
+    type: string
+    description: hash of the transaction that is being executed
+    example: '9d9dd1f6f4a62388797e6beeb76c1a3c34d41942303ce6fb49177d3c88a74d11'
+  spendRequestId:
+    type: string
+    description: id of the withdrawal spend request. Is applied only for withdrawal and conversion transactions
+    example: '448c1624-98e7-43c9-85f4-75ed0c97a8bb'
+  transactionType:
+    type: string
+    description: type of the transaction that is being executed. Possible values are InternalReceive, UtxoExternalReceive,
+      AccountBasedExternalReceive, InternalSpend, ExternalSpend, SameUserReceive, AccountBasedExternalTokenReceive,
+      AccountBasedTokenSpend
+    example: 'ExternalSpend'
+  amount:
+    type: integer
+    description: net transaction amount in crypto
+  symbol:
+    type: string
+    description: currency of the transaction
+  nativeAmount:
+    type: integer
+    description: net transaction amount in fiat
+  nativeSymbol:
+    type: string
+    description: currency of the transaction in fiat
+  coinPaymentsFee:
+    type: integer
+    description: transaction fee charged by CoinPayments
+  coinPaymentsFeeSymbol:
+    type: string
+    description: currency of the transaction fee charged by CoinPayments in crypto
+  confirmations:
+    type: integer
+    description: amount of confirmations gathered by the transaction on chain
+  requiredConfirmations:
+    type: integer
+    description: amount of confirmations required for the transaction on chain to be considered completed
