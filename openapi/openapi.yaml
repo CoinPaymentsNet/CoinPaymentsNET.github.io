@@ -88,6 +88,8 @@ paths:
     $ref: 'paths/wallets/spend-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
+  '/merchant/wallets/your-server-url':
+    $ref: 'paths/wallets/wallet-webhook-payload.yaml'
 
 
   # Clients

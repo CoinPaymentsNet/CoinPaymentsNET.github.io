@@ -1,0 +1,17 @@
+post:
+  tags:
+    - Wallets API
+  summary: Notification Payload
+  description: |
+    All webhooks sent by CPs API contain information on the wallet transaction type and information on the amount deposited. 
+    Below is the payload of the webhooks sent from CPs API to your server API.
+  operationId: walletNotificationPayload
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/wallet-notification-payload.yaml
+    '400':
+      description: CoinPayments API could not reach your server
