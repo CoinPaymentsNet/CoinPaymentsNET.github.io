@@ -153,8 +153,9 @@ follow these steps:
 
 ---
 ```javascript
-const clientId = pm.environment.get('clientId');
-const clientSecret = pm.environment.get('clientSecret');
+const crypto = require('crypto-js')
+const clientId = pm.environment.get('clientId')
+const clientSecret = pm.environment.get('clientSecret')
 
 const date = new Date().toISOString().split('.')[0];
 
