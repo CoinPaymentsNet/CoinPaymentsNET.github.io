@@ -2,9 +2,6 @@ type: object
 description: array of items that a buyer intends to purchase from the merchant
 required:
   - name
-  - quantity
-  - originalAmount
-  - amount
 properties:
   customId:
     type: string
@@ -30,11 +27,15 @@ properties:
         description: type of the sold product, can be "1" = "hours" or "2" = "units"
         example: 1
   originalAmount:
-    description: represents the value of one item in the original currency, typically fiat currency such as USD or EUR. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
+    description: represents the value of one item in the original currency, typically fiat currency such as USD or EUR. 
+      Values will be used to calculate the amount the buyer should pay in their selected currency of payment
     $ref: ../../globalTypes/globalAmount.yaml
   amount:
-    description: represents the total value of all bought items in the original currency, typically fiat currency such as USD or EUR. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
+    description: represents the total value of all units of the item bought with the discount applied on top of it. The value is in the original 
+      currency, typically fiat currency such as USD or EUR. Values will be used to calculate the amount the buyer should 
+      pay in their selected currency of payment
     $ref: ../../globalTypes/globalAmount.yaml
   tax:
-    description: Amount of tax to be added to the amount of the purchase. Values will be used to calculate the amount the buyer should pay in his or her selected currency of payment
+    description: Amount of tax to be added to the amount of the purchase. Values will be used to calculate the amount 
+      the buyer should pay in their selected currency of payment
     $ref: ../../globalTypes/globalAmount.yaml

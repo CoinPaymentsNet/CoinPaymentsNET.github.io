@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Fees API
+  summary: Returns currency and its current network fee on the blockchain
+  description: Returns a currency supported on the CoinPayments.com platform with its current network fee on the blockchain.
+  operationId: currencyBlockchainFee
+  parameters:
+    - name: currency
+      in: path
+      required: true
+      schema:
+        type: string
+        description: currency id
+  responses:
+    '200':
+      description: Ok - blockchain fee for the currency in the smallest units
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
