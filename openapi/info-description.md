@@ -18,6 +18,11 @@ Also, while studying documentation, you can test it in Postman. For this, you ca
 [here](https://coinpayments.postman.co/workspace/Team-Workspace~09eaa205-3e67-47b7-86d7-1d5709bf0610/collection/28654468-da626518-a5d1-44ac-ab0b-d59e23d051dc?action=share&creator=28654468&active-environment=28654468-0e4b6fab-4efd-4c74-a76e-d21527672c78).
 For information on authentication with the Postman collection, please, visit [this section](#section/Authentication-for-Postman).
 
+To create test transactions, you can use LTCT coins. To claim LTCT, just click on the "Get Free LTCT" button next to the
+corresponding coin balance.
+
+![markdown file changed](./free-ltct.png)
+
 # Features
 CoinPayments provides a multi-currency wallet that enables businesses and individuals to store, send,
 and receive a wide range of digital currencies and tokens.
