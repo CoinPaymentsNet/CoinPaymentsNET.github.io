@@ -57,6 +57,18 @@ from the account-based addresses is not possible, hence, leading to larger expen
 
 ---
 
+## Simplify Wallet Top-up
+
+A common case for merchants is to use wallets and addresses created via API for receiving payments from their customers,
+e.g. top-up a subscription or casino account. A merchant can simplify the payment process for the buyer by incorporating
+payment details like payment amount, currency and payment address into a QR code. This will decrease the possibility of
+an error when sending funds.
+
+For the QR code script example check description of the **Payment Flow for Integrated Checkout with White Labeling**
+in the **[Invoices API](#tag/Invoices-API)**.
+
+---
+
 ## Webhook Notifications
 
 Unlike wallets and addresses created via UI, wallets and addresses created via API can send webhook notifications to 
@@ -94,14 +106,7 @@ Below is an example of the webhook notification thrown when an external withdraw
 }
 ```
 
+Also, below is the description of the typical wallet transaction notification payload.
+
 ---
 
-## Simplify Wallet Top-up
-
-A common case for merchants is to use wallets and addresses created via API for receiving payments from their customers,
-e.g. top-up a subscription or casino account. A merchant can simplify the payment process for the buyer by incorporating
-payment details like payment amount, currency and payment address into a QR code. This will decrease the possibility of
-an error when sending funds.
-
-For the QR code script example check description of the **Payment Flow for Integrated Checkout with White Labeling**
-in the **[Invoices API](#tag/Invoices-API)**.

@@ -4,7 +4,6 @@ description: Request to create an invoice, which is a list of goods or services 
 required:
   - items
   - amount
-  - payment
 properties:
   isEmailDelivery:
     type: boolean
@@ -71,14 +70,11 @@ properties:
           shipping:
             description: cost of shipping
             $ref: ../../globalTypes/globalAmount.yaml
-          handling:
-            description: service cost for processing order
-            $ref: ../../globalTypes/globalAmount.yaml
           taxTotal:
             description: tax cost
             $ref: ../../globalTypes/globalAmount.yaml
           discount:
-            description: discount amount
+            description: discount amount for the whole purchase
             $ref: ../../globalTypes/globalAmount.yaml
       currencyId:
         type: string
@@ -88,16 +84,16 @@ properties:
         description: the address of the contract if this money object represents an ERC20 or similar token value
       displayValue:
         type: string
-        description: the value formatted for display (e.g 0.1234 BTC)
+        description: purchase value formatted for display (e.g 0.1234 BTC)
       value:
         type: string
-        description: this parameter represents the monetary value as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
+        description: this parameter represents the monetary value of purchase as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
           with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
           an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
           If no value is provided, the default is 0
       valueAsDecimal:
         type: string
-        description: the decimal value represents the monetary value with decimal precision derived from the value field,
+        description: the decimal value of purchase represents the monetary value with decimal precision derived from the value field,
           which is the integer representation in the smallest unit of the currency or token.
   shipping:
     description: shipping method info

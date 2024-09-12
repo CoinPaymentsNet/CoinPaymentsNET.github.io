@@ -45,6 +45,10 @@ paths:
   '/currencies/required-confirmations':
     $ref: 'paths/currencies/required-confirmations.yaml'
 
+  # Fees
+  '/fees/blockchain/{currency}':
+    $ref: 'paths/fees/blockchain-fee.yaml'
+
   # Invoices
   '/merchant/invoices':
     $ref: 'paths/invoices/invoices.yaml'
@@ -62,6 +66,8 @@ paths:
     $ref: 'paths/invoices/history.yaml'
 
   # Wallets
+  '/merchant/wallets/your-server-url':
+    $ref: 'paths/wallets/wallet-webhook-payload.yaml'
   '/merchant/wallets':
     $ref: 'paths/wallets/create-wallet.yaml'
   '/merchant/wallets/{walletIdStr}':
@@ -88,8 +94,7 @@ paths:
     $ref: 'paths/wallets/spend-request.yaml'
   '/merchant/wallets/{walletIdStr}/spend/confirmation':
     $ref: 'paths/wallets/spend-request-confirmation.yaml'
-  '/merchant/wallets/your-server-url':
-    $ref: 'paths/wallets/wallet-webhook-payload.yaml'
+
 
 
   # Clients
