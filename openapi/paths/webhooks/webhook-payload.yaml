@@ -1,6 +1,6 @@
 post:
   tags:
-    - Webhooks API
+    - Invoice Webhooks API
   summary: Notification Payload
   description: |
     All webhooks sent by CPs API contain information on the event they signalize about and information on the invoice 

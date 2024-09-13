@@ -1,6 +1,6 @@
 put:
   tags:
-    - Webhooks API
+    - Invoice Webhooks API
   summary: Update Webhook
   description: |
     Update list of webhook notifications and/or webhook integration Url
@@ -31,7 +31,7 @@ put:
       description: Webhook not found
 delete:
   tags:
-    - Webhooks API
+    - Invoice Webhooks API
   summary: Delete Webhook
   description: |
     Delete a webhook integration by client Id and webhook Id

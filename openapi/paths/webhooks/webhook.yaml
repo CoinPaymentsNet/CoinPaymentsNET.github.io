@@ -1,6 +1,6 @@
 post:
   tags:
-    - Webhooks API
+    - Invoice Webhooks API
   summary: Create client webhook
   description: |
     Creates new client webhook
