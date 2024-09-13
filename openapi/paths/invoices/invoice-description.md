@@ -11,7 +11,7 @@ managing payments with the help of this data via a set of available endpoints.
 
 Below you will find information on how payment flow is organized for each of the above-mentioned approaches.
 
-**Payment Flow for Invoice Links**
+## Payment Flow for Invoice Links
 
 Let us consider a subscription use case, where you have a platform that provides services with a subscription payment 
 model. Every month you need to send out invoices to your users with the reminder to pay for the subscription and ability
@@ -43,13 +43,13 @@ attribute empty will cause an error.
 6. Buyer enters their email for potential refunds, selects the currency for payment.
 7. The buyer is presented with a payment address, total amount of cryptocurrency to-be-deposited, and a timer within which
 the transaction has to be completed.
-8. At the same time currency of payment is reflected in the transaction details of the payment in the merhant's
+8. At the same time currency of payment is reflected in the transaction details of the payment in the merchant's
 transaction history. 
 9. Additionally, if the merchant has [webhooks](/#tag/Webhooks-API) set-up, CoinPayments will be sending invoice payment 
 notifications for each status change thereof (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
 invoiceCancelled, invoiceTimedOut).
 
-**Payment Flow for Integrated Checkout with White Labeling**
+## Payment Flow for Integrated Checkout with White Labeling
 
 Let us consider a case where you have an online shop and you want to accept payment for goods in cryptocurrency. With 
 CoinPayments API you will be able to allow buyers to request goods and pay with the cryptocurrency all at your website
@@ -106,6 +106,8 @@ The indication of the cryptocurrency id will trigger creation of the invoice tog
 5. Additionally, if the merchant has [webhooks](/#tag/Webhooks-API) set-up, CoinPayments will be sending payment
    notifications for each status change (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
    invoiceCancelled, invoiceTimedOut).
+
+### QR Code Generation
 
 A merchant can simplify the payment process for the buyer by incorporating payment details like payment amount, currency
 and payment address into a QR code. Below is an example of a script to create a QR code:
@@ -172,7 +174,7 @@ and payment address into a QR code. Below is an example of a script to create a 
 ```
 ---
 
-**Payment Flow for Integrated Checkout with Buy-Now Button**
+## Payment Flow for Integrated Checkout with Buy-Now Button
 
 Let us consider another case for an online shop where you want to accept payment for goods in cryptocurrency and want
 to allow your buyers to make quick purchases by clicking on the Buy-Now button next to the good or service you offer. With
@@ -201,9 +203,9 @@ clicks. Here are the steps that should take place in order payment could occur:
    notifications for each status change (e.g. invoiceCreated, invoicePending, invoicePaid, invoiceCompleted,
    invoiceCancelled, invoiceTimedOut).
 
-**Payment Settings**
+## Payment Settings
 
-Funds that merchants receive via payments are primarily deposited to the CoinPayments system balance. From there, Coinpayments
+Funds that merchants receive via payments are primarily deposited to the CoinPayments system balance. From there, CoinPayments
 conducts payouts to the merchant's balance. CoinPayments UI provides the merchant with a possibility to set up mode and 
 frequency for paying out funds from CoinPayments balance to the merchant's own balance. The settings are set up by
 currency.

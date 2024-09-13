@@ -45,15 +45,17 @@ The merchant can decide to use **permanent account-based addresses** if it is im
 deposited by their customers individually. For that, when creating a commercial wallet via API, merchant must enable the
 `usePermanentAddresses` flag. Thus, all the addresses created within such wallet will be permanent. This will allow
 merchant to assign specific addresses to specific clients perpetually. Such design allows for better customer experience.
-Also, merchant can manage themselves when to sweep funds from addresses to the main wallet balance and further. Address 
-balance is always swept in full to the main wallet balance in order to reduce the amount of cases when a small amount of
-funds is stuck on the address because the fee for withdrawal equals or higher than the withdrawn amount.
+Also, merchant can manage themselves when to sweep funds from addresses to the main UI wallet balance and further. Address 
+balance is always swept in full to reduce the amount of cases when a small amount of
+funds is stuck on the address because the fee for withdrawal equals or higher than the withdrawn amount. 
 
-The tradeoff of the permanent address vs. temporary address design is fees. In order to be able to consolidate the balances
-of all permanent addresses within the wallet at its main balance, each new address must be activated. The activation fee
-is charged only once when the first withdrawal from the address takes place. However, the network fee is charged
-everytime funds are withdrawn from each address. Unlike with UTXO addresses, accumulation of network fees for withdrawals 
-from the account-based addresses is not possible, hence, leading to larger expenses at the merchant's side.
+The tradeoff of the permanent address vs. temporary address design is fees. In order to be able to use the funds from permanent addresses,
+merchant must consolidate addresses balances at the UI wallet balance. For this each new address created within the API wallet must be activated.
+The activation fee is charged only once when the first withdrawal from the address takes place and the funds are swept from the address to
+the UI wallet balance. However, the network fee for further withdrawal of the consolidated funds is charged
+everytime funds are withdrawn from the wallet. Although address activation fees lead to larger expenses at the first sweep,
+each repetitive withdrawal of consolidated funds from the wallet is still way cheaper compared to regular withdrawal from an
+account-based address.
 
 ---
 

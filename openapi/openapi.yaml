@@ -25,7 +25,7 @@ tags:
   - name: Wallets API
     description:
       $ref: './paths/wallets/wallets-description.md'
-  - name: Webhooks API
+  - name: Invoice Webhooks API
     description:
       $ref: 'paths/webhooks/webhooks.md'
 
