@@ -77,6 +77,30 @@ Unlike wallets and addresses created via UI, wallets and addresses created via A
 the URL specified by the merchant. The URL for receiving webhook notifications is specified at [wallet/address creation](#operation/createMerchantWallet) 
 or [update](#operation/updateWalletWebhookUrl).
 
+### Authenticate Webhooks from CoinPayments to Your Server
+
+CoinPayments will send webhooks from one of these IPs:
+
+`hook1.coinpayments.com` - `23.183.244.249`
+
+`hook2.coinpayments.com` - `23.183.244.250`
+
+All webhook messages from CoinPayments contain the same headers as used by merchants to [sign requests](#section/Generate-API-Signature)
+to CoinPayments API:
+
+```
+const headers = {
+  'X-CoinPayments-Client': clientId,
+  'X-CoinPayments-Timestamp': date,
+  'X-CoinPayments-Signature': signature,
+};
+```
+
+By verifying the signature with the help of the private key, merchant can make sure that the received webhook is
+produced by CoinPayments server.
+
+### Webhook Types
+
 The list of wallet/address transactions that support webhook notifications includes:
 - **InternalReceive** - receiving funds within the system;
 - **UtxoExternalReceive** - receiving funds from external UTXO transfers;
