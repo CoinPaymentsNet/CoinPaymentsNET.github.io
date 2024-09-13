@@ -28,7 +28,7 @@ post:
       description: Merchant Not Found!
 get:
   tags:
-    - Webhooks API
+    - Invoice Webhooks API
   summary: Get webhooks of merchant
   description: |
     Get list of merchant webhook notifications
