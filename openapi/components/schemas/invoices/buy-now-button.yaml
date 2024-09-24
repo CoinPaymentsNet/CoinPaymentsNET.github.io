@@ -82,5 +82,9 @@ properties:
       valueAsDecimal:
         type: string
         description: the decimal value represents the monetary value of purchase with decimal precision derived from the value field,
-          which is the integer representation in the smallest unit of the currency or token.
+          which is the integer representation in the smallest unit of the currency or token
         example: 20000
+  hideShoppingCart:
+    type: boolean
+    description: flag for hiding shopping cart in the checkout window. By default is 'false'. If set to 'true', shopping cart icon
+      in the checkout window is not displayed

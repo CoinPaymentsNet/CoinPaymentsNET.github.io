@@ -191,3 +191,7 @@ properties:
         type: string
         description: Provide the buyer’s email address to create a white-labeling payment flow. **Note**, the email is 
           only used for transaction status updates and refunds; never for marketing purposes
+  hideShoppingCart:
+    type: boolean
+    description: flag for hiding shopping cart in the checkout window. By default is 'false'. If set to 'true', shopping cart icon
+      in the checkout window is not displayed
