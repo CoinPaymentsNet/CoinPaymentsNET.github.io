@@ -115,20 +115,27 @@ Below is an example of the webhook notification thrown when an external withdraw
 
 ```javascript
 {
-  "walletId":"4ca18e8e-915b-4a69-a17a-0b0b666858a7",
-  "address":"myGTmrMtU6vUULkYRCDxJMggF7egsXhcTi",
-  "transactionId":"cb44e78f-a97b-44b5-a23d-1e3b025aab47",
-  "txHash":"9d9dd1f6f4a62388797e6beeb76c1a3c34d41942303ce6fb49177d3c88a74d11",
-  "spendRequestId": "448c1624-98e7-43c9-85f4-75ed0c97a8bb"
-  "transactionType":"ExternalSpend",
-  "amount":"2",
-  "symbol":"LTCT",
-  "nativeAmount":"173.35",
-  "nativeSymbol":"USD",
-  "coinPaymentsFee": "0.05",
+  "walletId": "5ff25090-4f3a-4cc4-a187-59fce3f4e501",
+  "address": "miG63NqftkbxNYzHBkRQiZtdaE8xFsRSkr",
+  "transactionId": "407ee3f9-4d8d-4ebe-8b82-39704906f931",
+  "txHash": "c0581829ad6ccb1ba759799c00880917d16868aeba326781a4168fe32f961bdd",
+  "spendRequestId": "189466f2-8c29-4b8e-abe3-86eb3de79e2b",
+  "transactionType": "ExternalSpend",
+  "amount": "0.15019097",
+  "symbol": "LTCT",
+  "coinPaymentsFee": "0",
   "coinPaymentsFeeSymbol": "LTCT",
-  "confirmations":3,
-  "requiredConfirmations":3
+  "blockchainFee": "0.000013",
+  "blockchainFeeSymbol": "LTCT",
+  "totalAmount": "0.15020397",
+  "totalAmountSymbol": "LTCT",
+  "nativeAmount": "10.03",
+  "coinPaymentsFeeNativeAmount": "0",
+  "blockchainFeeNativeAmount": "0",
+  "totalNativeAmount": "10.03",
+  "nativeSymbol": "USD",
+  "confirmations": 3,
+  "requiredConfirmations": 3
 }
 ```
 
