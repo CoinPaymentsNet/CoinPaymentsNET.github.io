@@ -32,18 +32,39 @@ properties:
   symbol:
     type: string
     description: currency of the transaction
-  nativeAmount:
-    type: integer
-    description: net transaction amount in fiat
-  nativeSymbol:
-    type: string
-    description: currency of the transaction in fiat
   coinPaymentsFee:
     type: integer
     description: transaction fee charged by CoinPayments
   coinPaymentsFeeSymbol:
     type: string
     description: currency of the transaction fee charged by CoinPayments in crypto
+  blockchainFee:
+    type: string
+    description: network fee in crypto
+  blockchainFeeSymbol:
+    type: string
+    description: currency of the network fee
+  totalAmount:
+    type: string
+    description: gross transaction amount in crypto
+  totalAmountSymbol:
+    type: string
+    description: currency of the gross transaction amount
+  nativeAmount:
+    type: integer
+    description: net transaction amount in fiat
+  coinPaymentsFeeNativeAmount:
+    type: string
+    description: CP fee amount in fiat
+  blockchainFeeNativeAmount:
+    type: string
+    description: network fee amount in fiat
+  totalNativeAmount:
+    type: string
+    description: gross transaction amount in fiat
+  nativeSymbol:
+    type: string
+    description: fiat currency of the transaction amount and fees
   confirmations:
     type: integer
     description: amount of confirmations gathered by the transaction on chain
