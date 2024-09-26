@@ -9,7 +9,7 @@ properties:
     type: string
     example: 'mtxASJZHNmGeUPQ3DxLvJeKja6Lh7TcJM9'
   toCurrencyId:
-    description: currency Id of the benificiary wallet
+    description: currency Id of the beneficiary wallet
     type: number
     example: 6
   fromContractAddress:

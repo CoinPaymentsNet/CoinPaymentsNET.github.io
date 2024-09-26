@@ -84,11 +84,13 @@ paths:
     $ref: 'paths/wallets/get-wallet-transactions.yaml'
   '/merchant/wallets/{walletIdStr}/transaction':
     $ref: 'paths/wallets/get-wallet-transaction.yaml'
+  '/merchant/wallets/{walletIdStr}/consolidation/{toWalletIdStr}':
+    $ref: 'paths/wallets/create-wallet-consolidation.yaml'
   '/merchant/wallets/{walletIdStr}/consolidation':
-    $ref: 'paths/wallets/create-and-get-wallet-consolidation.yaml'
+    $ref: 'paths/wallets/get-wallet-consolidation.yaml'
   '/merchant/wallets/consolidation-preview':
     $ref: 'paths/wallets/create-wallets-consolidation-preview.yaml'
-  '/merchant/wallets/consolidation':
+  '/merchant/wallets/consolidation/{toWalletIdStr}':
     $ref: 'paths/wallets/create-wallets-consolidation.yaml'
   '/merchant/wallets/{walletIdStr}/spend/request':
     $ref: 'paths/wallets/spend-request.yaml'

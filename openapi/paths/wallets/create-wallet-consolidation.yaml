@@ -1,0 +1,38 @@
+post:
+  tags:
+    - Wallets API
+  summary: Execute merchant wallet consolidation
+  description: |
+    This endpoint executes the sweep of the balances from all selected addresses of the wallet to the main wallet balance.
+    The endpoint is applied only for account-based currency wallets that contain permanent addresses.
+  operationId: createWalletConsolidation
+  parameters:
+      - name: walletIdStr
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+          description: id of the wallet which funds are consolidated
+      - name: toWalletIdStr
+        in: path
+        schema:
+          type: string
+          example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+          description: id of the wallet where funds are sent for consolidation
+      - name: addressIds
+        in: query
+        schema:
+          type: string
+          description: comma-separated values of addresses from which funds are to be swept to the main wallet balance
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/responses/wallets/consolidationRes.yaml
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
