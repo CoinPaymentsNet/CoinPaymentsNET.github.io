@@ -7,6 +7,13 @@ post:
     merchant wallets in one currency to the main wallet balance.
     The endpoint is applied only for account-based currency wallets that contain permanent addresses.
   operationId: createWalletsConsolidation
+  parameters:
+    - name: toWalletIdStr
+      in: path
+      schema:
+        type: string
+        example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+        description: id of the wallet where funds are sent for consolidation
   requestBody:
     content:
       application/json:

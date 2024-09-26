@@ -3,27 +3,26 @@ properties:
   spendRequestId:
     description: Id of spend request
     type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+    example: '02741e6d-f5c5-43bb-8f08-9a523173cb42'
   fromWalletId:
     description: Id of wallet from where the amount is to be deducted
     type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+    example: 'e0ac29cd-d2d2-4f27-8196-236fc75a1e31'
   toAddress:
     description: Address where the amount is to be transferred
     type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+    example: 'mmbYp8ziTBXxPJKM7ai74poX33fPqxwMWK'
   fromContractAddress:
     description: Address of the contract (if the withdrawal is from a contract wallet)
     type: string
-    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
   fromCurrencyId:
     description: Id of the currency of withdrawal
     type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+    example: '1002'
   toCurrencyId:
     description: Id of the currency of receipt
     type: string
-    example: '0a54b29f-51cb-44a8-9bed-111c5cb1b335'
+    example: '1002'
   blockchainFee:
     description: Fee to be paid to the blockchain for the transfer
     type: number
@@ -35,11 +34,11 @@ properties:
   fromAmount:
     description: Amount to be spent
     type: number
-    example: 0.0987
+    example: 2
   toAmount:
     description: Amount to be transferred to the destination address
     type: number
-    example: 0.0123
+    example: 2
   memo:
     description: Optional user-defined note for the spend
     type: string
@@ -47,7 +46,6 @@ properties:
   toContractAddress:
     description: Contract address of the destination currency for conversions (if the conversion pertains tokens)
     type: string
-    example: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'
 
 
 
