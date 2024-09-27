@@ -82,7 +82,7 @@ const queryString = `\ufeff${method}${url}${clientId}${date}${JSON.stringify(req
 For requests with no request body, replace last attribute by an empty string:
 Example ( Javascript )
 ```javascript
-const queryString = `\ufeff${method}${url}${clientId}${''}`;
+const queryString = `ufeff${method}${url}${clientId}${date}${''}`;
 ```
 
 ---

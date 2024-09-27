@@ -15,7 +15,7 @@ Overall, the API is designed to provide a simple and secure way for merchants to
 In these docs you'll find everything you need to leverage CoinPayments for your applications.
 
 Also, while studying documentation, you can test it in Postman. For this, you can download API collection 
-[here](https://coinpayments.postman.co/workspace/Team-Workspace~09eaa205-3e67-47b7-86d7-1d5709bf0610/collection/28654468-da626518-a5d1-44ac-ab0b-d59e23d051dc?action=share&creator=28654468&active-environment=28654468-0e4b6fab-4efd-4c74-a76e-d21527672c78).
+[here](https://www.postman.com/coinpayments/workspace/coinpayments-api-collection-v2/collection/17606477-9f869b92-cfa1-4571-8b6b-ff57fa18d946?action=share&creator=28654468).
 For information on authentication with the Postman collection, please, visit [this section](#section/Authentication-for-Postman).
 
 To create test transactions, you can use LTCT coins. To claim LTCT, just click on the "Get Free LTCT" button next to the
