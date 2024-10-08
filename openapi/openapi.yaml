@@ -44,7 +44,7 @@ paths:
     $ref: 'paths/currencies/required-confirmations.yaml'
   '/currencies/conversions':
     $ref: 'paths/currencies/conversions.yaml'
-  '/currencies/limits':
+  '/currencies/limits/{fromCurrencyId}/{toCurrencyId}':
     $ref: 'paths/currencies/limits.yaml'
 
 
