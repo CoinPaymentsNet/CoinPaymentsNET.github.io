@@ -1,0 +1,33 @@
+get:
+  tags:
+    - Currencies API
+  summary: Gets minimum and maximum amounts for currency conversions
+  description: |
+    Gets minimum and maximum amounts for a conversion pair in the "from" currency
+  operationId: getCurrencyConversionsLimits
+  parameters:
+    - name: fromCurrencyId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 55
+        description: the Id of the source currency of conversion
+    - name: toCurrencyId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 41
+        description: the Id of the destination currency of conversion
+  responses:
+    '200':
+      description: Success status code ( 200 )
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/currencies/currencyConversionLimits.yaml
+    '400':
+      description: Bad request
+
+
