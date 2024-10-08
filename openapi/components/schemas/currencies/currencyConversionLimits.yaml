@@ -1,0 +1,10 @@
+type: object
+properties:
+  min:
+    type: integer
+    example: 462945000
+    description: minimum amount of the source currency that can be converted
+  max:
+    type: integer
+    example: 6939885265000
+    description: maximum amount of the source currency that can be converted
