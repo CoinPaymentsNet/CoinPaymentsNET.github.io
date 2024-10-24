@@ -27,7 +27,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/invoices/address-by-currency.yaml
+            $ref: ../../components/responses/invoices/address-by-currency.yaml
     '401':
       description: Unauthorized
     '403':

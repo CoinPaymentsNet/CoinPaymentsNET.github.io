@@ -1,0 +1,16 @@
+type: object
+properties:
+  paymentSubTotal:
+    description: payment subtotal amount
+    $ref: ./paymentAmountInvoiceRes.yaml
+  merchantMarkupOrDiscount:
+    description: amount of discount or markup that merchant sets for the cryptocurrency
+    $ref: ./paymentAmountInvoiceRes.yaml
+  buyerFee:
+    description: amount of fees paid by the buyer
+    $ref: ./personFee.yaml
+  merchantFee:
+    description: amount of fees paid by the merchant
+    $ref: ./personFee.yaml
+  gross:
+    type: number

@@ -1,0 +1,20 @@
+type: object
+properties:
+  currencySymbol:
+    type: string
+    description: symbol of the currency of the payment amount
+  currencyId:
+    type: string
+    description: payment currency id
+  contractAddress:
+    type: string
+    description: contract address of the payment currency
+  displayValue:
+    type: string
+    description: payment amount as displayed in UI
+  value:
+    type: string
+    description: payment amount
+  valueAsDecimal:
+    type: number
+    description: payment amount in decimal format

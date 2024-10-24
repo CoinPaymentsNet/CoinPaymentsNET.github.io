@@ -2,6 +2,7 @@ type: object
 description: array of items that a buyer intends to purchase from the merchant
 required:
   - name
+  - quantity
 properties:
   customId:
     type: string
@@ -28,7 +29,7 @@ properties:
         example: 1
   originalAmount:
     description: represents the value of one item in the original currency, typically fiat currency such as USD or EUR. 
-      Values will be used to calculate the amount the buyer should pay in their selected currency of payment
+      The value is indicated without any discount amount applied on it
     $ref: ../../globalTypes/globalAmount.yaml
   amount:
     description: represents the total value of all units of the item bought with the discount applied on top of it. The value is in the original 

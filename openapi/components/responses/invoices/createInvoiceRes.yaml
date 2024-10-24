@@ -2,8 +2,7 @@ type: object
 properties:
   invoices:
     type: array
-    description: Invoice in all available currencies. **Note**, for Invoice Links flow, only "id" and "link" properties
-      are necessary
+    description: Invoice in all available currencies
     items:
       type: object
       properties:
@@ -39,7 +38,7 @@ properties:
             is not specified in the 'createInvoice' request, the response will contain the list of all available currencies
             for payment. Selecting the address for payment should be triggered as a separate action by using
             'getPaymentAddressByCurrency' endpoint
-          $ref: ../../schemas/invoices/address-by-currency.yaml
+          $ref: ../../responses/invoices/address-by-currency.yaml
 
 
 

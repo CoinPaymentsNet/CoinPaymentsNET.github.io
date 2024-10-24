@@ -1,0 +1,14 @@
+type: object
+properties:
+  coinPaymentsFee:
+    description: fee amount charged by CoinPayments
+    $ref: ./paymentAmountInvoiceRes.yaml
+  networkFee:
+    description: network fee amount
+    $ref: ./paymentAmountInvoiceRes.yaml
+  conversionFee:
+    description: fee amount charged by conversion partners
+    $ref: ./paymentAmountInvoiceRes.yaml
+  total:
+    description: total fee amount
+    type: integer

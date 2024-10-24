@@ -109,7 +109,7 @@ The list of wallet/address transactions that support webhook notifications inclu
 - **ExternalSpend** - sending funds to the address that does not belong to CoinPayments;
 - **SameUserReceive** - receiving funds from one wallet to another for the same CoinPayments user;
 - **AccountBasedExternalTokenReceive** - receiving tokens from external account-based transfers;
-- **AccountBasedTokenSpend** - sending account-based tokens to external address;
+- **AccountBasedTokenSpend** - sending account-based tokens to external address.
 
 Below is an example of the webhook notification thrown when an external withdrawal is made from a wallet:
 

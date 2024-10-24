@@ -60,6 +60,7 @@ properties:
     description: detailed amount of purchase with the breakdown of all fees
     properties:
       breakdown:
+        description: breakdown of invoice costs
         type: object
         required:
           - subtotal

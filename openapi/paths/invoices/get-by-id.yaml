@@ -10,14 +10,16 @@ get:
       in: path
       required: true
       schema:
-        $ref: ../../components/globalTypes/id.yaml
+        type: string
+        description: invoice id
+        example: 6472ac8d-b913-4c7e-9186-a7cc48a48f73
   responses:
     '200':
       description: Success status code ( 200 )
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/invoices/invoice.yaml
+            $ref: ../../components/responses/invoices/invoiceByIdRes.yaml
     '400':
       description: Bad request example!
 
