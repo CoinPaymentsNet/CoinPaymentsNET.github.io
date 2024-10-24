@@ -1,0 +1,495 @@
+type: object
+description: Details of the invoice issued by the merchant
+properties:
+  id:
+    type: string
+    description: unique invoice id with CoinPayments
+  invoiceId:
+    type: string
+    description: invoice id set by the merchant
+  invoiceIdSuffix:
+    type: string
+    description: the optional numeric suffix used when the invoice is emailed to multiple customers
+  created:
+    type: string
+    description: the timestamp when the invoice entity was created
+  invoiceDate:
+    type: string
+    description: the date of the invoice, either the system created date or custom date
+      specified by the merchant
+  dueDate:
+    type: string
+    description: optional due date of the invoice
+  confirmed:
+    type: string
+    description: the timestamp when the payment for the invoice is detected by CoinPayments on the blockchain
+  completed:
+    type: string
+    description: the timestamp when the invoice is paid out to the merchant
+  cancelled:
+    type: string
+    description: >-
+      the timestamp when the invoice is manually cancelled by the merchant
+  expires:
+    type: string
+    description: date and time when invoice will expire
+  currency:
+    type: object
+    description: currency in which invoice is issued
+    properties:
+      id:
+        type: string
+        description: currency id
+      symbol:
+        type: string
+        description: currency symbol
+      name:
+        type: string
+        description: currency name
+      token:
+        type: object
+        description: currency token in which invoice is issued
+        properties:
+          name:
+            type: string
+            description: token name
+          symbol:
+            type: string
+            description: token symbol
+          contractAddress:
+            type: string
+            description: token contract address
+          decimalPlaces:
+            type: integer
+            description: number of decimal places for displaying the invoice amount
+            format: int32
+      logo:
+        $ref: ../../globalTypes/logo.yaml
+      decimalPlaces:
+        type: integer
+        format: int32
+  merchant:
+    description: merchant details
+    type: object
+    properties:
+      id:
+        type: string
+        description: id of the merchant within CoinApyments system
+      name:
+        type: string
+        description: merchant's name
+      uboName:
+        type: string
+        description: merchant's UBO name
+      websiteUrl:
+        type: string
+        description: URL of the merchant's website
+      country:
+        type: string
+        description: merchant's country
+      logoUrl:
+        type: string
+        description: merchant's logo
+      email:
+        type: string
+        description: merchant's email
+      address:
+        type: string
+        description: merchants address
+      phone:
+        type: string
+        description: merchant's phone number
+      description:
+        type: string
+        description: description of the merchant
+      registrationNumber:
+        type: string
+        description: merchant's registration number
+  merchantOptions:
+    description: options of the merchant entity
+    type: object
+    properties:
+      showAddress:
+        type: boolean
+        description: flag that indicates whether merchant's address should be displayed on the invoice
+      showEmail:
+        type: boolean
+        description: flag that indicates whether merchant's email should be displayed on the invoice
+      showPhone:
+        type: boolean
+        description: flag that indicates whether merchant's phone number should be displayed on the invoice
+      showRegistrationNumber:
+        type: boolean
+        description: flag that indicates whether merchant's register number should be displayed on the invoice
+      additionalInfo:
+        type: string
+        description: flag that indicates whether merchant's additional information should be displayed on the invoice
+  buyer:
+    type: object
+    description: buyer details
+    properties:
+      companyName:
+        type: string
+        description: buyer's company name
+      name:
+        description: buyer's name
+        $ref: ../../globalTypes/fullName.yaml
+      emailAddress:
+        type: string
+        description: buyer's email
+      phoneNumber:
+        type: string
+        description: buyer's phone number
+      address:
+        $ref: ../../globalTypes/physicalAddress.yaml
+      hasData:
+        type: boolean
+  description:
+    type: string
+    description: description of the purchase
+  items:
+    type: array
+    description: array of items that a buyer intends to purchase from the merchant
+    items:
+      $ref: ../../schemas/invoices/items.yaml
+  amount:
+    type: object
+    description: detailed amount of purchase with the breakdown of all fees
+    properties:
+      breakdown:
+        description: breakdown of invoice costs
+        type: object
+        properties:
+          subtotal:
+            description: sum of purchased items
+            $ref: ../../globalTypes/amount.yaml
+          shipping:
+            description: cost of shipping
+            $ref: ../../globalTypes/amount.yaml
+          handling:
+            description: cost of handling the order
+            $ref: ../../globalTypes/amount.yaml
+          taxTotal:
+            description: tax amount
+            $ref: ../../globalTypes/amount.yaml
+          discount:
+            description: discount amount for the whole purchase
+            $ref: ../../globalTypes/amount.yaml
+      currencyId:
+        type: string
+        description: original currency Id of the item
+      displayValue:
+        type: string
+        description: purchase value formatted for display (e.g 0.1234 BTC)
+      value:
+        type: string
+        description: this parameter represents the monetary value of purchase as an integer in the base (smallest) unit of the currency. For instance, Bitcoin can be divided into 8 decimal places,
+          with each division known as a Satoshi. Therefore, 1 BTC would have a value of 100,000,000 Satoshis, and 0.00031 BTC would have a value of 31,000 Satoshis. Similarly,
+          an amount of $9.99 USD would be represented as 999 cents. In the case of zero-decimal currencies like the Yen, a value of ¥500 would be represented as 500.
+          If no value is provided, the default is 0
+      valueAsDecimal:
+        type: string
+        description: the decimal value of purchase represents the monetary value with decimal precision derived from the value field,
+          which is the integer representation in the smallest unit of the currency or token.
+  shipping:
+    description: shipping details for the purchase
+    type: object
+    properties:
+      method:
+        type: string
+        description: method of shipping
+      companyName:
+        type: string
+        description: company name of the receiver
+      name:
+        $ref: ../../globalTypes/fullName.yaml
+      emailAddress:
+        type: string
+        description: receiver's email
+      phoneNumber:
+        type: string
+        description: receiver's phone number
+      address:
+        $ref: ../../globalTypes/physicalAddress.yaml
+      hasData:
+        type: boolean
+  customData:
+    type: string
+    description: custom data for receiver
+  status:
+    type: string
+    description: status of the invoice. Possible values - 'draft', 'scheduled', 'unpaid', 'pending', 'paid', 'completed',
+      'cancelled', 'timedOut', 'deleted'
+  requireBuyerNameAndEmail:
+    type: boolean
+    description: a flag that indicates whether buyer's name and email are required to be shown on the invoice
+  buyerDataCollectionMessage:
+    type: string
+    description: indicates whether it is allowed to collect buyer's information
+  notes:
+    type: string
+    description: indicates whether merchant's notes are allowed for the invoice
+  notesToRecipient:
+    type: string
+    description: indicates whether merchant's notes for the buyer are allowed for the invoice
+  termsAndConditions:
+    type: string
+    description: indicates whether buyer must acknowledge terms and conditions for interraction with CoinPayments
+  emailDelivery:
+    type: object
+    description: email addresses to be used for invoice delivery
+    properties:
+      to:
+        type: string
+        description: to email address. The value can take multiple addresses separated by semicolons
+      cc:
+        type: string
+        description: field to add multiple recipients separated by semicolons
+      bcc:
+        type: string
+        description: bcc field similar to "cc" field except that other recipients won't be able to see that someone else has been sent a copy of the email
+  isEmailDelivery:
+    type: boolean
+    description: default value to be used for whitelabeling checkout flow. For invoice document delivery indicates if invoice will be email delivered
+    default: false
+  metadata:
+    type: object
+    description: invoice metadata
+    properties:
+      integration:
+        type: string
+        description: the integration from which the invoice was created
+      hostname:
+        type: string
+        description: name of the host where invoice is stored
+  poNumber:
+    type: string
+    description: merchant's number of the purchase order
+  payoutDetails:
+    type: object
+    description: details of the invoice payout
+    properties:
+      paidTransactions:
+        type: array
+        description: list of payment transactions for the invoice
+        items:
+          type: object
+          properties:
+            hash:
+              type: string
+              description: transaction hash
+            amount:
+              description: transaction amount
+              $ref: ../../globalTypes/amount.yaml
+            conversionId:
+              type: integer
+              description: id of the conversion transaction if payout mode is with conversion
+              format: int64
+      paidDate:
+        type: string
+        description: date of payment
+      completedTxId:
+        type: string
+        description: id of the transaction that received enough confirmations on the blockchain
+      externalAddress:
+        type: string
+        description: address where payout is made, if payout mode is "To Address"
+      destinationCurrencyId:
+        type: string
+        description: id of the payout currency
+      expectedDisplayValue:
+        type: string
+        description: expected gross payout amount
+      sourceCurrencyId:
+        type: string
+        description: original currency of payment transaction
+      destinationWalletId:
+        type: string
+        description: id of the wallet for payout
+      isConversion:
+        type: boolean
+        description: if payout mode is with conversion
+      conversionProgress:
+        type: number
+        format: double
+        description: stage of the conversion at the payout
+      settlementModeErrorCode:
+        type: integer
+        format: int32
+        description: error code for payout settlement
+      destinationAmount:
+        type: object
+        description: net payout amount
+        properties:
+          amount:
+            type: object
+            description: net payout amount in crypto
+            $ref: ../../globalTypes/amount.yaml
+          nativeAmount:
+            type: object
+            description: net payout amount in fiat
+            $ref: ../../globalTypes/amount.yaml
+      receivedBlockchainTxId:
+        type: string
+        description: id of the payment transaction on the blockchain
+      items:
+        type: array
+        description: invoice payout details
+        items:
+          type: object
+          properties:
+            currency:
+              type: object
+              description: currency of payout
+              $ref: ../../globalTypes/currency.yaml
+            merchantFees:
+              type: object
+              description: fees paid by the merchant
+              properties:
+                transactionFee:
+                  description: CoinPayments fee
+                  $ref: ../../globalTypes/amount.yaml
+                networkFee:
+                  description: blockchain fee
+                  $ref: ../../globalTypes/amount.yaml
+                conversionFee:
+                  description: fee for conversion in case payout mode is with conversion
+                  $ref: ../../globalTypes/amount.yaml
+            payoutAmount:
+              description: amount to be paid out to the merchant in crypto
+              $ref: ../../globalTypes/amount.yaml
+            payoutAmountInInvoiceCurrency:
+              description: amount to be paid out to the merchant in fiat
+              $ref: ../../globalTypes/amount.yaml
+            merchantPayoutAddress:
+              type: string
+              description: merchant's address where funds to be paid out
+            created:
+              type: string
+              description: date and time when payout transaction is created by CoinPayments
+            sent:
+              type: string
+              description: date and time when payout transaction is sent to the merchant by CoinPayments
+            expected:
+              type: string
+              description: date and time when payout transaction is expected to be delivered to the merchant
+            confirmed:
+              type: string
+              description: date and time when payout transaction get on the blockchain in case payout mode is with conversion or to an external address
+            state:
+              type: string
+              description: status of the payout, possible values are - 'scheduled', 'sending', 'sent', 'confirmed',
+                'waitingConversion', 'failed', 'waitingInternalReceive', 'waitingExternalConfirm'
+      paging:
+        $ref: ../../globalTypes/paging.yaml
+  payments:
+    type: array
+    description: payment details in all currencies supported by the merchant
+    items:
+      type: object
+      description: payment details
+      properties:
+        expectedAmount:
+          description: gross payment amount in the currency of payment
+          $ref: ../../globalTypes/paymentAmountInvoiceRes.yaml
+        nativeExpectedAmount:
+          description: gross payment amount in the fiat currency
+          $ref: ../../globalTypes/paymentAmountInvoiceRes.yaml
+        actualAmount:
+          description: net payment amount in the currency of payment
+          $ref: ../../globalTypes/paymentAmountInvoiceRes.yaml
+        nativeActualAmount:
+          description: net payment amount in the fiat currency
+        paymentAddress:
+          type: string
+          description: address where funds are sent
+        errorCode:
+          type: string
+          description: payment error. Possible values - 'unknown', 'negativeRate', 'payoutAddressIsNull',
+            'paymentSubTotalIsLessThanMerchantTotalFee', 'totalBuyerWillPayIsNegativeOrZero', 'totalBuyerWillPayIsLessThanBuyerNetworkFee',
+            'totalMerchantFeeRatioIsMoreThanMaximumRatioSetting', 'payoutAmountIsLessThanDust', 'currencyIsNotActive',
+            'amountIsBelowOfConversionLimit', 'amountIsAboveOfConversionLimit', 'userLimitIsReached', 'notEnoughToActivateRippleAddress',
+            'conversionPairDoesNotExist', 'addressIsNotValid', 'doesNotHaveCompletedKyc', 'unstoppableDomainNotFound',
+            'unstoppableDomainNotFoundForCurrency', 'userWalletIsLocked', 'userWalletIsDeleted', 'largeWithdrawalRejected'
+        fees:
+          description: payment fees in cryptocurrency
+          $ref: ../../globalTypes/paymentFees.yaml
+        nativeFees:
+          description: payment fees in fiat
+          $ref: ../../globalTypes/paymentFees.yaml
+        payout:
+          type: object
+          description: payout details of the payment
+          properties:
+            scheduledAt:
+              type: string
+              description: date and time when the payout will be made
+            completedAt:
+              type: string
+              description: date and time when the payout has been completed
+            blockchainTx:
+              type: string
+              description: transaction id on the blockchain
+            spendRequestId:
+              type: string
+              description: id of the spend request in CoinPayments system for the payout with conversion
+            address:
+              type: string
+              description: address of the payout
+            walletId:
+              type: string
+              description: id of the wallet where payout address belongs
+            currencySymbol:
+              type: string
+              description: symbol of the payout currency
+            currencyId:
+              type: string
+              description: id of the payout currency
+            contractAddress:
+              type: string
+              description: contract address of the payout currency
+            displayValue:
+              type: string
+              description: payout amount as displayed in UI
+            value:
+              type: string
+              description: payout amount
+            valueAsDecimal:
+              type: number
+              description: payout amount in decimal format
+        nativePayout:
+          description: payout amount in fiat
+          $ref: ../../globalTypes/paymentAmountInvoiceRes.yaml
+        refundEmail:
+          type: string
+          description: buyer's email that can be used for refund
+        state:
+          type: string
+          description: payment status. Possible values are - 'created', 'detected', 'pending', 'confirmed', 'scheduledForPayout',
+            'completed', 'cancelled', 'timedOut', 'refunded'
+        isActive:
+          type: boolean
+          description: payment state
+        pendingAt:
+          type: string
+          description: date and time when payment is detected on the blockchain
+        confirmedAt:
+          type: string
+          description: date and time when payment receives first confirmation on the blockchain
+        completedAt:
+          type: string
+          description: date and time when payment receives all required confirmation on the blockchain
+        confirmations:
+          type: integer
+          description: number of confirmation payment received on the blockchain
+        requiredConfirmations:
+          type: integer
+          description: number of required confirmations for the payment to be considered completed
+  isLifeTimeFinished:
+    type: boolean
+    description: a flag indicating whether invoice has not expired yet
+  hideShoppingCart:
+    type: boolean
+    description: a flag indicating whether shopping cart symbol must be hidden from the checkout page
+
+

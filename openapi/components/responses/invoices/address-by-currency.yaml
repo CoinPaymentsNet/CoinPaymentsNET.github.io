@@ -2,7 +2,7 @@ type: object
 description: Address for buyer to make payment with indication of currency, amount, and expiration timer
 properties:
   currency:
-    $ref: ../currencies/currencySchema.yaml
+    $ref: ../../schemas/currencies/currencySchema.yaml
   amount:
     type: object
     description: amount of purchase

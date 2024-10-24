@@ -10,7 +10,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../components/schemas/invoices/invoice.yaml
+          $ref: ../../components/responses/invoices/invoiceByIdRes.yaml
     description: Create Invoice
   responses:
     '200':
@@ -20,7 +20,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../components/responses/invoices/invoiceRes.yaml
+            $ref: ../../components/responses/invoices/createInvoiceRes.yaml
     '401':
       description: Not Authorized
     '403':
@@ -93,7 +93,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../components/schemas/invoices/invoices.yaml
+            $ref: ../../components/responses/invoices/invoices.yaml
     '404':
       description: Merchant Not Found!
 
