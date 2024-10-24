@@ -85,7 +85,7 @@ properties:
               description: buyer's email
             phoneNumber:
               type: string
-              description:
+              description: buyer's phone number
             address:
               $ref: ../../globalTypes/physicalAddress.yaml
             hasData:
